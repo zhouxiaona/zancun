@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>移动端事件</title>
+		<meta name="viewport" content="width=device-width">
+		<style type="text/css">
+			#redDiv, #blueDiv{
+				width: 300px;
+				height: 200px;
+				background-color: red;
+				font-size: 50px;
+				color: white;
+				text-align: center;
+				line-height: 60px;
+			}
+			#blueDiv{
+				background-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="redDiv"></div>
+		<div id="blueDiv"></div>
+	</body>
+	<script type="text/javascript">
+		var redDiv = document.getElementById('redDiv');
+		var blueDiv = document.getElementById('blueDiv');
+		// var count = 0;
+		// 移动端可以使用onclick, 据说有300ms的延迟。
+		// redDiv.onclick = function(){
+		// 	this.innerHTML = count++;
+		// }
+		// var count2 = 0;
+		// 正版的移动端事件，
+		// ontouchstart相当于onmousedown
+		// ontouchmove 等价于PC的 onmousemove
+		// ontouchend  等价于 onmouseup
+
+		// ontouchcancel 取消触摸的时候触发。比如来电话、信息等，系统中止触摸事件的时候会触发，每个手机触发方式不一样。
+		// 每个触屏事件都包含事件对象。事件对象常用的有三个属性
+		// touches        屏幕上所有的手指列表
+		// targetTouches   元素内的所有手指列表
+		// changedTouches  改变了状态的手指列表
+
+		// pageX
+		// clientX
+		// blueDiv.ontouchmove = function(ev){
+		// 	var evObj = window.event || ev;
+		// 	// 
+		// 	redDiv.innerHTML = evObj.touches.length;
+		// 	this.innerHTML = evObj.changedTouches[0].pageX + "," + evObj.changedTouches[0].pageY;	
+		// 	// this.innerHTML = count2++;
+		// 	// touchmove的时候，可以阻止默认事件，让网页不会跟着滑动。
+		// 	return false;
+		// }
+
+		// 两个设备事件 加速计和陀螺仪
+
+	
+
+		// 静态的手机朝向
+		// 判断手机是否支持加速计和陀螺仪
+		if (window.DeviceMotionEvent){
+			redDiv.innerHTML = "支持";
+			// 动态的重力加速度
+			window.ondevicemotion = function(ev){
+				// accelerationIncludingGravity 包括了X、Y、Z的三个方向的重力加速度。
+				// var evObj = window.event || ev;
+				// var x = parseInt(evObj.accelerationIncludingGravity.x);
+				// var y = parseInt(evObj.accelerationIncludingGravity.y);
+				// var z = parseInt(evObj.accelerationIncludingGravity.z);
+				// blueDiv.innerHTML = "x:" + x + "<br/>" + "y:" + y + "<br/>" + "z:" + z;
+			}
+			window.ondeviceorientation = function(ev){
+				//beta手机平面延x轴，顺时针数值越来越小，逆时针数值越来越大
+				//gamma手机平面延y轴，逆时针数值越来越小，顺时针数值越来越大
+				//alpha 手机平面的z轴，逆时针变大，顺时针变小
+				var evObj = window.event || ev;
+				var alpha = parseInt(evObj.alpha);
+				var beta = parseInt(evObj.beta);
+				var gamma = parseInt(evObj.gamma);
+				blueDiv.innerHTML = "alpha:" + alpha + "<br/>" + "beta:" + beta + "<br/>" + "gamma:" + gamma;
+			}
+
+
+		} else {
+			redDiv.innerHTML = "换个手机吧";
+		}
+
+
+
+		
+	</script>
+</html>

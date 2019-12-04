@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>表单－form</title>
+		<style>
+			input{
+				outline: none;
+			}
+			/*focus鼠标点击输入框触发的状态（聚焦）*/
+			/*input:focus{
+				
+			}*/
+			a{
+				color: black;
+				text-decoration:none;
+			}
+			form{
+				width: 346px;
+				height: 310px;
+				background: white;
+				margin: 0 auto;
+				border: 1px solid gray;
+			}
+			form .top{
+				border-bottom: 1px solid lightgray;
+				overflow: hidden;
+				height: 55px;
+			}
+			form .top span{
+				float: left;
+				width: 173px;
+				padding: 19px 0;
+				text-align:center;
+			}
+			form .top span a{
+				display: inline-block;
+				width: 173px;
+			}
+			form .top span:nth-child(1) a{
+				border-right: 1px solid lightgray;
+			}
+			.username,.password{
+				width: 304px;
+				height: 38px;
+				border: 1px solid black;
+				margin: 20px auto;
+				line-height: 38px;
+				overflow: hidden;
+				position: relative;
+
+			}
+			.username input:nth-of-type(1),.password input:nth-of-type(1){
+				
+				border: none;
+				width: 250px;
+				height: 36px;
+				font-size: 16px;
+				padding-left: 5px;
+			}
+			.username label,.password label{
+				float: left;
+				width: 38px;
+				height: 38px;
+				background: url(https://misc.360buyimg.com/user/passport/1.0.0/widget/login-form-2016-1124/i/pwd-icons-new.png) no-repeat 0 0;
+				border-right: 1px solid black;
+			}
+			.password label{
+				background-position: -48px 0;
+			}
+			
+			.username .res,.password .res{
+				
+				border: none;
+				padding: 0;
+				position: absolute;
+				width: 14px;
+				height: 14px;
+				right: 8px;
+				top: 13px;
+				background: url(https://misc.360buyimg.com/user/passport/1.0.0/widget/login-form-2016-1124/i/pwd-icons-new.png) no-repeat -104px top;
+				display: none;
+			}
+			.forget{
+				width: 304px;
+				height: 38px;
+				margin: 5px auto;
+				overflow: hidden;
+			}
+			.forget a{
+				float: right;
+				font-size: 12px;
+			}
+			.load{
+				width: 304px;
+				height: 38px;
+				margin: 5px auto;
+			}
+			.load input{
+				display: block;
+				width: 100%;
+				height: 100%;
+				background: red;
+				font-size: 20px;
+				color: white;
+				border:none;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 表单　创建一个表单区域　双标签 块级-->
+		<!-- action　提交后台的地址　　method 提交数据/信息的方式 
+		1.get 不能提交隐私性高的数据
+		2.post -->
+		<!-- restfull API规范 -->
+
+
+		<form action=""　method="">
+			<!-- 表单元数据 input 单标签　行块级-->
+			<!-- type='text'　定义文本输入框 -->
+			<!-- type='password'　定义密码输入框 -->
+			<!-- type='submit'　定义数据　信息提交按钮 -->
+			<!-- type='reset'　定义数据　重置信息按钮 -->
+			<!-- name　定义数据名称（字段名称） -->
+			<!-- 　value　定义默认值|信息 -->
+			<!-- placeholder 定义提示信息 -->
+			<div class="top">
+				<span><a href="###">扫码登录</a></span>
+				<span><a href="###">账号登录</a></span>
+			</div>
+			
+			<div class="username">
+				<label for="zhouna" id='label1' ></label>
+				<input type="text" id="zhouna" name="username" placeholder="用户名/手机号码/邮箱" oninput="dis()" />
+				<input class="res" type="reset" value="">
+			</div>
+			<div class="password">
+				<label for="mima" id='label2'></label>
+				<input type="password" id="mima" name="password" placeholder="密码" oninput="dis1()"/>
+				<input class="res" type="reset" value="">
+			</div>
+			<div class="forget">
+				<a href="###">忘记密码</a>
+			</div>
+			<div class="load">
+				<input type="submit" value="登 　录">
+			</div>
+			
+
+
+			<!-- <input type="submit" value="登陆"/>
+			<input type="reset" value="清空"/> -->
+		</form>
+	</body>
+	<script>
+		var label1=document.getElementById('label1');
+		var label2=document.getElementById('label2');
+		var inp1=document.getElementById('zhouna');
+		var inp2=document.getElementById('mima');
+		var res=document.getElementsByClassName('res');
+		inp1.onfocus=function(){
+			label1.style.backgroundImage='url(https://misc.360buyimg.com/user/passport/1.0.0/widget/login-form-2016-1124/i/pwd-icons-new.png)';
+			label1.style.backgroundRepeat="no-repeat";
+			label1.style.backgroundPosition="0 -49px";
+		}
+		inp2.onfocus=function(){
+			label2.style.backgroundImage='url(https://misc.360buyimg.com/user/passport/1.0.0/widget/login-form-2016-1124/i/pwd-icons-new.png)';
+			label2.style.backgroundRepeat="no-repeat";
+			label2.style.backgroundPosition="-48px -49px";
+		}
+		label1.onclick=function(){
+			label1.style.backgroundImage='url(https://misc.360buyimg.com/user/passport/1.0.0/widget/login-form-2016-1124/i/pwd-icons-new.png)';
+			label1.style.backgroundRepeat="no-repeat";
+			label1.style.backgroundPosition="0 -49px";
+		}
+		label2.onclick=function(){
+			label2.style.backgroundImage='url(https://misc.360buyimg.com/user/passport/1.0.0/widget/login-form-2016-1124/i/pwd-icons-new.png)';
+			label2.style.backgroundRepeat="no-repeat";
+			label2.style.backgroundPosition="-48px -49px";
+		}
+		function dis( ){
+			res[0].style.display='block';
+			
+		}
+		
+		function dis1( ){
+			res[1].style.display='block';
+			
+		}
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

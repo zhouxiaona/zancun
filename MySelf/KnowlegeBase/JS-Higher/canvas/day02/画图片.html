@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>画图片</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			您的浏览器不支持canvas，请及时更新浏览器!
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		
+		var img=new Image();
+		img.src="0.jpg";
+		img.onload=function(){
+			//绘制图片方式一：图片开始放置的坐标
+//			ctx.drawImage(img,10,10);
+			//绘制图片方式二：图片开始放置的坐标，图片在画布中的宽高
+//			ctx.drawImage(img,0,0,240,360);
+			//绘制图片方式三：图片对象，对图片开始裁的坐标，所裁区域的宽高；所裁部分在画布中放置的开始坐标，所裁部分在画布中的宽高
+			ctx.drawImage(img,0,0,100,100,0,0,200,200);
+		}
+		
+	</script>
+</html>

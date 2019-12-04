@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/axios/dist/axios.js"></script>
+</head>
+<body>
+    <div id="app" class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">注册</div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-6">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="姓名" v-model="users.username">
+                        </div>
+                        <div class="col-sm-4 form-control-static text-danger" v-show="!usernames">用户名必须是2-5位</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="inputPassword3" placeholder="密码" v-model="users.pwd">
+                        </div>
+                        <div class="col-sm-4 form-control-static text-danger" v-show="!pwds">密码必须是8-12位</div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10">
+                            <label class="radio-inline">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="1" v-model="users.sex"> 男
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" :value="2" v-model="users.sex"> 女
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox" :class="users.sure?'text-success':'text-danger'">
+                                <label>
+                                    <input type="checkbox" v-model="users.sure"> 是否同意条款
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">城市</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" v-model="users.city">
+                                <option value="">--请选择城市--</option>
+                                <option value="上海">上海</option>
+                                <option value="北京">北京</option>
+                                <option value="深圳">深圳</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4 form-control-static text-danger" v-show="!citys">请选择城市</div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-success" @click.prevent="sub" :class="isregister?'':'disabled'">注册</button>
+                            <button type="submit" class="btn btn-danger" @click.prevent="resetUsers" :class="isreset?'':'disabled'">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    //是否重名验证;姓名失去焦点时触发ajax做验证
+    new Vue({
+        el:"#app",
+        data:{
+            users:{
+                username:"",
+                pwd:"",
+                sex:"1",
+                sure:true,
+                city:""
+            }
+        },
+        methods:{
+            resetUsers:function(){
+                if(this.isreset){
+                    this.users={
+                        username:"",
+                        pwd:"",
+                        sex:"1",
+                        sure:true,
+                        city:""
+                    }
+                }
+            },
+            sub:function(){
+                if(this.isregister){
+                    // 触发ajax
+                    // console.log("haha");
+                    //ba\\把对象和数组展开  展开运算符
+                    axios.post("/post",{
+                        ...this.users
+                    }).then((res)=>{
+                        console.log(res);
+                        if(res.data.status==1){
+                            alert(res.data.info);
+                        }else{
+                            alert(res.data.info);
+                        }
+                    }).catch((err)=>{
+                        if(err){
+                            console.log(err);
+                        }
+                    });
+
+                }
+            }
+        },
+        computed:{
+            usernames:function(){
+                if(this.users.username.length>=2 && this.users.username.length<=5){
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+            pwds:function(){
+                if(this.users.pwd.length>8 && this.users.pwd.length<12){
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+            citys:function(){
+                if(this.users.city==""){
+                    return false;
+                }else{
+                    return true;
+                }
+            },
+            isreset:function(){
+                if(this.users.username!="" || this.users.pwd!="" || this.users.city!="" || this.users.sure!=true || this.users.sex!="1"){
+                    //条件全部满足
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+        //    判断是否可以注册，是否满足条件
+            isregister:function(){
+                if(this.usernames && this.pwds && this.citys && this.users.sure){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
+    })
+</script>
+</html>

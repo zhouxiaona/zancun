@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas动画</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			您的浏览器不支持canvas，请及时更新浏览器!
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+//===========================================================
+
+//		function draw(x){
+//			ctx.beginPath();
+//			ctx.fillStyle="pink";
+//			ctx.fillRect(x,0,50,50);
+//			var timer=setTimeout(function(){
+//				//清空画布
+//				ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+//				x+=5;
+//				draw(x);
+//			},100);
+//		}
+                        		
+//==========================================================		
+		//5!
+//		function jiecheng(num){
+//			if(num>0){
+//				return num*jiecheng(num-1);
+//			}else{
+//				return 1;
+//			}
+//		}
+//		console.log(jiecheng(5));
+		
+//===========================================================		
+		
+//		window.requestAnimationFrame
+		function draw(x){
+			ctx.beginPath();
+			ctx.fillStyle="pink";
+			ctx.fillRect(x,0,50,50);
+		}
+		var x=0;
+		function act(){
+			//清空画布
+			ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+			//更新画布
+			x++;
+			//重绘画布
+			draw(x);
+			window.requestAnimationFrame(act);
+		}
+		act();
+
+//===========================================================
+
+//		var x=0;
+//		var timer=setInterval(function(){
+//			//清空画布
+//			ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+//			//更新
+//			x+=8;
+//			if(x >= mycanvas.width-50){
+//				clearInterval(timer);
+//			}
+//			//重新绘制
+//			draw(x);
+//		},100);
+
+//===========================================================		
+	</script>
+</html>

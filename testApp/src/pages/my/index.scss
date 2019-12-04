@@ -1,0 +1,35 @@
+.index{
+  .btn{
+    width: 200px;
+    height: 100px;
+    background-color: pink;
+    text-align: center;
+    line-height: 100px;
+    color: #fff;
+  }
+  .btn::after{
+    border: 0;
+  }
+  .pinkBtn{
+    width: 300px;
+    height: 80px;
+    background-color: pink;
+    text-align: center;
+    line-height: 80px;
+    color: #fff;
+    border-radius: 10px;
+    margin: 10px auto;
+    font-size: 30px;
+  }
+  .blueBtn{
+    width: 300px;
+    height: 80px;
+    background-color: lightblue;
+    text-align: center;
+    line-height: 80px;
+    color: #fff;
+    border-radius: 10px;
+    margin: 10px auto;
+    font-size: 30px;
+  }
+}

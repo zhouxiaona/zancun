@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/React02/live.html" line="29" mnemonic="0" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="998bb9b6-d879-4cdd-8289-51fcf789bebf" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="JS高阶" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="back.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/React01/back.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/React01/component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/React02/myproject/src/App.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="366">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nodeJs/test.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="17" column="10" lean-forward="true" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/nodeJs/get.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="12" column="20" lean-forward="true" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hello.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/React02/myproject/src/Hello.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Pug File" />
+        <option value="package_json" />
+        <option value="Jade File" />
+        <option value="CSS File" />
+        <option value="Vue Single File Component" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>showInput</find>
+      <find>isShowOK</find>
+      <find>mousemove</find>
+      <find>showEdit</find>
+      <find>afterEnter</find>
+      <find>showBirth</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/reactnative/MyTest/components/Hello.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyProject/App.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyTest/components/Xiec.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyProject/components/MyListView.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyTest/components/Second.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyTest/components/First.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyTest/components/myserver.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyTest/myserver.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyTest/components/FetchPost.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyTest/components/MyWebView.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyTest/img/webhtml.html" />
+        <option value="$PROJECT_DIR$/reactnative/MyTest/index.ios.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyTest/components/Mymovies.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyClass/components/Setting.css" />
+        <option value="$PROJECT_DIR$/reactnative/MyClass/components/Toilet.js" />
+        <option value="$PROJECT_DIR$/reactnative/MySetting/components/Choice.js" />
+        <option value="$PROJECT_DIR$/reactnative/MySetting/components/Parking.js" />
+        <option value="$PROJECT_DIR$/reactnative/MySetting/components/Blog.js" />
+        <option value="$PROJECT_DIR$/reactnative/MySetting/components/Setting.js" />
+        <option value="$PROJECT_DIR$/reactnative/MySetting/index.ios.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyClass/components/Mymovie.js" />
+        <option value="$PROJECT_DIR$/cake21/src/components/order/Order.vue" />
+        <option value="$PROJECT_DIR$/elems/src/components/goods/Goods.vue" />
+        <option value="$PROJECT_DIR$/cake21/src/components/GoodsBtn/GoodsBtn.vue" />
+        <option value="$PROJECT_DIR$/cake21/src/components/kezhiinfo/KezhiInfo.vue" />
+        <option value="$PROJECT_DIR$/cake21/src/components/kezhi/Kezhi.vue" />
+        <option value="$PROJECT_DIR$/elems/src/App.vue" />
+        <option value="$PROJECT_DIR$/cake21/src/components/goodsBtn/GoodsBtn.vue" />
+        <option value="$PROJECT_DIR$/cake21/static/reset.css" />
+        <option value="$PROJECT_DIR$/cake21/src/router/index.js" />
+        <option value="$PROJECT_DIR$/cake21/src/directive/clickoutside.js" />
+        <option value="$PROJECT_DIR$/cake21/index.html" />
+        <option value="$PROJECT_DIR$/vue03/vuetest/src/main.js" />
+        <option value="$PROJECT_DIR$/vue03/vuetest/src/components/Chow.vue" />
+        <option value="$PROJECT_DIR$/vue03/vuetest/src/App.vue" />
+        <option value="$PROJECT_DIR$/vue03/vuetest/src/components/Transition.vue" />
+        <option value="$PROJECT_DIR$/reactnative/MyClass/common/MyWebViews.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyClass/html/new.html" />
+        <option value="$PROJECT_DIR$/reactnative/MyClass/index.ios.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyClass/components/ReadList.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyClass/components/Setting.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyClass/components/MyWebView.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyClass/components/Navigator.js" />
+        <option value="$PROJECT_DIR$/reactnative/MyClass/components/Read.js" />
+        <option value="$PROJECT_DIR$/cake21/src/App.vue" />
+        <option value="$PROJECT_DIR$/cake21/src/main.js" />
+        <option value="$PROJECT_DIR$/cake21/src/components/party/Party.vue" />
+        <option value="$PROJECT_DIR$/cake21/src/components/goodsList/GoodsList.vue" />
+        <option value="$PROJECT_DIR$/cake21/src/components/shopcar/ShopCar.vue" />
+        <option value="$PROJECT_DIR$/React01/component.html" />
+        <option value="$PROJECT_DIR$/React02/myproject/src/App.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/React02/myproject/node_modules" />
+    <handled-path value="$PROJECT_DIR$/React02/node_modules" />
+    <handled-path value="$PROJECT_DIR$/ReactGogo/gogo/node_modules" />
+    <handled-path value="$PROJECT_DIR$/ReactGogo/node_modules" />
+    <handled-path value="$PROJECT_DIR$/cake21/node_modules" />
+    <handled-path value="$PROJECT_DIR$/node02/gulp/node_modules" />
+    <handled-path value="$PROJECT_DIR$/node05/node_modules" />
+    <handled-path value="$PROJECT_DIR$/nodeJs/webpack/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactnative/MyClass/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactnative/MyProject/node_modules" />
+    <handled-path value="$PROJECT_DIR$/reactnative/MySetting/node_modules" />
+    <handled-path value="$PROJECT_DIR$/vue02/node_modules" />
+    <handled-path value="$PROJECT_DIR$/vue02/register/node_modules" />
+    <handled-path value="$PROJECT_DIR$/vue03/vuetest/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="78" />
+    <option name="y" value="47" />
+    <option name="width" value="1647" />
+    <option name="height" value="1012" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource ProjectPane="true" />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="JS高阶" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JS高阶" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JS高阶" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JS高阶" type="462c0819:PsiDirectoryNode" />
+              <item name="node02" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="javascript.nodejs.core.library.configured.version" value="6.11.2" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path" value="D:/Program Files/nodejs/node" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cake21/static" />
+      <recent name="$PROJECT_DIR$/reactnative/MySetting/components" />
+      <recent name="$PROJECT_DIR$/reactnative/MyClass/components" />
+      <recent name="$PROJECT_DIR$/reactnative/MyTest" />
+      <recent name="$PROJECT_DIR$/reactnative/MyTest/components" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cake21/static/img" />
+      <recent name="$PROJECT_DIR$/reactnative/MyClass/img" />
+      <recent name="$PROJECT_DIR$/reactnative/MySetting/img" />
+      <recent name="$PROJECT_DIR$/reactnative/MyTest" />
+      <recent name="$PROJECT_DIR$/reactnative/MyTest/img" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Node.js.myservers.js">
+    <configuration name="电话簿-构造函数.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/JS高阶/面向对象/电话簿-构造函数.html" />
+    <configuration name="ES6类.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/JS高阶/面向对象/ES6类.html" />
+    <configuration name="files.js" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="files.js" working-dir="$PROJECT_DIR$/node03" />
+    <configuration name="myserver.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="myserver.js" working-dir="$PROJECT_DIR$/reactnative/MyTest" />
+    <configuration name="myservers.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="myservers.js" working-dir="$PROJECT_DIR$/elems/build" />
+    <configuration name="oop.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/JS高阶/面向对象/oop.html" />
+    <configuration name="tab选项卡.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/JS高阶/面向对象/tab选项卡.html" />
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="Node.js.files.js" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.oop.html" />
+      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.ES6类.html" />
+      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.电话簿-构造函数.html" />
+      <item index="4" class="java.lang.String" itemvalue="Node.js.myservers.js" />
+      <item index="5" class="java.lang.String" itemvalue="Node.js.myserver.js" />
+    </list>
+    <recent_temporary>
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Node.js.myservers.js" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.myserver.js" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.电话簿-构造函数.html" />
+        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.ES6类.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="998bb9b6-d879-4cdd-8289-51fcf789bebf" name="Default" comment="" />
+      <created>1516096138681</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1516096138681</updated>
+      <workItem from="1516096140621" duration="1986000" />
+      <workItem from="1516150790651" duration="3136000" />
+      <workItem from="1516154500569" duration="616000" />
+      <workItem from="1516155167789" duration="1339000" />
+      <workItem from="1516156532396" duration="123000" />
+      <workItem from="1516157128186" duration="7908000" />
+      <workItem from="1516173976934" duration="93000" />
+      <workItem from="1516174156252" duration="7426000" />
+      <workItem from="1516236943010" duration="23355000" />
+      <workItem from="1516323640172" duration="15964000" />
+      <workItem from="1516347633347" duration="6662000" />
+      <workItem from="1516582889438" duration="30343000" />
+      <workItem from="1516669284249" duration="2135000" />
+      <workItem from="1516671446211" duration="2711000" />
+      <workItem from="1516674187383" duration="15885000" />
+      <workItem from="1516699831422" duration="3723000" />
+      <workItem from="1516755511431" duration="27132000" />
+      <workItem from="1516841936869" duration="35981000" />
+      <workItem from="1516928504425" duration="22488000" />
+      <workItem from="1516964434095" duration="13162000" />
+      <workItem from="1517018731725" duration="6532000" />
+      <workItem from="1517187715216" duration="30979000" />
+      <workItem from="1517231351258" duration="1606000" />
+      <workItem from="1517274053310" duration="29630000" />
+      <workItem from="1517360454832" duration="28765000" />
+      <workItem from="1517446784686" duration="5727000" />
+      <workItem from="1517453365368" duration="8000" />
+      <workItem from="1517453396212" duration="8000" />
+      <workItem from="1517453425947" duration="19000" />
+      <workItem from="1517453467677" duration="33537000" />
+      <workItem from="1517533261017" duration="25706000" />
+      <workItem from="1517623305105" duration="28442000" />
+      <workItem from="1517792517437" duration="33276000" />
+      <workItem from="1517879002963" duration="2453000" />
+      <workItem from="1517881895536" duration="5583000" />
+      <workItem from="1517888346084" duration="163000" />
+      <workItem from="1517888531034" duration="22785000" />
+      <workItem from="1517965370124" duration="2660000" />
+      <workItem from="1517979402663" duration="241000" />
+      <workItem from="1517981947153" duration="3134000" />
+      <workItem from="1517986916820" duration="9242000" />
+      <workItem from="1518051658065" duration="10000" />
+      <workItem from="1518051686781" duration="28000" />
+      <workItem from="1518051734502" duration="4000" />
+      <workItem from="1518051760236" duration="6000" />
+      <workItem from="1518051786442" duration="8000" />
+      <workItem from="1518051814811" duration="133000" />
+      <workItem from="1519607760968" duration="11000" />
+      <workItem from="1519607796059" duration="19000" />
+      <workItem from="1519607835291" duration="9008000" />
+      <workItem from="1519626048416" duration="2633000" />
+      <workItem from="1519692896663" duration="10680000" />
+      <workItem from="1519783930038" duration="21631000" />
+      <workItem from="1519865895609" duration="33260000" />
+      <workItem from="1519952355589" duration="22958000" />
+      <workItem from="1519989400839" duration="12091000" />
+      <workItem from="1520042368770" duration="17407000" />
+      <workItem from="1520137694036" duration="9525000" />
+      <workItem from="1520211581521" duration="40547000" />
+      <workItem from="1520297803407" duration="33674000" />
+      <workItem from="1520343713437" duration="1690000" />
+      <workItem from="1520384077995" duration="22416000" />
+      <workItem from="1520470580114" duration="16634000" />
+      <workItem from="1520562423081" duration="18974000" />
+      <workItem from="1520647281364" duration="17994000" />
+      <workItem from="1520815775327" duration="26580000" />
+      <workItem from="1521122013414" duration="352000" />
+      <workItem from="1521252120282" duration="256000" />
+      <workItem from="1521950691010" duration="261000" />
+      <workItem from="1522373263870" duration="4233000" />
+      <workItem from="1523176148949" duration="2642000" />
+      <workItem from="1523932474692" duration="345000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="818674000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14330874" sideWeight="0.8853363" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34606987" sideWeight="0.5024356" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24912485" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16164994" sideWeight="0.49756438" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1619303" sideWeight="0.11466373" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23991276" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18668123" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/vue03/myproject/src/main.js</url>
+          <line>15</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="42" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/reactnative/MyProject/components/Header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="19" column="31" lean-forward="false" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyProject/components/MyImage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="20" column="309" lean-forward="true" selection-start-line="20" selection-start-column="309" selection-end-line="20" selection-end-column="309" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyClass/components/Toilet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyTest/components/Xiec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyClass/common/MyWebViews.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="26" column="14" lean-forward="false" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyClass/html/new.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1305">
+          <caret line="109" column="32" lean-forward="false" selection-start-line="109" selection-start-column="32" selection-end-line="109" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyProject/components/MyListView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-619">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyTest/components/Mymovies.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyTest/Tabbar切换.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-116">
+          <caret line="38" column="3" lean-forward="true" selection-start-line="38" selection-start-column="3" selection-end-line="38" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyTest/components/MyWebView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyProject/components/MyScrollView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="18" column="48" lean-forward="true" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyClass/components/Mymovie.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="48" column="22" lean-forward="true" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyClass/components/Setting.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="20" column="23" lean-forward="true" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MySetting/components/Setting.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="32" lean-forward="true" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MySetting/index.ios.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="54" column="29" lean-forward="true" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyClass/components/MyWebView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyClass/components/ReadList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="56" column="25" lean-forward="true" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyClass/components/Read.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="49" column="49" lean-forward="true" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyClass/components/Navigator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyTest/components/First.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" column="6" lean-forward="true" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactnative/MyClass/index.ios.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="54" column="28" lean-forward="true" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cake21/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="17" column="14" lean-forward="true" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cake21/src/components/kezhiinfo/KezhiInfo.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cake21/src/components/kezhi/Kezhi.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vue03/myproject/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="21" />
+          <folding>
+            <element signature="e#1193#1833#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cake21/static/img/icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cake21/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vue03/myproject/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="643">
+          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vue03/myproject/src/components/Lazyload.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cake21/config/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cake21/static/img/cake.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cake21/static/reset.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="860">
+          <caret line="83" column="16" lean-forward="true" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cake21/src/components/shopcar/ShopCar.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="280" column="22" lean-forward="true" selection-start-line="280" selection-start-column="22" selection-end-line="280" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cake21/src/components/goodsList/GoodsList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="94" column="43" lean-forward="false" selection-start-line="94" selection-start-column="43" selection-end-line="94" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cake21/src/components/party/Party.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/React01/back.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/React01/component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodeJs/fnData/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/React02/myproject/src/ChangeOpacity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vue03/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-192">
+          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elems/src/components/seller/Seller.vue" />
+    <entry file="file://$PROJECT_DIR$/React02/myproject/src/InputText.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ReactGogo/gogo/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/面向对象/tab选项卡.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="37" column="39" lean-forward="true" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/day04/像素碰撞2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1224">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/day03/canvas动画.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="966">
+          <caret line="54" column="18" lean-forward="true" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/canvas/day04/像素碰撞.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="57" column="35" lean-forward="true" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/React02/myproject/src/Hello.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/React02/myproject/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodeJs/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="17" column="10" lean-forward="true" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodeJs/get.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="20" lean-forward="true" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

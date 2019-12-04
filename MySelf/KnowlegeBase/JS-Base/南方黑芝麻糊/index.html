@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>西游知多少</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.boss{
+				width: 375px;
+				height: 667px;
+				margin: 0 auto;
+				position: relative;
+				overflow: hidden;
+			}
+/*********************** loading ********************/
+			#progress{
+				position: absolute;
+				left:0;
+				right:0;
+				top:0;
+				bottom:0;
+				margin:auto;
+			}
+/*********************** firstpage ********************/
+			.firstpage{
+				width: 100%;
+				height: 100%;
+				background: url('img/3-9.png') no-repeat left top/100% 100%;
+				position: absolute;
+				display:none;
+			}
+			.page1{
+				width: 100%;
+			}
+			.page2{
+				width: 100%;
+				position: absolute;
+				top: 2.5%;
+			}
+			.page3{
+				width: 100%;
+				position: absolute;
+				top: 9%;
+			}
+			.page4{
+				width: 90%;
+				position: absolute;
+				top: 20%;
+				left: 5%;
+			}
+			.page5{
+				width: 40%;
+				position: absolute;
+				bottom: 15%;
+				right: 20%;
+			}
+			.page6{
+				width: 40%;
+				position: absolute;
+				bottom: 8%;
+				left: 12%;
+			}
+			.page7{
+				width: 100%;
+				position: absolute;
+				bottom: 2%;
+			}
+			/* 新知识get */
+			.page7:hover{
+				width: 110%;
+			}
+			.page8{
+				width: 100%;
+				position: absolute;
+				bottom: 0;
+			}
+			/* 首页动画 */
+			.firstpage img{
+				animation: showup  1s ease-in forwards;
+			}
+			@-webkit-keyframes showup{
+				0%{transform: scale(0);}
+				50%{transform: scale(1.1);}
+				100%{transform: scale(1);}
+			}
+/*********************** second page ***********************/
+			.secondpage{
+				width: 100%;
+				height: 100%;
+				background: url('img/secondPage.png') no-repeat left top/100% 100%;
+				position: absolute;
+				display: none;
+			}
+			.secondpage img{
+				width: 15%;
+				position: absolute;
+				bottom: 2%;
+				left: 42.5%;
+			}
+			.secondpage img:hover{
+				transform: scale(1.5);
+			}
+/*********************** question page ***********************/	
+			.questionpage{
+				width: 100%;
+				height: 100%;
+				background: url('img/bg.png') no-repeat left top/100% 100%;
+				position: absolute;
+				display: none;
+			}
+			.top{
+				width: 100%;
+				margin-top: 5%;
+				position: relative;
+			}
+			.top img{
+				width: 90%;
+				margin-left: 5%;
+			}
+			.top>span{
+				position: absolute;
+				left: 9%;
+				top: 45%;
+				font-size: 30px;
+			}
+			.top>p{
+				width: 60%;
+				position: absolute;
+				right: 14%;
+				top: 6%;
+				font-size: 25px;
+			}
+			.middle{
+				width: 100%;
+				margin: 5% 0;
+			}
+			.middle>img{
+				width: 50%;
+				margin-left: 25%;
+			}
+			.line{
+				width: 100%;
+				margin-bottom: 4%;
+				position: relative;
+			}
+			.line>img{
+				width: 90%;
+				margin-left: 5%;
+			}
+			.line>p{
+				position: absolute;
+				top: 15%;
+				left: 22%;
+				font-size: 30px;
+			}
+			.line .juge{
+				position: absolute;
+				width: 10%;
+				top: 20%;
+				right: 9%;
+				display: none;
+			}
+/*********************** lose page ***********************/
+			.losepage{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				background: url('img/failure.png') no-repeat left top/100% 100%;
+				display: none;
+			}
+			.losepage p{
+				position: absolute;
+				top: 30%;
+				left: 5%;
+				font-size: 30px;
+			}
+			.losepage p .timu,.losepage p .score{
+				color: orange;
+			}
+			.lose1{
+				width: 35%;
+				position: absolute;
+				bottom: 0;
+				left: 10%;
+			}
+			.lose2{
+				width: 35%;
+				position: absolute;
+				bottom: 0;
+				right: 10%;
+			}
+			.lose1:hover,.lose2:hover{
+				transform: scale(1.1);
+			}
+/*********************** win page ***********************/	
+			.winpage{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				background: url('img/success.png') no-repeat left top/100% 100%;
+				display: none;
+			}
+			.winpage p{
+				position: absolute;
+				top: 29%;
+				left: 5%;
+				font-size: 30px;
+			}
+			.winpage p .timu,.winpage p .score{
+				color: orange;
+			}
+			.name{
+				width: 66%;
+				position: absolute;
+				top: 42%;
+				left: 17%;
+			}
+			.pp{
+				width: 70%;
+				position: absolute;
+				top: 62.5%;
+				left: 15%;
+			}
+			.lose1{
+				width: 35%;
+				position: absolute;
+				bottom: 0;
+				left: 10%;
+			}
+			.lose2{
+				width: 35%;
+				position: absolute;
+				bottom: 0;
+				right: 10%;
+			}
+			.lose3{
+				width: 40%;
+				position: absolute;
+				bottom: 0;
+				left: 24%;
+			}
+			.lose1:hover,.lose2:hover,.lose3:hover{
+				transform: scale(1.1);
+				cursor: pointer;
+			}		
+		</style>
+	</head>
+	<body>
+		<div class="boss">
+			<!--loading　加载条-->
+			<progress id="progress" min="0" max="100" value="0"></progress>
+			<!-- first page -->
+			<div class="firstpage">
+				<img src="img/3-8.png" class="page1" alt="3-8">
+				<img src="img/3-7.png" class="page3" alt="3-7" >
+				<img src="img/3-10.png" class="page2" alt="3-10" >
+				<img src="img/3-3.png" class="page4" alt="3-3" >
+				<img src="img/3-4.png" class="page5" alt="3-4" >
+				<img src="img/3-2.png" class="page6" alt="3-2" >
+				<img src="img/4-5.png" class="page8" alt="4-5" >
+				<img src="img/3-1.png" class="page7" alt="3-1" >
+			</div>
+
+			<!-- second page -->
+			<div class="secondpage">
+				<img class="go" src="img/secondPage-1.png" alt="go">
+			</div>
+		
+		<!-- question page -->
+			<div class="questionpage">
+				<div class="top">
+					<img src="img/2-tiwen.png" alt="tiwen">
+					<span>001</span>
+					<p></p>
+				</div>
+				<div class="middle">
+					<img src="" alt="loser">
+				</div>
+				<div class="line line1">
+					<img src="img/2-A.png" class="selects">
+					<p></p>
+					<img src="img/cha.png" class="juge" alt="panduan">
+				</div>
+				<div class="line line2">
+					<img src="img/2-B.png" class="selects">
+					<p></p>
+					<img src="img/cha.png" class="juge" alt="panduan">
+				</div>
+				<div class="line line3">
+					<img src="img/2-C.png" class="selects">
+					<p></p>
+					<img src="img/cha.png" class="juge" alt="panduan">
+				</div>
+				<div class="line line4">
+					<img src="img/2-D.png" class="selects">
+					<p></p>
+					<img src="img/cha.png" class="juge" alt="panduan">
+				</div>
+			</div>
+			
+			<!-- loser page -->
+			<div class="losepage">
+				<p>您答对了<span class="timu">0</span>道题，获得<span class="score">0</span>分</p>
+				<img class="lose1" src="img/failure-1.png" alt="failure1">
+				<img class="lose2" src="img/failure-2.png" alt="failure2">
+			</div>
+			
+			<!-- win page -->
+			<div class="winpage">
+				<p>您答对了<span class="timu">0</span>道题，获得<span class="score">0</span>分</p>
+				<img class="name" src="img/success-8.png" alt="success8">
+				<img class="pp" src="img/success-4.png" alt="success4">
+				<img class="lose3" src="img/success-1.png" alt="success1">
+				<img class="lose1" src="img/failure-1.png" alt="failure1">
+				<img class="lose2" src="img/failure-2.png" alt="failure2">
+			</div>
+
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</html>

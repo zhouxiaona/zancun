@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>圆的碰撞检测</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			及时更新浏览器！
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		
+		function Arc(x,y,r,color,speedx,speedy){
+			this.x=x;
+			this.y=y;
+			this.r=r;
+			this.color=color;
+			this.speedx=speedx;
+			this.speedy=speedy;
+		}
+		Arc.prototype.draw=function(){
+			ctx.beginPath();
+			ctx.fillStyle=this.color;
+			ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+			ctx.fill();
+		}
+		Arc.prototype.move=function(){
+			this.x+=this.speedx;
+			this.y+=this.speedy;
+			//碰壁检测
+			if(this.x<this.r || this.x>mycanvas.width-this.r){
+				this.speedx*=-1;
+			}
+			if(this.y<this.r || this.y>mycanvas.height-this.r){
+				this.speedy*=-1;
+			}
+		}
+		var arc1=new Arc(50,50,50,"pink",2,5);
+		var arc2=new Arc(150,50,50,"blue",5,2);
+		function act(){
+			ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+			arc1.draw();
+			arc1.move();
+			arc2.draw();
+			arc2.move();
+			//检测碰撞
+			var len=Math.pow(arc1.x-arc2.x,2)+Math.pow(arc1.y-arc2.y,2);
+			if(len <= Math.pow(arc1.r+arc2.r,2)){
+				console.log("lla");
+				arc1.speedx*=-1;
+				arc1.speedy*=-1;
+				arc2.speedx*=-1;
+				arc2.speedy*=-1;
+			}
+			window.requestAnimationFrame(act);
+		}
+		act();
+		
+	</script>
+</html>

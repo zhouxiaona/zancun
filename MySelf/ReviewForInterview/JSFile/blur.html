@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .glass-wrap{
+        width: 400px;
+        height: 400px;
+        margin: 200px auto;
+        background: url('../images/glass.jpg') no-repeat;
+        background-size: contain;
+        position: relative;
+    }
+    .pub-position{
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin:  auto;
+    }
+    .word-wrap, .content{
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        overflow: hidden;
+        color: #fff;
+    }
+    /* 这里使用同级元素解决文字容器做滤镜被覆盖的问题 */
+    .word-wrap::before{
+        content: '';
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        left: 0px; /* 这个值影响背景图片的位置 */
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        filter: blur(10px);
+        background: url('./img/2.jpg') no-repeat -52.5px 0;
+        background-size: contain;
+    }
+</style>
+<body>
+    <div class="glass-wrap">
+        <div class="pub-position word-wrap"></div>
+        <p class="pub-position content">模糊玻璃</p>
+    </div>
+</body>
+</html>

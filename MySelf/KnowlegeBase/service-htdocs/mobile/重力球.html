@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>重力球</title>
+		<meta name="viewport" content="width=device-width">
+		<meta name="viewport" content="width=">
+		<style type="text/css">
+			body{
+				margin: 0;
+			}
+			.wrap{
+				width: 500px;
+				height: 500px;
+				border: 10px solid black;
+				position: relative;
+			}
+			.box{
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				background-color: lightcyan;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var wrap=document.getElementsByClassName('wrap')[0];
+		var box=document.getElementsByClassName('box')[0];
+		if(window.DeviceMotionEvent){
+			window.ondeviceorientation=function(ev){
+				var evObj=window.event || ev;
+
+				var beta=evObj.beta;//x
+				var gamma=evObj.gamma;//y
+				var x=box.offsetLeft+parseInt(gamma);
+				var y=box.offsetTop+parseInt(beta);
+				x = x < 0 ? 0 : x > 450? 450 : x;
+           		y = y < 0 ? 0 : y > 450? 450 : y;
+				
+           		box.style.left=x+'px';
+           		box.style.top=y+'px';	
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>mask蒙版遮罩</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+			}
+			body{
+				/* background: black; */
+			}
+			.div1{
+				width: 300px;
+				height: 150px;
+				margin: 10px auto;
+				overflow: hidden;
+				/* -webkit-box-reflect: below 2px linear-gradient(to bottom,rgba(255,255,255,0.1),rgba(255,255,255,0.9)); */
+				background: url('src/003.jpg') no-repeat left top/cover;
+				/* 蒙版遮罩 */
+				/* -webkit-mask-image: -webkit-linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0.5)); */
+				-webkit-mask-image: url("src/mask.png");
+				-webkit-mask-repeat: no-repeat;
+				-webkit-mask-size: 60px 60px;
+				-webkit-mask-position: 0px 0px;
+				animation: donghua 2s linear infinite;
+
+			}
+			@keyframes donghua{
+				0%{
+					-webkit-mask-position: 0px 0px;
+				}
+				20%{
+					-webkit-mask-position: 50px 30px;
+				}
+				40%{
+					-webkit-mask-position: 100px 60px;
+				}
+				60%{
+					-webkit-mask-position: 190px 80px;
+				}
+				80%{
+					-webkit-mask-position: 50px 100px;
+				}
+				100%{
+					-webkit-mask-position: 250px 80px;
+				}
+			}
+			.div2{
+				width: 300px;
+				height: 150px;
+				margin: 10px auto;
+				background: url('src/003.jpg') no-repeat left top/cover;
+				/* -webkit-mask-image:linear-gradient(to bottom,rgba(255,255,255,0.1),rgba(255, 255, 255, 1.0));  */
+				-webkit-box-reflect: below 5px linear-gradient(to bottom,rgba(255,255,255,0.1),rgba(255, 255, 255, 1.0));
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <div class="div1"></div> -->
+		<div class="div2"></div>
+	</body>
+</html>

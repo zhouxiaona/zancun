@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css样式</title>
+	<style>
+		h1{
+			font-size:40px;
+			background:red;
+			/*文字对其 有兼容性问题*/
+			text-align: justify;
+			letter-spacing:; 
+			word-spacing:10px ;
+			word-wrap: break-word;
+			white-space: nowrap;
+
+		}
+		.div1{
+			font-family: "MicrosoftYaHei","Arial",sans-serif;
+		}
+		.div2{
+			font-family: "MicrosoftYaHei","Arial",serif;
+		}
+		label{
+			text-align: justify;
+		}
+		.table{
+			display: table;
+		}
+		.vt{
+			display: table-cell;
+			width:200px;
+			height:200px;
+			font-size:48px;
+			background:red;
+			vertical-align:middle;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<!-- 行高 line-height 常用于文字上下居中-->
+	<!-- 文字水平对齐 text-align:  -->
+	<form action="">
+		<div>
+			<label for="">用户名</label>
+			<input type="text"/>
+		</div>
+		<div>
+			<label for="">密　码</label>
+			<input type="password"/>
+		</div>
+	</form>
+	<div class="div1">
+		<h1>
+			helloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworld
+		</h1>
+	</div>
+	<div class="
+	">
+		<h1>
+			你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好
+		</h1>
+	</div>
+	<!-- 如果单词没有空格，默认不会换行，汉字没有换行问题。 -->
+	<!-- 字符间距设置 letter-spacing -->
+	<!-- 词间距  word-spacing -->
+	<!-- 强制字符换行 word-wrap: break-word;-->
+	<!-- 强制字符不换行 white-space: nowrap;-->
+	<!-- 文字修饰 text-decoration: underline 下划线 none 没有修饰 overline 上划线  line-through 中划线-->
+	<!-- vertical-align 竖直对齐方式 -->
+	
+	
+	<div class="table">
+		<div class="vt">
+		我是div
+		</div>
+	</div>
+</body>
+</html>

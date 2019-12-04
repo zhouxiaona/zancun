@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<span>请输入x的值：</span>
+		<input type="number" id="inp1" name="">
+		<button id="btn">计算</button>
+		<span>y的值为:</span>
+		<input type="text" id="inp2" name="">
+	</body>
+	<script type="text/javascript">
+		var inp1=document.getElementById('inp1');
+		var btn=document.getElementById('btn');
+		var inp2=document.getElementById('inp2');
+		btn.onclick=function(){
+			var num=Number(inp1.value);
+			if(num<1){
+				inp2.value=num;
+			}else if(num>=1 && num<10){
+				inp2.value=num * 2 - 1;
+			}else if(num >= 10){
+				inp2.value=num * 3 -11;
+			}
+		}
+	</script>
+</html>

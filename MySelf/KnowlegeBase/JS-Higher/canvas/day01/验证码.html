@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>验证码</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="100" height="20">
+			您的浏览器不支持canvas!
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var canvas=document.getElementById("canvas");
+		var ctx=canvas.getContext("2d");
+		//随机字符（大小随机、位置随机）(透明度)、随机背景颜色(取浅色200--250)
+		//干扰项：10个左右的随机（半径随机、位置随机：大部分在画布上）干扰圆
+		//10个左右的随机干扰线（长度随机、位置随机）干扰线
+		var strStore="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		//随机函数
+		function randNum(min,max){
+			return parseInt(Math.random()*(max-min)+min);
+		}
+		//随机字符
+		//随机颜色
+		for(var i=0;i<5;i++){
+			//划线
+			ctx.beginPath();
+			var startX=randNum(11,100);
+			var startY=randNum(0,20);
+			var endX=randNum(11,100);
+			var endY=randNum(0,20);
+			while(endX==startX && endY==startY){
+				endX=randNum(11,100);
+				endY=randNum(1,20);
+			}
+			ctx.moveTo(startX,startY);
+			ctx.lineTo(endX,endY);
+			ctx.strokeStyle=`rgb(${randNum(0,200)},${randNum(0,200)},${randNum(0,200)})`;
+			ctx.stroke();
+			//画圆
+			ctx.beginPath();
+			ctx.arc(randNum(11,100),randNum(0,20),randNum(5,10),0,Math.PI*2);
+			ctx.strokeStyle=`rgb(${randNum(0,200)},${randNum(0,200)},${randNum(0,200)})`;
+			ctx.stroke();
+			//随机字母
+			ctx.beginPath();
+			var str=strStore[randNum(0,strStore.length)];
+			ctx.fillStyle=`rgb(${randNum(0,200)},${randNum(0,200)},${randNum(0,200)})`;
+			ctx.font=`${randNum(15,25)}px Arial`;
+			ctx.fillText(str,11+(i*15),15);
+		}
+	</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标拖拽效果</title>
+		<style type="text/css">
+			.box{
+				width: 600px;
+				height: 600px;
+				border: 1px solid red;
+				position: absolute;
+				top: 1000px;
+				left: 200px;
+			}
+			#redDiv{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+			}
+			body{
+				position: relative;
+				height: 2000px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div id="redDiv"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var redDiv=document.getElementById('redDiv');
+		var box=document.getElementsByClassName('box')[0];
+
+		redDiv.onmousedown=function(ev){
+			var evObj1=window.event || ev;
+
+			var offsetX=evObj1.offsetX;
+			var offsetY=evObj1.offsetY;
+
+			document.onmousemove=function(ev){
+				var evObj2=window.event || ev;
+				
+				var x=evObj2.pageX-box.offsetLeft-8-offsetX;
+				var y=evObj2.pageY-box.offsetTop-8-offsetY;
+				redDiv.style.left=x+'px';
+				redDiv.style.top=y+'px';
+			}
+		}
+
+
+		redDiv.onmouseup=function(){
+			document.onmousemove=null;
+		}
+
+
+
+
+	</script>
+</html>

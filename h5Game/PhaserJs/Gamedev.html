@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- saved from url=(0083)http://qzh5test.gs.91quzou.com/GameActivity/Phaser-test/?tdsourcetag=s_pctim_aiomsg -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Gamedev</title>
+    <style>* { padding: 0; margin: 0; }</style>
+    <!-- <script src="js/phaser.min.js"></script> -->
+    <!-- <script src="./phaser.2.4.2.min.js"></script> -->
+
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+</head>
+<body>
+<script>
+    var game = new Phaser.Game(
+      Phaser.AUTO, 
+      480, 
+      320, 
+      null, 
+      {
+        preload: preload, 
+        create: create, 
+        update: update
+      }
+    );
+    var paddle;
+    var bricks;
+    var newBrick;
+    var brickInfo;
+    var scoreText;
+    var score = 0;
+    var cursors;
+    function preload() {
+      game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+      game.scale.pageAlignHorizontally = true;
+      game.scale.pageAlignVertically = true;
+      game.stage.backgroundColor = '#eee';
+      game.load.image('ball', 'img/ball.png');
+      game.load.image('paddle', 'img/paddle.png');
+      game.load.image('brick', 'img/brick.png');
+     
+
+    }
+    function create() {
+      // 开启物理引擎
+      game.physics.startSystem(Phaser.Physics.ARCADE);
+      // 
+      game.physics.arcade.checkCollision.down = false;
+      // 精灵 球加载
+      ball = game.add.sprite(game.world.width*0.5, game.world.height-25, 'ball');
+      ball.anchor.set(0.5);
+      // 在ball精灵上添加物理引擎
+      game.physics.enable(ball, Phaser.Physics.ARCADE);
+      // ball启用物理引擎后，精灵拥有body属性，物理属性都是附加在精灵的body属性上
+      ball.body.velocity.set(150, -150);
+      ball.body.collideWorldBounds = true;
+      ball.body.bounce.set(1);
+      ball.checkWorldBounds = true;
+      ball.events.onOutOfBounds.add(function(){
+          alert('游戏结束!');
+          location.reload();
+      }, this);
+      // 跳板精灵图生成
+      cursors = this.input.keyboard.createCursorKeys();
+      paddle = game.add.sprite(game.world.width*0.5, game.world.height-5, 'paddle');
+      paddle.anchor.set(0.5,1);
+      game.physics.enable(paddle, Phaser.Physics.ARCADE);
+      paddle.body.immovable = true;
+      // 砖头生成
+      initBricks();
+      scoreText = game.add.text(5, 5, '分数: 0', { font: '18px Arial', fill: '#0095DD' });
+
+    }
+    //销毁
+    function ballHitBrick(ball, brick) {
+        brick.kill();
+        score += 10;
+        scoreText.setText('分数: '+score);
+    }
+
+    function update() {
+      //回弹更新
+      game.physics.arcade.collide(ball,paddle)
+      //跳板移动
+      // paddle.x = game.input.x || game.world.width*0.5;
+      //碰撞进行销毁
+      game.physics.arcade.collide(ball, bricks, ballHitBrick);
+      // ball.x += 1;
+      // ball.y += 1;
+      if (cursors.left.isDown)
+      {
+        paddle.x=paddle.x-10 ;
+          // player.anims.play('left', true);
+      }
+      else if (cursors.right.isDown)
+      {
+        // paddle.setVelocityX(160);
+        paddle.x=paddle.x+10 ;
+
+          // player.anims.play('right', true);
+      }
+    }
+    function initBricks(){
+      brickInfo = {
+        width: 50,
+        height: 20,
+        count: {
+            row: 7,
+            col: 3
+        },
+        offset: {
+            top: 50,
+            left: 60
+        },
+        padding: 10
+      };
+      bricks = game.add.group()
+      for(var c=0; c<brickInfo.count.col; c++) {
+        for(var r=0; r<brickInfo.count.row; r++) {
+            var brickX = (r*(brickInfo.width+brickInfo.padding))+brickInfo.offset.left;
+            var brickY = (c*(brickInfo.height+brickInfo.padding))+brickInfo.offset.top;
+            newBrick = game.add.sprite(brickX, brickY, 'brick');
+            game.physics.enable(newBrick, Phaser.Physics.ARCADE);
+            newBrick.body.immovable = true;
+            newBrick.anchor.set(0.5);
+            bricks.add(newBrick);
+        }
+      }
+    }
+</script>
+
+<canvas width="480" height="320" style="display: block; touch-action: none; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 980px; height: 653px; margin-left: 0px; margin-top: 735px; margin-bottom: -734px;"></canvas><div id="cli_dialog_div"></div></body></html>

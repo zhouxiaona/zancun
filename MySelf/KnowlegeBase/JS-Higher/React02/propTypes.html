@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入方式按照这个顺序来-->
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="browser.min.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<script type="text/babel">
+    {
+        //propTypes :改变属性，规定属性的值类型
+        //getDefaultProps :设置默认属性值
+        //React.PropTypes :已废弃
+    }
+    var Hello=React.createClass({
+        getDefaultProps:function(){
+            return {
+                name:"李四",
+                age:19
+            }
+        },
+        propTypes:{
+            name:React.PropTypes.string.isRequired,
+            age:React.PropTypes.number.isRequired
+        },
+        render:function(){
+            return <div>姓名是：{this.props.name};年龄是：{this.props.age}</div>
+        }
+    })
+    {
+        //年龄变数字类型,加{}
+    }
+    ReactDOM.render(<Hello name="张三" age={34}></Hello>,document.getElementById("app"));
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

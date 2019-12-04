@@ -1,0 +1,85 @@
+、<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>浮动</title>
+		<style type="text/css">
+			body{
+				margin: 0;
+			}
+			.left{
+				/*width: 700px;*/
+				/*height: 400px;*/
+				/*height: 400px;*/
+				background: pink;
+				/*float: left;*/
+			}
+			.left_div{
+				width: 200px;
+				height: 200px;
+				background: blue;
+				float: left;
+			}
+			.left_div2{
+				width: 300px;
+				height: 300px;
+				background: green;
+				float: left;
+			}
+			.right{
+				float: right;
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+			.clearfix{
+				zoom:1;
+			}
+			.clearfix::after{
+				content: "";
+				display: block;
+				height: 0;
+				clear: both;
+			}
+			
+		</style>
+	</head>
+	<body>
+	<!-- 用　html　css实现两列布局，一列宽２４0px,一列跟随浏览器的宽度自适应，两列之间间距10px-->
+		
+		<div class="left clearfix">
+			<div class="left_div "></div>
+			<div class="left_div2"></div>
+		</div>
+		<div class="right">
+			<div class="left_div "></div>
+			<div class="left_div2"></div>
+		</div>
+
+		
+
+
+		<!-- float 属性对块级元素的影响 -->
+		<!-- １.设置浮动之后，块级元素的宽度不再跟随父级的宽度，而是内容决定（内容撑开宽度） -->
+
+		<!-- float 属性对行级元素的影响 -->
+		<!-- 可以设置尺寸以及盒模型 -->
+
+		<!-- 伪元素 -->
+		<!-- 1.::before 前置伪元素 -->
+		<!-- 2.::after 后置伪元素 -->
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<span>请输入第一个数：</span>
+		<input type="text" id="inp1" value="">
+		<span>请输入第二个数：</span>
+		<input type="text" id="inp2" value="">
+		<span>请输入第三个数：</span>
+		<input type="text" id="inp3" value="">
+		</br>
+		<button id="btn">判断</button>
+	</body>
+	<script type="text/javascript">
+		var inp1=document.getElementById('inp1');
+		var inp2=document.getElementById('inp2');
+		var inp3=document.getElementById('inp3');
+		var btn=document.getElementById('btn');
+		btn.onclick=function(){
+			var num1=Number(inp1.value);
+			var num2=Number(inp2.value);
+			var num3=Number(inp3.value);
+			if((num1 + num2>num3) && (num1 + num3>num2) && (num2 + num3>num1)){
+				alert("这三个数能构成一个三角形的边长");
+			}else{
+				alert('sorry,they can not');
+			}
+		}
+	</script>
+</html>

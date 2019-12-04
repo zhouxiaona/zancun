@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Document</title>
+		<style type="text/css">
+			.box{
+				width: 420px;
+				height: 600px;
+				border: 1px red solid;
+				margin: 0 auto;
+				position: relative;
+			}
+			.boss{
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				position: absolute;
+				top: 100px;
+				left: 185px;
+				z-index: 100px;
+				background-image: url("boss.png");
+				background-size: 100%;
+			}
+			ul{
+				list-style-type: none;
+				padding: 0px;
+				margin: 0px;
+				position: absolute;
+				bottom: 0px;
+			}
+			ul li{
+				border: 1px red solid;
+				width: 70px;
+				height: 70px;
+				float: left;
+				font-size: 50px;
+				line-height: 68px;
+				text-align: center;
+				color: white;
+				text-shadow: purple 0px 0px 2px, purple 0px 0px 3px, purple 0px 0px 5px, purple 0px 0px 7px, purple 0px 0px 9px, purple 0px 0px 10px, purple 0px 0px 15px, purple 0px 0px 30px, purple 0px 0px 30px, purple 0px 0px 30px;
+				box-sizing: border-box;
+				position: relative;
+
+			}
+			.active{
+				color: red;
+				padding: 3px 0px 0px 3px;
+				box-shadow: 3px 3px 3px inset;
+			}
+			.zd{
+				width: 30px;
+				height: 30px;
+				position: absolute;
+				background-color: blue;
+				top: -30px;
+				left: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="boss"></div>
+			<ul>
+				<li class="item">S</li>
+				<li class="item">D</li>
+				<li class="item">F</li>
+				<li class="item">J</li>
+				<li class="item">K</li>
+				<li class="item">L</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+	// ————————————游戏参数—————————————————
+	var bossSpeed = 3;
+	var zdSpeend = 5;
+	// ———————————————————————————————————
+
+	// 83 68 70   74 75 76
+	var keyCodeArr = [83, 68, 70, 74, 75, 76];
+	var box = document.getElementsByClassName("box")[0];
+	var boss = document.getElementsByClassName("boss")[0];
+	var items = document.getElementsByClassName('item');
+
+	// function myIndexOf(num){
+	// 	for(var i = 0; i < keyCodeArr.length; i++){
+	// 		if (keyCodeArr[i] == num) {
+	// 			return i;
+	// 		}
+	// 	}
+	// 	return -1;
+	// }
+
+	document.onkeydown = function(ev){
+			var index = keyCodeArr.indexOf(ev.keyCode);
+				var newDiv = document.createElement("div");
+				newDiv.className = "zd";
+				items[index].appendChild(newDiv);
+				var timer = setInterval(function(){
+					var dTop = newDiv.offsetTop;
+					newDiv.style.top = dTop - zdSpeend + "px";
+				}, 15);	
+
+	}
+	document.onkeyup = function(ev){
+		// var index = keyCodeArr.indexOf(ev.keyCode);
+		// if (index != -1) {
+			// boolArr[index] = false;
+			// items[index].className = items[index].className.replace(" active", "");
+				
+		// }
+	}
+	
+	</script>
+</html>

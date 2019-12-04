@@ -1,0 +1,399 @@
+* {
+				margin: 0;
+				padding: 0;
+			}
+			.boss{
+				width: 375px;
+				height: 667px;
+				margin: 0 auto;
+				border: 1px solid transparent;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			
+			/*加载页面*/
+			.pageload{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				background-image: url(img/bg.png);
+				/*display: none;*/
+			}
+			.pageload img{
+				width: 35%;
+				position: absolute;
+				bottom: 49%;
+				left: 34.5%;
+			}
+			#clouddd{
+				width: auto;
+				bottom: 48%;
+				left: 42%;
+			}
+			.slide{
+				width: 500px;
+				height: 20px;
+				position: absolute;
+				border-radius: 10px ;
+				top: 52.5%;
+				left: 10%;
+			}
+			.slide2{
+				/*width: 500px;*/
+				height: 20px;
+				background: yellow;
+				position: absolute;
+				border-radius: 10px ;
+			}
+			.pageload p{
+				width: 100%;
+				position: absolute;
+				top: 55.5%;
+				text-align: center;
+				font-family: "times new roman";
+				color: white;
+			}
+			.pageload span{
+				width: 100%;
+				position: absolute;
+				top: 58%;
+				text-align: center;
+				font-family: "times new roman";
+				color: yellow;
+				font-size: 1.5em;
+			}
+			
+			/*firstPage*/
+			.fisrtPage{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				background-image: url(img/3-9.png);
+				overflow: hidden;
+				display: none;
+			}
+			.fisrtPage img{
+				position: absolute;
+			}
+			.fPim1{
+				width: 100%;
+				top: 0;
+			}
+			.fPim2{
+				width: 100%;
+				top: 2.5%;
+			}
+			.fPim3{
+				width: 100%;
+				top: 9%;
+			}
+			.fPim4{
+				width: 90%;
+				top: 20%;
+				left: 5%;
+			}
+			.fPim5{
+				width: 40%;
+				bottom: 8%;
+				left: 12%;
+			}
+			.fPim6{
+				width: 40%;
+				bottom: 15%;
+				right: 20%;
+			}
+			.fPim7{
+				width: 100%;
+				bottom: 0%;
+			}
+			.fPim8{
+				width: 100%;
+				bottom: 2%;
+				transform: scale(1);
+			}
+			.fPim8:hover{
+				width: 110%;
+			}
+			
+			.fisrtPage img{
+				animation: showup  1s ease-in forwards;
+			}
+			@-webkit-keyframes showup{
+				0%{transform: scale(0);}
+				50%{transform: scale(1.1);}
+				100%{transform: scale(1);}
+			}
+			
+			/*secondPage*/
+			.secondPage{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				background-image: url(img/secondPage.png);
+				background-size: 110%;
+				background-repeat: none;
+				overflow: hidden;
+				display: none;
+			}
+			.secondPage img{
+				width: 15%;
+				position: absolute;
+				bottom: 2%;
+				left: 42.5%;
+			}
+			.secondPage img:hover{
+				transform: scale(1.5);
+			}
+			
+			/*问答页面*/
+			.container {
+				width: 100%;
+				height: 100%;
+				background-image: url(img/bg.png);
+				background-origin: content-box;
+				background-repeat: no-repeat;
+				border: 1px solid transparent;
+				position: absolute;
+				display: none;
+			}
+			
+			.container div {
+				width: 100%;
+				margin-bottom: 4%;
+				position: relative;
+			}
+			
+			.e1 {
+				margin-top: 5%;
+			}
+			
+			.e1 img,
+			.e3 img,
+			.e4 img,
+			.e5 img,
+			.e6 img {
+				width: 90%;
+				margin-left: 5%;
+			}
+			.e2 img {
+				width: 50%;
+				margin-left: 25%;
+			}
+			
+			.e1 span {
+				position: absolute;
+				top: 60%;
+				left: 12%;
+				font-size: 1.5em;
+			}
+			
+			.e1 p {
+				position: absolute;
+				width: 69%;
+				/*height: 2em;*/
+				top: 16%;
+				left: 24%;
+				text-align: left;
+				font-size: 2em;
+			}
+			
+			.e3 p,
+			.e4 p,
+			.e5 p,
+			.e6 p {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				text-align: center;
+				text-indent: 1em;
+				font-size: 2em;
+				top: 0;
+				line-height: 82px;
+			}
+			
+			#correctt {
+				width: 10%;
+				position: absolute;
+				top: 20%;
+				right: 9%;
+			}
+			
+			
+			/*fail*/
+			.failure{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				background-image: url(img/failure.png);
+				background-size: 110%;
+				background-position-y: -5px;
+				background-position-x: -25px;
+				overflow: hidden;
+				display: none;
+			}
+			.failure img{
+				position: absolute;
+			}
+			.failureim1{
+				width: 35%;
+				bottom: 0;
+				left: 10%;
+			}
+			.failureim2{
+				width: 35%;
+				bottom: 0;
+				right: 10%;
+			}
+			.failure img:hover{
+				transform: scale(1.1);
+			}
+			.failure p{
+				width: 100%;
+				text-align: center;
+				font-size: 30px;
+				position: absolute;
+				top: 30%;
+				color: black;
+				opacity: 0.7;
+			}
+			.failure span{
+				color: orange;
+			}
+			
+			/*success*/
+			
+			.success{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				background-image: url(img/success.png);
+				background-size: 110%;
+				background-position-x: -20px;
+				overflow: hidden;
+				display: none;
+			}
+			.success p{
+				width: 100%;
+				text-align: center;
+				font-size: 30px;
+				position: absolute;
+				top: 30%;
+				color: black;
+				opacity: 0.7;
+			}
+			.success span{
+				color: orange;
+			}
+			.success img{
+				position: absolute;
+			}
+			.successim1{
+				width:66% ;
+				top: 42%;
+				left: 17%;
+			}
+			.successim2{
+				width: 70%;
+				top: 62.5%;
+				left: 15%;
+			}
+			.successim3{
+				width: 40%;
+				bottom: 0;
+				left: 5%;
+			}
+			.successim4{
+				width: 40%;
+				bottom: 0;
+				left: 24%;
+			}
+			.successim5{
+				width: 40%;
+				bottom: 0;
+				right: 8%;
+			}
+			.successim3:hover, .successim4:hover, .successim5:hover{
+				cursor: pointer;
+				transform: scale(1.1);
+			}
+			.successim6{
+				width: 65%;
+				top: 25%;
+				left: 17.5%;
+			}
+			.successim7{
+				width: 25%;
+				top: 50%;
+				left: 50%;
+			}
+			.successim7:hover{
+				cursor: pointer;
+				transform: scale(1.1);
+			}
+			.successim8{
+				width: 25%;
+				top: 55%;
+				left: 38%;
+			}
+			.successim8:hover{
+				cursor: pointer;
+				transform: scale(1.2);
+			}
+			.done{
+				width: 60%;
+				height: 20%;
+				position: absolute;
+				/*border: 1px solid red;*/
+				top: 43%;
+				left: 20%;
+				z-index: 1;
+				list-style: none;
+				display: none;
+			}
+			.done input{
+				position: absolute;
+				width: 71.5%;
+				height: 10px;
+				right: 5px;
+				outline: none;
+				border: 0;
+				font-size: 18px;
+				/*border-bottom: 1px solid black;*/
+				
+			}
+			.done li{
+				width: 100%;
+				position: absolute;
+				
+				
+			}
+			.done li:first-child{
+				top: 23px;
+			}
+			.done li:nth-child(2){
+				top: 48px;
+			}
+			.done li:nth-child(3){
+				top: 72px;
+			}
+			.done li:last-child{
+				bottom: 13px ;
+			}
+			.sbtn{
+				width: 60px;
+				height: 30px;
+				border-radius: 10px;
+				outline: none;
+				position: absolute;
+				right: 30px;
+				
+			}
+			.logo{
+				width: 80px;
+				position: absolute;
+				top: 20px;
+				right: 20px;
+				z-index: 2;
+				display: none;
+			}

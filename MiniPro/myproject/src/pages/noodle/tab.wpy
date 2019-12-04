@@ -1,0 +1,737 @@
+<template>
+  <view class="wrap">
+    <view class="tabbar">
+      <view class="{{current == 0?'active':''}}" @tap="clickFn('left')">我的索要信息</view>
+      <view class="{{current == 0?'':'active'}}" @tap="clickFn('right')">我的赠送信息</view>
+    </view>
+    <view class="myswiper">
+      <swiper
+        indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}"
+        duration="{{duration}}"
+        current="{{current}}"
+        bindchange="bindChange"
+        class="innerSwiper"
+        style="height:{{listLeft.length*102 > listRight.length*102 ? listLeft.length*102+200 : listRight.length*102+200}}rpx"
+      >
+          <swiper-item class="swiperItem">
+            <view class="innerWrap">
+              <view class="innerTabbar">
+                <view class="ctab {{currentL==0?'activeInner':''}}" @tap="clickFn('leftL')">索要中</view>
+                <view class="ctab {{currentL==0?'':'activeInner'}}" @tap="clickFn('rightL')">索要成功</view>
+              </view>
+              <view class="swipers">
+                <swiper
+                  indicator-dots="{{indicatorDotsL}}"
+                  autoplay="{{autoplayL}}"
+                  duration="{{durationL}}"
+                  current="{{currentL}}"
+                  bindchange="bindChangeL"
+                  class="innerSwiperL"
+                  style="height:{{listLeft.length*102 > listRight.length*102 ? listLeft.length*102+200 : listRight.length*102+200}}rpx"
+                >
+                  <swiper-item class="swiperItemInner">
+                    <repeat for="{{listLeft}}" index="index" item="item" key="index">
+                      <view class="dot">listLeftL名字是：{{item.name}},listLeftL年龄是：{{item.age}}</view>
+                    </repeat>
+                    <view class="more">查看更多leftL</view>
+                  </swiper-item>
+                   <swiper-item class="swiperItemInner">
+                    <repeat for="{{listRight}}" index="index" item="item" key="index">
+                      <view class="dot">listRightL名字是：{{item.name}},listRightL年龄是：{{item.age}}</view>
+                    </repeat>
+                    <view class="more">查看更多rightL</view>
+                  </swiper-item>
+                </swiper>
+              </view>
+            </view>
+          </swiper-item>
+          <swiper-item class="swiperItem">
+            <view class="innerWrap">
+              <view class="innerTabbar">
+                <view class="ctab {{currentR == 0?'activeInner':''}}" @tap="clickFn('leftR')">待赠送</view>
+                <view class="ctab {{currentR == 0?'':'activeInner'}}" @tap="clickFn('rightR')">已赠送</view>
+              </view>
+              <view class="swipers">
+                <swiper
+                  indicator-dots="{{indicatorDotsR}}"
+                  autoplay="{{autoplayR}}"
+                  duration="{{durationR}}"
+                  current="{{currentR}}"
+                  bindchange="bindChangeR"
+                  class="innerSwiperL"
+                  style="height:{{listLeft.length*102 > listRight.length*102 ? listLeft.length*102+200 : listRight.length*102+200}}rpx"
+                >
+                  <swiper-item class="swiperItemInner">
+                    <repeat for="{{listLeft}}" index="index" item="item" key="index">
+                      <view class="dot">listLeftR名字是：{{item.name}},listLeftR年龄是：{{item.age}}</view>
+                    </repeat>
+                    <view class="more">查看更多leftR</view>
+                  </swiper-item>
+                   <swiper-item class="swiperItemInner">
+                    <repeat for="{{listRight}}" index="index" item="item" key="index">
+                      <view class="dot">listRightR名字是：{{item.name}},listRightR年龄是：{{item.age}}</view>
+                    </repeat>
+                    <view class="more">查看更多rightR</view>
+                  </swiper-item>
+                </swiper>
+              </view>
+            </view>
+          </swiper-item>
+      </swiper>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Tab extends wepy.page {
+    config = {
+      enablePullDownRefresh: false,
+      backgroundTextStyle: 'light',
+      onReachBottomDistance: 50,
+      navigationBarBackgroundColor: '#69BEFF',
+      navigationBarTitleText: 'Tab',
+      navigationBarTextStyle: 'white'
+    }
+    data = {
+      indicatorDots: false,
+      autoplay: false,
+      duration: 500,
+      current: 0,
+      indicatorDotsL: false,
+      autoplayL: false,
+      durationL: 500,
+      currentL: 0,
+      indicatorDotsR: false,
+      autoplayR: false,
+      durationR: 500,
+      currentR: 0,
+      currentIndex: 'leftL',
+      listLeft: [
+        {
+          name: 'haha1',
+          age: 19
+        },
+        {
+          name: 'haha2',
+          age: 19
+        },
+        {
+          name: 'haha3',
+          age: 19
+        },
+        {
+          name: 'haha4',
+          age: 19
+        },
+        {
+          name: 'haha5',
+          age: 19
+        },
+        {
+          name: 'haha6',
+          age: 19
+        },
+        {
+          name: 'haha1',
+          age: 19
+        },
+        {
+          name: 'haha2',
+          age: 19
+        },
+        {
+          name: 'haha3',
+          age: 19
+        },
+        {
+          name: 'haha4',
+          age: 19
+        },
+        {
+          name: 'haha5',
+          age: 19
+        },
+        {
+          name: 'haha6',
+          age: 19
+        },
+        {
+          name: 'haha1',
+          age: 19
+        },
+        {
+          name: 'haha2',
+          age: 19
+        },
+        {
+          name: 'haha3',
+          age: 19
+        },
+        {
+          name: 'haha4',
+          age: 19
+        },
+        {
+          name: 'haha5',
+          age: 19
+        },
+        {
+          name: 'haha6',
+          age: 19
+        },
+        {
+          name: 'haha1',
+          age: 19
+        },
+        {
+          name: 'haha2',
+          age: 19
+        },
+        {
+          name: 'haha3',
+          age: 19
+        },
+        {
+          name: 'haha4',
+          age: 19
+        },
+        {
+          name: 'haha5',
+          age: 19
+        },
+        {
+          name: 'haha6',
+          age: 19
+        },
+        {
+          name: 'haha1',
+          age: 19
+        },
+        {
+          name: 'haha2',
+          age: 19
+        },
+        {
+          name: 'haha3',
+          age: 19
+        },
+        {
+          name: 'haha4',
+          age: 19
+        },
+        {
+          name: 'haha5',
+          age: 19
+        },
+        {
+          name: 'haha6',
+          age: 19
+        },
+        {
+          name: 'haha1',
+          age: 19
+        },
+        {
+          name: 'haha2',
+          age: 19
+        },
+        {
+          name: 'haha3',
+          age: 19
+        },
+        {
+          name: 'haha4',
+          age: 19
+        },
+        {
+          name: 'haha5',
+          age: 19
+        },
+        {
+          name: 'haha6',
+          age: 19
+        },
+        {
+          name: 'haha1',
+          age: 19
+        },
+        {
+          name: 'haha2',
+          age: 19
+        },
+        {
+          name: 'haha3',
+          age: 19
+        },
+        {
+          name: 'haha4',
+          age: 19
+        },
+        {
+          name: 'haha5',
+          age: 19
+        },
+        {
+          name: 'haha6',
+          age: 19
+        },
+        {
+          name: 'haha1',
+          age: 19
+        },
+        {
+          name: 'haha2',
+          age: 19
+        },
+        {
+          name: 'haha3',
+          age: 19
+        },
+        {
+          name: 'haha4',
+          age: 19
+        },
+        {
+          name: 'haha5',
+          age: 19
+        },
+        {
+          name: 'haha6',
+          age: 19
+        },
+        {
+          name: 'haha1',
+          age: 19
+        },
+        {
+          name: 'haha2',
+          age: 19
+        },
+        {
+          name: 'haha3',
+          age: 19
+        },
+        {
+          name: 'haha4',
+          age: 19
+        },
+        {
+          name: 'haha5',
+          age: 19
+        },
+        {
+          name: 'haha6',
+          age: 19
+        },
+        {
+          name: 'haha1',
+          age: 19
+        },
+        {
+          name: 'haha2',
+          age: 19
+        },
+        {
+          name: 'haha3',
+          age: 19
+        },
+        {
+          name: 'haha4',
+          age: 19
+        },
+        {
+          name: 'haha5',
+          age: 19
+        },
+        {
+          name: 'haha6',
+          age: 19
+        },
+        {
+          name: 'zhouna666',
+          age: 18
+        }
+      ],
+      listRight: [
+        {
+          name: 'xixi1',
+          age: 19
+        },
+        {
+          name: 'xixi2',
+          age: 19
+        }
+        // {
+        //   name: 'xixi3',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi4',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi5',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi6',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi1',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi2',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi3',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi4',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi5',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi6',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi1',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi2',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi3',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi4',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi5',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi6',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi1',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi2',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi3',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi4',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi5',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi6',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi1',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi2',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi3',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi4',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi5',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi6',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi1',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi2',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi3',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi4',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi5',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi6',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi1',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi2',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi3',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi4',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi5',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi6',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi1',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi2',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi3',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi4',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi5',
+        //   age: 19
+        // },
+        // {
+        //   name: 'xixi6',
+        //   age: 19
+        // }
+      ]
+    }
+
+    methods = {
+      clickFn(arg) {
+        let _this = this
+        switch (arg) {
+          case 'left':
+            _this.current = 0
+            if(_this.currentL == 0){
+              _this.currentIndex = 'leftL'
+            }else{
+              _this.currentIndex = 'rightL'
+            }
+            break
+          case 'right':
+            _this.current = 1
+            if(_this.currentR == 0){
+              _this.currentIndex = 'leftR'
+            }else{
+              _this.currentIndex = 'rightR'
+            }
+            break
+          case 'leftL':
+            _this.currentL = 0
+            _this.currentIndex = 'leftL'
+            break
+          case 'rightL':
+            _this.currentL = 1
+            _this.currentIndex = 'rightL'
+            break
+          case 'leftR':
+            _this.currentR = 0
+            _this.currentIndex = 'leftR'
+            break
+          case 'rightR':
+            _this.currentR = 1
+            _this.currentIndex = 'rightR'
+            break
+          default:
+            break
+        }
+        _this.$apply()
+      },
+      bindChange(e) {
+        let _this = this
+        const {detail: {current}} = e
+        _this.current = current
+        _this.$apply()
+      },
+      bindChangeL(e) {
+        let _this = this
+        const {detail: {current}} = e
+        _this.currentL = current
+        if(current == 0){
+          _this.currentIndex = 'leftL'
+        }else{
+          _this.currentIndex = 'rightL'
+        }
+        _this.$apply()
+      },
+      bindChangeR(e) {
+        let _this = this
+        const {detail: {current}} = e
+        _this.currentR = current
+        if(current == 0){
+          _this.currentIndex = 'leftR'
+        }else{
+          _this.currentIndex = 'rightR'
+        }
+        _this.$apply()
+      }
+    }
+
+    onShow () {
+
+    }
+
+    onReachBottom() {
+      let _this = this
+      if(_this.currentIndex == 'leftL') {
+        wx.showToast({
+          title: '加载leftL',
+          icon: 'success',
+          duration: 2000
+        })
+      } else if (_this.currentIndex == 'rightL') {
+         wx.showToast({
+          title: '加载rightL',
+          icon: 'success',
+          duration: 2000
+        })
+      } else if (_this.currentIndex == 'leftR') {
+         wx.showToast({
+          title: '加载leftR',
+          icon: 'success',
+          duration: 2000
+        })
+      } else {
+        wx.showToast({
+          title: '加载rightR',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    }
+
+    onLoad () {
+      console.log(this.listLeft.length * 102 + 200,'swiper的高度')
+    }
+  }
+
+</script>
+<style lang="less">
+  .wrap{
+    width: 100%;
+    height: 100%;
+    .tabbar{
+      width: 100%;
+      height: 100rpx;
+      display: flex;
+      justify-content: space-around;
+      view{
+        display: flex;
+        width: 50%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        font-size: 50rpx;
+      }
+      .active{
+        background: lightblue;
+        color: #fff;
+      }
+    }
+    .myswiper{
+      .innerSwiper{
+        // height: 750rpx;
+        .swiperItem{
+          .innerWrap{
+            width: 100%;
+            height: auto;
+            .innerTabbar{
+              width: 100%;
+              height: 90rpx;
+              display: flex;
+              justify-content: space-around;
+              view{
+                display: flex;
+                width: 50%;
+                height: 100%;
+                justify-content: center;
+                align-items: center;
+                font-size: 30rpx;
+              }
+              .activeInner{
+                background: rgb(125, 154, 231);
+                color: #fff;
+              }
+            }
+            .swipers{
+              .innerSwiperL{
+                height:750rpx;
+                .swiperItemInner{
+                  box-sizing: border-box;
+                  padding: 0 30rpx;
+                  .dot{
+                    height: 100rpx;
+                    line-height: 100rpx;
+                    border-bottom: 1rpx solid #eee;
+                    font-size: 30rpx;
+                    text-align: center;
+                  }
+                  .more{
+                    font-size: 35rpx;
+                    text-align: center;
+                    height: 100rpx;
+                    line-height: 100rpx;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+</style>

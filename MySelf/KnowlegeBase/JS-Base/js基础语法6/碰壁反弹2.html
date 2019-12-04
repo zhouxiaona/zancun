@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>碰壁反弹</title>
+		<style type="text/css">
+			#wrap{
+				width: 600px;
+				height: 410px;
+				margin: 100px auto;
+				border: 1px solid red;
+			}
+			#box{
+				width: 50px;
+				height: 50px;
+				background: purple;
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="box"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var box=document.getElementById("box");
+		var a=0;
+		var b=0;
+		setInterval(function(){
+			a++;
+			b+=3;		
+			box.style.transform='translateX('+Math.abs(a)+'px)'+'translateY('+Math.abs(b)+'px)';if(a==550){
+				a=-550
+			}
+			if(b==360){
+				b=-360
+			}
+		},10)
+	</script>
+</html>

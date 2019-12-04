@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>变量和输出</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		// 输出的三种方式
+		// console.log('这是控制台的打印');
+		// alert('这是弹框消息');
+		// document.write("这是文档写入");
+		// confirm('lala');
+		// prompt('lakakxmksx');
+		
+		//　变量 ->用来存储数据的容器－>变量被保存在内存中
+		//　变量的创建方式->var 用来声明一个变量,变量名为a, a里面存储的是10;
+		// 变量是有要求的
+	
+		// 1.由数字/字母/下滑线(_)/美元符($)构成, 第一个字符不能为数字
+		// 2.驼峰命名法
+		// 3.避免和系统关键字、保留字重复
+		// 4.区分大小写
+
+		// var a=10; 
+		// console.log(a);
+
+		// 变量的类型 五种基本数据类型
+		// 1.number类型
+		// var a=123;
+		
+		// ２.字符串类型(用单引号或者双引号包裹，字符串的内容可以是任意字符)
+		// var b="hello";
+		
+		// ３.布尔类型　true and false
+		// var d=true;
+		
+		// ４.null(属于对象类型) 空类型
+		// var f=null;
+		// 5.undefined　未定义类型
+		// var g;
+		
+		// typeof 查看变量的类型
+		// console.log(typeof a);
+		// console.log(typeof b);
+		// console.log(typeof d);
+		// console.log(typeof f);
+		// console.log(typeof g);
+		
+
+		// 弱类型语言　　js
+		// 特点：定义变量的时候不区分类型(容器的类型)
+		 
+		// 强类型语言   c 
+		// int a=10;
+		// float b=10.0;
+		// var num1=10;
+		// var num2=num1;
+		// num2=20;
+		// console.log(num1);
+		
+
+		//  类型转换(number  string boolean 的相互转换)
+		// 1.转number
+		// console.log(Number('123'));//123
+		// console.log(Number('hello'));//NaN
+		// console.log(Number('0034'));//34
+		// console.log(Number(true));//1
+		// console.log(Number(false));//0
+		// console.log(Number(null));//0
+		// console.log(Number(undefined));//NaN
+		// console.log(Number(' '));//0
+
+		// 2.转string
+		// console.log(String(123));
+		// console.log(String(0));
+		// console.log(String(true));
+		// console.log(String(false));
+		// console.log(String(undefined));
+		// console.log(String(null));
+		
+		// 3. 转boolean
+		// 字符串转布尔，非空为真
+		// 数字转布尔，非０为真
+		// console.log(Boolean('0'));
+		// console.log(Boolean('1'));
+		// console.log(Boolean('hello'));
+		// console.log(Boolean(123));
+		// console.log(Boolean(0));
+		// console.log(Boolean(1));
+		// console.log(Boolean(' '));
+		// console.log(Boolean(null));//false
+		// console.log(Boolean(undefined));//false
+		// console.log(Boolean(-100));
+		
+
+		// 字符串操作　＋拼接字符串
+		console.log('123' + 'asd' + 491 + 'b' );
+		
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

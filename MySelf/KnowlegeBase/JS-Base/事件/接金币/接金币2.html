@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>接金币</title>
+		<style type="text/css">
+			.box{
+				width: 800px;
+				height: 600px;
+				border: 1px red solid;
+				margin: 0px auto; 
+				position: relative;
+			}
+			.box .time, .box .score{
+				width: 100px;
+				height: 30px;
+				font-size: 30px;
+				color: red;
+				float: left;
+			}
+			.box .miemie{
+				width: 50px;
+				height: 50px;
+				background-color: pink;
+				position: absolute;
+				z-index: 1000;
+			}
+			.box .jb{
+				width: 30px;
+				height: 30px;
+				background-color: gold;
+				border-radius: 50%;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="time">时间</div>
+			<div class="score">分数</div>
+			<div class="miemie"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		// 接金币
+		// 1、每个0.5生成一个金币，下落，金币可以分为炸弹、金币、时间、吸星大法
+		// 2、让美羊羊跟随鼠标去移动。碰到各种金币可以有相应的处理。
+		// 3、有时间限制
+
+		// 生成金币的定时器
+		var creatJBTimer = null;
+		// 时间减少的定时器
+		var subTimer = null;
+		// -------------------获取盒子---------------
+		// 获取最大的容器
+		var boxDiv = document.querySelector(".box");
+
+		// -------------------获取小咩咩-----------------
+		var smallMieMie = document.querySelector(".box .miemie");
+
+		// ------------------获取分数对象---------------------
+		// 显示分数的div
+		var scoreDiv = document.querySelector(".box .score");
+		// 保存分数的变量
+		var score = 0;
+
+		// ----------------------获取时间对象-------------------
+		var timeDiv = document.querySelector(".box .time");
+		var time = 60;
+
+
+		// 分数对象
+			// 加分
+		function addScore(){
+			score++;
+			scoreDiv.innerHTML = "分数："+score;
+		}
+
+		// 时间对象
+			// 减少时间
+		function subTime() {
+			time--;
+			if (time == -1) {
+				time = 0;
+				gameover();
+			}
+			timeDiv.innerHTML = "时间：" +  time;
+		}
+			// 增加时间
+		function addTime() {
+			time+=5;
+			if (time >= 60) {
+				time = 60;
+			}
+			timeDiv.innerHTML = "时间：" +  time;
+		}
+		// 美羊羊
+			// 跟随鼠标移动
+			
+			function moveMie() {
+				document.onmousemove = function(ev){
+					var newLeft = ev.clientX - boxDiv.offsetLeft - 25
+					var newTop = ev.clientY - 8 - 25;
+					if (newLeft < 0) {
+						newLeft = 0;
+					}
+					if (newLeft > 750) {
+						newLeft = 750;
+					}
+					if (newTop > 550) {
+						newTop = 550;
+					}
+					if (newTop < 400) {
+						newTop = 400;
+					}
+					smallMieMie.style.left = newLeft + "px";
+					smallMieMie.style.top =  newTop+ "px";
+				}
+
+			}
+		// 金币
+			// 创建金币的方法
+				// 随机生成金币的类型。
+				// 随机金币的left
+
+			// 创建金币
+			function createJB(){
+				var newJB = document.createElement("div");
+				newJB.className = "jb";
+				// 给生成的金币设置类型。
+				setJBType(newJB);
+				newJB.style.left = Math.random() * 750 + "px";
+
+				// 随机小球下落的速度。
+				var speed = parseInt(Math.random()*4 + 2);
+				newJB.downTime = setInterval(function(){
+					newJB.style.top = newJB.offsetTop + speed + "px";
+					// 判断是否发生碰撞
+					isPengZhuang(newJB);
+					// 判断超出底部移除元素
+					if (newJB.offsetTop >= 600) {
+						clearInterval(newJB.downTime);
+						boxDiv.removeChild(newJB);
+					}
+				}, 20);
+				boxDiv.appendChild(newJB);
+				return newJB;
+			}
+			// 给金币赋值类型
+			function setJBType(setJB){
+				var num = parseInt(Math.random()*10);
+				var type = "";
+				var bgColor = "gold";
+				switch(num){
+					case 9:
+						type = "xixing";
+						bgColor = "green";
+						break;
+					case 8:
+						type = "zhadan";
+						bgColor = "black";
+						break;
+					case 7:
+						type = "jiashi";
+						bgColor = "red";
+						break;
+					default:
+						type = "jinbi";
+				}
+				setJB.style.backgroundColor = bgColor;
+				setJB.type = type;
+			}
+			function isPengZhuang(jb){
+				if (smallMieMie.offsetLeft + smallMieMie.offsetWidth > jb.offsetLeft && smallMieMie.offsetLeft < jb.offsetLeft + jb.offsetWidth && smallMieMie.offsetTop + smallMieMie.offsetHeight > jb.offsetTop && smallMieMie.offsetTop < jb.offsetTop + jb.offsetHeight) {
+					if (jb.type == "jinbi") {
+						// 加分
+						addScore();
+					} else if (jb.type == "zhadan") {
+						// 结束游戏
+						gameover();
+					} else if (jb.type == "jiashi") {
+						// 加时间
+						addTime();
+					} else {
+						// 让所有的金币移动到羊的位置。
+						var jbs = document.querySelectorAll(".box .jb");
+						for(var i = 0; i < jbs.length; i++){
+							if (jbs[i].type == "jinbi") {
+								// 所有金币类型是金币的金币
+								clearInterval(jbs[i].downTime);
+								
+
+
+
+
+
+								(function(num){
+									var j = 0
+									var moveTimer = setInterval(function(){
+										j++;
+										if (j==50) {
+											clearInterval(moveTimer);
+											addScore();
+											console.log("移除了第"+num+"个")
+											boxDiv.removeChild(jbs[num]);
+										}
+										var top = smallMieMie.offsetTop - jbs[num].offsetTop;
+										var left = smallMieMie.offsetLeft - jbs[num].offsetLeft;
+										jbs[num].style.top = jbs[num].offsetTop + (top * j / 40) + "px";
+										jbs[num].style.left = jbs[num].offsetLeft + (left * j / 40) + "px";
+									}, 20);
+
+
+										
+								})(i);
+								
+								
+							}
+						}
+
+					}
+					boxDiv.removeChild(jb);
+
+				}
+			}
+			// 金币自动下落（定时器让top++）
+				// 定时器里面判断当前的金币是否和羊碰到
+		// 游戏开始
+			// 定时器开启
+				// 创建金币
+				// 让金币下落
+
+		// 游戏结束
+			// 关闭定时器，停止时间。
+
+		function gameover(){
+			// 游戏结束关闭生成金币的定时器
+			clearInterval(creatJBTimer);
+			// 游戏结束关闭减少时间的定时器
+			clearInterval(subTimer);
+
+			// 游戏结束 让所有已生成的金币停止在原来的位置（关闭下落的定时器。）。
+			var jbs = document.querySelectorAll(".box .jb");
+			for(var i = 0; i < jbs.length; i++){
+				clearInterval(jbs[i].downTime);
+			}
+		}
+		gameStart();
+		// 游戏开始
+		function gameStart(){
+			creatJBTimer = setInterval(function(){
+				var jb = createJB();
+			}, 500);
+			moveMie();
+			subTimer = setInterval(subTime, 1000);
+		}
+	
+
+	</script>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--{{message}}-->
+        <!--不能用驼峰命名法，大写换成小写，用"-"链接-->
+        <!--<my-component></my-component>-->
+
+        <!--<my-component></my-component>-->
+        <!--<hello-world></hello-world>-->
+        <!--组件调用-->
+        <!--is组件切换-->
+        <!--缓存-->
+        <keep-alive>
+            <div :is="judge?'hello-world':'my-component'"></div>
+        </keep-alive>
+        <button @click="judge=!judge">点击我切换组件</button>
+
+        <hr>
+        <hello-world></hello-world>
+        <hr>
+        <hello-world></hello-world>
+
+
+    </div>
+</body>
+<script>
+    //全局注册组件==>对应自己的template
+    // Vue.component("MyComponent",{
+    //     template:"<h1>我是一个全局MyComponent注册组件,数据是{{mymessage}}</h1>",
+    //     //解决传址问题
+    //     data:function(){
+    //         return {
+    //             mymessage:"我是组件里的数据"
+    //         }
+    //     }
+    // });
+
+
+    var obj={message:"我是测试数据"};
+
+    var HelloWorld={
+        template:"<h1>我是helloworld组件{{message}}<button @click='changeMessage'>点击我改变str</button></h1>",
+        //组件里面data一定要用function方式，不然会传址
+        data:function(){
+            return obj;
+        },
+        //一个组件多个调用，需要用function
+        methods:{
+            changeMessage:function(){
+                this.message="我是改变之后的数据";
+            }
+        }
+    }
+
+    var Child={
+        template:"<h1>我是局部注册Child的组件</h1>"
+        // components:{
+        //     HelloWorld:HelloWorld
+        // }
+    }
+
+
+
+    //实例化==>对应html
+    new Vue({
+        el:"#app",
+        data:{
+            message:"测试数据",
+            judge:true
+        },
+        //局部定义组件
+        components:{
+            MyComponent:Child,
+            HelloWorld:HelloWorld
+        },
+        //生命周期事件钩子
+        beforeCreate:function(){
+            console.log("beforeCreate:创建之前");
+        },
+        created:function(){
+            console.log("created:已经创建");
+        },
+        beforeMount:function(){
+            console.log("beforeMount:挂载之前");
+        },
+        mounted:function(){
+            console.log("mounted:已经挂载");
+        },
+        beforeUpdate:function(){
+            console.log("beforeUpdate:更新之前");
+        },
+        updated:function(){
+            console.log("updated:已经更新");
+        }
+    })
+
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

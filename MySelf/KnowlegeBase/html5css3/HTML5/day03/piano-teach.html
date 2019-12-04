@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>手风琴</title>
+	<style>
+		.outer{
+			width: 800px;
+			height: 400px;
+			border: 10px #000 solid;
+			margin: 50px auto;
+			font-size: 0px;
+			display: table;
+			overflow: hidden;
+		}
+		.outer div{
+			width: 20%;
+			display: table-cell;
+			height: 400px;
+			transition: width 1s;
+			position: relative
+
+		}
+		.outer div span{
+			position: absolute;
+			width: 100%;
+			height: 40px;
+			background-color: #000;
+			font-size: 24px;
+			color: #fff;
+			left: 0;
+			bottom: 0;
+		}
+		.outer:hover div{
+			width: 10%;
+		}
+		.outer div:hover{
+			width: 60%;
+		}
+	</style>
+</head>
+<body>
+	<div class="outer">
+		<div style="background-color:red;">
+			<span>xxx</span>
+		</div>
+		<div style="background-color:yellow;">
+			<span>xxx2</span>
+		</div>
+		<div style="background-color:blue;">
+			<span>xxx3</span>
+		</div>
+		<div style="background-color:green;">
+			<span>xxx4</span>
+		</div>
+		<div style="background-color:cyan;">
+			<span>xxx5</span>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>history</title>
+		<style type="text/css">
+			.box{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box"></div>
+	</body>
+	<script type="text/javascript">
+		var box=document.getElementsByClassName('box')[0];
+		box.onclick=function(){
+			window.location.assign('file:///Users/lanou/Desktop/Web/SHH170809/JS/BOM/his2.html');
+			console.log(window.history.length);
+		
+		}
+	</script>
+</html>

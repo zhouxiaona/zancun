@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>全选和反选</title>
+	</head>
+	<body>
+		<div>
+			<label for="all" id="title">全选</label>
+			<input id="all" type="checkbox" />
+			<input type="button" value="反选" id="reverse" />
+		</div>
+		<div>
+			<input type="checkbox" class="item" />
+		</div>
+		<div>
+			<input type="checkbox" class="item" />
+		</div>
+		<div>
+			<input type="checkbox" class="item" />
+		</div>
+		<div>
+			<input type="checkbox" class="item" />
+		</div>
+		<div>
+			<input type="checkbox" class="item" />
+		</div>
+		<div>
+			<input type="checkbox" class="item" />
+		</div>
+		<div>
+			<input type="checkbox" class="item" />
+		</div>
+		<div>
+			<input type="checkbox" class="item" />
+		</div>
+	</body>
+	<script type="text/javascript">
+		// 点击全选-》让8个复选和全选一样
+
+		// 获取的全选
+		var selectAll = document.getElementById('all');
+		// 获取反选
+		var reverse = document.getElementById('reverse');
+		// 获取8个复选框
+		var inputs = document.getElementsByClassName('item');
+		// 获取全选文字
+		var selectTitle = document.getElementById("title");
+		
+
+		selectAll.onclick = function(){
+			for(var i = 0; i < inputs.length; i++){
+				inputs[i].checked = selectAll.checked;
+			}
+			selectTitle.innerHTML = selectAll.checked ? "全不选" : "全选";
+		}
+
+		// 点击反选-》反转8个复选框的状态，可能会影响到全选。
+		reverse.onclick = function(){
+			var count = 0;
+			for(var i = 0; i < inputs.length; i++){
+				inputs[i].checked = !inputs[i].checked;
+				count += Number(inputs[i].checked);
+				// if (inputs[i].checked) {
+				// 	count ++;
+				// }
+			}
+			selectAll.checked = count == 8;
+			selectTitle.innerHTML = selectAll.checked ? "全不选" : "全选";
+			
+			// if (count == 8) {
+			// 	selectAll.checked = true;
+			// } else {
+			// 	selectAll.checked = false;
+			// }
+		}
+		// 点击单个复选-》复选框选中数量够8个就选中全选，否则去掉全选。
+		// 给元素绑定事件的for的作用仅仅是给8个input绑定事件。
+		for(var i = 0; i < inputs.length; i++){
+			inputs[i].onclick = function(){
+				var count = 0;
+				for(var i = 0; i < inputs.length; i++){
+					count += Number(inputs[i].checked);
+				}
+				selectAll.checked = count == 8;
+				selectTitle.innerHTML = selectAll.checked ? "全不选" : "全选";
+			}
+		}
+
+
+
+
+		
+	</script>
+</html>

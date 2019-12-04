@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>iframe-内联框架</title>
+		<style>
+			.clearfix{
+				zoom: 1;
+			}
+			.clearfix::before{
+				content: '';
+				display: block;
+				height: 0;
+				clear: right;
+			}
+			
+			.outer{
+				width: 400px;
+				border:10px solid black;
+			}
+			.outer .div1,.outer .div2{
+				width: 200px;
+				height: 200px;
+			}
+			.outer .div1{
+				background: red;
+				float: left;
+				display: inline-block;
+			}
+			.outer .div2{
+				height: 300px;
+				background: blue;
+				/*float: left;*/
+			}
+		</style>
+	</head>
+	<body>
+	<!-- iframe　双标签　行级　支持宽高属性设置，此标签的性能不好，阻塞网页内容的渲染。
+		img标签只是发送请求，并不阻止其他内容的加载 -->
+		<!-- <iframe src="https://www.baidu.com/" width="1000" height="500" frameborder="1"></iframe>
+		<iframe src="https://www.taobao.com/" width="1000" height="500" frameborder="1"></iframe>
+		<iframe src="https://i.jingyingba.com//" width="1000" height="500" frameborder="1"></iframe>
+		<iframe src="http://cn.bing.com//" width="1000" height="500" frameborder="1"></iframe> -->
+		
+		<div class="outer clearfix">
+
+			<div class="div1">efsdfgd</div>
+			
+			<div class="div2"></div>
+		</div>
+
+
+
+	</body>
+</html>

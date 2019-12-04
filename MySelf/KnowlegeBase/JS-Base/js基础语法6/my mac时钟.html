@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>mac时钟</title>
+		<style type="text/css">
+			.outer{
+				width: 300px;
+				height: 300px;
+				border-radius: 50%;
+				background: url('img/biaomian1.jpg') no-repeat center/110%;
+				margin: 100px auto;
+				position: relative;
+			}
+			.inner{
+				width: 280px;
+				height: 280px;
+				border-radius: 50%;
+				background: rgba(0, 0, 0, 0.1);
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+			}
+			.inners{
+				width: 20px;
+				height: 280px;
+				line-height: 20px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				font-size: 20px;
+				color: white;
+			}
+			.inners .sps1{
+				position: absolute;
+				top: 0;
+			}
+			.inners .sps2{
+				position: absolute;
+				bottom: 0;
+			}
+			.center{
+				width: 10px;
+				height: 10px;
+				background: gray;
+				border-radius: 50%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				z-index: 2;
+			}
+			#sec{
+				width: 8px;
+				height: 140px;
+				position: absolute;
+				top: 20px;
+				left: 0;
+				right: 0;
+				margin: auto;
+				background: cyan;
+				transform-origin: 50% 120px; 
+
+			}
+			#min{
+				width: 8px;
+				height: 120px;
+				position: absolute;
+				top: 40px;
+				left: 0;
+				right: 0;
+				margin: auto;
+				background: rgba(0, 0, 0, 0.5);
+				transform-origin: 50% 100px; 
+			}
+			#hour{
+				width: 8px;
+				height: 100px;
+				position: absolute;
+				top: 60px;
+				left: 0;
+				right: 0;
+				margin: auto;
+				background: rgba(0, 0, 0, 0.3);
+				transform-origin: 50% 80px; 
+			}
+		</style>
+	</head>
+	<body>
+		<div class="outer">
+			<div class="inner">
+				<div class="center"></div>
+				<div class="inners">
+					<span class="sps1 sps">12</span>
+					<span class="sps2 sps">6</span>
+				</div>
+				<div class="inners">
+					<span class="sps1 sps">1</span>
+					<span class="sps2 sps">7</span>
+				</div>
+				<div class="inners">
+					<span class="sps1 sps">2</span>
+					<span class="sps2 sps">8</span>
+				</div>
+				<div class="inners">
+					<span class="sps1 sps">3</span>
+					<span class="sps2 sps">9</span>
+				</div>
+				<div class="inners">
+					<span class="sps1 sps">4</span>
+					<span class="sps2 sps">10</span>
+				</div>
+				<div class="inners">
+					<span class="sps1 sps">5</span>
+					<span class="sps2 sps">11</span>
+				</div>
+			
+				<div id="hour"></div>
+				<div id="min"></div>
+				<div id="sec"></div>
+				
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var inners=document.getElementsByClassName('inners');
+		var sps=document.getElementsByClassName('sps');
+		var hour=document.getElementById('hour');
+		var min=document.getElementById('min');
+		var sec=document.getElementById('sec');
+		for(var i=0;i<inners.length;i++){
+			inners[i].style.transform='rotate('+i*30+'deg)';
+			sps[i*2].style.transform='rotate('+i*(-30)+'deg)';
+			sps[i*2+1].style.transform='rotate('+i*(-30)+'deg)';
+		}
+		
+		var timer=setInterval(function(){
+			var nowDate=new Date();
+			var nowHour=nowDate.getHours();
+			var nowMin=nowDate.getMinutes();
+			var nowSec=nowDate.getSeconds();
+
+			sec.style.transform="rotate("+nowSec*6+"deg)";
+			min.style.transform="rotate("+(nowMin*6+6*nowSec/360*6)+"deg)";
+			hour.style.webkitTransform='rotate('+(nowHour*30+6*nowMin/360*30)+'deg)';
+		},1000);
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

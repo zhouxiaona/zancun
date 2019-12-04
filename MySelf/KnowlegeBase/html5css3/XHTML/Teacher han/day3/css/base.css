@@ -1,0 +1,70 @@
+body{
+	margin:0;
+}
+
+/*清除浮动*/
+/*zoom:1;考虑IE6、7的兼容问题*/
+.clearfix{
+	zoom: 1;
+}
+.clearfix::after{
+	content: '';
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+a{
+	text-decoration: none;
+}
+p{
+	margin: 0;
+}
+h1,h2,h3{
+	margin: 0;
+}
+ul{
+	margin:0;
+	padding:0;
+	list-style-type: none; 
+}
+
+.fl{
+	float: left;
+
+}
+.fr{
+	float: right;
+}
+
+/*居中对齐*/
+.auto{
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:0;
+	margin-bottom:0;
+}
+.mb10{
+	margin-bottom: 10px;
+}
+.ml10{
+	margin-left:10px;
+}
+.mr10{
+	margin-right:10px;
+}
+.mt10{
+	margin-top:10px;
+}
+
+
+.block{
+	display: block;
+}
+.inline{
+	display: inline;
+}
+/*.inline_block{
+	display: inline-block;
+}*/
+

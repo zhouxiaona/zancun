@@ -1,0 +1,13 @@
+@import "base";
+.layout{
+	width:@innerWidth+0px;
+	height:@innerWidth+0px;
+	background:@navColor;
+	.auto;
+	&:hover{
+		background-color:@navColor;
+	}
+	&::after{
+		border-right:1px solid red;
+	}
+}

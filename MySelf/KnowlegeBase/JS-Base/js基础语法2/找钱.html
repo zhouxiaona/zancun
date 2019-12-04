@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<span>请输入钱数:</span>
+		<input type="text" id="inp1" value="" name="">
+		<button id="btn">找钱</button>
+		</br>
+		<input type="text" id="inp2" value="" name="">
+		<span>张50块</span>
+		<input type="text" id="inp3" value="" name="">
+		<span>张20块</span>
+		<input type="text" id="inp4" value="" name="">
+		<span>张10块</span>
+		<input type="text" id="inp5" value="" name="">
+		<span>张5块</span>
+		<input type="text" id="inp6" value="" name="">
+		<span>张1块</span>
+	</body>
+	<script type="text/javascript">
+		var inp1=document.getElementById('inp1');
+		var btn=document.getElementById('btn');
+		var inp2=document.getElementById('inp2');
+		var inp3=document.getElementById('inp3');
+		var inp4=document.getElementById('inp4');
+		var inp5=document.getElementById('inp5');
+		var inp6=document.getElementById('inp6');
+		btn.onclick=function(){
+			var num=Number(inp1.value);
+			var a=parseInt(num/50);
+			console.log(a);
+			var b=parseInt(num%50/20);
+			console.log(b);
+			var c=parseInt(num%50%20/10);
+			console.log(c);
+			var d=parseInt(num%50%20%10/5);
+			console.log(d);
+			var e=parseInt(num%50%20%10%5);
+			console.log(e);
+			inp2.value=a;
+			inp3.value=b;
+			inp4.value=c;
+			inp5.value=d;
+			inp6.value=e;
+		}
+	</script>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>立方体</title>
+		<style type="text/css">
+			body{
+				margin: 0px;
+			}
+			.wrap{
+				perspective:1600px;
+			}
+			.box{
+				transform-style: preserve-3d;
+				margin-top: 100px;
+				height: 200px;
+				background-color: rgba(0,0,0,0.2);
+				transform-origin: center center 100px; 
+				position: relative;
+				transition: 2s transform;
+			}
+			.box:hover{
+				transform: rotateY(350deg);
+			}
+			.item{
+				position: absolute;
+				top: 0px;
+				left: 50%;
+				margin-left: -100px;
+				width: 200px;
+				height: 200px;
+			}
+			.item1{
+				background-color: red;
+				transform-origin: 0px 0px;
+				transform: rotateX(90deg) translateY(-100px);
+			}
+			.item2{
+				background-color: blue;
+				transform-origin: 0px 200px;
+				transform: rotateX(-90deg) translateY(100px);
+			}
+			.item3{
+				background-color: yellow;
+				transform-origin: 0px 0px;
+				transform: rotateY(-90deg) translateX(-100px);
+			}
+			.item4{
+				background-color: green;
+				transform-origin: 200px 0px;
+				transform: rotateY(90deg) translateX(100px);
+			}
+			.item5{
+				background-color: purple;
+				transform: translateZ(100px);
+			}
+			.item6{
+				background-color: pink;
+				transform: translateZ(-100px);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<div class="item item1"></div>
+				<div class="item item2"></div>
+				<div class="item item3"></div>
+				<div class="item item4"></div>
+				<div class="item item5"></div>
+				<div class="item item6"></div>
+			</div>
+		</div>
+	</body>
+</html>

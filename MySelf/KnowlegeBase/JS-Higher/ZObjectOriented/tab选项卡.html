@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>tab选项卡面向对象</title>
+		<style>
+			.div1{
+				width:100px;
+				height:100px;
+				background: red;
+			}
+			.div2{
+				width:100px;
+				height:100px;
+				background: blue;
+				display: none;
+			}
+			.div3{
+				width:100px;
+				height:100px;
+				background: pink;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<button>按钮一</button>
+		<button>按钮二</button>
+		<button>按钮三</button>
+		<div class="div1"></div>
+		<div class="div2"></div>
+		<div class="div3"></div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+//		var btns=$("button");
+//		var divs=$("div");
+//		for(var i=0;i<btns.length;i++){
+//			btns[i].onclick=function(){
+//				for(let j=0;j<divs.length;j++){
+//					if(this==btns[j]){
+//						divs[j].style.display="block";
+//					}else{
+//						divs[j].style.display="none";
+//					}
+//				}
+//			}
+//		}
+		function Tab(){
+			this.btns=$("button");
+			this.divs=$("div");
+			var _this=this;
+			for(var i=0;i<this.btns.length;i++){
+				this.btns[i].onclick=function(){
+					for(var j=0;j<_this.divs.length;j++){
+						if(this==_this.btns[j]){
+							_this.divs[j].style.display="block";
+						}else{
+							_this.divs[j].style.display="none";
+						}
+					}
+				}
+			}
+		}
+		new Tab();
+	</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>css样式－１</title>
+		<style>
+			html,body{
+				height: 100%;
+			}
+			.test{
+				min-height: 100px;
+				/*height: 150px;*/
+				max-height: 200px;
+				background-color: lightblue;
+			}
+			.div1{
+				height: 150px;
+				width: 50px;
+				background-color: pink;
+				font-style: italic;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 单位 -->
+		<!-- 颜色单位：英语单词　16进制　rgb hsl rgba transparent -->
+		<!-- 尺寸单位: 像素px 百分比（父级的基础上，高度设置，需要给html和body设置高度）　 　　　min-width | min-height max-width | max-height　　vw vh-->
+
+		<!-- min：可以设置默认宽高，当内容小于内容的宽高时，以设置的宽高为准，当内容大于设置的宽高时，以内容宽高为准,内容把父级的高度撑起来 -->
+		<!-- max：不可以设置宽高，当内容小于max尺寸，以内容尺寸为准，当内容尺寸大于max尺寸，超出的部分会溢出-->
+		<!-- 可以同时设置max和min，但不要设置width and height -->
+
+		<!-- vw vh　视口单位 -->
+		<div class="test">
+			<div class="div1">123</div>
+		</div>
+		
+	</body>
+</html>

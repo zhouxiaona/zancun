@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>飞翔的小鸟</title>
+		<style type="text/css">
+			.bg{
+				width: 343px;
+				height: 480px;
+				background-image: url("images/bg.jpg");
+				margin: 30px auto;
+				position: relative;
+				padding: 1px;
+			}
+			.score{
+				margin: 30px auto;
+				border: 1px red solid;
+				/*width: 60px;*/
+				height: 38px;
+				text-align: center;
+				color: white;
+				line-height: 38px;
+			}
+			.start{
+				background-color: pink;
+				height: 30px;
+				text-align: center;
+				margin-top: 200px;
+			}
+			.bird{
+				width: 40px;
+				height: 26px;
+				background-image: url("images/bird0.png");
+				position: absolute;
+				left: 70px;
+				top: 110px;
+			}
+			.zz{
+				height: 423px;
+				width: 62px;
+				border: 1px red solid;
+				position: absolute;
+				top: 0px;
+				left: 345px;
+			}
+			.upBody{
+				background-image: url("images/up_mod.png");
+				height: 70px;
+			}
+			.upHead{
+				background-image: url("images/up_pipe.png");
+				height: 60px;
+			}
+			.downHead{
+				background-image: url("images/down_pipe.png");
+				height: 60px;
+				margin-top: 150px;
+			}
+			.downBody{
+				background-image: url("images/down_mod.png");
+				height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bg">
+			<div class="score">0</div>
+			<div class="start">开始</div>
+		
+
+		</div>
+	</body>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+
+	// 根据分数改变图片
+	function changeScore(num){
+		var str = String(num);
+		var arr = str.split("");
+		$(".score").html("");
+		for(var i = 0; i < arr.length; i++){
+			$(".score").append($("<img src='images/"+ arr[i] +".jpg'/>"))
+		}
+	}
+	changeScore(458959);
+
+
+
+
+		// 让小鸟下降的函数
+		function birdDown(){
+			$(".bird").css("top", function(index, oldValue){
+				return parseInt(oldValue) + 3;
+			})
+		}
+		// 点击开始按钮
+		$(".start").click(function(ev){
+			// 阻止冒泡
+			ev.stopPropagation();
+			// 隐藏自身
+			$(this).hide();
+			// 开始小鸟
+			startBird();
+			// 开始柱子
+			startZZ();
+		})
+		// 小鸟可以点击上升、自动下降
+		function startBird(){
+			$("<div class='bird'></div>").appendTo($(".bg"));
+			var upTimer;
+			var downTimer = setInterval(birdDown, 20);
+			$(".bg").click(function(){
+				clearInterval(downTimer);
+				clearInterval(upTimer);
+				var count = 0;
+				upTimer = setInterval(function(){
+					count++;
+					if (count >= 20) {
+						clearInterval(upTimer);
+						downTimer = setInterval(birdDown, 20);
+					}
+					$(".bird").css("top", function(index, oldValue){
+						return parseInt(oldValue) - 3;
+					})
+				}, 20);
+			});
+		}
+		var createZZ;
+		var moveZZ;
+		function startZZ(){
+			// 每个2秒创建柱子
+			createZZ = setInterval(function(){
+				var zz = $('<div class="zz"><div class="upBody"></div><div class="upHead"></div><div class="downHead"></div><div class="downBody"></div></div>').appendTo(".bg").children(".upBody").css("height", function(){
+						return parseInt(Math.random()*100 + 50);
+					}).siblings(".downBody").height(function(){
+						return 423 - 120 - 150 - parseInt($(this).siblings(".upBody").height());
+					}).parent().attr("isF", "true");
+
+			}, 2000);
+			// 所有的柱子移动
+			moveZZ = setInterval(function(){
+				$(".zz").css("left", function(index, oldValue){
+
+
+					var zLeft = parseInt(oldValue) - 3;
+
+					var bridPosition = $(".bird").position();
+
+					if ($(this).attr("isF") == "true") {
+						if (bridPosition.left > zLeft + 62) {
+							$(this).attr("isF", "false");
+							$(".score").html(function(index, oldValue){
+								return parseInt(oldValue) + 1;
+							});
+						}
+					}
+					
+					var downHeadTop = $(this).children(".downHead")[0].offsetTop;
+
+					if (bridPosition.left + 40 > zLeft && bridPosition.left < zLeft + 62 && (bridPosition.top < downHeadTop - 150|| bridPosition.top + 26 > downHeadTop)) {
+						gameover();
+					}
+					if (zLeft < - 62) {
+						this.remove();
+					}
+					return zLeft;
+				})
+			}, 20);
+		}
+		function gameover(){
+			clearInterval(createZZ);
+			clearInterval(moveZZ);
+			// 停止点击，小鸟掉在地上
+		}
+
+	</script>
+
+
+
+</html>

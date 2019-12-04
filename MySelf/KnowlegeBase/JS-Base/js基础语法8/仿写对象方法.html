@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>仿写对象方法</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		//类
+		//对象 
+		//prototype可以给某个类添加属性或方法
+		Array.prototype.uName='lala';
+		Array.prototype.sum=function(){
+			var sum=0;
+			for(var i=0;i<this.length;i++){
+				sum+=this[i];
+			}
+			return sum;
+		}	
+		// var a=[1,2,3];
+		// var b=["4","5","6"];
+		// console.log(a.uName);
+		// console.log(b.uName);
+		// console.log(a.sum());
+		// console.log(b.sum());
+
+
+
+
+		//仿写数组方法
+		//push()
+		//给数组类（所有的数组对象添加mypush方法）
+		
+		Array.prototype.myPush=function(){
+			for(var i=0;i<arguments.length;i++){
+				//哪个数组对象调用mypush，this就只想调用mypush方法的数组对象
+				//调用的时候写了多少个参数，arguments就有几个元素。arguments是所有参数组成的
+				//数组，称之为参数列表
+				this[this.length]=arguments[i];
+			}
+			return this.length;
+		}
+
+		var arr1=[1,2,3];
+		// console.log(arr1.myPush(4,5));
+
+
+
+		//pop
+		Array.prototype.myPop=function(){
+			var res=this[this.length-1];
+			this.length=this.length-1;
+			return res;
+		}
+		// console.log(arr1.myPop(),arr1);
+		
+		// var arrs=[44,77,88,22,11];
+		// console.log(arrs.pop(),arrs);
+
+
+
+		//reverse
+		Array.prototype.myReverse=function(){
+			for(var i=0;i<parseInt(this.length/2);i++){
+				var temp=this[i];
+				this[i]=this[this.length-i-1];
+				this[this.length-i-1]=temp;
+			}
+			return this;
+		}
+		console.log(arr1.myReverse(),arr1);
+
+		
+
+		//unshift
+		Array.prototype.myUnshift=function(){
+			this.myReverse();
+			for(var i=arguments.length-1;i>=0;i--){
+				this.myPush(arguments[i]);
+			}
+			this.myReverse();
+			return this.length;
+		}
+		var arrs=[1,2,3,4,5];
+		var arrs1=[1,2,3,4,5];
+
+		// console.log(arrs.unshift(5),arrs);
+		
+		// console.log(arrs.myUnshift(6,7,8),arrs);
+		// console.log(arrs1.unshift(6,7,8),arrs1);
+
+
+		// Array.prototype.myUnshift=function(){
+		// 	this.myReverse();
+		// 	for(var i=arguments.length-1;i>=0;i--){
+
+		// 	}
+		// }
+
+
+		//shift
+		Array.prototype.myShift=function(){
+			this.myReverse();
+			var res=this.myPop();
+			this.myReverse();
+			return res;
+		}
+
+		// console.log(arrs.myShift(),arrs);
+
+
+		//join
+		Array.prototype.myJoin=function(str){
+			if(str===undefined){
+				str=',';
+			}
+			var all='';
+			for(var i=0;i<this.length-1;i++){
+				all=all+this[i]+str;
+			}
+			all+=this[this.length-1];
+			
+
+			//var all=this[0];
+			//for(var i=0;i<this.length-1;i++){
+			//	all=all+str+this[i];
+			//}
+			
+
+
+			//var all='';
+			// for(var i=0;i<this.length-1;i++){
+			// 		if(i==this.length-1){
+			// 			str='';
+			// 		}
+			// 		all=all+this[i]+str;
+			// }
+		
+			
+			return all;
+
+		}
+		// console.log(arrs,arrs.myJoin(''));
+		// console.log(arrs1,arrs1.join(''));
+
+
+
+		//splice
+		Array.proyotype.mySplice=function(index,length){
+			var arr=[];//存放拼接的新数组
+			var resArr=[];//作为返回值返回
+			//把index-length返回的数做成数组，作为mySplice的返回值
+			for(var i=index;i<index+length;i++){
+				resArr.myPush(this[i]);
+			}
+			//拼接新的数组分为三部分
+			//1.index之前
+			for(var i=0;i<index;i++){
+				arr.myPush(this[i]);
+			}
+			//2.参数列表里面下标２包括２之后的参数
+			for(var i=2;i<arguments.length;i++){
+				arr.myPush(arguments[i]);
+			}
+			//3.范围之后。index+length开始到最后一个
+			for(var i=index+length;i<this.length;i++){
+				arr.myPush(this[i]);
+			}
+			//arr 新数组
+			this.length=0;
+			for(var i=0;i<arr.length;i++){
+				this[i]=arr[i];
+			}
+			return resArr;
+
+		}
+
+
+	</script>
+</html>

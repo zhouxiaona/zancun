@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>控制div属性</title>
+		<style type="text/css">
+			form{
+				width: 500px;
+				margin: 10px auto;
+				text-align: center;
+			}
+			form input{
+				border-radius: 5px;
+				width: 50px;
+				text-align: center;
+			}
+			div{
+				width: 100px;
+				height: 100px;
+				background: black;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="" method="">
+			<input type="text" name="" value="变宽" id="kuan">
+			<input type="text" name="" value="变高" id="gao">
+			<input type="text" name="" value="变色" id="se">
+			<input type="text" name="" value="隐藏" id="cang">
+			<input type="text" name="" value="重置" id="zhi">
+		</form>
+		<div id="divs"></div>
+	</body>
+	<script type="text/javascript">
+		var kuan=document.getElementById('kuan');
+		var gao=document.getElementById('gao');
+		var se=document.getElementById('se');
+		var cang=document.getElementById('cang');
+		var zhi=document.getElementById('zhi');
+		var divs=document.getElementById('divs');
+		kuan.onclick=function(){
+			divs.style.width='200px';
+		}
+		gao.onclick=function(){
+			divs.style.height='200px';
+		}
+		se.onclick=function(){
+			divs.style.backgroundColor='red';
+		}
+		cang.onclick=function(){
+			divs.style.display='none';
+		}
+		zhi.onclick=function(){
+			divs.style.display='block';
+			divs.style.width='100px';
+			divs.style.height='100px';
+			divs.style.backgroundColor='black';
+		}
+
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

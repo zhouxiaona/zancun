@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>float-浮动</title>
+	<style>
+		.outer{
+			width:600px;
+			border:10px #000 solid;
+		}
+		.outer div{
+			width:150px;
+			height:150px;
+		}
+		.div1{
+			background:blue;
+			float:right;
+
+		}
+		.div2{
+			width:200px!important;
+			background:red;
+			clear:both;
+		}
+		.div3{
+			background:pink;
+			float:left;
+			
+		}
+		.nav{
+			height:100px;
+			background:gold;
+		}
+	</style>
+</head>
+<body>
+	<!-- 设置float的元素  会脱离文档流，往设置的方向进行浮动，直到遇到父级的边界或者其他的浮动元素 就会停止。 -->
+	<!-- 浮动的元素会脱离文档流 -->
+	<!-- 浮动的元素撑不开父级的高度 -->
+
+
+	<!-- 清除浮动 -->
+	<!-- clear:left | right | both; -->
+
+	<!-- 如何解决浮动产生的负面影响 -->
+	<!-- 1.给浮动元素的父级设置高度 -->
+	<div class="outer">
+		<div class="div3"></div>
+		<div class="div1"></div>
+		<div class="div2"></div>
+		
+	</div>
+	<div class="nav"></div>
+</body>
+</html>

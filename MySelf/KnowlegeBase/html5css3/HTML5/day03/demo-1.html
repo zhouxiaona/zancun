@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>mask</title>
+		<style type="text/css">
+			.outer{
+				width: 600px;
+				height: 400px;
+				font-size: 0;
+				overflow: hidden;
+				position: relative;
+				margin: 100px auto;
+			}
+			.mask{
+				width: 600px;
+				height: 400px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: rgba(0, 200,0, 0.5);
+				z-index: 1;
+				box-sizing: border-box;
+				text-align: center;
+				padding: 20px 20px;
+				font-size: 20px;
+			}
+			h1,p{
+				color: white;
+			}
+			img{
+				width: 600px;
+				transition: 1s;
+			}
+			.inner{
+				
+				width: 50px;
+				height: 5px;
+				background: rgba(240, 240, 240, 0.5);
+				margin: 10px auto;
+				transition: all 1s;
+			}
+			.outer:hover img{
+				transform: scale(1.2);
+			}	
+			.inner:hover{
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+			}	
+
+				
+			
+		</style>
+	</head>
+	<body>
+		<div class="outer">
+			<div class="mask">
+				<h1>我是标题</h1>
+				<p>dsanfuwevcjdscnjasndxmzanXmaN Xknqwidjijqwoedkxsamdlksmdi</p>
+				<div class="inner"></div>
+			</div>
+			<a href="###"><img src="img/4-3.jpg" alt=""></a>
+		</div>
+	</body>
+</html>

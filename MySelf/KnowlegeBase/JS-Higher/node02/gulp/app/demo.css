@@ -1,0 +1,140 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+.wrap, .game, .hero,.gameOver,.range{
+	width: 10rem;
+	height: 100vh;
+	position: relative;
+	overflow: hidden;
+}
+.game, .hero,.gameOver,.range {
+	display: none;
+}
+.wrap img, .hero .selectBtn {
+	width: 5.60625rem;
+	position: absolute;
+	bottom: 1.4rem;
+	left: 2.125rem
+}
+/*创建人物选择界面*/
+.hero .bgImg {
+	width: 3.6875rem;
+	position: absolute;
+	top: 2.1rem;
+	left: 3.25rem;
+}
+.hero ul {
+	display: flex;
+	justify-content: space-around;
+}
+.hero .headImg{
+	margin-top: 11.71875rem;
+}
+.hero ul li {
+	width: 1.5625rem;
+	height: 1.5625rem;
+	position: relative;
+}
+.hero ul li p{
+	position: absolute;
+	top: 1.71875rem;
+	left: 0.4rem;
+	font-size: 0.3125rem;
+}
+
+/* 3 ----------  创建游戏开始界面 ---------- */
+.game .playHero {
+	width: 3.04375rem;
+	position: absolute;
+	top: 0.6rem;
+	left: 4.10625rem;
+}
+.game .startBtn{
+	position: absolute;
+	bottom: 0.3125rem;
+	right: 0.3125rem;
+	width: 2.34375rem;
+	z-index: 100;
+}
+.game .scoreImg{
+	position: absolute;
+	top: 1.703125rem;
+	left: 0.3125rem;
+	width: 2.5625rem;
+}
+.game .gameBg{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.game .gameBg .gameInfo {
+	position: absolute;
+	bottom: 1.6875rem;
+	right: 2.125rem;
+	width: 4.6875rem;
+}
+.game .moveYun, .game .moveFood {
+	position: absolute;
+	top: 7.975rem;
+	width: 100%;
+	height: 9.375rem;
+}
+.game .moveYun img,.game .moveFood img  {
+	width: 2.8125rem;
+	position: absolute;
+	left: 0;
+}
+.game .moveFood img {
+	width: 1.5625rem;
+}
+/*.game .moveYun img:nth-child(2n){
+	right: 0;
+}
+.game .moveYun img:nth-child(2n+1){
+	left: 0;
+}*/
+.countTime {
+	position: absolute;
+	top: 2%;
+	left: 3%;
+	width: 35%;
+	height: 25%;
+}
+.countDown {
+	position: absolute;
+	bottom: 16%;
+	font-size: 0.78125rem;
+}
+.countNum {
+	position: absolute;
+	top: 10%;
+	left: 10%;
+}
+.gameOver{
+	position: absolute;
+	top: 0;
+}
+.gameOver1{
+	position: absolute;
+	top: 38%;
+	left: 42%;
+	width: 52%;
+}
+.gameOver1 img {
+	width: 15%;
+}
+.gameOver1 .fen{
+	width: 22%;
+}
+.playAgain, .seeRange{
+	position: absolute;
+	top: 56%;
+	left: 13%;
+	width: 32%;
+}
+.seeRange{
+	left: 54%;
+}
+
+

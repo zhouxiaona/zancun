@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Document</title>
+		<style type="text/css">
+			.item{
+				float: left;
+				width: 200px;
+				height: 200px;
+				background-color: pink;
+				margin: 2px;
+				perspective: 1000px;
+				overflow: hidden;
+			}
+			.item div{
+				width: 200px;
+				height: 200px;
+				background-color: lightblue;
+				transform-origin: left;
+				transform:rotateY(106deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+		<div class="item">
+			<div></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var directionArr = ["top", "right", "bottom", "left"];
+		var out=["rotateX(-106deg)","rotateY(-106deg)","rotateX(106deg)","rotateY(106deg)"];
+
+		var overReadyArr=["rotateX(-106deg) rotateY(0deg)","rotateX(0deg) rotateY(-106deg)","rotateX(106deg) rotateY(0deg)","rotateX(0deg) rotateY(106deg)"];
+		
+		var items=document.getElementsByClassName('item');
+
+		for(var i=0;i<items.length;i++){
+			items[i].onmouseenter=function(ev){
+				var evObj=window.event || ev;
+				var index=getDirection(evObj);
+				this.children[0].style.transition='transform 0s';
+				this.children[0].style.transform=overReadyArr[index];
+				var _this=this;
+				setTimeout(function(){
+					_this.children[0].style.transformOrigin=directionArr[index];
+					_this.children[0].style.transition='transform 0.5s';
+					_this.children[0].style.transform="rotateX(0deg) rotateY(0deg)";
+				},1);
+			}
+			items[i].onmouseleave=function(ev){
+				var evObj=window.event || ev;
+				var index=getDirection(evObj);
+				this.children[0].style.transition='transform 0s';
+				this.children[0].style.transform="rotateX(0deg) rotateY(0deg)";
+				var _this=this;
+				setTimeout(function(){
+					_this.children[0].style.transformOrigin=directionArr[index];
+					_this.children[0].style.transition='transform 0.5s';
+					_this.children[0].style.transform=out[index];
+				},1);
+			}
+		}
+
+		function getDirection(ev){
+			var arr=[ev.offsetY,200-ev.offsetX,200-ev.offsetY,ev.offsetX];
+			var min=0;
+			for(var i=1;i<arr.length;i++){
+				if(arr[min]>arr[i]){
+					min=i;
+				}
+			}
+			return min;
+		}
+
+
+
+		
+	</script>
+</html>

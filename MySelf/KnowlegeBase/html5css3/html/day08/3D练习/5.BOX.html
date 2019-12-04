@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            section {
+                margin: 20px auto;
+                width: 200px;
+                height: 200px;
+                /*开启3D*/
+                transform-style: preserve-3d;
+                transition: all 30s ease-in;
+                /*background-color: rgba(0,0,0,1);*/
+            }
+            section:hover {
+                /*div的父亲section旋转*/
+                transform:  rotateX(0deg) rotateY(30000deg);
+            }
+            div {
+                width: 200px;
+                height: 200px;
+                background: red;
+                position: absolute;
+                line-height: 200px;
+                text-align: center;
+                font-size: 30px;
+                opacity: 0.3;
+                backface-visibility: hidden;
+            }
+            /*让第一个div绕Y轴旋转90度沿着自己的Z轴移动100px,得到的是右边那个面*/
+            div:nth-child(1) {
+                background: cyan;
+                transform: rotateY(90deg) translateZ(100px);
+            }
+            /*让第一个div绕Y轴旋转270度沿着自己的Z轴移动100px,得到的是左边那个面*/
+            div:nth-child(2) {
+                background: orange;
+                transform: rotateY(270deg) translateZ(100px);
+            }
+            /*让第一个div绕X轴旋转90度沿着自己的Z轴移动100px,得到的是上边那个面*/
+            div:nth-child(3) {
+                background: yellow;
+                transform: rotateX(90deg) translateZ(100px);
+            }
+            /*让第一个div绕X轴旋转270度沿着自己的Z轴移动100px,得到的是下面那个面*/
+            div:nth-child(4) {
+                background: purple;
+                transform: rotateX(270deg) translateZ(100px);
+            }
+            /*让第一个div绕X轴旋转0度沿着自己的Z轴移动100px,得到的是前面那个面*/
+            div:nth-child(5) {
+                background: blue;
+                transform: rotateX(0deg) translateZ(100px);
+            }
+            /*让第一个div绕X轴旋转180度沿着自己的Z轴移动100px,得到的是后边那个面*/
+            div:nth-child(6) {
+                background: green;
+                transform: rotateX(180deg) translateZ(100px);
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+        </section>
+    </body>
+</html>

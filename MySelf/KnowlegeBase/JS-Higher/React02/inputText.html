@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入方式按照这个顺序来-->
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="browser.min.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<script type="text/babel">
+    var Hello=React.createClass({
+        getInitialState:function(){
+            return {
+                str:"",
+                data:this.props.data
+            }
+        },
+        handle:function(event){
+            // console.log(event.target.value);
+
+            this.setState({str:event.target.value});
+        },
+        render:function(){
+            return <div>
+                <input type="text" onInput={this.handle}/>
+                {this.state.str}
+                {this.state.data}
+            </div>
+        }
+    });
+    ReactDOM.render(<Hello data="你好"></Hello>,document.getElementById("app"));
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

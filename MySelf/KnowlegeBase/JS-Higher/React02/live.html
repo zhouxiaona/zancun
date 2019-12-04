@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入方式按照这个顺序来-->
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="browser.min.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<script type="text/babel">
+    // 组件的生命周期
+
+    var Hello=React.createClass({
+        getDefaultProps:function(){
+          console.log("getDefaultProps");
+        },
+        getInitialState:function(){
+            console.log("getInitialState");
+            return{};
+        },
+        componentWillMount:function(){
+            console.log("componentWillMount");
+        },
+        componentDidMount:function(){
+            console.log("componentDidMount");
+
+        },
+        componentWillReceiveProps:function(){
+            console.log("componentWillReceiveProps");
+        },
+        shouldComponentUpdate:function(){
+            console.log("shouldComponentUpdate");
+            return true;
+        },
+        componentWillUpdate:function(){
+            console.log("componentWillUpdate");
+        },
+        componentDidUpdate:function(){
+            console.log("componentDidUpdate");
+        },
+        componentWillUnmount:function () {
+            console.log("componentWillUnmount");
+        },
+        render:function(){
+            console.log("我是render");
+            return <div>测试数据</div>
+        }
+    });
+
+
+    ReactDOM.render(<Hello></Hello>,document.getElementById("app"));
+    ReactDOM.render(<Hello></Hello>,document.getElementById("app"));
+
+    //销毁组件
+    ReactDOM.unmountComponentAtNode(document.getElementById("app"));
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

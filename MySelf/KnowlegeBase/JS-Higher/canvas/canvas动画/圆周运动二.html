@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>圆周运动二</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="400" height="400">
+			及时更新浏览器！
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		
+		ctx.translate(200,200);
+		function draw(r,startdeg,color){
+			ctx.beginPath();
+			ctx.strokeStyle=color;
+			ctx.arc(0,0,r,startdeg,startdeg+Math.PI*2/36);
+			ctx.lineWidth=10;
+			ctx.stroke();
+		}
+		var everyPercent=0;
+		var r=200;
+		var color=randColor();
+		function act(){
+//			ctx.clearRect(-200,-200,400,400);
+			everyPercent+=Math.PI*2/36;
+			draw(r,everyPercent,color);
+			if(everyPercent >= (Math.PI*2-Math.PI*2/36)){
+				r-=20;
+				everyPercent=0;
+				color=randColor();
+			}
+			window.requestAnimationFrame(act);
+		}
+		act();
+		//生成随机颜色的函数
+		function randNum(min,max){
+			return parseInt(Math.random()*(max-min))+min;
+		}
+		function randColor(){
+			return "rgb("+randNum(0,255)+","+randNum(0,255)+","+randNum(0,255)+")";
+		}
+		
+		
+	</script>
+</html>

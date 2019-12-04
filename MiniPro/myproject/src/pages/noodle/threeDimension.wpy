@@ -1,0 +1,109 @@
+<template>
+  <view class="box">
+    <view class="wrap">
+      <view class="card card1">1</view>
+      <view class="card card2">2</view>
+      <view class="card card3">3</view>
+      <view class="card card4">4</view>
+      <view class="card card5">5</view>
+      <view class="card card6">6</view>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class ThreeDimension extends wepy.page {
+    config = {
+      enablePullDownRefresh: false,
+      backgroundTextStyle: 'light',
+      onReachBottomDistance: 50,
+      navigationBarBackgroundColor: '#69BEFF',
+      navigationBarTitleText: 'threeDimension',
+      navigationBarTextStyle: 'white'
+    }
+
+    data = {
+     
+    }
+
+    methods = {
+      
+    }
+
+    onLoad() {
+      
+    }
+  }
+</script>
+<style lang="less">
+.box{
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  transform: perspective(1000px);
+  // perspective: 1000px;
+}
+.wrap{
+  width: 200rpx;
+  height: 200rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+  transform: translateX(-100rpx) translateY(-100rpx);
+  transform-origin: center center 0;
+  animation: mymove 5s infinite linear;
+  .card{
+    width: 200rpx;
+    height: 200rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    line-height: 200rpx;
+    font-size: 50rpx;
+    color: black;
+  }
+  .card1{
+    background-color: pink;
+    opacity: 0.4;
+    transform: translate3d(0,0,100rpx);
+  }
+  .card2{
+    background-color: lightblue;
+    opacity: 0.4;
+    transform: translate3d(0,0,-100rpx);
+  }
+  .card3{
+    background-color: lightcoral;
+    opacity: 0.4;
+    transform: translate3d(-100rpx,0,0) rotateY(-90deg);
+  }
+  .card4{
+    background-color: lightcyan;
+    opacity: 0.4;
+    transform: translate3d(100rpx,0,0) rotateY(90deg);
+  }
+  .card5{
+    background-color: lightgoldenrodyellow;
+    opacity: 0.4;
+    transform: translate3d(0,100rpx,0) rotateX(90deg);
+  }
+  .card6{
+    background-color: lightgray;
+    opacity: 0.4;
+    transform: translate3d(0,-100rpx,0) rotateX(-90deg);
+  }
+  @keyframes mymove
+  {
+    from {transform:rotateY(0deg) rotateX(0);}
+    to {transform:rotateY(360deg) rotateX(360deg);}
+  }
+
+  @-webkit-keyframes mymove /*Safari and Chrome*/
+  {
+    from {transform:rotateY(0deg) rotateX(0);}
+    to {transform:rotateY(360deg) rotateX(360deg);}
+  }
+}
+</style>

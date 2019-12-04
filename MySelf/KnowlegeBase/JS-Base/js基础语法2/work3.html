@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<input id="inp1" type="number" value="" name="" placeholder="请输入第一个人的年龄">
+		<span>岁</span>
+		<input id="inp2" type="text" value="" name="" placeholder="请输入第二个人的年龄">
+		<span>岁</span>
+		<input id="inp3" type="text" value="" name="" placeholder="请输入第三个人的年龄">
+		<span>岁</span>
+		</br>
+		<button id="btn">判断</button>
+		</br>
+		<span>三人中最大年龄为：</span>
+		<input type="text" id="inp4" name="" value="">
+		<span>岁</span>
+	</body>
+	<script type="text/javascript">
+		var inp1=document.getElementById('inp1');
+		var inp2=document.getElementById('inp2');
+		var inp3=document.getElementById('inp3');
+		var btn=document.getElementById('btn');
+		var inp4=document.getElementById('inp4');
+		btn.onclick=function(){
+			var num1=Number(inp1.value);
+			var num2=Number(inp2.value);
+			var num3=Number(inp3.value);
+			var maxNum=0;
+			if(num1>num2){
+				maxNum=num1;
+			}else{
+				maxNum=num2;
+			}
+			if(maxNum>num3){
+				maxNum=maxNum;
+			}else{
+				maxNum=num3;
+			}
+			inp4.value=maxNum;
+		}
+	</script>
+</html>

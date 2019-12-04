@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>碰撞检测</title>
+		<style type="text/css">
+			.wrap{
+				width: 500px;
+				height: 500px;
+				border: 5px solid black;
+				margin: 20px auto;
+				position: relative;
+			}
+			.red,.blue{
+				width: 50px;
+				height: 50px;
+				position: absolute;
+			}
+			.red{
+				background: red;
+				top: 0;
+				left: 230px;
+			}
+			.blue{
+				background: blue;
+				top: 230px;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="red"></div>
+			<div class="blue"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var wrap=document.getElementsByClassName('wrap')[0];
+		var red=document.getElementsByClassName('red')[0];
+		var blue=document.getElementsByClassName('blue')[0];
+		
+		var rTop=red.offsetTop;
+		// var rLeft=red.offsetLeft;
+		var r_maxTop=wrap.clientHeight-red.offsetHeight;
+		// var r_maxLeft=wrap.clientWidth-red.offsetWidth;
+
+		var bLeft=blue.offsetLeft;
+		// var bTop=blue.offsetTop;
+		var b_maxLeft=wrap.clientWidth-blue.offsetWidth;
+		// var b_maxTop=wrap.clientHeight-red.offsetHeight;
+
+		var ifF=true;
+		var speedY=3;
+		var speedX=5;
+		var timer=setInterval(function(){
+			rTop+=speedY;
+			// rLeft+=speedX;
+			
+			bLeft+=speedX;
+			// bTop+=speedY;
+			if(rTop>=r_maxTop || rTop<0){
+				speedY*=-1;
+			}
+			
+			if(bLeft>=b_maxLeft || bLeft<0){
+				speedX*=-1;
+			}
+			
+			red.style.top=rTop+'px';
+			blue.style.left=bLeft+'px';
+
+			// blue.style.top=bTop+'px';
+			// red.style.left=rLeft+'px';
+			
+			//红右>蓝左　　红左<蓝右　红上<蓝下　　红下>蓝上
+			//判断两个方块是否碰撞的条件
+			if((red.offsetTop+red.offsetHeight)>blue.offsetTop && (red.offsetLeft+red.offsetWidth)>blue.offsetLeft && red.offsetLeft<(blue.offsetLeft+blue.offsetWidth) && red.offsetTop<(blue.offsetTop+blue.offsetHeight)){
+				//如果碰撞，让两个方块反向运动
+				// speedY*=-1;
+				// speedX*=-1;
+				if(isF){
+					isF=false;
+					red.style.backgroundColor='rgb('+colorNum()+','+colorNum()+','+colorNum()+')';
+					blue.style.backgroundColor='rgb('+colorNum()+','+colorNum()+','+colorNum()+')';
+					}
+				//方块碰撞时计时器停止计时，方块停止运动
+				// clearInterval(timer);
+				}else{
+					isF=true;
+				}
+			
+			//随机生成颜色的函数
+			function colorNum(){
+				return parseInt(Math.random()*256);
+			}
+		},20);
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

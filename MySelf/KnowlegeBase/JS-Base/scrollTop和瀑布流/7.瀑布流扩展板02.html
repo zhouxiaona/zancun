@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>瀑布流-扩展版02</title>
+		<style type="text/css">
+			* { 
+				margin: 0; 
+				padding: 0; 
+			}
+			#list { 
+				list-style: none; 
+				position: relative; 
+				margin: 0 auto;
+			}
+			#list li { 
+				position: absolute; 
+				width: 200px; 
+				font-size: 50px; 
+				-webkit-transition: all 0.5s;
+				-moz-transition: all 0.5s;
+				-ms-transition: all 0.5s;
+				-o-transition: all 0.5s;
+				transition: all 0.5s;
+				background-color: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="list"></ul>
+	</body>
+	<script type="text/javascript">
+		
+		function flowFn() {
+			var list = document.getElementById("list");
+			var width = 200;
+			var padding = 10;
+			var heightArr = [];
+
+			//随机函数
+			function randFn(min, max) {
+				return parseInt(Math.random() * (max - min)) + min;
+			}
+
+			//bol值表示是否新创建元素，是则是初始化，否则只是窗体大小改变重新布局
+			function creatFlow(bol) {
+				var windowBody = document.documentElement.clientWidth;
+				var lis = list.getElementsByTagName("li");
+				var cols = parseInt(windowBody / (width + padding));
+				var topArr = [];
+
+				list.style.width = cols * (width + padding) + "px"; 
+				//通过列数和每个li的宽度，算出ul宽度，为了使瀑布流居中
+
+				for (var i = 0; i < cols; i++) {
+					topArr[i] = 0; 
+				}
+
+				//创建li并设定样式
+				function createLi(index) {
+					var li = lis[index] || document.createElement("li"); //如果li已经存在，就用现有的，如果没有，就创建
+					var height = heightArr[index] || randFn(100, 300); 
+					//如果存储高度的数组已经存在，就用现有的，如果没有，就用随机函数获取高度
+					
+					li.innerHTML = index;
+					li.style.height = height + "px";
+					
+					var minTop = topArr[0];
+					var minIndex = 0;
+					for (var i = 0; i < topArr.length; i++) {
+						if (minTop > topArr[i]) {
+							minTop = topArr[i];
+							minIndex = i;
+						}
+					}
+					 
+					li.style.top = topArr[minIndex] + "px";
+					li.style.left = minIndex * (width + padding) + "px";
+					topArr[minIndex] += (height + padding);
+
+					//新创建
+					if (bol) {
+						heightArr.push(height);
+						list.appendChild(li);
+					}
+				}
+
+				//把创建li的循环提出来
+				for (var i = 1; i < 21; i++) {
+					createLi(i);
+				}
+			}
+
+			//页面初始化，创建瀑布流并布局
+			window.onload = function(){
+				creatFlow(true);
+			}
+			
+			//窗口大小改变，改变瀑布流重新布局
+			window.onresize = function() {
+				creatFlow(false);
+			}
+		}
+		flowFn();
+
+	</script>
+</html>

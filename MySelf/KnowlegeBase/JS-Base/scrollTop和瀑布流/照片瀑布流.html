@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>flow</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.list{
+				position: relative;
+				border: 1px solid black;
+			}
+			.list img{
+				width: 100px;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<progress id="progress" min="0" max="100" value="0"></progress>
+		</div>
+		<div class="list"></div>
+	</body>
+	<script type="text/javascript">
+		var progress=document.getElementById("progress");
+		var list=document.getElementsByClassName('list')[0];
+
+		var margin=10;
+		var width=100;
+		var cols=parseInt(document.documentElement.clientWidth/(width+margin));
+		
+		var topArr=[];
+		for(var i=0;i<cols;i++){
+			topArr[i]=0;
+		}
+		var i=0;
+		//图片的预加载
+		var count=0;
+		var imgArr=[];
+		for (var j=0;j<16;j++) {
+			var readyImg=new Image();
+			//图片是在设置src之后就开始请求
+			imgArr.push(readyImg);
+			//new Image 和 document.createElement("img")等价
+			readyImg.src="img/P_0"+j+".jpg";
+			//readyImg这个变量装的是每个图片对象的地址，地址是变的
+			readyImg.onload=function(){
+				count++;
+				progress.value=(count/16)*100;
+				if(count==16){
+					console.log("所有图片加载成功");
+					createImg();
+				}
+			}
+		}
+		
+//		createImg();
+		function createImg(){
+			var img=document.createElement('img');
+			img.src=imgArr[i].src;
+			i++;
+			var minTop=topArr[0];
+			var minIndex=0;
+			for(var j=0;j<topArr.length;j++){
+				if(topArr[j]<minTop){
+					minTop=topArr[j];
+					minIndex=j;
+				}
+			}
+			img.style.top=(topArr[minIndex]+margin)+'px';
+			img.style.left=(minIndex*(width+margin))+'px';
+			
+			list.appendChild(img); 
+			//onload代表图片加载完毕之后执行的函数
+			img.onload=function(){
+				progress.value=(i/16)*100;
+				topArr[minIndex]+=img.offsetHeight+margin;
+				if(i<16){
+					createImg();
+				}
+			}
+			//图片加载错误之后执行的函数
+			// img.onerror=function(){
+			// 	console.log('图片加载错误！');
+			// }
+			
+			// 图片被终止加载/放弃加载图片　执行的函数
+			// img.onabort=function(){
+			// 	console.log('握不住的沙，就扬了它！');
+			// }
+		}
+			
+
+	</script>
+</html>

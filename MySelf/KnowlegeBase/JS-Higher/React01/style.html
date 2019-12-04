@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入方式按照这个顺序来-->
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="browser.min.js"></script>
+    <style>
+        .mydiv{
+            border:3px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<script type="text/babel">
+    // 第一个{}声明是js环境
+    // 第二个{}是对象
+    var mystyle={
+        width:"100px",
+        height:"100px",
+        background:"red"
+    };
+    ReactDOM.render(<div style={mystyle} className="mydiv">我是测试div</div>,document.getElementById("app"));
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

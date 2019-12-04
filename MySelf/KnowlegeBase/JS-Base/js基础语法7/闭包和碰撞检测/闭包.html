@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>闭包</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		// 闭包
+		// 内存 硬盘。
+		// 酒席  10桌  10
+		// 变量的作用，局部变量，是在函数内部声明，局部变量不可以在函数外部使用。本质原因：函数再被调用的时候会入栈，并且分配空间，函数内部的变量，都是在这块空间内部声明的，当函数运行完毕之后就会出栈，系统回收空间，函数内部的变量所占空间也会被回收，所以不能在函数外面使用函数内部定义的变量。
+
+		// 内存泄露。
+		// 数组里面的两个a是同一个a。对象引用
+		// var a = {name:"张三", age:18};
+		// var arr = [];
+		// arr.push(a);
+		// arr.push(a);
+		// // a发生变化之后，数组内部也会改变、。
+		// a.name = "李四";
+		// console.log(arr[0] == arr[1]);
+
+
+		// 函数t运行两次，就会有2个a。这两个a不是同一个a；
+		var arr = [];
+		function t(){
+			var a = {name:"张三", age:18};
+			arr.push(a);
+		}
+		t();
+		t();
+		arr[0].name = "李四";
+		console.log(arr);
+		console.log(arr[0] == arr[1]);
+
+
+		// 执行同一次函数的时候，变量是相同的
+		var arr = [];
+		function t(){
+			var a = {name:"张三", age:18};
+			arr.push(a);
+			arr.push(a);
+		}
+		t();
+		arr[0].name = "李四";
+		console.log(arr);
+		console.log(arr[0] == arr[1]);
+
+
+		// 函数内部的函数可以形成闭包。
+		// 闭包里面使用局部变量和函数参数的时候，用的就是外部函数的局部变量。
+		// 弊端：闭包会导致函数运行结束之后局部变量的空间不会被释放从而造成内存泄露（执行的次数越多，占用的内存越多）
+
+
+
+		// 同一个函数调用两次，会返回两个函数f1，和f2。 f1和f2里面的a分别是第一次和第二次调用fn的时候生成的a。所以是两个不同的a。
+		var i = 1000;
+		function fn(num){
+			var a = 10;
+			return function(){
+				// console.log(++a);
+				// console.log(++num);
+				console.log(++i);
+			}
+		}
+		var f1 = fn(10);
+		var f2 = fn(10);
+		f1();
+		f1();
+		f1();
+		f1();
+		f1();
+		f2();
+
+		// 调用一次函数返回两个函数f1，和f2。f1和f2里面的a都是第一次调用fn的时候生成的，所以是同一个a；
+		
+		// function fn(num){
+		// 	var a = 10;
+		// 	function in1(){
+		// 		// console.log(++a);
+		// 		// console.log(++num);
+		// 		console.log(++i);
+		// 	}
+		// 	function in2(){
+		// 		// console.log(++a);
+		// 		// console.log(++num);
+		// 		console.log(++i);
+
+		// 	}
+		// 	return [in1, in2];
+		// }
+		// var arr = fn(100);
+		// var f1 = arr[0];
+		// var f2 = arr[1];
+		// f1();
+		// f1();
+		// f1();
+		// f1();
+		// f1();
+		// f2();
+
+
+
+
+
+
+
+	</script>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		// var arr=[3,1,2,3,7,8,3,3,3,2,2,5,5];
+		// var arr2=arr.filter(function(x,index){
+		// 	if(x === index){
+		// 		return x;
+		// 	}
+		// });
+		// console.log(arr2);
+
+		// var str=new String("Ajhgmjh");
+		// console.log(typeof str);
+		// console.log('==================');
+
+		// var num=23333333;
+		// var nums=num.toLocaleString();
+		// console.log(nums);
+
+		// var data={
+		// 	aa:function(){console.log("我是function");}(),
+		// 	bb:123
+		// }
+		// function testFn(){
+		// 	console.log(111);
+		// }
+
+		// function isFun(fn){
+		// 	if(typeof(fn)==="function"){
+		// 		console.log("yes");
+		// 	}else{
+		// 		console.log("no");
+		// 	}
+		// }
+		// isFun(data.aa);
+		// isFun(data.bb);
+		// isFun(testFn);
+		// console.log('async的结果是==================');
+
+		// function getInfo1(arg){
+		// 	return new Promise((resolve,reject) => {
+		// 		setTimeout(() =>{
+		// 			resolve('zhouna');
+		// 		},500);
+		// 	});
+		// }
+
+		// function getInfo2(arg){
+		// 	return new Promise((resolve,reject) => {
+		// 		setTimeout(()=>{
+		// 			if(arg == 'zhouna'){
+		// 				resolve('hello sunday');
+		// 			}else{
+		// 				reject('kill you');
+		// 			}
+		// 		},500);
+		// 	})
+		// }
+
+		// getInfo1('1').then((arg)=>{
+		// 	console.log(arg,'======')
+			// return getInfo2(arg)
+			// return 'haha'
+			// return [1,2,3,4]
+		// }).then((arg)=>{
+			// console.log('getInfo2',arg)
+		// 	console.log(arg)
+		// });
+
+		// function getNumber(){
+		// 	return new Promise((resolve,reject) => {
+		// 		setTimeout(()=>{
+		// 			var randNum = ~~(Math.random()*10);
+		// 			console.log(randNum,'xixi')
+		// 			if(randNum > 5){
+		// 				resolve(randNum);
+		// 			}else{
+		// 				reject('数字小于5');
+		// 			}
+		// 		},1000);
+		// 	});
+		// }
+		// getNumber().then((res)=>{
+		// 	console.log('res',res)
+		// }).catch((err)=>{
+		// 	console.log('err',err)
+		// })
+
+		// async function fns(arg){
+		// 	var res1 = await getInfo1(arg);
+		// 	var res2 = await getInfo2(res1);
+		// 	console.log('最终的结果是',res2);
+		// }
+		
+		// console.time('start');
+		// fns('cindy');
+		// console.timeEnd('start');
+
+		// console.log("====");
+
+		// var target = {
+		// 	name:'lala',
+		// 	age:18
+		// }; 
+		// var source1 = {
+		// 	name:'xixi',
+		// 	age:22
+		// };
+		// var source2 = {
+		// 	name:'haha',
+		// 	age:34
+		// }
+	
+		// console.log(Object.assign(target,source1,source2))
+		// console.log(Object.assign(target,{}))
+		// console.log(Object.assign([1,2,3,4],[5,6]));
+		
+		// var data1=[];
+		// for(var i=0;i<20;i++){
+		// 	var obj={
+		// 		name:'xixi'+i,
+		// 		age: 18
+		// 	}
+		// 	data1.push(obj)
+		// }
+		// console.log('===data1',data1);
+
+		// var data2=[{name:'haha1',age:19},{name:'haha2',age:19},{name:'haha3',age:19}];
+		// var data3=Object.assign(data1,data2);
+		// console.log('===data3',data3,'===data1',data1,'====data2',data2);
+		// console.log('hahahahah',Object.assign(data2,[{name:'lala',age:0}]));
+		
+  		// function isEmptyObject(e){
+	    //     let t;
+	    //     for (t in e)
+	    //       return !1;
+	    //     return !0	
+	    // }
+	    // console.log(isEmptyObject({}));
+	   //  console.log(isEmptyObject({name:'haha',age:18}));
+	   //  var obj={};
+	   //  var obj2={name:'haha'}
+	   //  console.log(!!obj2.name)
+	    
+	   // function fn1(arg){
+	   // 	if(arg == 'lala'){
+	   // 		return !0;
+	   // 	}
+	   // }
+	   // function fn2(cb){
+	   // 	cb && cb('lala');
+	   // }
+	   // console.log(fn2(fn1));
+
+	//    var nullNum=[];
+	//    var str='lala';
+	//    var str2='1';
+	//    nullNum && (str2=nullNum);
+	//    console.log(str2);
+	   
+	//    function newSet(arr){
+	//    	return new Set(arr);
+	//    }
+	//    console.log(newSet([1,2,3,1,1,2,'bar','hey','hey']));
+	   
+	//    function fixA(a = getA()){
+	//    	console.log('a',a);
+	//    	return 'fixA';
+	//    }
+
+	//    function getA(){
+	//    	throw new Error('你缺少了参数a');
+	//    }
+
+	//    console.log(fixA(1));
+	//    console.log(fixA());
+
+	// 条件语句  && 条件查询
+	// function Test(fruit, quantity) {
+	// 	const redFruits = ['apple', 'strawberry', 'cherry', 'cranberries'];
+	// 	if (!fruit) throw new Error('No fruit!'); // condition 1: throw error early
+	// 	if (!redFruits.includes(fruit)) return; // condition 2: stop when fruit is not red
+	// 	console.log('red');
+	// 	if (quantity > 10) console.log('big quantity');// condition 3: must be big quantity
+	// }
+
+	// function Test({name}){
+	// 	console.log(name || 'unknown')
+	// }
+	// Test({})
+
+	// const fruits = [
+	// 	{ name: 'apple', color: 'red' }, 
+	// 	{ name: 'strawberry', color: 'red' }, 
+	// 	{ name: 'banana', color: 'yellow' }, 
+	// 	{ name: 'pineapple', color: 'yellow' }, 
+	// 	{ name: 'grape', color: 'purple' }, 
+	// 	{ name: 'plum', color: 'purple' }
+	// ];
+
+	// function testFilter(color) {
+	// 	return fruits.filter(f => f.color == color);
+	// }
+	// function testEvery(){
+	// 	const isAllRed =  fruits.every(f => f.color === 'red')
+	// 	return isAllRed;
+	// }
+	// function testSome(){
+	// 	const isAnyRed =  fruits.some(f => f.color === 'red')
+	// 	return isAnyRed;
+	// }
+	// console.log(testFilter('red'));
+	// console.log(testEvery());
+	// console.log(testSome());
+
+	
+	</script>
+</html>

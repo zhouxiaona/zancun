@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入方式按照这个顺序来-->
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="browser.min.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<script type="text/babel">
+    //定义一个组件
+    //组件的首字母要大写
+
+    // var Hello=React.createClass({
+    //     render:function(){
+    //         return <div>我是Hello组件,姓名是：{this.props.name}</div>;
+    //     }
+    // });
+
+    //用类的方式定义组件
+    class Hello extends React.Component{
+        render(){
+            return <div>我是类方式创建的组件，我的名字是{this.props.name}</div>
+        }
+    }
+    //参数传参
+    //插槽传参
+
+    ReactDOM.render(<Hello name="张三"/>,document.getElementById("app"));
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

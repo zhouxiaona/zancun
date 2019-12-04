@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图形组合</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			您的浏览器不支持canvas，请及时更新浏览器!
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		//目标图:先画在画布上的图形；源图：后画在画布上的图形
+		//圆
+		ctx.beginPath();
+		ctx.arc(100,100,100,0,Math.PI*2);
+		ctx.fillStyle="pink";
+		ctx.fill();
+		//------
+		//默认source-over
+		ctx.globalCompositeOperation="destination-out";
+		//方块
+		ctx.beginPath();
+		ctx.fillStyle="lightblue";
+		ctx.fillRect(50,50,200,200);
+		
+	</script>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>事件</title>
+		<style type="text/css">
+			.redDiv{
+				width: 400px;
+				height: 400px;
+				background-color: red;
+			}
+			.blueDiv{
+				width: 200px;
+				height: 200px;
+				background-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="redDiv">
+			<div class="blueDiv"></div>
+		</div>
+		<form action="" id="first">
+			<input type="text" id="uName" />
+			<input type="submit" />
+			<input type="reset" />
+		</form>
+	</body>
+	<script type="text/javascript">
+	var redDiv = document.getElementsByClassName('redDiv')[0];
+	// 鼠标事件
+	// redDiv.onclick = function(){
+	// 	console.log("onclick点击事件");
+	// }
+	// out和over会在鼠标从父级移入子级元素的时候触发。
+	// enter和leave只有在移入和移出父级和子级的整体的时候触发。
+	// redDiv.onmouseout = function(){
+	// 	console.log("out鼠标移出");
+	// }
+	// redDiv.onmouseover = function(){
+	// 	console.log("over鼠标移入");
+	// }
+	// redDiv.onmouseenter = function(){
+	// 	console.log("enter鼠标移入");
+	// }
+	// redDiv.onmouseleave = function(){
+	// 	console.log("leave鼠标移出");
+	// }
+	// redDiv.onmousedown = function(){
+	// 	console.log("down鼠标按下");
+	// }
+	// redDiv.onmouseup = function(){
+	// 	console.log("up鼠标抬起");
+	// }
+	// redDiv.ondblclick = function(){
+	// 	console.log("dblclick双击");
+	// }
+	redDiv.oncontextmenu = function(){
+		console.log("contextmenu鼠标右键");
+		return false;
+	}
+	// redDiv.onmousemove = function(){
+	// 	console.log("move鼠标移动");
+	// }
+
+
+
+	// 键盘事件
+	// 只有成为焦点的元素才能触发键盘事件。
+	document.getElementById("uName").onkeydown = function(){
+		console.log("down键盘按下");
+	}
+	// document.onkeyup = function(){
+	// 	console.log("up键盘抬起");
+	// }
+	// document.onkeypress = function(){
+	// 	console.log("press键盘按下")
+	// }
+
+	// 表单事件
+	var first = document.getElementById("first");
+	var uName = document.getElementById("uName");
+	uName.onchange = function(){
+		console.log("change内容发生了变化");
+	}
+	uName.onblur = function(){
+		console.log("blur失去了焦点")
+	}
+	uName.onfocus = function(){
+		console.log("获取焦点");
+	} 
+	// 输入框内容发生变化的时候触发。即时
+	uName.oninput = function(){
+		console.log("输入了内容")
+	}
+	// 点击的是提交按钮，form表单触发onsubmit
+	first.onsubmit = function(){
+		console.log("用户提交了表单》");
+		// 一些事件中，系统会有默认事件触发，比如右键的时候会弹出来菜单，比如按了提交按钮会跳转网页。这些都是默认事件
+		// 默认事件可以被阻止掉1、return false；
+		return false;
+	}
+	first.onreset = function(){
+		console.log("表单被重置了");
+		return false;
+	}
+	
+
+	// document.onfocus = function(){
+	// 	console.log("document获取了焦点");
+	// }
+
+
+		// 移动端事件
+
+
+
+
+	</script>
+</html>

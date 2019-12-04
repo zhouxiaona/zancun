@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<button id="btn1">-</button>
+		<input id="inp1" type="text" name="" value="0">
+		<button id="btn2">+</button>
+	</body>
+	<script type="text/javascript">
+		var btn1=document.getElementById('btn1');
+		var btn2=document.getElementById('btn2');
+		var inp1=document.getElementById('inp1');
+		var num=Number(inp1.value);
+		btn1.onclick=function(){
+			num=num - 1;
+			if(num<0){
+				num=0;
+			}
+			inp1.value=num;
+		}
+		btn2.onclick=function(){
+			num=num + 1;
+			if(num>10){
+				num=10;
+			}
+			inp1.value=num;
+		}
+		
+	</script>
+</html>

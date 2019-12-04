@@ -1,0 +1,74 @@
+header{
+	width: 100%;
+	height: 90px;
+	background: #25262B;
+}
+header .header_inner{
+	width: 1232px;
+}
+header .header_inner>h1,header .header_inner>ul{
+	float: left;
+}
+header .header_inner>h1>a>img{
+	padding-top: 26px;
+}
+header .header_inner>h1{
+	padding-right: 113px;
+	background: url(http://jingyingba.com/Public/home/images/logo_bef.png) no-repeat right 28px;
+}
+header .header_inner>ul{
+	margin-left: 30px;
+}
+header .header_inner>ul>li{
+	float: left;
+	padding-top: 40px;
+	padding-bottom: 25px;
+}
+
+header .header_inner>ul>li:nth-of-type(n+2){
+	margin-left: 35px;
+}
+
+header .header_inner>ul>li>a{
+	color: white;
+	font-size: 16px; 
+
+}
+header .header_inner>ul>li:hover{
+	border-bottom:2px solid #ED5407;
+}
+header .header_inner>ul>li:hover a{
+	color: #ED5407;
+}
+header .header_inner>a,header .header_inner>ol{
+	float: right;
+}
+
+header .header_inner>a{
+	padding:34px 35px;
+	color: white;
+	background: #F58936;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,286 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>shoppingCar</title>
+		<link rel="stylesheet" type="text/css" href="购物车.css">
+		<link rel="stylesheet" type="text/css" href="reset.css">
+	</head>
+	<body>
+		<table class="box" border="1">
+			<tr class="header">
+				<td width="90">
+					<input type="checkbox" id="selectAll" />
+					<label for="selectAll">全选</label>
+				</td>
+				<td width="230">商品</td>
+				<td width="173">单价</td>
+				<td width="127">数量</td>
+				<td width="197">小计</td>
+				<td>操作</td>
+			</tr>
+			<tr>
+				<td class="check">
+					<input type="checkbox" class="checkt" />
+				</td>
+				<td class="proName">
+					<img src="" alt="" />
+					<span>佳能</span>
+				</td>
+				<td class="proPirce"> 
+					<span>100</span>
+				</td>
+				<td class="proCount">
+					<input type="button" value="-" class="ys" />
+					<input type="text" class="count" value="0" />
+					<input type="button" value="+" class="ys"/>
+				</td>
+				<td class="proMoney">
+					<span>0</span>
+				</td>
+				<td>
+					<input type="button" value="删除" class="proDel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="check">
+					<input type="checkbox"  class="checkt"/>
+				</td>
+				<td class="proName">
+					<img src="" alt="" />
+					<span>佳能</span>
+				</td>
+				<td class="proPirce"> 
+					<span>200</span>
+				</td>
+				<td class="proCount">
+					<input type="button" value="-" class="ys" />
+					<input type="text" class="count" value="0" />
+					<input type="button" value="+" class="ys"/>
+				</td>
+				<td class="proMoney">
+					<span>20</span>
+				</td>
+				<td>
+					<input type="button" value="删除" class="proDel" />
+				</td>
+			</tr>
+			<tr>
+				<td class="check">
+					<input type="checkbox" class="checkt" />
+				</td>
+				<td class="proName">
+					<img src="" alt="" />
+					<span>佳能</span>
+				</td>
+				<td class="proPirce"> 
+					<span>300</span>
+				</td>
+				<td class="proCount">
+					<input type="button" value="-" class="ys" />
+					<input type="text" class="count" value="0" />
+					<input type="button" value="+" class="ys"/>
+				</td>
+				<td class="proMoney">
+					<span>10</span>
+				</td>
+				<td>
+					<input type="button" value="删除" class="proDel" />
+				</td>
+			</tr>
+			
+			<tr class="footer">
+				<td colspan="6">
+					<div class="delAll">删除所有</div>
+					<div class="proTotal">已选商品<span>0</span>件</div>
+					<div class="totalPirces">合计：￥<span>0</span></div>
+				</td>
+			</tr>
+		</table>
+	</body>
+	<script type="text/javascript">
+		//获取全选按钮
+		var selectAll=document.getElementById('selectAll');
+		//获取复选框
+		var checktS=document.getElementsByClassName('checkt');
+		//获取获取合计
+		var totalPirces=document.querySelector('.totalPirces span');
+		//获取已选商品的件数
+		var proTotal=document.querySelector('.proTotal span');
+		//获取删除按钮
+		var proDelS=document.getElementsByClassName('proDel');
+		//获取删除所有按钮
+		var delAll=document.querySelector('.delAll');
+		console.log(delAll);
+		//获取加减号
+		var ys=document.getElementsByClassName('ys');
+		//获取数量
+		var countS=document.getElementsByClassName('count');
+		//获取小计
+		var proMoneyS=document.querySelectorAll('.proMoney span');
+		//获取单价
+		var proPriceS=document.querySelectorAll('.proPirce span');
+
+		//定义变量保存删除的个数
+		var delCount=0;
+
+		//全选按钮点击事件
+		selectAll.onclick=function(){
+			//单选事件
+			for(var i=0;i<checktS.length;i++){
+				if(tr[i].style.display!='none'){
+					checktS[i].checked=this.checked;
+				}
+			}
+			// //合计和已选商品事件
+			// var count=0;
+			// var money=0;
+			// for(var i=0;i<checktS.length;i++){
+			// 	if(checktS[i].checked){
+			// 		count++;
+			// 		money+=Number(proMoneyS[i].innerHTML);
+			// 	}
+			// }
+			// proTotal.innerHTML=count;
+			// totalPirces.innerHTML=money;
+			change();
+		}
+
+		//复选框点击事件
+		for(var i=0;i<checktS.length;i++){
+			checktS[i].onclick=function(){
+				//全选事件
+				var count=0;
+				for(var i=0;i<checktS.length;i++){
+					if(checktS[i].checked){
+						count++;
+					}
+				}
+				selectAll.checked=count==checktS.length-delCount;
+				// //合计和已选商品事件
+				// var count=0;
+				// var money=0;
+				// for(var i=0;i<checktS.length;i++){
+				// 	if(checktS[i].checked){
+				// 		count++;
+				// 		money+=Number(proMoneyS[i].innerHTML);
+				// 	}
+				// }
+				// proTotal.innerHTML=count;
+				// totalPirces.innerHTML=money;
+				change();
+			}
+		}
+
+
+
+		//加号/减号事件
+		for(var i=0;i<ys.length;i++){
+			ys[i].index=i;
+			ys[i].onclick=function(){
+				var ysIndex=parseInt(this.index/2);
+				var num=Number(countS[ysIndex].value);
+				num=num+Number(this.value+'1');
+
+				num=num<0?0:(num>99?99:num);
+				countS[ysIndex].value=num;
+				//数量*单价等于小计
+				proMoneyS[ysIndex].innerHTML=num*proPriceS[ysIndex].innerHTML;
+
+				// //合计和已选商品事件
+				// var count=0;
+				// var money=0;
+				// for(var i=0;i<checktS.length;i++){
+				// 	if(checktS[i].checked){
+				// 		count++;
+				// 		money+=Number(proMoneyS[i].innerHTML);
+				// 	}
+				// }
+				// proTotal.innerHTML=count;
+				// totalPirces.innerHTML=money;
+				change();
+			}
+		}
+
+
+
+		//删除按钮
+		var tr=document.querySelectorAll('tr:not(.header):not(.footer)');
+		for(var i=0;i<proDelS.length;i++){
+			proDelS[i].index=i;
+			proDelS[i].onclick=function(){
+				//删除整行
+				tr[this.index].style.display='none';
+				checktS[this.index].checked=false;
+				delCount++;
+				//可能影响全选
+				var count=0;
+				for(var i=0;i<checktS.length;i++){
+					if(checktS[i].checked){
+						count++;
+					}
+				}
+				selectAll.checked=count==checktS.length-delCount;
+				// //合计和已选商品事件
+				// var count=0;
+				// var money=0;
+				// for(var i=0;i<checktS.length;i++){
+				// 	if(checktS[i].checked){
+				// 		count++;
+				// 		money+=Number(proMoneyS[i].innerHTML);
+				// 	}
+				// }
+				// proTotal.innerHTML=count;
+				// totalPirces.innerHTML=money;
+				change();
+			}
+		}
+
+		//删除所有
+		delAll.onclick=function(){
+			for(var i=0;i<checktS.length;i++){
+				if(checktS[i].checked){
+					proDelS[i].onclick();
+				}
+			}
+			//删除被选中的行
+			//影响合计
+			//影响商品件数
+		}
+
+		//定义函数　改变合计和商品件数
+		function change(){
+			//合计和已选商品事件
+			var count=0;
+			var money=0;
+			for(var i=0;i<checktS.length;i++){
+				if(checktS[i].checked){
+					count++;
+					money+=Number(proMoneyS[i].innerHTML);
+				}
+			}
+			proTotal.innerHTML=count;
+			totalPirces.innerHTML=money;
+		}
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

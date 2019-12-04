@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>事件绑定</title>
+		<style type="text/css">
+			#redDiv{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="redDiv"></div>
+	</body>
+	<script type="text/javascript" src="public.js"></script>
+	<script type="text/javascript">
+		var redDiv=document.getElementById('redDiv');
+		//事件绑定、事件委托、事件代理(比较方便，不会覆盖之前的代码)
+		//另外一种绑定事件的方法，而且可以绑定多个事件
+		
+		//元素.addEventListener("不含on的事件名称",事件对应的函数,false(是否在捕获阶段触发，true代表在捕获阶段触发，false代表在冒泡阶段触发));
+		
+		// redDiv.addEventListener("click", f1, false);
+		
+		// redDiv.addEventListener("click", function(){
+		// 	console.log(2);
+		// }, false);
+		
+		//移除绑定事件（注意：移除的时候函数要和绑定的时候的函数名一样。false也一样对应）
+		// redDiv.removeEventListener("click",f1,false);
+
+		function f1(ev){
+			var evObj=window.event || ev;
+			console.log(evObj.offsetX);
+		}
+
+
+
+
+
+
+		//IE下绑定事件的方法
+		// redDiv.attachEvent("onclick",f1);
+
+		// IE下解除事件绑定的方法
+		// redDiv.detachEvent("onclick",f1);
+		
+
+		//数组、字符串、数学
+		//元素div window方法　appendChild addEventListener
+		
+		// console.log(redDiv.addEventListener,redDiv.attachEvent);
+		console.log(redDiv.removeEventListener,redDiv.detachEvent);
+
+		addEvent(redDiv,"click",f1);
+		removeEvent(redDiv,"click",f1);
+		addEvent(redDiv,"mouseover",f1);
+		// addEvent(redDiv,"mouseover",f1);
+		
+
+
+
+		// //定义一个兼容添加事件函数
+		// function addEvent(element,type,fn){
+		// 	if(element.addEventListener){
+		// 		element.addEventListener(type,fn,false);
+		// 	}else if(element.attachEvent){
+		// 		element.attachEvent("on"+type,fn);
+		// 	}else{
+		// 		element["on"+type]=fn;
+		// 	}
+		// }
+
+		// //定义一个兼容移除事件函数
+		// function removeEvent(element,type,fn){
+		// 	if(element.removeEventListener){
+		// 		element.removeEventListener(type,fn,false);
+		// 	}else if(element.detachEvent){
+		// 		element.detachEvent("on"+type,fn);
+		// 	}else{
+		// 		element["on"+type]=null;
+		// 	}
+		// }
+	</script>
+</html>

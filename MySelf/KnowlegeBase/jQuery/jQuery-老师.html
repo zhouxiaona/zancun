@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>jQuery</title>
+		<style type="text/css">
+			.content{
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="item" title="first"></div>
+			<div class="item" title="second"></div>
+			<div class="item"></div>
+			<div class="content">content</div>
+		</div>
+		<form action="">
+			<input type="text" />
+			<input type="radio" />
+			<input type="checkbox" />
+			<input type="button" value="点击" />
+		</form>
+		<div>
+			<p style="color: yellow;">P1</p>
+			<p style="color: blue;">P2</p>
+			<p>p3</p>
+		</div>
+		<div>
+			<p class="div">P1</p>
+			<p>P2</p>
+			<p>P3</p>
+		</div>
+	</body>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+
+	/**********************************
+		// animated
+		// 注意：通过JQ获取到的元素是JQ对象，通过元素的document.getXXX获取到的元素是原生对象。
+		// ！！！原生对象不能调用JQ的方法和属性。 
+		// ！！！JQ的对象不能调用原生的方法和属性
+
+		// $(".content").innerHTML = "123";
+		// 这种写法是无效的。
+
+		// JQ对象和原生对象可以相互转换。
+		// 1、原生对象如何转JQ ->  $(原生对象)
+		var content = document.getElementsByClassName("content")[0];
+		$(content).css("color", "red");
+		// 2、JQ对象如何转原生 
+		// 2.1  JQ对象[0]
+		// 2.2  JQ对象.get(0)
+		$(".content")[0].innerHTML = "显示";
+		$(".content").get(0).innerHTML = "显示2";
+
+
+
+		// 获取元素
+		// $("") 里面放字符串-选择器。
+		console.log($(".item"));
+		console.log($("div"));
+		console.log($("input[type=radio]"));
+		console.log($("div:not(.item)"));
+		
+		// first是所有标签的第一个
+		console.log($("p:first"));
+		// p:first-child 
+		// p:first-of-type
+		console.log($("p:nth-child(1)"));
+
+		// 根据索引找元素，索引从0开始。
+		// odd奇数索引
+		// even偶数索引
+		// eq(2) 索引值为2
+		// .item:header
+		$("p:odd").css("color", "red");
+		$("p:even").css("color", "red");
+		$("p:eq(2)").css("color", "red");
+
+		//创建元素、添加元素
+		// p.append(span) 给p插入子级span
+		// p.appendTo(body) 把p插入body里面
+		// prepend 和 prependTo用法和append一样，不同点在于prepend是在最前面插入
+		// $("<p class='item2' style='color:green;'>插个P标签</p>").append($("<span>span标签</span>")).appendTo(document.body);
+
+		// after content后面有一个item2
+		$(".content").after($("item2"));
+		// insertAfter 把item2插入到content之后
+		$(".item2").insertAfter(".content");
+
+
+		// 包裹 wrap 给每一个p都加一个父级BB
+		// $("form").wrap("<div class='BB'></div>");		
+		$("form").wrap("<div class='BB'></div>");
+		// 当参数是函数的时候，jq会把函数的返回值作为包裹form的父级来使用。
+		$("form").wrap(function(){
+			var divS = document.getElementsByTagName('div');
+			for(var i = 0; i < divS.length; i++){
+				if (divS[i].innerHTML == "显示2") {
+					return divS[i];
+				}
+			}
+			return "<div class='BB'></div>";
+		});
+
+
+		// 去掉父级 unwrap
+		// $(".content").unwrap();
+
+		// wrapAll 给所有的p加一个共同的父级，父级在第一个p的位置。
+		// $("p").wrapAll("<div class='BB'></div>");
+
+		// 给p标签的内容加个B标签
+		$("p").wrapInner("<b></b>");
+
+
+		//删除元素
+		// remove删除元素的时候同时删除事件和数据
+		// detach删除元素的时候会保留事件和数据
+		$("p:nth-child(3):last").css("color", "yellow").click(function(){
+			console.log("123");
+		}).detach().appendTo(document.body);
+
+		$("p:nth-child(3):last").css("color", "yellow").click(function(){
+			console.log("123");
+		}).remove().appendTo(document.body);
+
+
+	*****************************************/
+
+
+		// 修改/获取CSS样式 修改/获取内容(innerHTML)
+		// 获取样式。CSS和Style属性都可以获取到。
+		console.log($(".content").css("color"));
+		// 筛选
+		console.log($("p:eq(1)").css("color"));
+		console.log($("p").eq(1).css("color"));
+
+		// 设置样式第一种方式。
+		$("p").css("color", "pink");
+		// 设置样式第二种
+		$("p").css({
+			color:"red",
+			border:"1px red solid"
+		})
+		// 第三种方式
+		var cArr = ["black", "green", "blue", "gray", "purple", "gold"];
+		$("p").css("color", function(index, oldValue){
+			return cArr[index];
+		});
+		$("p").css({
+			width:function(index, oldValue){
+				return 100 * (index + 1);
+			},
+			height:function(){
+				return this.offsetWidth * 0.5;
+			}
+		})
+
+		$("img").attr("src", "1.png");
+		$("img").prop("src", "1.png");
+
+
+		// 事件-事件绑定 事件对象
+		// 动画效果(定时器)
+
+
+		
+
+
+
+
+
+
+	</script>
+</html>

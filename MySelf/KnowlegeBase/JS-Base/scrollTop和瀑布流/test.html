@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自适应瀑布流</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+			}
+			.wrap{
+				min-width: 300px;
+				margin: 0 auto;
+				position: relative;
+			}
+			.wrap>img{
+				position: absolute;
+				width: 100px;
+				transition: 0.5s;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap"></div>
+	</body>
+	<script type="text/javascript">
+		var wrap=document.getElementsByClassName("wrap")[0];
+		var width=100;
+		var margin=10;
+		var topArr=[];
+		// 预加载图片
+		var picArr=[];
+		var count=0;
+		for(var i=0;i<16;i++){
+			var readyImg=new Image();
+			readyImg.src="img/P_0"+i+".jpg";
+			picArr.push(readyImg);
+			readyImg.onload=function(){
+				count++;
+				if(count==16){
+					fn();
+				}
+			}
+		}
+
+		var isF=true;
+		function fn(){
+			var cols=parseInt(window.innerWidth/(width+margin));
+			if(topArr.length==cols && cols!=0){
+				return;
+			}
+			topArr.length=cols==0?1:cols;
+			wrap.style.width=cols*(width+margin)+'px';
+			for(var i=0;i<topArr.length;i++){
+				topArr[i]=0;
+			}
+			for(var j=0;j<16;j++){
+				var newImg=picArr[j];
+				var minIndex=0;
+				for(var i=0;i<topArr.length;i++){
+					if(topArr[i]<topArr[minIndex]){
+						minIndex=i;
+					}
+				}
+				newImg.style.left=minIndex*(width+margin)+'px';
+				newImg.style.top=topArr[minIndex]+'px';
+				if(isF){
+					wrap.appendChild(newImg);
+				}
+				
+				topArr[minIndex]+=(newImg.offsetHeight+margin);
+			}
+			isF=false;
+		}
+		window.onresize=function(){
+			fn();
+		}
+	</script>
+</html>

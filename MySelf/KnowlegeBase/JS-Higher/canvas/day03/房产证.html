@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			您的浏览器不支持canvas，请及时更新浏览器!
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		var img=new Image();
+		img.src="02.jpg";
+		img.onload=function(){
+			ctx.drawImage(img,0,0,500,500);
+			ctx.beginPath();
+			ctx.font="13px simsun";
+			ctx.fillStyle="gray";
+			ctx.fillText("周娜",200,150);
+		}
+	</script>
+</html>

@@ -1,0 +1,204 @@
+ <!DOCTYPE html>
+ <html lang="en">
+	 <head>
+	 	<meta charset="UTF-8">
+	 	<title>小鸟飞</title>
+	 	<style type="text/css">
+	 		*{
+	 			margin: 0;
+	 			padding: 0;
+	 		}
+	 		.wrap{
+	 			width: 342px;
+	 			height: 480px;
+	 			background: url('Flappy bird/images/bg.jpg') no-repeat top/100%;
+	 			margin: 10px auto;
+	 			position: relative;
+	 			overflow: hidden;
+	 		}
+	 		.bird{
+	 			width: 39px;
+	 			height: 25px;
+	 			background: url('Flappy bird/images/bird0.png') no-repeat center/100%;
+	 			position: absolute;
+	 			top: 250px;
+	 			left: 30px;
+	 		}
+	 		.pipe{
+	 			width: 58px;
+	 			height: 420px;
+	 			position: absolute;
+	 			top: 0;
+	 			left: 342px;
+	 		}
+	 		.pipeTop,.pipeBottom{
+	 			width: 100%;
+	 			position: absolute;
+	 			background: url('img/up_mod.png') no-repeat top/100% 100%;
+	 		}
+	 		.pipeBottom{
+	 			background: url('img/down_mod.png') no-repeat top/100% 100%;
+	 		}
+	 		.pipeTop{
+	 			top: 0;
+	 		}
+	 		.pipeBottom{
+	 			bottom: 0;
+	 		}
+	 		.pipeTopInner{
+	 			width: 100%;
+	 			height: 62px;
+	 			position: absolute;
+	 			bottom: 0;
+	 			background: url('img/up_pipe.png') no-repeat top/100% 100%; 
+	 		}
+			.pipeBottomInner{
+				width: 100%;
+	 			height: 62px;
+	 			position: absolute;
+	 			top: 0;
+	 			background: url('img/down_pipe.png') no-repeat top/100% 100%; 
+	 		}
+	 		.startBtn,.endBtn{
+	 			width: 100px;
+	 			height: 60px;
+	 			text-align: center;
+	 			line-height: 60px;
+	 			font-size: 20px;
+	 			position: absolute;
+	 			left: 0;
+	 			right: 0;
+	 			margin:100px auto;
+	 			z-index: 2;
+	 		}
+	 		.endBtn{
+	 			display: none;
+	 		}
+	 	</style>
+	 </head>
+	 <body>
+	 	<div class="wrap">
+	 		<div class="startBtn">开始游戏</div>
+	 		<div class="endBtn">游戏结束</div>
+	 		<div class="bird"></div>
+	 	</div> 
+	 </body>
+	 <script type="text/javascript">
+	 	var wrap=document.getElementsByClassName('wrap')[0];
+	 	var bird=document.getElementsByClassName('bird')[0];
+	 	var startBtn=document.getElementsByClassName('startBtn')[0];
+	 	var endBtn=document.getElementsByClassName('endBtn')[0];
+	 	var birdDownTimer;
+	 	var birdUpTimer;
+	 	//创建管道并且向左平移
+	 	var createPipeTimer;
+	 	//点击开始游戏
+	 	startBtn.onclick=function(){
+	 		startBtn.style.display='none';
+	 		createPipe();
+	 	}
+	 	
+	 	//游戏结束
+	 	// function endGame(){
+	 	// 	clearInterval(birdDownTimer);
+	 	// 	wrap.onmousedown=null;
+	 	// 	clearInterval(createPipeTimer);
+	 	// }
+	 	
+	 	function createPipe(){
+	 		//小鸟的上下移动
+ 			birdDownTimer=setInterval(function(){
+ 				bird.style.top=bird.offsetTop+5+'px';
+ 				if(bird.offsetTop<0 || bird.offsetTop>(wrap.offsetHeight-bird.offsetHeight)){
+ 					clearInterval(birdDownTimer);
+ 					console.log('与边框相撞');
+					clearInterval(birdUpTimer);
+					endBtn.style.display='block';
+ 				}
+	 		},30);
+ 			wrap.onmousedown=function(){
+	 			clearInterval(birdDownTimer);
+	 			clearInterval(birdUpTimer);
+	 			var t=0;
+	 			birdUpTimer=setInterval(function(){
+	 				bird.style.top=bird.offsetTop-5+'px';
+	 				t+=1;
+	 				if(t>10){
+	 					clearInterval(birdUpTimer);
+	 					birdDownTimer=setInterval(function(){
+				 			bird.style.top=bird.offsetTop+5+'px';
+				 			if(bird.offsetTop<0 || bird.offsetTop>(wrap.offsetHeight-bird.offsetHeight)){
+			 					clearInterval(birdDownTimer);
+			 					console.log('与边框相撞');
+								clearInterval(birdUpTimer);
+								endBtn.style.display='block';
+			 				}
+				 		},30);
+	 				}
+	 			},30);
+ 			}
+ 			//创建柱子并移动
+	 		createPipeTimer=setInterval(function(){
+	 			
+	 			var newPipe=document.createElement('div');     
+	 			wrap.appendChild(newPipe);
+	 			newPipe.className='pipe';
+	 			var ranHeight=parseInt(ranNum(200,50));
+	 			newPipe.innerHTML="<div class='pipeTop' style='height:"+ranHeight+"px;'><div class='pipeTopInner'></div></div><div class='pipeBottom' style='height:"+(300-ranHeight)+"px;'><div class='pipeBottomInner'></div></div>";
+	 			var speed=5;
+	 			var leftLength=newPipe.offsetLeft;
+	 			//柱子向左移动
+	 			newPipe.movePipeTimer=setInterval(function(){
+	 				leftLength-=speed;
+	 				if(newPipe.offsetLeft<=(-(newPipe.offsetWidth))){
+	 					newPipe.remove();
+	 					clearInterval(newPipe.movePipeTimer);
+	 				}
+	 				newPipe.style.left=leftLength+'px';
+	 				//判断鸟与柱子是否相撞
+	 				var pipeTops=document.getElementsByClassName('pipeTop');
+	 				var pipeBottoms=document.getElementsByClassName('pipeBottom');
+	 				var newPipes=document.getElementsByClassName('pipe');
+	 				for(var i=0;i<pipeTops.length;i++){
+	 					if((leftLength<bird.offsetLeft+bird.offsetWidth && bird.offsetTop<pipeTops[i].offsetHeight) || (leftLength<bird.offsetLeft+bird.offsetWidth && bird.offsetTop>(wrap.offsetHeight-pipeBottoms[i].offsetHeight))){
+	 						//游戏结束
+	 						console.log('与柱子相撞了');
+	 						clearInterval(birdDownTimer);
+	 						clearInterval(birdUpTimer);
+						 	clearInterval(createPipeTimer);
+	 						for(var j=0;j<newPipes.length;j++){
+		 						clearInterval(newPipes[j].movePipeTimer);
+	 						}
+						 	endBtn.style.display='block';
+	 					}
+	 				}
+	 				//判断鸟与wrap的边界是否相撞
+	 				if(bird.offsetTop<0 || bird.offsetTop>(wrap.offsetHeight-bird.offsetHeight)){
+	 					//游戏结束
+	 					console.log('与边框相撞');
+ 						clearInterval(birdDownTimer);
+ 						clearInterval(birdUpTimer);
+					 	clearInterval(createPipeTimer);
+ 						for(var j=0;j<newPipes.length;j++){
+	 						clearInterval(newPipes[j].movePipeTimer);
+ 						}
+					 	endBtn.style.display='block';
+	 				}
+	 			},40);
+	 		},1500);
+	 	}
+
+	 	//生成指定范围内的随机数函数
+	 	function ranNum(max,min){
+	 		return Math.random()*(max-min)+min;
+	 	}
+	 </script>
+ </html>
+
+
+
+
+
+
+
+

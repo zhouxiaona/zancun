@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>test</title>
+		<style type="text/css">
+			.wrap{
+				width: 500px;
+				height: 500px;
+				border: 5px solid black;
+				margin: 20px auto;
+				position: relative;
+			}
+			.red,.blue{
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				position: absolute;
+			}
+			.red{
+				background: red;
+				top: 0;
+				left: 230px;
+			}
+			.blue{
+				background: blue;
+				top: 230px;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="red"></div>
+			<div class="blue"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var wrap=document.getElementsByClassName('wrap')[0];
+		var red=document.getElementsByClassName('red')[0];
+		var blue=document.getElementsByClassName('blue')[0];
+		var rTop=red.offsetTop;
+		var maxTop=wrap.clientHeight-red.offsetHeight;
+
+		var bLeft=blue.offsetLeft;
+		var maxLeft=wrap.clientWidth-blue.offsetWidth;
+
+		var speedY=5;
+		var speedX=3;
+		var timer=setInterval(function(){
+			rTop+=speedY;
+			bLeft+=speedX;
+			if(rTop>=maxTop || rTop<0){
+				speedY*=-1;
+			}
+			if(bLeft>=maxLeft || bLeft<0){
+				speedX*=-1;
+			}
+			red.style.top=rTop+'px';
+			blue.style.left=bLeft+'px';
+			//判断两方块是否相撞的条件
+			//红右>蓝左 红左<蓝右　红下>蓝上 红上<蓝下
+			// if((red.offsetLeft+red.offsetWidth)>blue.offsetLeft && red.offsetLeft<(blue.offsetLeft+blue.offsetWidth) && (red.offsetTop+red.offsetHeight)>blue.offsetTop && red.offsetTop<(blue.offsetTop+blue.offsetHeight)){
+			// 	speedY*=-1;
+			// 	speedX*=-1;
+
+			// }
+			// 
+			
+			//判断两个球是否相撞的条件
+			//两球之间的距离等于两个球的圆心距即两球相撞
+			var y1=blue.offsetTop-red.offsetTop;
+			var x1=blue.offsetLeft-red.offsetLeft;
+			var yuanxinju=red.offsetWidth/2+blue.offsetWidth/2;
+			var res=Math.sqrt(x1*x1+y1*y1);
+			if(res<=yuanxinju){
+				speedY*=-1;
+				speedX*=-1;
+
+			}
+		},20);
+	</script>
+</html>

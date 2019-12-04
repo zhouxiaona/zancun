@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>方向键控制div移动</title>
+		<style type="text/css">
+			body{
+				margin: 0px;
+				position: relative;
+			}	
+			.redDiv{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="redDiv"></div>
+	</body>
+	<script type="text/javascript">
+		var redDiv=document.getElementsByClassName('redDiv')[0];
+		// var rightDown=false;
+		// var topDown=false;
+		// var bottomDown=false;
+		// var leftDown=false;
+
+		var boolArr=[false,false,false,false];
+		
+		document.onkeydown=function(ev){
+			var evObj=window.event || ev;
+			boolArr[evObj.keyCode-37]=true;
+			// if(evObj.keyCode==39){
+			// 	rightDown=true;
+			// }
+			// if(evObj.keyCode==40){
+			// 	bottomDown=true;
+			// }
+			// if(evObj.keyCode==37){
+			// 	leftDown=true;
+			// }
+			// if(evObj.keyCode==38){
+			// 	topDown=true;
+			// }
+		}
+
+		document.onkeyup=function(ev){
+			var evObj=window.event || ev;
+			boolArr[evObj.keyCode-37]=false;
+			// if(evObj.keyCode==39){
+			// 	rightDown=false;
+			// }
+			// if(evObj.keyCode==40){
+			// 	bottomDown=false;
+			// }
+			// if(evObj.keyCode==37){
+			// 	leftDown=false;
+			// }
+			// if(evObj.keyCode==38){
+			// 	topDown=false;
+			// }
+		}
+
+		setInterval(function(){
+			var speed=5;
+			// var leftSpeed=boolArr[0]*(-speed) +boolArr[2]*speed;
+			var leftSpeed=(boolArr[0]-boolArr[2])*(-speed);
+
+			var topSpeed=boolArr[1]*(-speed)+boolArr[3]*speed;
+			
+			redDiv.style.left=redDiv.offsetLeft+leftSpeed+'px';
+			redDiv.style.top=redDiv.offsetTop+topSpeed+'px';
+			// if(rightDown){
+			// 	redDiv.style.left=redDiv.offsetLeft+5+'px';
+			// }
+			// if(bottomDown){
+			// 	redDiv.style.top=redDiv.offsetTop+5+'px';
+			// }
+			// if(leftDown){
+			// 	redDiv.style.left=redDiv.offsetLeft-5+'px';
+			// }
+			// if(topDown){
+			// 	redDiv.style.top=redDiv.offsetTop-5+'px';
+			// }
+		},20);
+
+	</script>
+</html>

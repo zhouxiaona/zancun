@@ -1,0 +1,1 @@
+console.log("我是test2.js文件");

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<div id='divs'>我是模拟a标签的div</div>
+	</body>
+	<script type="text/javascript">
+		var divs=document.getElementById('divs');
+		divs.style.color='blue';
+		divs.onmouseover=function(){
+			divs.style.textDecoration='underline';
+			divs.style.cursor="pointer";
+		}
+		divs.onmouseout=function(){
+			divs.style.textDecoration='none';
+			divs.style.cursor="none";
+		}
+	</script>
+</html>

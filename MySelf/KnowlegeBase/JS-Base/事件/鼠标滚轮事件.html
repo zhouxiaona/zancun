@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标滚轮事件</title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				position: relative;
+			}
+			.red{
+				width: 300px;
+				height: 300px;
+				background-color: red;
+				position: absolute;
+				top: 100px;
+				left: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="red"></div>
+	</body>
+	<script type="text/javascript" src='public.js'></script>
+	<script type="text/javascript">
+		var red=document.getElementsByClassName('red')[0];
+		addEvent(red,"mousewheel",function(ev){
+			var evObj=window.event || ev;
+			//兼容chrome wheelDelta
+			//兼容IE　detail
+			
+			var oldWidth=this.offsetWidth;
+			var oldHeight=this.offsetHeight;
+
+			var oldLeft=this.offsetLeft;
+			var oldTop=this.offsetTop;
+
+			var x=evObj.clientX;
+			var y=evObj.clientY;
+
+			var scaleX=(x-oldLeft)/oldWidth;
+			var scaleY=(y-oldTop)/oldHeight;
+			
+
+
+			if(evObj.wheelDelta>0){
+				this.style.width=(oldWidth+10)+'px';
+				this.style.height=(oldHeight+10)+'px';
+				if(oldWidth+10>500 && oldHeight+10>500){
+					this.style.width='700px';
+					this.style.height='700px';
+				}
+				
+			}else{
+				this.style.width=(oldWidth-10)+'px';
+				this.style.height=(oldHeight-10)+'px';
+				if(oldWidth-10<300 && oldHeight-10<300){
+					this.style.width='300px';
+					this.style.height='300px';
+				}
+			}
+			
+			var changWidth=this.offsetWidth-oldWidth;
+			var changeHeight=this.offsetHeight-oldHeight;
+
+			
+
+			this.style.left=(oldLeft-changWidth*scaleX)+'px';
+			this.style.top=(oldTop-changeHeight*scaleY)+'px';
+		});
+		
+
+	</script>
+</html>

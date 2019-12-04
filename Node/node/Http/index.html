@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./index.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="box">
+        <form action="/post" method="post">
+          姓名：<input type="text" name="username"/><br>
+          年龄：<input type="text" name="age"/><br>
+          <input type="submit" value="提交">
+        </form>
+        <button onclick="sub()">点击发送ajax的get请求</button>
+        <div id="exchange"></div>
+    </div>
+  </body>
+  <script src="./jQuery.js"></script>
+  <script>
+      function sub(){
+        $.ajax({
+            type:"get",
+            url:"/get",
+            data:{
+                name:"张三",
+                age:18
+            },
+            dataType:"json",
+            success:function(data){
+              console.log(data);
+              var html=`<p>姓名是${data.name};年龄是${data.age}</p>`;
+              $('#exchange').html(html);
+            }
+        })
+      }
+        
+  </script>
+</html>

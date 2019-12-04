@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>七巧板</title>
+		<style type="text/css">
+			#wrap{
+				width: 273px;
+				height: 273px;
+				margin: 100px auto;
+				border: 1px solid transparent;
+				transform: rotate(45deg);
+				position: relative;
+			}
+			
+			#zisanjiao{
+				width: 0;
+				height: 0;
+				border-top: 67px solid transparent;
+				border-left: 67px solid transparent;
+				border-right: 67px solid transparent;
+				border-bottom: 67px solid #990099;
+				transform: rotate(-45deg);
+				position: absolute;
+				top: -66px;
+				right: 205px;
+			}
+			#tixing-1,#tixing-2{
+				width: 0;
+				height: 0;
+				border-top: 46px solid transparent;
+				border-left: 46px solid transparent;
+				border-right: 46px solid transparent;
+				border-bottom: 46px solid #6600cd;
+				position: absolute;
+			}
+			#tixing-1{
+				transform: rotate(-90deg);
+				top: 53px;
+				left: -44px;
+			}
+			#tixing-2{
+				transform: rotate(90deg);
+				top: 98px;
+				left: 2px;
+			}
+			#lansanjiao{
+				width: 0;
+				height: 0;
+				border-top: 44px solid transparent;
+				border-left: 44px solid transparent;
+				border-right: 44px solid transparent;
+				border-bottom: 44px solid #3399fe;
+				transform: rotate(90deg);
+				position: absolute;
+				top: 52px;
+				left: 51px;
+			}
+			#lvsijiao{
+				width: 64px;
+				height: 64px;
+				background-color: #33cc00;
+				transform: rotate(-45deg);
+				position: absolute;
+				top: 17px;
+				left: 66px;
+			}
+			#huangsanjiao{
+				width: 0;
+				height: 0;
+				border-top: 46px solid transparent;
+				border-left: 46px solid transparent;
+				border-right: 46px solid transparent;
+				border-bottom: 46px solid #ffcc00;
+				transform: rotate(-180deg);
+				position: absolute;
+				top: 1px;
+				left: 99px;
+			}
+			#juhuangsanjiao{
+				width: 0;
+				height: 0;
+				border-top: 95px solid transparent;
+				border-left: 95px solid transparent;
+				border-right: 95px solid transparent;
+				border-bottom: 95px solid #ff6634;
+				transform: rotate(-90deg);
+				position: absolute;
+				top: 2px;
+				left: 5px;
+			}
+			#hongsanjiao{
+				width: 0;
+				height: 0;
+				border-top: 95px solid transparent;
+				border-left: 95px solid transparent;
+				border-right: 95px solid transparent;
+				border-bottom: 95px solid #fe0000;
+				transform: rotateY(180deg);
+				position: absolute;
+				top: 4px;
+				left: 3px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='wrap'>
+
+			<div id='zisanjiao'></div>
+			<div id='tixing-1'></div>
+			<div id='tixing-2'></div>
+			<div id='lansanjiao'></div>
+			<div id='lvsijiao'></div>
+			<div id='huangsanjiao'></div>
+			<div id='hongsanjiao'></div>
+			<div id='juhuangsanjiao'></div>	
+		</div>	
+	</body>
+</html>

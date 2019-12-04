@@ -1,0 +1,70 @@
+extends layout.pug
+block source
+	link(rel="stylesheet", href="../css/elem04.css")
+	title 外卖04_商品页面_商品详情
+block content
+	div.wrap
+		div.logo
+		div.top
+			h1 皮蛋瘦肉粥
+			p.sps 
+				span 月售1132份
+				span 好评率100%
+			p.jiage
+				span.price ￥24
+				span ￥28
+			a(href="###") 加入购物车
+		div.intr
+			h2 商品介绍
+			p 一碗皮蛋瘦肉粥，总是我到粥店的不二之选，香浓软化，报复暖心，皮蛋的Ｑ弹与瘦肉的滑嫩伴着粥香已于满口，让人和这样一碗粥也觉得心满意足。
+		div.pingjia
+			h2 商品评价
+			ul
+				li
+					a(href="###") 全部
+						span 57
+				li 
+					a(href="###") 全部
+						span 47
+				li 
+					a(href="###") 吐槽
+						span 10
+		div.gou
+			p 只看有内容的评价
+		ul.zan
+			li
+				p
+					span.dates 2016-07-07
+					span.dates 12:34
+					a(href="###" class="fr")
+						img(src="../src/img-elem04/touxiang.png", alt="tt")
+					span.fr 3*******2
+				p.pps 太少了，不够一个人吃!!
+			li
+				p
+					span.dates 2016-07-07
+					span.dates 12:34
+					a(href="###" class="fr")
+						img(src="../src/img-elem04/touxiang.png", alt="tt")
+					span.fr 3*******2
+				p.pps 味道不错，就是有点咸，有待进一步优化
+			li
+				p
+					span.dates 2016-07-07
+					span.dates 12:34
+					a(href="###" class="fr")
+						img(src="../src/img-elem04/touxiang.png", alt="tt")
+					span.fr 3*******2
+				p.pps GOOD
+	div.footer
+			div.shbox
+				div.innerbox
+					svg(class="icon" aria-hidden="true")
+						use(xlink:href="#icon-shopping_cart")
+			p.fl ￥0
+			span.fl 另需配送费￥4元
+			a(href="###",class="fr") ￥20起送
+block content2
+	script(src="../js/elem04.js")
+			
+

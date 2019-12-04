@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>json数据解析</title>
+		<style type="text/css">
+			.box{
+				width: 500px;
+				box-sizing: border-box;
+				padding: 20px;
+				border:  1px solid black;
+				margin: 20px auto 0px;
+				overflow: hidden;
+			}
+			.title{
+				width: 80%;
+				height: 50px;
+				margin: 0 auto;
+				text-align: center;
+				font-size: 20px;
+				font-weight: bold;
+			}
+			.address{
+				height: 50px;
+				margin: 0px auto;
+				text-align: center;
+				color: red;
+			}
+			.menu{
+				width: 200px;
+				height: 230px;
+				border:  5px solid red;
+				float: left;
+				margin-right: 10px;
+				margin-bottom: 10px;
+			}
+			.menu img{
+				width: 200px;
+				height: 124.44px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="title"></div>
+			<div class="address"></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		var box=$(".box")[0];
+		var json = '{"title":"小老板大排档", "address":"古浪路703号","list":[{"name":"黄焖及米饭","price":"16","pl":["鸡","青椒","土豆"], "pic":"pd/hmj.jpeg"}, {"name":"地锅鸡", "price":"28","pl":["鸡","面饼","麻椒"], "pic":"pd/dgj.jpeg"}, {"name":"白斩鸡","price":"21","pl":["鸡","酱油","盐"], "pic":"pd/bzj.jpeg"}, {"name":"叫花鸡", "price":"33","pl":["鸡","叫花"], "pic":"pd/jhj.jpg"}]}';
+
+
+		var json1 = '{"title":"东北农家小院","address":"浦东新区潍坊路135号","list":[{"name":"小牛肉炖菌菇","price":"32","pl":["牛肉","杏鲍菇","口蘑","平菇"],"pic":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1509967197469&di=5580adce09020626716fec9c1776a4e7&imgtype=0&src=http%3A%2F%2Fcp2.douguo.net%2Fupload%2Fcaiku%2F1%2F2%2Fb%2Fyuan_1213a6eb8c11de92454bb08cf5e34f2b.jpg"},{"name":"地三鲜","price":"25","pl":["茄子","青椒","土豆"],"pic":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1509967242512&di=da64d2ad05b1dcdb3a4e24f4d7fdd7af&imgtype=0&src=http%3A%2F%2Fy1.ifengimg.com%2Fnews_spider%2Fdci_2012%2F03%2Ffb350514652e6939b8e9f815eeb52bc2.jpg"},{"name":"双椒爆鸡珍","price":"38","pl":["鸡胗","红尖椒","青尖椒","柠檬","洋葱"],"pic":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1509967269971&di=a037f667f18ea4bd5db2607fb95fef84&imgtype=0&src=http%3A%2F%2F122.img.pp.sohu.com%2Fimages%2Fblog%2F2008%2F1%2F1%2F14%2F4%2F117d0c0b613.jpg"}, {"name":"小白菜炒豆腐","price":"28","pl":["豆腐","小白菜"], "pic":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1509967298458&di=7d2db8c94c8dd785d5849dbb27801c9b&imgtype=0&src=http%3A%2F%2Frj2.douguo.net%2Fupload%2Fdiet%2Fe%2Fc%2F4%2Fec6d113b2e363f996de67dafb5951604.jpg"}]}';
+
+
+
+
+		var obj=JSON.parse(json1);
+		var list=obj.list;
+		// console.log(obj);
+		// console.log(list);
+		$(".title").html(obj.title);
+		$(".address").html("地址为:"+obj.address);
+
+		function fn(){
+			for(var i=0;i<list.length;i++){
+				var menu=document.createElement("div");
+				menu.innerHTML="<div class='menu'><img src='"+list[i].pic+"' alt='lala'><div class='names'>"+list[i].name+"</div><div class='price'>￥"+list[i].price+"</div><div class='pl'>配料:"+list[i].pl+"</div></div>";
+				box.appendChild(menu);
+			}
+		}
+
+		fn();
+/**********************************************
+
+		var obj={name:"明月",age:18};
+		//name:属性名/键/key
+		//"明月":属性值/值/value
+		//name:"明月" 键值对
+		
+		//JSON
+		var json = '{"name":"丽德国际大酒店","address":"松江区泗泾镇九干路168丽德创业园","cd":[{"name":"油炸里脊","pirce":"$20","PL":["里脊","油","盐"]},{"name":"青椒土豆丝","pirce":"$16","PL":["青椒","土豆","丝"]}]}';
+		var obj=JSON.parse(json);
+		console.log(obj);
+
+
+
+
+		//切开字符串
+		var str = "name=丽德酒店;address=九干路168号丽德创业园;price=168;tel=13888888888";
+		var arr = str.split(";");
+		var obj = {};
+		for(index in arr){
+			var res = arr[index].split("=");
+			obj[res[0]] = res[1];
+		}
+		console.log(obj);
+
+		//单击和双击
+		var box=document.getElementsByClassName("box")[0];
+		var timer;
+		box.onclick=function(){
+			clearTimeout(timer);
+			timer=setTimeout(function(){
+				console.log("单击");
+			},300);
+		}
+		box.ondblclick=function(){
+			clearTimeout(timer);
+			console.log("双击");
+		}
+************************************************/
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

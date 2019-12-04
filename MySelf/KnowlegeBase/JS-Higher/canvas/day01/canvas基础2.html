@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas基础2</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			对不起，您的浏览器版本过低，点击<a href="###">下载</a>
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		ctx.beginPath();
+		//设置线宽
+		ctx.lineWidth=30;
+		//设置线的颜色
+		ctx.strokeStyle="pink";
+		//设置线帽butt(默认)、square(比butt长一点)、round(圆形)
+		ctx.lineCap="butt";
+		//设置透明度.单独线的颜色透明可以在线的颜色上面添加透明度,此方法不能改变一条线的颜色透明
+		ctx.globalAlpha=0.5;
+		
+		ctx.moveTo(100,100);
+		ctx.lineTo(100,200);
+		//画平行线，重新改变笔的起始点就行了
+		ctx.moveTo(200,100);
+		ctx.lineTo(200,200);
+
+
+		//将图形渲染到画布上======
+		ctx.stroke();
+		
+	</script>
+</html>

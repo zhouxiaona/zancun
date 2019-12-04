@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>滚轮事件</title>
+		<style type="text/css">
+			.redDiv{
+				width: 400px;
+				height: 280px;
+				background-color: red;
+			}
+			.blueDiv{
+				width: 600px;
+				height: 200px;
+				background-color: blue;
+				margin-left: 500px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="redDiv"></div>
+		<div class="blueDiv"></div>
+	</body>
+	<script type="text/javascript">
+		var redDiv=document.getElementsByClassName("redDiv")[0];
+		var blueDiv=document.getElementsByClassName("blueDiv")[0];
+		var scale=1;
+		addMousewheel(redDiv,function(ev){
+			// chrome   wheelDelta   向下负　向上正　120
+			// Firefox  detail      向下正　向上负　1
+			var detail=-ev.detail || ev.wheelDelta/120;
+			if(detail>0){
+				scale+=0.1;
+			}else{
+				scale-=0.1;
+			}
+			if(scale<0.2){
+				scale=0.2;
+			}else if(scale>4){
+				scale=4;
+			}
+			this.style.transform="scale("+scale+")";
+			this.style.transformOrigin=ev.offsetX+'px'+ev.offsetY+'px';
+		});
+		
+
+		function addMousewheel(el,fn){
+			if(navigator.userAgent.indexOf("Firefox")!=-1){
+				// 火狐
+				el.addEventListener("DOMMouseScroll",fn,false);
+			}else{
+				// 谷歌、IE
+				el.onmousewheel=fn;
+			}
+		}
+	</script>
+</html>

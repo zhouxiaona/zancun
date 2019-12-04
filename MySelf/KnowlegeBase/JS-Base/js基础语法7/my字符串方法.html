@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>my字符串方法</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		var str1='zh-ou-la-la';
+		var str2='mynameisnana';
+		var str3='zzzzzzzzz';
+//myConcat...........................................................
+		String.prototype.myConcat=function(){
+			var newStr=this;
+			for(var i=0;i<arguments.length;i++){
+				newStr+=arguments[i];
+			}
+			return newStr;
+		}
+		//concat.可以拼接多个字符串，字符串拼接，生成一个新的字符串
+		// function myConcats(str){
+		// 	var newStr=str;
+		// 	for(var i=1;i<arguments.length;i++){
+		// 		newStr+=arguments[i];
+		// 	}
+		// 	return newStr;
+		// }
+		
+		// console.log(str1.myConcat(str2,str3),str1);
+		// console.log(str1.concat(str2,str3),str1);
+		
+//mySplit...............................................................
+
+
+		//数组myPush方法
+		Array.prototype.myPush=function(){
+			for(var i=0;i<arguments.length;i++){
+				this[this.length]=arguments[i];
+			}
+			return this.length;
+		}
+
+		//split,用符号切割字符串，返回一个数组，不改变原来的字符串
+		String.prototype.mySplit=function(icon){
+			//存放切割后的元素生成的数组，即返回的数组
+			var arr=[];
+			//存放icon在this中的位置
+			var indexArr=[];
+			for(var i=0;i<this.length;i++){
+				if(icon===this[i]){
+					indexArr.push(i);
+				}
+			}
+			
+			return indexArr;
+			
+		}
+		console.log(str1.mySplit('-'),str1);
+		console.log(str1.split('-'),str1);
+		
+		
+		
+	</script>
+</html>

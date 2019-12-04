@@ -1,0 +1,253 @@
+.wrap{
+	width:10.0rem;
+	min-height:calc(100vh - 1.2rem);
+	background:#f3f5f7;
+	overflow:hidden;
+	.logo{
+		width:10.0rem;
+		height:10.0rem;
+		background:url("../src/img-elem04/logo.png") no-repeat top left/10.0rem;
+	}
+	.top{
+		box-sizing: border-box;
+		padding:0.48rem;
+		background:white;
+		border-bottom: 0.026667rem solid rgba(7, 17, 27, 0.1);
+		position: relative;
+		h1{
+			font-size: 0.373333rem;
+			font-weight: 700;
+			color:rgb(7, 17, 27);
+			margin-bottom: 0.213333rem;
+		}
+		.sps{
+			font-size:0.266667rem;
+			color:rgb(147, 153, 159);
+			margin-bottom:0.48rem;
+			span:nth-of-type(2){
+				margin-left: 0.32rem;
+			}
+		}
+		.jiage{
+			.price{
+				font-size:0.373333rem;
+				font-weight:700;
+				color:rgb(240, 20, 20);
+			}
+			span:nth-of-type(2){
+				font-size:0.266667rem;
+				font-weight:700;
+				color:rgb(147, 153, 159);
+				text-decoration: line-through;
+			}
+		}
+		a{
+			position:absolute;
+			bottom:0.48rem;
+			right:0.48rem;
+			font-size:0.266667rem;
+			color:rgb(255, 255, 255);
+			padding:0.16rem 0.32rem;
+			background:rgb(0, 160, 220);
+			border-radius: 0.32rem;
+		}
+	}
+	.intr{
+		box-sizing:border-box;
+		padding:0.48rem;
+		background:white;
+		margin: 0.426667rem 0;
+		border-top: 0.026667rem solid rgba(7, 17, 27, 0.1);
+		border-bottom: 0.026667rem solid rgba(7, 17, 27, 0.1);
+		h2{
+			font-size:0.373333rem;
+			color:black;
+			margin-bottom:0.16rem;
+		}
+		p{
+			font-size:0.32rem;
+			font-weight:200;
+			color:rgb(77, 85, 93);
+			line-height: 0.64rem;
+			padding:0 0.213333rem;
+		}
+	}
+	.pingjia{
+		box-sizing:border-box;
+		padding:0.48rem 0.48rem 0;
+		background:white;
+		h2{
+			font-size:0.373333rem;
+			color:black;
+			margin-bottom:0.48rem;
+		}
+		ul{
+			display:flex;
+			padding-bottom: 0.48rem;
+			border-bottom:0.013333rem solid rgba(7, 17, 27, 0.1);
+			li{
+				&:nth-of-type(n+2){
+					margin-left:0.213333rem;
+				}
+				a{
+					padding:0.213333rem 0.32rem;
+					border-radius:0.026667rem;
+					font-size:0.32rem;
+					color:black;
+					span{
+						font-size:0.213333rem;
+						color:black;
+						margin-left:0.04rem;
+					}
+				}
+				&:nth-of-type(1){
+					a{
+						background:rgb(0, 160, 220);
+						color:white;
+						span{
+							color:white;
+						}
+					}
+				}
+				&:nth-of-type(2){
+					a{
+						background:rgba(0, 160, 220,0.2);
+					}
+				}
+				&:nth-of-type(3){
+					a{
+						background:rgba(77, 85, 93,0.2);
+					}
+				}
+			}
+		}
+	}
+	.gou{
+		box-sizing:border-box;
+		padding:0.32rem 0;
+		background:white;
+		border-bottom:0.026667rem solid rgba(7, 17, 27, 0.1);
+		p{
+			padding-left: 0.8rem;
+			font-size:0.32rem;
+			color:rgb(147, 153, 159);
+		}
+	}
+	.zan{
+		background:white;
+		li{
+			padding:0.426667rem 0.48rem;
+			&:nth-of-type(n+2){
+				border-top:0.013333rem solid rgba(7, 17, 27, 0.1);
+			}
+			p{
+				overflow: hidden;
+				.dates{
+					float:left;
+					font-size:0.266667rem;
+					color:rgb(147, 153, 159);
+					margin-right: 0.066667rem;
+				}
+				.fr{
+					font-size:0.266667rem;
+					color:rgb(147, 153, 159);
+					img{
+						width:0.32rem;
+						height:0.32rem;
+					}
+				}
+				a{
+					margin-left:0.16rem;
+				}
+			}
+			.pps{
+				font-size:0.32rem;
+				color:rgb(7, 17, 27);
+				margin-top: 0.16rem;
+			}
+		}
+	}
+}
+.footer{
+		width:10.0rem;
+		height:1.28rem;
+		position:fixed;
+		bottom:0;
+		left:0;
+		background:#141d27;
+		.shbox{
+			width:1.173333rem;
+			height:1.173333rem;
+			border-radius:50%;
+			padding:0.16rem;
+			position:absolute;
+			left:0.48rem;
+			top:-0.333333rem;
+			background:#141d27;
+			.innerbox{
+				border-radius:50%;
+				height:1.173333rem;
+				display:flex;
+				justify-content:center;
+				align-items:center;
+				color:rgba(255, 255, 255, 0.4);
+				font-size:0.64rem;
+				background-color:rgba(255, 255, 255,0.2);
+			}
+		}
+		p{
+			font-size:0.426667rem;
+			color:rgba(255, 255, 255, 0.4);
+			font-weight:700;
+			line-height: 0.64rem;
+			margin-left:1.999rem;
+			padding-top:0.266667rem;
+		}
+		span{
+			font-size:0.32rem;
+			color:rgba(255, 255, 255, 0.4);
+			padding-top:0.409998rem;
+			margin-left:0.64rem;
+			&:before{
+				display:inline-block;
+				content:"";
+				width:1px;
+				height:0.6rem;
+				margin-right: 0.32rem;
+				float:left;
+				background:rgba(255, 255, 255, 0.1);
+			}
+		}
+		a{
+			width:2.8rem;
+			padding:0.326667rem 0;
+			font-size:0.32rem;
+			color:rgba(255, 255, 255, 0.4);
+			font-weight:700;
+			line-height:0.64rem;
+			text-align: center;
+			background:rgba(255, 255, 255, 0.1);
+		}
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

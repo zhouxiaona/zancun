@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>帧动画-steps</title>
+	<style>
+		.div1{
+			width: 140px;
+			height: 140px;
+			background-image: url("images/run.png");
+			animation: change 1s infinite steps(11,start);
+
+		}
+		@keyframes change{
+			0%{
+				background-position: 0 0;
+			}
+			100%{
+				background-position: -1540px 0px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="div1"></div>
+</body>
+</html>

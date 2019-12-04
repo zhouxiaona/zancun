@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>my clock</title>
+		<style type="text/css">
+			.clock{
+				width: 500px;
+				height: 500px;
+				border: 20px solid lightgray;
+				border-radius: 50%;
+				position: relative;
+			}
+			.num{
+				width: 50px;
+				height: 50px;
+				color: black;
+				font-size: 50px;
+				text-align: center;
+				line-height: 50px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+			}
+			.s,.h,.m{
+				position: absolute;
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+				bottom: 250px;
+				transform-origin: bottom;
+			}
+			.h{
+				width: 14px;
+				height: 100px;
+				background-color: red;
+			}
+			.m{
+				width: 10px;
+				height: 140px;
+				background-color: blue;
+			}
+			.s{
+				width: 6px;
+				height: 180px;
+				background-color: gray;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="clock">
+			<div class="num">1</div>
+			<div class="num">2</div>
+			<div class="num">3</div>
+			<div class="num">4</div>
+			<div class="num">5</div>
+			<div class="num">6</div>
+			<div class="num">7</div>
+			<div class="num">8</div>
+			<div class="num">9</div>
+			<div class="num">10</div>
+			<div class="num">11</div>
+			<div class="num">12</div>
+			
+			<div class="s"></div>
+			<div class="h"></div>
+			<div class="m"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var nums=document.getElementsByClassName('num');
+		for(var i=0;i<nums.length;i++){
+			nums[i].style.transform="rotate("+(i+1)*30+"deg) translateY(-200px) rotate(-"+(i+1)*30+"deg)";
+		}
+
+		var h=document.getElementsByClassName('h')[0];
+		var m=document.getElementsByClassName('m')[0];
+		var s=document.getElementsByClassName('s')[0];
+
+		
+		setInterval(function(){
+			var date=new Date();
+			var sec=date.getSeconds();
+			var min=date.getMinutes();
+			var hour=date.getHours();
+			s.style.transform="rotate("+(sec*6)+"deg)";
+			m.style.transform="rotate("+((min*6)+(sec*6/360*6))+"deg)";
+			h.style.transform="rotate("+((hour*30)+(min*6/360*30))+"deg)"
+		},1000);
+		// s 360 m 6, s 1 m?
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Javascript</title>
+</head>
+<body>
+  <!-- box-sizing:border-box;
+      宽度为width = Math.Max(padding-left + border-left + padding-right + border-right, width)
+  -->
+  <!-- box-sizing:content-box;/padding-box;
+      宽度为width = border-left + padding-left + width + padding-right + border-right
+  -->
+  <!-- Interview: 如何用html和css实现随移动端自适应的正方形 -->
+  <div class="box"></div>
+</body>
+<script>
+  //  var length = 10
+  //       var fn1 = ()=> console.log(this.length)
+  //       var fn2 = function(){
+  //           console.log(this.length)
+  //       }
+        // var arr = [fn1, fn2]
+        // fn1() //10
+        // fn2() //10
+        // arr[0]() //10
+        // arr[1]() //2
+
+        // var a = {n:1}
+        // var b = a
+        // a.x = {n:2}
+        // a = {n:2}
+        // console.log(a)
+        // console.log('-----------------')
+        // console.log(b)
+        /*
+            a = {
+                n:2
+            }
+            b = {
+                n:1,
+                x:{n:2}
+            }
+        */
+
+        // [1,7,11].map(parseInt) ==> [1, NaN, 3]
+        // 1 parseInt(1, 0, [1,7,11]) 1 ** 0为false,radix为空或者false,默认为10
+        // 7 parseInt(7, 1, [1,7,11]) NaN **进制1里不存在7，so 为NaN
+        // 11 parseInt(11, 2, [1,7,11]) 3 **2进制里的11转成10进制是3
+
+  // Object.assign()浅拷贝
+  // Object.assign(target,source,...source),后者覆盖前者
+  
+  // setTimeout(()=>{
+  //   console.log(1) 
+  // },0)
+  // Promise.resolve().then(()=>{
+  //   console.log(2) 
+  // })
+  // console.log(3)
+
+  // function add(a) {
+  //   function sum(b) { 
+  //     console.log(a,'a<===',b,'b<====')
+  //     a = a + b; 
+  //   	return sum;
+  //   }
+  //   sum.toString = function() { // 重写toString()方法
+  //       return a;
+  //   }
+  //   return sum; // 返回一个函数
+  // }
+  
+  // console.log(add(1))  // 1
+  // console.log(add(1)(2)) // 3
+
+  /* 
+  数组,对象类型判断方法
+  typeof arr
+  arr instanceof Array ===========谨慎使用======
+  arr.constructor === Array 属性 ========谨慎使用==============
+  Array.isArray(arr) === true  
+  Object.prototype.toString.call(obj) === '[object Array]'
+  */
+
+  // let arr = [1,2,3];
+  // let obj = {a:1,b:2,c:3};
+  // console.log(typeof arr,'typeof arr')
+  // console.log(typeof obj,'typeof obj')
+  // // ===>
+  // console.log(arr instanceof Array,'arr instanceof Array')
+  // console.log(obj instanceof Object,'obj instanceof Object')
+  // console.log(arr.constructor === Array,'arr.constructor')
+  // console.log(obj.constructor === Object,'obj.constructor')
+  // // <===
+  // console.log(Array.isArray(arr),'Array.isArray(arr)')
+  // console.log(Array.isArray(obj),'Array.isArray(obj)')
+  // console.log(Object.prototype.toString.call(arr),'Object.prototype.toString.call(arr)')
+  // console.log(Object.prototype.toString.call(obj),'Object.prototype.toString.call(obj)')
+
+  // Primise===>>>>>
+  // function sleep(ms){
+  //     return new Promise((resolve,reject)=>{
+  //         setTimeout(function(){
+  //             resolve('2000很快就过去')
+  //         },ms)
+  //     })
+  // }
+
+  // (async () => {
+  //     console.log('hello')
+  //     let res = await sleep(2000)
+  //     console.log(res)
+  //     console.log('world')
+  // })()
+
+  // function Cut(){
+  //   console.log('begin Cut')
+  //   return new Promise(function(resolve,reject){
+  //     setTimeout(function(){
+  //       console.log('Cut End')
+  //       resolve('This is your Cut')
+  //     },1000)
+  //   })
+  // }
+
+  // function Boil(){
+  //   console.log('begin Boil')
+  //   return new Promise(function(resolve,reject){
+  //     setTimeout(function(){
+  //       console.log('Boil End')
+  //       resolve('This is your Boil')
+  //     },1000)
+  //   })
+  // }
+
+  // Promise.race([Cut(),Boil()]).then(function(res){
+  //   console.log('everything is ok')
+  //   console.log('res=>',res)
+  // }).catch(function(err){
+  //   throw new Error('wrong')
+  // }).finally(function(res){
+  //   console.log(res,'finnally==res')
+  // })
+
+  // Promise.race([Cut(),Boil()]).then(function(res){
+  //   console.log('everything is ok')
+  //   console.log('res=>',res)
+  // })
+
+  // 先排序后去重
+  // let array = [1, 1,'1', 5, 4, 5, 2]
+  // array.sort(function(a,b){
+  //   return a - b
+  // })
+  // console.log(array)
+  // function Unique(array) {
+  //   let res = []
+  //   console.log(array,'array')
+  //   let sortedArray = array.sort()
+  //   console.log(sortedArray,'sortedArray')
+  //   let seen
+  //   for (let i = 0; i < sortedArray.length; i++) {
+  //     // 如果是第一个元素或者相邻的元素不相同
+  //     if (!i || seen !== sortedArray[i]) {
+  //         res.push(sortedArray[i])
+  //     }
+  //     seen = sortedArray[i]
+  //   }
+  //   return res
+  // }
+
+  // function Unique (arr) {
+  //   const seen = new Map()
+  //   return arr.filter((a) => !seen.has(a) && seen.set(a, 1))
+  // }
+  
+  // console.log(Unique(array))
+
+  // let classtype = {}
+  // "Boolean Number String Function Array Date RegExp Object Error".split(" ").map(function(item) {
+  //   classtype["[object " + item + "]"] = item.toLowerCase();
+  // })
+  // console.log(classtype,'classtype====')
+
+  // 获取当前月份的最后一天
+  // let month = 8
+  // console.log(new Date(2019,month,0))
+// Sat Aug 31 2019 00:00:00 GMT+0800 (中国标准时间)
+
+// 数组解构赋值 否则默认值
+// let arr = ['apple','orangle','bannana']
+// let [firstFruit = 'lala'] = arr
+// console.log(firstFruit,'============')
+
+// 不可变赋值
+// let arr1 = [ 1, 2, 3 ]
+// const [ , ...firstName] = arr1
+// console.log(firstName, 'firstNme')
+
+// const big = {
+//   foo:'value foo',
+//   bar: 'value bar'
+// }
+// const { foo, ...small } = big
+// console.log(small, 'small==')
+// console.log(big, 'big==')
+// console.log(!!'') //false
+// console.log(!![]) //true
+// console.log(!!null)// false
+// console.log(!!undefined) //false
+
+let ob1={a1:1,a2:2}
+let ob2={a1:2,a3:3}
+
+obj={...ob1,...ob2}
+obj=Object.assign(ob1,ob2)
+
+</script>
+</html>

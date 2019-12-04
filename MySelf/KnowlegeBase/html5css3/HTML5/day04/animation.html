@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>animation</title>
+		<style>
+			.div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				animation-name: donghua;
+				animation-duration: 6s;
+				animation-iteration-count: 3;
+				animation-direction: alternate;
+				animation-fill-mode: backwards;
+			}
+			@keyframes donghua{
+				0%{
+					width: 100px;
+					height: 100px;
+					background: red;
+				}
+				50%{
+					margin-left: 10px;
+				}
+				100%{
+					width: 200px;
+					height: 200px;
+					background: lightblue;
+					margin-left: 10px;
+				}
+			}
+		
+		</style>
+	</head>
+	<body>
+		<!-- animation -->   
+		<!-- @keyframes 定义动画关键帧，from to and 百分比 -->
+
+		<!-- animation-name 动画名称-->
+		<!-- aniamtion-duration 动画步长-->
+		<!-- aniamtion-timing-function 动画效果-->
+		<!-- animation-delay 动画延迟-->
+		<!-- animation-play-state:默认running | paused -->
+		<!-- animation-iteration-count -->
+		<!-- animation-drection -->
+		<!-- animation-fill-mode -->
+		<div class="div1"></div>
+	</body>
+</html>

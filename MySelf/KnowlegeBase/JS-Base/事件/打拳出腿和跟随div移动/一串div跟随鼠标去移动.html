@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Document</title>
+		<style type="text/css">
+			.redDiv{
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				position: absolute;
+			}
+			body{
+				margin: 0px;
+				position: relative;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+		<div class="redDiv"></div>
+	</body>
+	<script type="text/javascript">
+		var redDivS = document.getElementsByTagName('div');
+
+		document.onmousemove = function(ev){
+			// 10个元素 0 - 9
+			for(var i = redDivS.length - 1; i > 0; i--){
+				redDivS[i].style.left = redDivS[i - 1].style.left;
+				redDivS[i].style.top = redDivS[i - 1].style.top;
+			}
+			redDivS[0].style.left = ev.clientX - 25 + "px";
+			redDivS[0].style.top = ev.clientY - 25 + "px";
+			
+		}
+
+
+
+
+
+
+
+	</script>
+</html>

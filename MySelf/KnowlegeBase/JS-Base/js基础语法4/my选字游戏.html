@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>my选字游戏</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.wrap{
+				width: 300px;
+				height: 500px;
+				margin: 50px auto;
+				background: lightgray;
+			}
+			.top{
+				display: flex;
+				justify-content: space-between;
+				padding: 15px 10px;
+			}
+			.top span{
+				font-size: 25px;
+			}
+			#big_text{
+				text-align: center;
+				font-size: 160px;
+				color: red;
+				margin: 25px 0 10px;
+			}
+			p{
+				padding: 0 10px;
+				font-size: 20px;
+			}
+			#smallText{
+				display: flex;
+				justify-content: space-around;
+				font-size: 40px;
+				margin-top: 20px;
+			}
+			#smallText li:nth-child(1){
+				color: yellow;
+			}
+			#smallText li:nth-child(2){
+				color: red;
+			}
+			#smallText li:nth-child(3){
+				color: black;
+			}
+			#smallText li:nth-child(4){
+				color: green;
+			}
+			#smallText li:nth-child(5){
+				color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="top">
+				<span id="leftTime">剩余时间：10</span>
+				<span id="score">完成: 0</span>
+			</div>
+			<div id="big_text">蓝</div>
+			<p>根据上面的字的颜色从下面选择正确的字，选择正确自动开始</p>
+			<ul id='smallText'>
+				<li>红</li>
+				<li>蓝</li>
+				<li>绿</li>
+				<li>黄</li>
+				<li>黑</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function mainFn(){
+
+			var leftTime=document.getElementById('leftTime');
+			var score=document.getElementById('score');
+			var big_text=document.getElementById('big_text');
+			var lis=document.getElementsByTagName('li');
+
+			var colors=['blue','red','yellow','green','black'];
+			var texts=['蓝','红','黄','绿','黑'];
+
+			//定义开始的时间
+			var count=10;
+			//定义开始的分数
+			var num=0;
+			//定义时间开关
+			var timeBol=false;
+			//定义点击开关
+			var clickBol=true;
+
+			//游戏结束
+			function gameOver(){
+				if(num<2){
+					alert('你这成绩我不说话了');
+				}else if(num<5){
+					alert('呵呵');
+				}else if(num<10){
+					alert('你很不错！');
+				}else{
+					alert('brave!!!');
+				}
+			}
+
+			//计时
+			var timer=setInterval(function(){
+				if(timeBol){
+					count--;
+					leftTime.innerHTML="剩余时间："+count;
+					if(count==0){
+						gameOver();
+						clearInterval(timer);
+						timer=null;
+						count=0;
+						clickBol=false;
+					}
+				}
+			},1000);
+
+			//获取指定范围的随机数
+			function randFn(max){
+				var rand=parseInt(Math.random()*max);
+				return rand;
+			}
+			//获取指定范围并且指定长度的无重随机数组
+			function randFn2(max2,long){
+				var arr=[];
+				while(arr.length<long){
+					var a=parseInt(Math.random()*max2);
+					if(arr.indexOf(a)==-1){
+						arr.push(a);
+					}
+				}
+				return arr;
+			}
+
+			//设置‘大字’的文字和颜色
+			function big_textFn(){
+				colorIndex=randFn(5);
+				var fontIndex=randFn(5);
+				big_text.style.color=colors[colorIndex];
+				big_text.innerHTML=texts[fontIndex];
+			}
+
+			//定义设置‘小字’的文字和颜色
+			function smallTextFn(){
+				var colorArr=randFn2(5,5);
+				var fontArr=randFn2(5,5);
+				for(var i=0;i<lis.length;i++){
+					lis[i].style.color=colors[colorArr[i]];
+					lis[i].innerHTML=texts[fontArr[i]];
+					lis[i].fontIndex=fontArr[i];
+				}
+			}	
+
+			//开始选择
+			for(var i=0;i<lis.length;i++){
+				lis[i].onclick=function(){
+					if(this.fontIndex==colorIndex && clickBol){
+						timeBol=true;
+						big_textFn();
+						smallTextFn();
+						num++;
+						score.innerHTML="完成: "+num;
+					}
+				}
+			}
+			function init(){
+				big_textFn();
+				smallTextFn();
+			}
+			init();
+		}
+		mainFn();
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

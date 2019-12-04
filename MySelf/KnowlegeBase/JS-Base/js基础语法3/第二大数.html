@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		var arr=[];
+		var maxIndex=0;
+		var sec=0;
+		for(var i=0;i<10;i++){
+			arr[i]=parseInt(Math.random()*50);
+			if(arr[i]>arr[maxIndex]){
+				maxIndex=i;
+			}
+		}
+		for(var j=0;j<arr.length;j++){
+			if(j != maxIndex){
+				if(arr[j]>sec){
+					sec=arr[j];
+				}
+			}
+		}
+		console.log(arr);
+		console.log(arr[maxIndex],sec);
+
+
+
+		// var max=0;
+		// var sec=0;
+
+		// for(var i=0;i<10;i++){
+		// 	arr[i]=parseInt(Math.random()*50);
+		// 	if(arr[i]>sec){
+		// 		sec=arr[i];
+		// 	}
+		// 	if(sec>max){
+		// 		var temp=sec;
+		// 		sec=max;
+		// 		max=temp;
+		// 	}
+		// }
+		// console.log(arr);
+		// console.log(max,sec);
+
+
+
+		// var arr2=[];
+		// for(var i=0;i<arr.length;i++){
+		// 	if(arr2.indexOf(arr[i])==-1){
+		// 		arr2.push(arr[i]);
+		// 	}
+		// }
+		// console.log(arr2);
+
+		// for(var i=0;i<arr2.length;i++){
+		// 	for(var j=0;j<arr2.length;j++){
+		// 		if(arr2[j]>arr2[j+1]){
+		// 			var temp=arr2[j];
+		// 			arr2[j]=arr2[j+1];
+		// 			arr2[j+1]=temp;
+		// 		}
+		// 	}
+		// }
+		// console.log(arr2);
+		// console.log(arr2[arr2.length-2]);
+	</script>
+</html>

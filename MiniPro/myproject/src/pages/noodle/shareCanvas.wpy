@@ -1,0 +1,226 @@
+<template>
+    <view class="container">
+      <!-- <view style="visibility:hidden;"> -->
+        <canvas canvas-id="myCanvas" style="width:{{canvasWidth * rpx}}rpx;height:{{canvasHeight * rpx}}rpx;"/>
+      <!-- </view> -->
+      <view class="btn" @tap.stop="savePicFunc">保存图片</view>
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy';
+  export default class SavePic extends wepy.page {
+    config = {
+      enablePullDownRefresh: false,
+      backgroundTextStyle: 'light',
+      onReachBottomDistance: 50,
+      navigationBarBackgroundColor: '#FFF',
+      navigationBarTitleText: '活动结果',
+      navigationBarTextStyle: 'black',
+      disableScroll: true,
+    };
+    data = {
+      rpx: '',
+      dpr: '',
+      canvasWidth: '',
+      canvasHeight: '',
+      shareData: {},
+      tempFilePath: '',
+      loadings:false,
+      shareTitle:'',
+      shareImage:'',
+    };
+
+    methods = {
+      savePicFunc:() => {
+        const _this = this;
+        // _this.methods.getImgInfo();
+        wx.getSetting({
+          success(res) {
+            if (!res.authSetting['scope.writePhotosAlbum']) {
+              wx.authorize({
+                scope: 'scope.writePhotosAlbum',
+                success() {
+                  _this.drawShareImg();
+                },
+                fail () {
+                  wepy.showToast({
+                    title: `授权相册失败`,
+                    icon: 'success',
+                    duration: 2000
+                  })  
+                }
+              })
+            }else {
+              // 已经授权，直接保存图片
+              _this.drawShareImg();
+            }
+          }
+        })
+      },
+      canvasToPic:()=>{
+        const _this = this;
+        // /wx.getSystemInfoSync().pixelRatio
+        setTimeout(() => {
+           wx.canvasToTempFilePath({
+            x: 0,
+            y: 0,
+            // destWidth:  _this.canvasWidth,
+            // destHeight: _this.canvasHeight,
+            canvasId: 'myCanvas',
+            success: function(resurl) {
+              _this.tempFilePath = resurl.tempFilePath;
+              _this.$apply();
+              wx.saveImageToPhotosAlbum({
+                filePath: resurl.tempFilePath,
+                success(res) {
+                  wepy.showToast({
+                    title: `保存图片成功`,
+                    icon: 'success',
+                    duration: 2000
+                  })
+                },
+                fail (err) {
+                  wepy.showToast({
+                    title: `保存图片失败`,
+                    icon: 'success',
+                    duration: 2000
+                  })
+                }
+              })
+            },
+            fail: function() {
+              wepy.showToast({
+                title: `canvas转换图片失败`,
+                icon: 'success',
+                duration: 2000
+              })
+            }
+          })
+        }, 500);
+
+      }
+    }
+
+    drawShareImg(){
+      const _this = this;
+      var reStr = '';
+      const ctx = wx.createCanvasContext('myCanvas')
+      // 画背景图
+      ctx.save();
+      ctx.drawImage('../../images/sharepic.png', 0, 0, _this.canvasWidth*_this.dpr, _this.canvasHeight*_this.dpr);
+      ctx.restore();
+
+      // 画头像
+      ctx.save();
+      ctx.arc(180.55*_this.dpr, 141.95* _this.dpr, 70.45 * _this.dpr, 0, Math.PI*2, true);
+      ctx.clip();
+      ctx.drawImage(_this.shareData.avater, 110.1*_this.dpr, 71.5*_this.dpr, 140.9*_this.dpr, 140.9*_this.dpr);
+      ctx.restore();
+
+      // 画昵称
+      ctx.save();
+      ctx.setFontSize(50 * _this.dpr)
+      ctx.setFillStyle('#3E145F');
+      reStr = ctx.measureText(_this.shareData.nickname).width*_this.dpr > 90*_this.dpr ? _this.shareData.nickname.slice(0, 5)+'...' : _this.shareData.nickname;
+      ctx.fillText(reStr,290*_this.dpr,165* _this.dpr);
+      ctx.restore();
+
+      // 画描述
+      _this.drawInfo('国庆七天共走了',_this.shareData.walkNum,'步',330,ctx);
+      _this.drawInfo('平均每一步值',_this.shareData.walkMoney,'元',430,ctx);
+      _this.drawInfo('超过了全国',_this.shareData.percent,'的用户',530,ctx);
+
+      // 江湖人称
+      ctx.save();
+      ctx.drawImage(_this.shareData.rankPic,(_this.canvasWidth - 820)/2*_this.dpr,650*_this.dpr,820*_this.dpr,550*_this.dpr);
+      ctx.restore();
+
+      // 画二维码
+      ctx.save();
+      ctx.drawImage(_this.shareData.codePic,(_this.canvasWidth *0.73)*_this.dpr, 1280*_this.dpr, 180*_this.dpr, 191*_this.dpr);
+      ctx.restore();
+
+      ctx.draw();
+      // _this.methods.canvasToPic();
+    }
+    // 绘制描述
+    drawInfo(mainText1,subText,mainText2,startY,target){
+      const _this = this;
+      var lastLen = 0;
+      target.save();
+      target.setFontSize(45*_this.dpr);
+      target.setFillStyle('#ffffff');
+      target.fillText(mainText1, 80*_this.dpr, startY*_this.dpr);
+      lastLen += 80 * _this.dpr + target.measureText(mainText1).width;
+      target.restore();
+
+      target.save();
+      target.setFontSize(50*_this.dpr);
+      target.setFillStyle('#F4E61B');
+      target.fillText(subText, lastLen, startY*_this.dpr);
+      lastLen += target.measureText(subText).width;
+      target.restore();
+
+      target.save();
+      target.setFontSize(45*_this.dpr);
+      target.setFillStyle('#ffffff');
+      target.fillText(mainText2, lastLen, startY*_this.dpr);
+      target.restore();
+    }
+    onLoad() {
+      const _this = this
+
+      // _this.rpx = 323/645; // px / rpx
+      // _this.canvasWidth = 606 // rpx
+      // _this.canvasHeight = 1000 // rpx
+      // _this.rpx = wx.getSystemInfoSync().pixelRatio;
+      wx.getSystemInfo({
+        success: function(res) {
+          // console.log(res.windowWidth)
+          // console.log(res.windowHeight)
+          _this.rpx =  res.windowWidth/750
+          _this.dpr = _this.rpx * _this.rpx
+          // console.log(_this.rpx)
+          _this.canvasWidth = 926
+          _this.canvasHeight = 1506
+          _this.$apply()
+        }
+      })
+      _this.shareData = {
+        avater: '../../images/avater.png',
+        nickname: '周周周周周周周周',
+        walkNum: 415600,
+        percent: 126,
+        walkMoney: 12302,
+        rankPic: '../../images/change.png',
+        codePic: '../../images/code.png',
+      };
+      _this.$apply();
+    }
+  }
+</script>
+<style lang="less">
+  .container{
+    width: 100%;
+    height: auto;
+    // .canvasWrap{
+    //   position: absolute;
+    //   top:0;
+    //   z-index: 1111;
+    // }
+    .btn{
+      width: 200rpx;
+      height: 60rpx;
+      text-align: center;
+      line-height: 60rpx;
+      border: 2rpx solid black;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+  }
+</style>
+

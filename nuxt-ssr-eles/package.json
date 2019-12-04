@@ -1,0 +1,30 @@
+{
+  "name": "nuxt-ssr-eles",
+  "version": "1.0.0",
+  "description": "My tiptop Nuxt.js project",
+  "author": "zhouna",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "better-scroll": "^1.15.2",
+    "cross-env": "^5.2.0",
+    "express": "^4.16.4",
+    "iview": "^3.1.5",
+    "nuxt": "^2.0.0",
+    "vuex": "^3.1.2",
+    "vuex-persistedstate": "^2.7.0"
+  },
+  "devDependencies": {
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "nodemon": "^1.18.9",
+    "postcss-px2rem": "^0.3.0"
+  }
+}

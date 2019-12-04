@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>window事件</title>
+		<style type="text/css">
+			body{
+				/*width: 100%;*/
+				/*margin: 0;*/
+			}
+			#redDiv{
+				width: 50vw;
+				height: 100px;
+				background-color: red;
+			}
+		</style>
+		<script type="text/javascript">
+		// onload事件是在窗口加载完毕之后才会执行。
+			window.onload = function(){
+				var redDiv = document.getElementById('redDiv');
+				console.log(redDiv);
+				// 不要再window.onload里面使用document.write。 窗口加载完毕之后会关闭文档流，如果使用document.write会开启新的文档流覆盖原有的内容。
+				// document.write(123);
+
+				// 窗口尺寸发生变化之后触发的事件
+				window.onresize = function(){
+					console.log(window.innerWidth, window.innerHeight);
+					redDiv.style.width = blueDiv.offsetHeight;
+				}
+				// isNaN
+				var str = "f123";
+				var num = Number(str);
+				// 判断一个变量是不是NaN要用isNaN
+				console.log(NaN == NaN);//false
+				if (isNaN(num)) {
+					num = 0;
+				}
+				redDiv.innerHTML = num + 3;
+
+			}
+			// console.log(123);
+
+			
+
+
+		</script>
+	</head>
+	<body>
+		<div id="redDiv"></div>
+	</body>
+
+
+</html>

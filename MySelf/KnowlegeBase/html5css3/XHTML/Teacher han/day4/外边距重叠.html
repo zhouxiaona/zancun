@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>外边距重叠</title>
+	<style>
+		body{
+			margin:0;
+			margin-top:100px;
+		}
+		.one{
+			width:200px;
+			float:left;
+			
+		}
+		.two{
+			width:200px;
+			float:left;
+		}
+		.div1{
+			height:200px;
+			background:red;
+			
+		}
+		.div2{
+			height:200px;
+			background:blue;
+			
+		}
+		.one .div1{
+			margin-bottom: -10px;	
+
+		}
+		.one .div2{
+			margin-top:-20px;
+		}
+	</style>
+</head>
+<body>
+<!-- margin 可以设置负数，表现为正数的相反操作。比如：margin-top正数为下，负数为上。 -->
+
+	<div class="one">
+		<div class="div1"></div>
+		<div class="div2"></div>
+	</div><div class="two">
+		<div class="div1"></div>
+		<div class="div2"></div>
+	</div>
+</body>
+</html>

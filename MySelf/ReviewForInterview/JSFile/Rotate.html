@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>我的移入移出</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+			}
+			div{
+				width: 200px;
+				height: 200px;
+				background: pink;
+				margin: 100px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="mydiv"></div>
+	</body>
+	<script type="text/javascript">
+		var mydiv=document.getElementById("mydiv");
+		// div的两条对角线的斜率
+		// 右上到左下
+		var k2 =1;
+		// 右下到左上
+		var k1= -1;
+		// 获取到该元素的各个距离的对象
+		var rect=mydiv.getBoundingClientRect();
+		// 元素的中心点的坐标
+		var x0=rect.left+(rect.width/2);
+		var y0= (rect.top+(rect.height/2));
+		
+
+		// 鼠标移入
+		mydiv.onmouseenter=function(e){
+			var evObj=e || window.event;
+		}
+
+		// 鼠标离开
+		mydiv.onmouseleave=function(e){
+			var evObj=e || window.event;
+
+			if(kLeave > k1 && kLeave <k2){
+				// 鼠标是从左右两边出去的
+				if(evObj.offsetX > 100){
+					// 从右边出去的
+					console.log("从右边出去啦");
+				}else{
+					// 从左边出去的
+					console.log("从左边出去啦");
+				}
+			}else if(kLeave > k2){
+				console.log("从上面出去啦");
+			}else{
+				console.log("从下面出去啦");
+			}
+		}
+	</script>
+</html>

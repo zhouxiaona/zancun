@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ES6类 class</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//类
+		class Person{
+			//类最开始在加载的时候执行
+			//预定义的构造函数
+			//属性放在constructor中
+			//为了取代es5的构造函数,更完整一点----------
+			constructor(name,age){
+				this.name=name;
+				this.age=age;
+			}
+			hobby(){
+				console.log("喜欢篮球");
+			}
+			showName(){
+				console.log(this.name);
+			}
+		}
+		var zhangsan=new Person("张三",22);
+//		zhangsan.hobby();
+		console.log(zhangsan.age);
+		
+		//类的继承
+		class Student extends Person{
+			constructor(name,age){
+				super(name,age);
+			}
+			action(){
+				console.log("我是action函数");
+			}
+		}
+		var newStudent=new Student("李四",23);
+		newStudent.hobby();
+		newStudent.action();
+		console.log(newStudent.name);
+		
+	</script>
+</html>

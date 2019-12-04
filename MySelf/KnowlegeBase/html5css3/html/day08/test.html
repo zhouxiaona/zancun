@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+			}
+			html,body{
+				height: 100vh;
+				perspective: 3000px;
+			}
+			.wrap{
+				width: 50px;
+				height: 50px;
+				margin: 200px auto;
+				border: 1px solid red;
+				position: relative;
+				transform-style: preserve-3d;
+				transition: all 10s;
+			}
+			.wrap:hover{
+				transform: rotateY(3600deg);
+			}
+			.wrap div{
+				width: 50px;
+				height: 50px;
+				background: lightblue;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.box1{
+				transform: translateY(-20px) translateZ(300px);
+			}
+			.box13{
+				transform: translateY(-260px) translateZ(300px);
+			}
+			.box25{
+				transform: translateY(220px) translateZ(300px);
+			}
+
+			.box2{
+				transform: rotateY(30deg) translateY(0px) translateZ(300px);
+			}
+			.box14{
+				transform: rotateY(30deg) translateY(-240px) translateZ(300px);
+			}
+			.box26{
+				transform: rotateY(30deg) translateY(240px) translateZ(300px);
+			}
+
+			.box3{
+				transform: rotateY(60deg) translateY(20px) translateZ(300px);
+			}
+			.box15{
+				transform: rotateY(60deg) translateY(-220px) translateZ(300px);
+			}
+			.box27{
+				transform: rotateY(60deg) translateY(260px) translateZ(300px);
+			}
+
+			.box4{
+				transform: rotateY(90deg) translateY(40px) translateZ(300px);
+			}
+			.box16{
+				transform: rotateY(90deg) translateY(-200px) translateZ(300px);
+			}
+			.box28{
+				transform: rotateY(90deg) translateY(280px) translateZ(300px);
+			}
+
+			.box5{
+				transform: rotateY(120deg) translateY(60px) translateZ(300px);
+			}
+			.box17{
+				transform: rotateY(120deg) translateY(-180px) translateZ(300px);
+			}
+			.box29{
+				transform: rotateY(120deg) translateY(300px) translateZ(300px);
+			}
+
+			.box6{
+				transform: rotateY(150deg) translateY(80px) translateZ(300px);
+			}
+			.box18{
+				transform: rotateY(150deg) translateY(-160px) translateZ(300px);
+			}
+			.box30{
+				transform: rotateY(150deg) translateY(320px) translateZ(300px);
+			}
+
+			.box7{
+				transform: rotateY(180deg) translateY(100px) translateZ(300px);
+			}
+			.box19{
+				transform: rotateY(180deg) translateY(-140px) translateZ(300px);
+			}
+			.box31{
+				transform: rotateY(180deg) translateY(340px) translateZ(300px);
+			}
+
+			.box8{
+				transform: rotateY(210deg) translateY(120px) translateZ(300px);
+			}
+			.box20{
+				transform: rotateY(210deg) translateY(-120px) translateZ(300px);
+			}
+			.box32{
+				transform: rotateY(210deg) translateY(360px) translateZ(300px);
+			}
+
+			.box9{
+				transform: rotateY(240deg) translateY(140px) translateZ(300px);
+			}
+			.box21{
+				transform: rotateY(240deg) translateY(-100px) translateZ(300px);
+			}
+			.box33{
+				transform: rotateY(240deg) translateY(380px) translateZ(300px);
+			}
+
+			.box10{
+				transform: rotateY(270deg) translateY(160px) translateZ(300px);
+			}
+			.box22{
+				transform: rotateY(270deg) translateY(-80px) translateZ(300px);
+			}
+			.box34{
+				transform: rotateY(270deg) translateY(400px) translateZ(300px);
+			}
+
+			.box11{
+				transform: rotateY(300deg) translateY(180px) translateZ(300px);
+			}
+			.box23{
+				transform: rotateY(300deg) translateY(-60px) translateZ(300px);
+			}
+			.box35{
+				transform: rotateY(300deg) translateY(420px) translateZ(300px);
+			}
+
+			.box12{
+				transform: rotateY(330deg) translateY(200px) translateZ(300px);
+			}
+			.box24{
+				transform: rotateY(330deg) translateY(-40px) translateZ(300px);
+			}
+			.box36{
+				transform: rotateY(330deg) translateY(440px) translateZ(300px);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box1"></div>
+			<div class="box2"></div>
+			<div class="box3"></div>
+			<div class="box4"></div>
+			<div class="box5"></div>
+			<div class="box6"></div>
+			<div class="box7"></div>
+			<div class="box8"></div>
+			<div class="box9"></div>
+			<div class="box10"></div>
+			<div class="box11"></div>
+			<div class="box12"></div>
+			<div class="box13"></div>
+			<div class="box14"></div>
+			<div class="box15"></div>
+			<div class="box16"></div>
+			<div class="box17"></div>
+			<div class="box18"></div>
+			<div class="box19"></div>
+			<div class="box20"></div>
+			<div class="box21"></div>
+			<div class="box22"></div>
+			<div class="box23"></div>
+			<div class="box24"></div>
+			<div class="box25"></div>
+			<div class="box26"></div>
+			<div class="box27"></div>
+			<div class="box28"></div>
+			<div class="box29"></div>
+			<div class="box30"></div>
+			<div class="box31"></div>
+			<div class="box32"></div>
+			<div class="box33"></div>
+			<div class="box34"></div>
+			<div class="box35"></div>
+			<div class="box36"></div>
+		</div>
+	</body>
+</html>

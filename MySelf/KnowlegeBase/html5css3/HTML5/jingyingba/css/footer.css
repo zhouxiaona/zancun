@@ -1,0 +1,105 @@
+footer {
+  width: 100%;
+  height: 373px;
+  background: white;
+  margin-top: 52px;
+}
+footer .footer_inner {
+  width: 1226px;
+  height: 300px;
+  margin: 0 auto;
+}
+footer .footer_inner .top {
+  height: 60px;
+  border-bottom: 1px solid lightgray;
+  overflow: hidden;
+}
+footer .footer_inner .top ul {
+  float: left;
+}
+footer .footer_inner .top ul li {
+  float: left;
+}
+footer .footer_inner .top ul li a {
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  font-size: 14px;
+  color: black;
+}
+footer .footer_inner .top ul li a:hover {
+  color: #29b572;
+}
+footer .footer_inner .top ul li:nth-of-type(1) {
+  margin-right: 25px;
+}
+footer .footer_inner .top ul li:nth-of-type(1) a {
+  font-size: 22px;
+}
+footer .footer_inner .top ul li:nth-of-type(n+3) {
+  margin-left: 40px;
+}
+footer .footer_inner .top div {
+  float: right;
+  height: 60px;
+  line-height: 60px;
+}
+footer .footer_inner .top div a {
+  color: black;
+  font-size: 14px;
+}
+footer .footer_inner .top div a:hover {
+  color: #29b572;
+}
+footer .footer_inner .middle {
+  width: 1226px;
+  padding: 35px 0 30px;
+  overflow: hidden;
+}
+footer .footer_inner .middle dl {
+  float: left;
+}
+footer .footer_inner .middle dl dt {
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+footer .footer_inner .middle dl dt a {
+  font-size: 14px;
+  color: black;
+}
+footer .footer_inner .middle dl dt a:hover {
+  color: #29b572;
+}
+footer .footer_inner .middle dl dd {
+  font-size: 13px;
+}
+footer .footer_inner .middle dl dd a {
+  font-size: 13px;
+  color: black;
+}
+footer .footer_inner .middle dl dd a:hover {
+  color: #29b572;
+}
+footer .footer_inner .middle dl:nth-of-type(n+2) {
+  margin-left: 76px;
+}
+footer .footer_inner .middle div {
+  float: right;
+  text-align: center;
+}
+footer .footer_inner .middle div p:nth-of-type(1) {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+footer .footer_inner .middle div p:nth-of-type(2) {
+  font-size: 12px;
+  margin-top: -10px;
+}
+footer .footer_bottom {
+  width: 100%;
+  border-top: 1px solid lightgray;
+  height: 70px;
+  font-size: 13px;
+  text-align: center;
+  line-height: 70px;
+}

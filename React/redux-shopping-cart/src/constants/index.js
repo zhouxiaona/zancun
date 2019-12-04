@@ -1,0 +1,9 @@
+export const DATATYPE = {
+      ADD_TODO:"ADD_TODO",
+      SET_VISIBILITY_FILTER:'SET_VISIBILITY_FILTER',
+      TOGGLE_TODO:'TOGGLE_TODO',
+      ADD:'ADD',
+      DEC:'DEC',
+      ADD_LIST:'ADD_LIST',
+      DEL_LIST:'DEL_LIST',
+}

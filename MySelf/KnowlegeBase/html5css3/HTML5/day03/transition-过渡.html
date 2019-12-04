@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>transition-过渡</title>
+		<style type="text/css">
+			.div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				/* opacity: 0.5;
+				font-size: 20px;
+				line-height: 100px; */
+				/* font-style: italic斜体 | oblique斜体 |normal正体; */
+				transition: all 2s cubic-bezier(0.99,-0.27, 0.02, 1.69) 0s;
+
+			}
+			.div1:hover{
+				/* opacity: 0.9; */
+				background: blue;
+				/* font-size: 50px; */
+				/* line-height: 200px; */
+				/* font-weight: 900; */
+				/* font-style: italic; */
+				/* display: none; */
+				/* visibility: hidden; */
+			}
+		</style>
+	</head>
+	<body>
+	<!-- transition过渡　四个属性
+		transition-property 过渡属性，默认为all指定可以过渡的属性默认值为all
+		transition-duration 过渡步长，默认值0秒,过渡完成所需要的时间，单位s,可以设置小数
+		transition-timing-function :ease　过渡的动画类型
+		transition-delay:0s;延迟执行过渡的时间，单位是s-->
+		<div class="div1"></div>
+
+	</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑页面</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/axios/dist/axios.js"></script>
+</head>
+<body>
+    <div id="app" class="container">
+        <h1>用户列表</h1>
+        <table class="table table-striped" @mouseout="notShowEdit">
+            <tr>
+                <th>用户id</th>
+                <th>用户名</th>
+                <th>性别</th>
+                <th>城市</th>
+                <th>操作</th>
+            </tr>
+            <!--循环数组-->
+            <tr v-for="(v,k) in users">
+                <!--循环对象-->
+                <td width="25%" v-for="(item,index) in v" @mousemove="showEdit(k,index)">
+                    <span v-show="!(inputIndex==k && inputColumn==index && isShowOK)">{{item}}</span>
+                    <span v-show="inputIndex==k && inputColumn==index && isShowOK && index=='username'"><input type="text" v-model="users[k][index]" :disabled="index=='sex' || index=='city'"></span>
+                    <!--编辑性别-->
+                    <div v-show="inputIndex==k && inputColumn==index && index=='sex' && isShowOK">
+                        <label class="radio-inline">
+                          <input type="radio"  value="男" v-model="users[k]['sex']"> 男
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio"  value="女" v-model="users[k]['sex']"> 女
+                        </label>
+                    </div>
+                    <!--编辑城市-->
+                    <div class="" v-show="inputIndex==k && inputColumn==index && index=='city' && isShowOK">
+                        <select class="form-control input-sm" v-model="users[k].city">
+                            <option value="上海">上海</option>
+                            <option value="北京">北京</option>
+                            <option value="深圳">深圳</option>
+                        </select>
+                    </div>
+                    <!--保存按钮-->
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true" v-show="inputIndex==k && inputColumn==index && isShowOK" @click="update(k,index)"></span>
+                    <!--编辑按钮-->
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true" v-show="showIndex==k && showColumn==index && index!='_id' && !(inputIndex==k && inputColumn==index && isShowOK)" @click="showInput(k,index)"></span>
+                </td>
+                <td width="30%"><input class="btn btn-default btn-xs" type="button" value="删除" @click="deldata(k)"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            users:[],
+            showIndex:-1,
+            showColumn:"",
+            inputIndex:-1,
+            inputColumn:"",
+            isShowOK:false
+        },
+        methods:{
+            showEdit:function(k,index){
+                this.showIndex=k;
+                this.showColumn=index;
+            },
+            notShowEdit:function(){
+                this.showIndex=-1;
+                this.showColumn="";
+            },
+            showInput:function(k,index){
+                this.inputIndex=k;
+                this.inputColumn=index;
+                this.isShowOK=true;
+            },
+            //更新数据
+            update:function(k,index){
+                //根据id向后台发送要更新的数据
+                axios.post("/update",{
+                    data:this.users[k]
+                }).then((res)=>{
+                    console.log(res);
+                    if(res.data.status==1){
+                        alert(res.data.info);
+                        this.isShowOK=false;
+                    }else{
+                        alert(res.data.info);
+                    }
+                }).catch((err)=>{
+                    if(err){
+                        console.log(err);
+                    }
+                });
+            },
+            //删除数据
+            deldata:function(k){
+                //根据id向后台删除数据
+                axios.post("/deldata",{
+                    data:this.users[k]['_id']
+                }).then((res)=>{
+                    console.log(res);
+                    if(res.data.status==2){
+                        alert(res.data.info);
+                        //this.users.splice(k,1);
+                        this.loads();
+                    }else{
+                        alert(res.data.info);
+                    }
+                }).catch((err)=>{
+                    if(err){
+                        console.log(err);
+                    }
+                });
+            },
+            //获取数据
+            loads:function(){
+                axios.get("/getUserList").then((res)=>{
+                    if(res.data.status==2){
+                        for(var i=0;i<res.data.users.length;i++){
+                            if(res.data.users[i].sex==1){
+                                res.data.users[i].sex="男";
+                            }else{
+                                res.data.users[i].sex="女";
+                            }
+                        }
+                        this.users=res.data.users;
+                        console.log(this.users);
+                    }else{
+                        alert(res.data.info)
+                    }
+                }).catch((err)=>{
+                    return console.log(err);
+                });
+            }
+
+        },
+        //不能改成箭头语法，会有this穿透
+        mounted:function(){
+            this.loads();
+        }
+    })
+</script>
+</html>

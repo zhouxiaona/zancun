@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>碰撞检测</title>
+		<style type="text/css">
+			.box{
+				width: 600px;
+				height: 400px;
+				border: 1px red solid;
+				margin: 50px auto;
+				position: relative;
+			}
+			.red{
+				width: 30px;
+				height: 30px;
+				background-color: red;
+				position: absolute;
+				top: 185px;
+				left: 0px;
+			}
+			.black{
+				width: 40px;
+				height: 40px;
+				background-color: black;
+				position: absolute;
+				top: 0px;
+				left: 280px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="red"></div>
+			<div class="black"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var red = document.getElementsByClassName('red')[0];
+		var black = document.getElementsByClassName('black')[0];
+		var box = document.getElementsByClassName('box')[0];
+		var rSpeed = 5;
+		var bSpeed = 1;
+		var isF = true;
+		var timer = setInterval(function(){
+			if (red.offsetLeft < 0 || red.offsetLeft + red.offsetWidth > box.offsetWidth) {
+				rSpeed *= -1;
+			}
+			if (black.offsetTop < 0 || black.offsetTop + black.offsetHeight > box.offsetHeight) {
+				bSpeed *= -1;
+			}
+			red.style.left = red.offsetLeft + rSpeed + "px";
+			black.style.top = black.offsetTop + bSpeed + "px";
+
+
+			// 碰到之后停止
+			// 黑左<红右 && 黑右>红左 && 黑上<红下 && 黑下>红上
+			if (black.offsetLeft < red.offsetLeft + red.offsetWidth && black.offsetLeft + black.offsetWidth > red.offsetLeft && black.offsetTop < red.offsetTop + red.offsetHeight && black.offsetTop + black.offsetHeight > red.offsetTop) {
+				console.log("碰到了");
+				// clearInterval(timer);
+				// rSpeed *= -1;
+				// bSpeed *= -1;
+				if (isF) {
+					isF = false;
+					red.style.backgroundColor = "rgb("+getColorR()+","+getColorR()+","+getColorR()+")";
+					black.style.backgroundColor = "rgb("+getColorR()+","+getColorR()+","+getColorR()+")";
+				}
+			} else{
+				isF = true;
+			}
+		}, 20);
+	
+		function getColorR(){
+			return parseInt(Math.random()* 256);
+		}
+
+
+	</script>
+</html>

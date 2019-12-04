@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>构造函数球运动</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="600">
+			及时更新浏览器！
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		
+		//定义一个球的构造函数
+		function Ball(x,y,r,color,speedX,speedY){
+			this.x=x;
+			this.y=y;
+			this.r=r;
+			this.color=color;
+			this.speedX=speedX;
+			this.speedY=speedY;
+		}
+		//画的方法
+		Ball.prototype.draw=function(){
+			ctx.beginPath();
+			ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+			ctx.fillStyle=this.color;
+			ctx.fill();
+		}
+		Ball.prototype.move=function(){
+			this.x+=this.speedX;
+			this.y+=this.speedY;
+			if(this.x < this.r || this.x > mycanvas.width-this.r){
+				this.speedX*=-1;
+			}
+			if(this.y < this.r || this.y > mycanvas.height-this.r){
+				this.speedY*=-1;
+			}
+		}
+		
+		//实例化球
+		var newBall=new Ball(50,50,50,"pink",2,3);
+		function act(){
+			ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+			newBall.draw();
+			newBall.move();
+		
+			window.requestAnimationFrame(act);
+		}
+		act();
+	</script>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>闭包的应用场景</title>
+		<style type="text/css">
+			.item{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				float: left;
+				margin:10px;
+				text-align: center;
+				color: white;
+				font-size: 50px;
+				line-height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="item">1</div>
+		<div class="item">2</div>
+		<div class="item">3</div>
+		<div class="item">4</div>
+		<div class="item">5</div>
+		<div class="item">6</div>
+		<div class="item">7</div>
+		<div class="item">8</div>
+		<div class="item">9</div>
+		<div class="item">10</div>
+	</body>
+	<script type="text/javascript">
+		var divs = document.getElementsByClassName('item');
+		// 点击div， 1S后打印下标
+		for(var i = 0; i < divs.length; i++){
+			divs[i].index = i;
+			(function(){
+				var _this = divs[i];
+				divs[i].onclick = function(){
+					// var _this = this;
+					setTimeout(function(){
+						console.log(_this.index);
+					}, 1000);
+				}
+			})()
+		}
+		// 函数t里面的点击方法会形成闭包。随着for循环运行10次，函数t也会运行10次。每次t运行的时候，都会有一个变量a。然后每一个闭包保存了函数t运行的时候的变量a。
+
+		// for(var i = 0; i < divs.length; i++){
+		// 	function t(){
+		// 		var a = i;
+		// 		divs[i].onclick = function(){
+		// 			setTimeout(function(){
+		// 				console.log(a);
+		// 			}, 1000);
+		// 		}
+		// 	}
+		// 	t();
+		// }
+		// 
+		// 利用闭包可以保存局部变量.
+		// for(var i = 0; i < divs.length; i++){
+		// 	(function(){
+		// 		var a = i;
+		// 		divs[i].onclick = function(){
+		// 			setTimeout(function(){
+		// 				console.log(a);
+		// 			}, 1000);
+		// 		}
+		// 	})();
+		// }
+		// 利用闭包可以保存参数。
+		// for(var i = 0; i < divs.length; i++){
+		// 	(function(i){
+		// 		divs[i].onclick = function(){
+		// 			setTimeout(function(){
+		// 				console.log(i);
+		// 			}, 100);
+		// 		}
+		// 	})(i);
+		// }
+
+
+
+
+		// div.onclick = function(){
+		// 	var newDiv = document.createElement("div");
+		// 	newDiv.className = "bo";
+		// 	div.appendChild(newDiv);
+		// 	var timer = setInterval(function(){
+		// 		var bLeft = newDiv.offsetLeft;
+		// 		bLeft += 3;
+		// 		newDiv.style.left = bLeft + "px";
+		// 		if (bLeft >= 700) {
+		// 			newDiv.remove();
+		// 			clearInterval(timer);
+		// 		}
+		// 	}, 20)
+		// }
+
+
+
+
+
+
+	</script>
+</html>

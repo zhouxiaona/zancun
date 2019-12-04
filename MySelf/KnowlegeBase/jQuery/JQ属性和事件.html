@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JQ属性和事件</title>
+		<style type="text/css">
+			.content{
+				color: red;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="item" title="first"></div>
+			<div class="item" title="second"></div>
+			<div class="item"></div>
+			<div class="content">content</div>
+			<form action="">
+				<input type="text">
+				<input type="radio">
+				<input type="checkbox">
+				<input type="button" value="点击">
+			</form>
+			<div>
+				<p style="color: yellow;">
+					白茶<span style="background-color: pink">清欢</span>无别事，我在等风也等你
+				</p>
+				<p style="color: blue;">p2</p>
+				<p>p3</p>
+			</div>
+			<div>
+				<p>p1</p>
+				<p>p2</p>
+				<p>p3</p>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+/***************************************************************		
+		$(":button").attr('index',10);
+		
+		$(":button").click(function(){
+			//获取属性
+			//attr一般用于获取/设置自定义属性
+			//prop一般用于获取自带属性
+			//获取src的时候，prop是绝对路径，attr是相对路径
+			
+
+			// console.log($(":checkbox").attr("checked"));
+			//获取系统自带的属性可以使用prop
+			// console.log($(":checkbox").prop("checked"));
+			//设置属性,attr and prop都可以设置
+			// $(":checkbox").prop("checked",true);
+			// console.log($(':button').attr("index"));
+			
+
+
+
+			//不能重复加类名
+			// $(".box").addClass("box","box");
+			//如果存在（不存在）就删除（添加）一个类
+			// $(".box").toggleClass('box2');
+			// $("div").removeClass("item");
+		});
+
+
+		//$==jQuery
+		console.log(jQuery('.box'));
+		//移交$的使用权，正常情况下$就代表是jQuery。如果和其他变量名有冲突，JQ可以把$的使用权
+		//交出去。
+		//调用此方法后，就不能继续使用$来代表JQ
+		//用变量接收返回值之后，这个变量就代表JQ
+		var $$=$.noConflict();
+
+
+		//document.ready和window.onoload类似，都是文档加载完毕之后执行。不同点在于
+		//document.ready可以绑定多个事件
+		$(document).ready(function(){
+			console.log("文档加载完毕");
+		});
+		$(document).ready(function(){
+			console.log("文档加载完毕dd");
+		});
+		//简化版写法。最常用的方法
+		$(function(){
+			console.log('文档加载完毕3');
+		});
+******************************************************************/
+	
+
+	//事件绑定
+	// $("div p:first-child:first").click(function(){
+
+	// });
+	
+
+	//on，绑定事件，四个参数
+	//div.on(type,selector,obj,fn)
+	
+	//type 字符串类型，放的是事件类型　如：click
+	//selector 字符串类型，是选择器，代表过滤，只有这个选择器内的元素才能触发事件
+	//obj 对象类型，给事件传的参数
+	//fn 函数，事件触发之后执行的函数
+	
+	//off解绑事件
+	//div.off();移除所有类型的事件
+	//div.off("click");移除所有点击事件
+	//div.off("click",fn);移除指定的点击事件
+	
+	//div.one();绑定一次的点击事件，只能点一次
+	$("div p:first-child:first").on("click","span",{name:"lala",age:18},function(ev){
+		console.log(ev.data);
+		console.log(ev);
+	});
+
+
+	//for in(遍历数组、对象),遍历对象的时候可以得到对象的所有属性名，遍历数组得到的是下标
+	var arr=["hello","how","are","you"];
+	var obj={
+		name:"lala",
+		age:18
+	};
+	for(x in obj){
+		console.log(x,obj[x]);
+	}
+	
+
+	//JQ遍历对象
+	$("p").each(function(index,obj){
+		//遍历$("p")这个集合，得到下标index和每一个p标签obj
+		console.log(index,obj);
+	});
+
+	$("p").each(function(index,obj){
+		$(this).click(function(){
+			console.log(index);
+		});
+	});
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>flex-弹性盒子布局</title>
+		<style type="text/css">
+		/* 未知宽高元素在容器中上下左右居中 */
+			.div1{
+				display: flex;
+				width: 600px;
+				margin: 100px auto;
+				height: 400px;
+				border: 10px solid gold;
+				/* align-items: stretch; 默认交叉轴的对其方式*/
+				/* flex-wrap: wrap; */
+				/* align-items: stretch;不设高时满屏高 */
+				/* align-items: baseline; */
+					/* align-items: baseline;
+					justify-content: center; */
+				flex-wrap: wrap;
+				/* 注意: display:inline-flex | flex;
+					flex;不给宽高度，默认继承父级的宽度，高度由内容撑开
+					inline-flex;宽高由内容撑开 */
+			}
+			.div1 div{
+				height: 100px;
+				width: 200px;
+				box-sizing: border-box;
+				background: red;
+				border: 10px solid black;
+				font-size: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- felx 弹性盒模型 -->
+		<!-- flex-item 是弹性盒子里面的内容
+			flex-direction: row | row-reverse | column | column-reverse -->
+			<!-- row:定义主轴方向为x轴，方向从左到右 -->
+			<!-- row-reverse:定义主轴方向为x轴，方向从右到左 -->
+			<!-- column:定义主轴方向为y轴，方向从上到下 -->
+			<!-- column-reverse:定义主轴方向为y轴，方向从下到上 -->
+
+		<!-- justify-content: felx-start | felx-end | center |space-around | space-between   -->
+		<!-- flex-start: 定义内容元素在主轴的起始位置对齐 -->
+		<!-- felx-end:定义内容元素在主轴的结束位置对齐 -->
+		<!-- center:定义内容元素在主轴上居中对齐，中间没有间距 -->
+		<!-- space-around:定义内容元素平均分配在主轴上，在每行上均匀分配弹性元素。相邻元素间距相等，每行第一个元素到行首的距离和每行最后一个元素到行尾的距离是相邻元素间距的一半 -->
+		<!-- space-between:定义内容元素平均分配在主轴上，第一个元素在主轴开始位置，最后一个元素在主轴结束位置 -->
+
+
+
+		<!-- felx-wrap: -->
+
+		<div class="div1">
+			<div class="one" style="font-size: 20px;">hello</div>
+			<div class="two" style="font-size:40px;">123</div>
+			<div class="three" style="font-size: 50px;">汉字汉字</div>
+			<!-- <div class="four">4</div>
+			<div class="five">5</div> -->
+		</div>
+	</body>
+</html>

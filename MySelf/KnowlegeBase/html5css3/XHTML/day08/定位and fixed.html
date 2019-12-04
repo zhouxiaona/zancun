@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>css布局－position定位</title>
+		<style>
+			/*如何让元素上下左右居中*/
+			
+			body{
+				margin:0;
+			}
+			div{
+				width: 100px;
+				height: 300px;
+			}
+			.div1{
+				background: pink;
+				position: fixed;
+				left: 0;
+				top: 0;
+				z-index: 0;
+			}
+			.div2{
+				background: blue;
+				position: fixed;
+				left: 40px;
+				top: 40px;
+
+			}
+			.div3{
+				background: purple;
+				position: fixed;
+				left: 80px;
+				top: 80px;
+			}
+
+			.div4{
+				width: 200px;
+				height: 400px;
+				background: lightblue;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 定位position: 相对定位relative | 绝对定位absolute | 固定定位fixed -->
+		<!-- 固定定位：position:fixed; 以浏览器视窗为基准的定位-->
+		<!-- １.定位和float一样，改变了行标签和块标签的属性，相当于display:block，都是以内容撑开宽度;
+			２.一旦给元素设置定位，float不起作用；
+			３.定位元素完全脱离文档流，浮动元素半脱离。
+			４.相同级别的定位元素后设置的覆盖前面的，使用z-index提升层级，值按照整10的倍数设置，定位元素的z-index=-1;说明它的层级低于普通文档流，低于float的层级，低于普通元素的层级，定位元素的z-index:0;高于float的层级，高于普通文档流的层级。
+			5.给元素设置fixed定位之后，一定要初始化它的位置。-->
+			<div class="div1"></div>
+			<div class="div2"></div>
+			<div class="div3"></div>
+			<div class="div4">1234215432543</div>
+	</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>class 愤怒的小球</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="600">
+			及时更新浏览器！
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		
+		class Ball{
+			constructor(x,y,r,color,speedX,speedY){
+				this.x=x;
+				this.y=y;
+				this.r=r;
+				this.color=color;
+				this.speedX=speedX;
+				this.speedY=speedY;
+			}
+			draw(){
+				ctx.beginPath();
+				ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+				ctx.fillStyle=this.color;
+				ctx.fill();
+			}
+			move(){
+				this.x+=this.speedX;
+				this.y+=this.speedY;
+				if(this.x < this.r || this.x > mycanvas.width-this.r){
+					this.speedX*=-1;
+				}
+				if(this.y < this.r || this.y > mycanvas.height-this.r){
+					this.speedY*=-1;
+				}
+			}
+		}
+		
+		//随机数函数
+		function randNum(min,max){
+			return parseInt(Math.random()*(max-min))+min;
+		}
+		function randColor(){
+			return "rgb("+randNum(0,256)+","+randNum(0,256)+","+randNum(0,256)+")";
+		}
+		
+		var arr=[];
+		for(var i=0;i<100;i++){
+			var r=randNum(1,50);
+			var x=randNum(r,mycanvas.width-r);
+			var y=randNum(r,mycanvas.height-r);
+			var speedX=randNum(1,10);
+			var speedY=randNum(1,10);
+			var color=randColor();
+			var newBall=new Ball(x,y,r,color,speedX,speedY);
+			arr.push(newBall);
+		}
+		
+		//实例化球
+		var newBall=new Ball(50,50,50,"pink",2,3);
+		function act(){
+			ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+			for(var i=0;i<arr.length;i++){
+				arr[i].draw();
+				arr[i].move();
+			}
+			window.requestAnimationFrame(act);
+		}
+		act();
+	</script>
+</html>

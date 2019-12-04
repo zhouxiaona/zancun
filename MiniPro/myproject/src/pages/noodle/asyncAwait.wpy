@@ -1,0 +1,198 @@
+<template>
+  <view class="wrap">
+    <view class="timeWrap">{{resTime.days}}天:{{resTime.hours}}小时:{{resTime.minutes}}分钟:{{resTime.seconds}}秒</view>
+    <view class="timeWrap">{{resTime2.days}}天:{{resTime2.hours}}小时:{{resTime2.minutes}}分钟:{{resTime2.seconds}}秒</view>
+    <view class="timeWrap">{{resTime3.hours}}小时:{{resTime3.minutes}}分钟:{{resTime3.seconds}}秒</view>
+    <view class="testText">截止时间为：{{endsTime}}</view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Async extends wepy.page {
+    config = {
+      enablePullDownRefresh: false,
+      backgroundTextStyle: 'light',
+      onReachBottomDistance: 50,
+      navigationBarBackgroundColor: '#69BEFF',
+      navigationBarTitleText: 'time',
+      navigationBarTextStyle: 'white'
+    }
+    data = {
+      // timeStamp: 1533830400000,
+      timeStamp: 1533801900000,
+      timer: '',
+      resTime: {},
+      resTime2: {},
+      resTime3: {},
+      endsTime: ''
+    }
+
+    methods = {
+
+    }
+
+    myTime(endTime) {
+      let _this = this
+      let endTimes = endTime
+      _this.timer = setInterval(() => {
+        let nowTime = new Date().getTime()
+        _this.resTime = _this.reverseTime(endTimes, nowTime)
+        _this.resTime2 = _this.reverseTime2(endTimes, nowTime)
+        _this.resTime3 = _this.reverseTime3(endTimes, nowTime)
+        _this.$apply()
+      }, 1000)
+    }
+
+    // 格式一：
+    reverseTime(endTime, startTime) {
+      let _this = this
+      var longTime = endTime - startTime
+      console.log(longTime,'====longTime1')
+      let obj={}
+      if(longTime < 1000){
+        // 时间到了
+        clearInterval(_this.timer)
+        // console.log('时间到，活动结束')
+        wepy.showToast({
+          title: '时间到',
+          icon: 'success',
+          duration: 2000
+        })
+        obj={
+          days: '00',
+          hours: '00',
+          minutes: '00',
+          seconds: '00'
+        }
+      }else{
+        obj.days = parseInt(longTime / (1000 * 60 * 60 * 24))  // 天数
+        obj.hours = parseInt(longTime % (1000 * 60 * 60 * 24) / (1000 * 60 * 60)) // 小时
+        obj.minutes = parseInt(longTime % (1000 * 60 * 60 * 24) % (1000 * 60 * 60) / (1000 * 60)) // 分钟
+        obj.seconds = parseInt(longTime % (1000 * 60 * 60 * 24) % (1000 * 60 * 60) % (1000 * 60) / 1000) // 秒钟
+        obj.days = obj.days >= 10 ? obj.days : ('0'+ obj.days)
+        obj.hours = obj.hours >= 10 ? obj.hours : ('0'+ obj.hours)
+        obj.minutes = obj.minutes >= 10 ? obj.minutes : ('0'+ obj.minutes)
+        obj.seconds = obj.seconds >= 10 ? obj.seconds : ('0'+ obj.seconds)
+      }
+      return obj
+    }
+
+    // 格式二：
+     reverseTime2(endTime, startTime) {
+       let _this = this
+      var longTime = endTime - startTime
+      console.log(longTime,'====longTime2')
+      let obj={}
+      if(longTime < 1000){
+        // 时间到了
+        clearInterval(_this.timer)
+        // console.log('时间到，活动结束')
+        wepy.showToast({
+          title: '时间到',
+          icon: 'success',
+          duration: 2000
+        })
+        obj={
+          days:'00',
+          hours:'00',
+          minutes:'00',
+          seconds:'00'
+        }
+      }else{
+        obj.days = parseInt(longTime / (1000 * 60 * 60 * 24)) // 天数
+        obj.hours = parseInt(longTime % (1000 * 60 * 60 * 24) / (1000 * 60 * 60)) // 小时
+        obj.minutes = parseInt(longTime % (1000 * 60 *60) / (1000 * 60)) // 分钟
+        obj.seconds = parseInt(longTime % (1000 * 60) / 1000) // 秒钟
+        obj.days = obj.days >= 10 ? obj.days : ('0'+ obj.days)
+        obj.hours = obj.hours >= 10 ? obj.hours : ('0'+ obj.hours)
+        obj.minutes = obj.minutes >= 10 ? obj.minutes : ('0'+ obj.minutes)
+        obj.seconds = obj.seconds >= 10 ? obj.seconds : ('0'+ obj.seconds)
+      }
+      return obj
+    }
+
+    // 格式三：
+    reverseTime3(endTime, startTime) {
+      let _this = this
+      var longTime = endTime - startTime
+      console.log(longTime,'====longTime3')
+      let obj={}
+      if(longTime < 1000){
+        // 时间到了
+        clearInterval(_this.timer)
+        // console.log('时间到，活动结束')
+        wepy.showToast({
+          title: '时间到',
+          icon: 'success',
+          duration: 2000
+        })
+        obj={
+          hours:'00',
+          minutes:'00',
+          seconds:'00'
+        }
+      }else{
+        // obj.days = parseInt(longTime / (1000 * 60 * 60 * 24)) // 天数
+        obj.hours = parseInt(longTime / (1000 * 60 * 60)) // 小时
+        obj.minutes = parseInt(longTime % (1000 * 60 *60) / (1000 * 60)) // 分钟
+        obj.seconds = parseInt(longTime % (1000 * 60) / 1000) // 秒钟
+        obj.hours = obj.hours >= 10 ? obj.hours : ('0'+ obj.hours)
+        obj.minutes = obj.minutes >= 10 ? obj.minutes : ('0'+ obj.minutes)
+        obj.seconds = obj.seconds >= 10 ? obj.seconds : ('0'+ obj.seconds)
+      }
+      return obj
+    }
+    onShow() {
+      console.log('onShow')
+      let _this = this
+      // _this.myTime(_this.timeStamp)
+    }
+
+    onUnload() {
+      let _this = this
+      clearInterval(_this.timer)
+      _this.timer=null
+      _this.$apply()
+    }
+
+    onHide() {
+      let _this = this
+      clearInterval(_this.timer)
+      _this.timer=null
+      _this.$apply()
+    }
+
+    formDate(arg) {
+      // endsTime
+      var date = new Date(arg)
+      var y = date.getFullYear()
+      var m = date.getMonth() + 1
+      m = m < 10 ? '0' + m : m
+      var d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+      var h = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+      var f = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+      var s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
+      return `${y}-${m}-${d}  ${h}:${f}:${s}`
+    }
+    onLoad() {
+      console.log('onLoad')
+      let _this = this
+      _this.timeStamp = new Date('2018-08-09 16:15:00').getTime()
+      // 计时器清除
+      _this.myTime(_this.timeStamp)
+      _this.endsTime = _this.formDate(_this.timeStamp)
+      _this.$apply()
+    }
+  }
+</script>
+<style lang="less">
+  .wrap{
+    width: 100%;
+    height: 100%;
+    .timeWrap{
+      width: 100%;
+      height: 100%;
+      font-size: 30rpx;
+    }
+  }
+</style>

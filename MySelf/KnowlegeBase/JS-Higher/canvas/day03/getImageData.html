@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>获取图片像素点</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			您的浏览器不支持canvas，请及时更新浏览器!
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		
+		var img=new Image();
+		img.src="0.jpg";
+		img.onload=function(){
+			ctx.drawImage(img,0,0);
+			//获取所有像素点
+			var imageData=ctx.getImageData(0,0,500,500);
+			console.log(imageData);
+			for(var i=0;i<imageData.data.length;i+=4){
+				var r=imageData.data[i];
+				var g=imageData.data[i+1];
+				var b=imageData.data[i+2];
+				var gray=(r+g+b)/3;
+				imageData.data[i]=255-r;
+				imageData.data[i+1]=255-g;
+				imageData.data[i+2]=255-b;
+			}
+			//把改完的像素点重新放到画布上
+			ctx.putImageData(imageData,100,100);
+		}
+		
+	</script>
+</html>

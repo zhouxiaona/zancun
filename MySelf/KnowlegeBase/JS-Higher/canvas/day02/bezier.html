@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>贝塞尔曲线</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			您的浏览器不支持canvas，请及时更新浏览器!
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		var x1=100;
+		var y1=100;
+		var x2=400;
+		var y2=400;
+		draw(x1,y1,x2,y2);
+		redDiv(x1,y1);
+		blueDiv(x2,y2);
+		function draw(x1,y1,x2,y2){
+			//画半透明的虚线
+			ctx.beginPath();
+			ctx.moveTo(500,0);
+			ctx.lineTo(0,500);
+			ctx.strokeStyle="rgba(0,0,0,0.1)";
+			ctx.lineWidth=10;
+			ctx.stroke();
+			//画连接线
+			ctx.beginPath();
+			ctx.moveTo(0,500);
+			ctx.lineTo(x1,y1);
+			ctx.lineWidth=3;
+			ctx.strokeStyle="rgba(0,0,0,1)";
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(500,0);
+			ctx.lineTo(x2,y2);
+			ctx.lineWidth=3;
+			ctx.strokeStyle="rgba(0,0,0,1)";
+			ctx.stroke();
+			//画贝塞尔曲线
+			ctx.beginPath();
+			ctx.moveTo(0,500);
+			ctx.bezierCurveTo(x1,y1,x2,y2,500,0);
+			ctx.lineWidth=10;
+			ctx.stroke();
+		}
+		
+		function redDiv(x1,y1){
+			//画红球
+			ctx.beginPath();
+			ctx.arc(x1,y1,10,0,Math.PI*2);
+			ctx.fillStyle="pink";
+			ctx.fill();
+		}
+		function blueDiv(x2,y2){
+			//画蓝球
+			ctx.beginPath(x2,y2);
+			ctx.arc(x2,y2,10,0,Math.PI*2);
+			ctx.fillStyle="blue";
+			ctx.fill();
+		}
+			
+		//拖动小球做动画
+		//判断是否拖动小球
+		//如果在小球上就做动画
+		mycanvas.onmousedown=function(ev){
+			var evObj=window.event || ev;
+			var x=evObj.clientX-mycanvas.offsetLeft;
+			var y=evObj.clientY-mycanvas.offsetTop;
+			redDiv(x1,y1);
+			if(ctx.isPointInPath(x,y)){
+				console.log("在红球内");
+				mycanvas.onmousemove=function(ev){
+					var evObj=window.event || ev;
+					var xx=evObj.clientX-mycanvas.offsetLeft;
+					var yy=evObj.clientY-mycanvas.offsetTop;
+					//清除画布
+					ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+					//重新绘制
+					x1=xx;
+					y1=yy;
+					draw(x1,y1,x2,y2);
+					redDiv(x1,y1);
+					blueDiv(x2,y2);
+				}
+				
+			}
+			blueDiv(x2,y2);
+			if(ctx.isPointInPath(x,y)){
+				console.log("在蓝球内");
+				mycanvas.onmousemove=function(ev){
+					var evObj=window.event || ev;
+					var xx=evObj.clientX-mycanvas.offsetLeft;
+					var yy=evObj.clientY-mycanvas.offsetTop;
+					//清除画布
+					ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+					//重新绘制
+					x2=xx;
+					y2=yy;
+					draw(x1,y1,x2,y2);
+					redDiv(x1,y1);
+					blueDiv(x2,y2);
+				}
+			}
+			
+		
+			
+			//判断鼠标是否在红球上
+//			var disRed=Math.pow((x-x1),2)+Math.pow((y-y1),2);
+//			if(disRed<100){
+//				console.log("鼠标在红球上");
+//				mycanvas.onmousemove=function(ev){
+//					var evObj=window.event || ev;
+//					var xx=evObj.clientX-mycanvas.offsetLeft;
+//					var yy=evObj.clientY-mycanvas.offsetTop;
+//					//清除画布
+//					ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+//					//重新绘制
+//					x1=xx;
+//					y1=yy;
+//					draw(x1,y1,x2,y2);
+//				}
+//			}
+			
+			//判断鼠标是否在蓝球上
+//			var disBlue=Math.pow((x-x2),2)+Math.pow((y-y2),2);
+//			if(disBlue<100){
+//				console.log("鼠标在蓝球上");
+//				mycanvas.onmousemove=function(ev){
+//					var evObj=window.event || ev;
+//					var xx=evObj.clientX-mycanvas.offsetLeft;
+//					var yy=evObj.clientY-mycanvas.offsetTop;
+//					//清除画布
+//					ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+//					//重新绘制
+//					x2=xx;
+//					y2=yy;
+//					draw(x1,y1,x2,y2);
+//				}
+//			}
+		}
+		document.onmouseup=function(){
+			mycanvas.onmousemove=null;
+		}
+		
+	</script>
+</html>

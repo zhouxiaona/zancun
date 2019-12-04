@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>选字游戏</title>
+		<style type="text/css">
+			* { margin:0; padding: 0; font-family: simsun; }
+			#wrap { width: 420px; margin: 0 auto; position: relative; min-height: 540px; max-height: 640px; border: 1px #ccc solid; border-radius: 5px; background: #dcdee0; }
+			#time { position: absolute; left: 20px; top: 20px; font-size: 30px; }
+			#scoring { position: absolute; top: 20px; right: 20px; font-size: 30px; }
+			#show { font-size: 10em; top: 90px; left: 126px; position: absolute; }
+			#menu { padding: 40px 30px; font-size: 30px; top: 250px; position: absolute; }
+			#list { position: absolute; left: 10px; bottom: 20px; list-style: none; }
+			#list li { float: left; font-size: 5em; }
+		</style>
+	</head>
+	<body>
+	<div id="wrap">
+		<div id="time">剩余时间：20</div>
+		<div id="scoring">完成：0</div>
+		<div id="show">红</div>
+		<div id="menu">根据上面的字的颜色从下面选择正确的字，选择正确自动开始</div>
+		<ul id="list">
+			<li>绿</li>
+			<li>蓝</li>
+			<li>黑</li>
+			<li>黄</li>
+			<li>红</li>
+		</ul>
+	</div>
+	<div id=""></div>
+	</body>
+	<script type="text/javascript">
+
+	
+// -----------------游戏参数--------------
+	var time = 50;//每局游戏的时间
+	var errorTime = 5;//点错之后扣除的时间
+	var colors = ["red", "blue", "green", "yellow", "black", "purple"];
+	var fonts = ["红", "蓝", "绿", "黄", "黑", "紫色"];
+
+
+
+// ------------------------------
+	var show = document.getElementById('show');
+	var lis = document.querySelectorAll("#list li");
+	// 根据游戏参数， 循环创建li添加到ul内部。
+	// for(var i = 0; i < fonts.length; i++){
+	// 	ul.appendChild (document.createElement("li"));
+
+	// }
+	var showIndex; 
+	var colorArr;
+	var fontArr;
+	randomCF();
+	document.getElementById("time").innerHTML = "剩余时间：" + time;
+
+	var timer = setInterval(subTime, 1000);
+
+	for(var i = 0; i < lis.length; i++){
+		lis[i].onclick = function(){
+			// if (this.innerHTML == fonts[showIndex]) {
+			// 	console.log("点对了");
+			// }
+			// 判断大字颜色和小字下标是否相等，相等就代表点击正确。
+			if (showIndex == this.fontIndex) {
+				console.log("点对了");
+				// 分数++；
+				randomCF();
+				// else 代表点击错误
+			} else {
+				// 点错之后分数减少。 
+				time -= errorTime;
+				document.getElementById("time").innerHTML = "剩余时间：" + time;
+				clearInterval(timer);
+				timer = setInterval(subTime, 1000);
+			}
+		}
+	}
+	// 每调用一次函数，就让时间减少1秒。
+	function subTime(){
+		time--;
+		document.getElementById("time").innerHTML = "剩余时间：" + time;
+		if (time <= 0) {
+			clearInterval(timer);
+			// 点击事件 = null;
+		}
+	}
+	// randomCF用于刷新页面，并记录大字的颜色下标和每个小字的字下标
+	function randomCF(){
+		// 随机大字的颜色，和字
+		// showIndex 保存大字的颜色下标，再点击的时候用于判断。
+		showIndex = parseInt(Math.random()*lis.length);
+		show.style.color = colors[showIndex];
+		show.innerHTML = fonts[parseInt(Math.random()*lis.length)];
+		// 随机小字的颜色和字
+		// 生成两个不重复的随机数数组，小字的颜色和字都是从这两个数组取值，当做颜色和字的下标。
+		colorArr = getArr();//[1, 3, 0, 2, 4]
+		fontArr = getArr(); //
+		for(var i = 0; i < lis.length; i++){
+			lis[i].style.color = colors[colorArr[i]];
+			lis[i].innerHTML = fonts[fontArr[i]];
+			// 每一个小字保存当前字的下标在fontIndex属性里面，在点击的时候用于判断是否和大字的颜色下标(showIndex)相等。
+			lis[i].fontIndex = fontArr[i];
+		}
+	}
+	// 调用getArr得到一个不重复的随机数数组。
+	function getArr(){
+		var arr = [];
+		for(var i = 0; i < lis.length; i++){
+			var num = parseInt(Math.random() * lis.length);
+			arr[i] = num;
+			for(var j = 0; j < i; j++){
+				if (num == arr[j]) {
+					i--;
+				}
+			}
+		}
+		return arr;
+	}
+
+
+
+		
+	</script>
+</html>

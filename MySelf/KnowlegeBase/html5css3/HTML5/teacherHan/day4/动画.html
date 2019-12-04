@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>animation-动画</title>
+	<style>
+		.div1{
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			animation-name: mgc2;
+			animation-duration: 6s;
+			animation-iteration-count: 2;
+
+/* 			animation-fill-mode: forwards;
+ */  			animation-direction: alternate-reverse
+;
+		}
+ 		.div1:hover{
+ 			animation-play-state: paused;
+ 		}
+		@keyframes mgc{
+			from {
+				width: 200px;
+				height: 200px;
+			}
+			to{
+				width: 400px;
+				height: 400px;
+			}
+		}
+		@keyframes mgc2{
+			0%{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+			50%{
+				margin-left: 20px;
+			}
+			100%{
+				width: 400px;
+				height: 400px;
+				background-color: blue;
+				margin-left: 20px;
+			}
+		}
+		@keyframes mg3{
+			from {
+				width: 200px;
+				height: 200px;
+			}
+			to{
+				width: 400px;
+				height: 400px;
+			}
+		}
+	</style>
+</head>
+<body>
+	
+	<!-- animation -->
+	<!-- keyframes 定义动画关键帧 支持百分比，还有from to-->
+	<!-- animation-name: keyframes name; 执行的动画名称 -->
+	<!-- animation-duration: 10s; 执行动画，需要完成的时间，单位是秒，s-->
+	<!-- animation-delay: 动画执行，延后的时间，单位是s -->
+
+
+	<div class="div1"></div>
+</body>
+</html>

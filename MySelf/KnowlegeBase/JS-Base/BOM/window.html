@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>window</title>
+		<style type="text/css">
+			.item{
+				width: 100px;
+				height: 200px;
+				background-color: gray;
+				position: fixed;
+				right: 0px;
+				top: 50%;
+				margin-top: -50px;
+				font-size: 24px;
+				color: white;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="item">点我进入聊天</div>
+
+	</body>
+	<script type="text/javascript">
+		var item=document.getElementsByClassName('item')[0];
+		//带确认、取消按钮的弹框
+		if(confirm('lalal?')){
+			console.log('点了确定');
+		}else{
+			console.log('点了取消');
+		}
+
+		//带输入按钮的弹框
+		var name=prompt("Please enter your name","")
+	  	if(name!=null && name!=""){
+	   	 	document.write("Hello " + name + "!")
+	    }
+
+
+
+		alert('mmmm');
+		item.onclick=function(){
+			//打开新窗口
+			//四个参数
+			//１.url　要打开的窗口的地址
+			//２.target 和a标签一样
+			//３.窗口特征，可以改变打开的新窗口的样式
+			//４.是否用新地址替换当前的历史记录，true是替换false不替换，生成新的记录。
+			var newWindow=window.open('http://www.baidu.com',"_blank","width=500,height=300,top=200,left=100,resizable=no");
+			//移动,在原有的基础上偏移多少
+			newWindow.moveBy(100,0);
+			//移动到指定坐标，与原有位置无关
+			newWindow.moveTo(-100,0);
+			newWindow.resizeBy(100,0);
+			newWindow.resizeTo(100,400);
+			setTimeout(function(){
+				//关闭窗口方法
+				newWindow.close();
+			},2000)
+
+		}
+	</script>
+</html>

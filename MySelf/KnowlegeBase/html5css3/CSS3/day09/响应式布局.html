@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>响应式布局</title>
+		<style type="text/css">
+			/* 响应式布局，可以让页面响应用户的一些操作，如：用户拖动改变窗口大小的时候，我们可以让页面呈现不同的布局方式。
+			响应式最主要解决的问题是可以让页面有多套布局 */
+			/* .wrap{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			} */
+		
+			/* 媒体查询，查询屏幕，根据屏幕的宽度设置不同的css */
+			/* 最大500px，大于等于300px并且小于等于500px显示里面的样式 */
+
+			/* @media screen and (max-width:500px) and (min-width:300px){
+				.wrap{
+					background-color: green;
+				}
+			} */
+			
+			/* 屏幕尺寸大于1200px，显示四列
+				屏幕尺寸900-1200　３列
+				屏幕尺寸600-900　２列
+				屏幕尺寸<600 1列 */
+
+			/* p 1215px */
+
+
+			/*  1. >1214px box 1200px div 3列
+				2. 835px-1214px div 3列  77%
+				3. 640px-835px box 640px div 3列
+				4. 481px-640px box 487.5/640  3列 
+				5. 413px-480px  362px/480px  2列
+				6. <412px  box 310px 2列*/
+			.item{
+				background: pink;
+				height: 100px;
+				margin: 1%;
+				float: left;
+			}
+			@media screen and (min-width:1200px) {
+				.item{
+					width: 23%;
+					height: 100px;
+					margin: 1%;
+				}
+				
+			}
+			@media screen and (min-width:900px) and (max-width:1200px) {
+				.item{
+					width: 31%;
+					height: 100px;
+					margin: 1%;
+				}
+				
+			}
+			@media screen and (min-width:600px) and (max-width:900px) {
+				.item{
+					width: 48%;
+					height: 100px;
+					margin: 1%;
+				}
+				
+			}
+			@media screen and (max-width:600px) {
+				.item{
+					width: 98%;
+					height: 100px;
+					margin: 1%;
+				}
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+	</body>
+</html>

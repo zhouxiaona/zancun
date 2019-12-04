@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>电影详情</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+			}
+			.wrap{
+				width: 1000px;
+				box-sizing: border-box;
+				padding: 5px;
+				border: 1px solid green;
+				overflow: hidden;
+				position: relative;
+				z-index: 10;
+				background-color: white;
+			}
+			.theme{
+				width: 100%;
+				margin: 0px auto 10px;
+				text-align: center;
+				font-size: 20px;
+				font-weight: bold;
+			}
+			.wrap>.movie{
+				width: 200px;
+				height: 300px;
+				float: left;
+				margin-bottom: 10px;
+				margin-right: 45px;
+				border: 1px solid blue;
+			}
+			.movie img{
+				width: 200px;
+				height: 270px;
+			}
+			.movie .title{
+				width: 100%;
+				text-align: center;
+			}
+			.intro{
+				width: 395px;
+				height: 500px;
+				box-sizing: border-box;
+				padding: 5px;
+				overflow: hidden;
+				border: 1px solid black;
+				position: fixed;
+				top: 50%;
+				margin-top: -250px;
+				left: 600px;
+			}
+			.intro>img{
+				width: 171px;
+				height: 244px;
+				float: left;
+				margin-right: 10px;
+			}
+			.intro .right{
+				float: left;
+				height: 244px;
+			}
+			.intro .right>div{
+				width: 200px;
+				margin: 10px 0px;
+			}
+			.intro .middle{
+				width: 100%;
+				height: 30px;
+				line-height: 30px;
+				margin: 5px 0px;
+				float: left;
+			}
+			.intro .middle span{
+				margin: 0 5px;
+			}
+			.intro .outer{
+				width: 395px;
+				height: 200px;
+				overflow: scroll;
+			}
+			.intro .bottom{
+				width: 600px;
+			}
+			.intro .bottom>div{
+				float: left;
+				margin-right: 10px;
+				width: 100px;
+			}
+			.intro .bottom>div>img{
+				width: 100px;
+				height: 120px;
+			}
+			.intro input{
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="theme"></div>
+		</div>
+		<div class="intro">
+			<img src="" alt="big">
+			<input type="button" value="×">
+			<div class="right">
+				<div class="title1"></div>
+				<div class="english"></div>
+				<div class="year"></div>
+				<div class="genres"></div>
+				<div class="count"></div>
+			</div>
+			<div class="middle">
+				<span class="score"></span>
+				<span class="max"></span>
+				<span class="min"></span>
+				<span class="star"></span>
+			</div>
+			<div class="outer">
+				<div class="bottom">
+					<!-- <div class="direc">
+						<img src="" alt="direc">
+						<div class="dec"></div>
+					</div> -->
+					<!-- <div class="actor">
+						<img src="" alt="direc">
+						<div class="ss"></div>
+					</div> -->
+				</div>
+			</div>
+				
+		</div>
+	</body>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		var wrap=$(".wrap")[0];
+		var bottom=$(".intro .bottom")[0];
+		var intro=$(".intro")[0];
+
+		var request=new XMLHttpRequest();
+		request.open("GET","hot.json",true);
+		request.send();
+		request.onreadystatechange=function(){
+			if(request.readyState==4 && request.status==200){
+				console.log(JSON.parse(request.responseText));
+				var obj=JSON.parse(request.responseText);
+				$(".theme").html(obj.title);
+				var subjects=obj.subjects;
+				for(var i=0;i<subjects.length;i++){
+					var movie=document.createElement("div");
+					movie.className="movie";
+					$(movie).attr("isF",true);
+					$(movie).attr("index",i);
+					movie.innerHTML="<img src='"+subjects[i].images.large+"' alt='lala'><div class='title'>"+subjects[i].title+"</div>";
+					wrap.appendChild(movie);
+				}
+				$(".movie").click(function(){
+					var index=$(this).attr("index");
+					$(".intro>img").prop("src",subjects[index].images.large);
+					$(".intro .right>.title1").html(subjects[index].title);
+					$(".intro .right>.english").html(subjects[index].original_title);
+					$(".intro .right>.year").html("电影年份："+subjects[index].year);
+					$(".intro .right>.genres").html("标签："+subjects[index].genres);
+					$(".intro .right>.count").html(subjects[index].collect_count+"人看过");
+					$(".intro .middle>.score").html("评分:"+subjects[index].rating.average);
+					$(".intro .middle>.max").html("最高:"+subjects[index].rating.max);
+					$(".intro .middle>.min").html("最低:"+subjects[index].rating.min);
+					$(".intro .middle>.star").html("星级:"+subjects[index].rating.stars);
+					
+
+					bottom.innerHTML="<div class='direc'><img src='"+subjects[index].directors[0].avatars.small+"' alt=''><div class='dec'>导演:"+subjects[index].directors[0].name+"</div></div>";
+
+					var casts=subjects[index].casts;
+					for(var i=0;i<casts.length;i++){
+						var actor=document.createElement("div");
+						actor.className="actor";
+						actor.innerHTML="<img src='"+casts[i].avatars.small+"' alt='bb'><div class='ss'>主演:"+casts[i].name+"</div>";
+						bottom.appendChild(actor);
+					}
+					var left=intro.offsetLeft;
+					if($(this).attr("isF") && left<=600){
+						var timer=setInterval(function(){
+							left+=20;
+							if(left>=1020){
+								clearInterval(timer);
+							}
+							intro.style.left=left+'px';
+							$("input").click(function(){
+								var lefts=intro.offsetLeft;
+								var timer1=setInterval(function(){
+									lefts-=20;
+									if(lefts<=600){
+										clearInterval(timer1);
+										$(this).attr("isF",true);
+									}
+									intro.style.left=lefts+'px';
+								},20);
+							});
+						},20);
+						$(this).attr("isF",false);
+					}
+
+				});
+
+			}
+		}	
+	</script>
+</html>

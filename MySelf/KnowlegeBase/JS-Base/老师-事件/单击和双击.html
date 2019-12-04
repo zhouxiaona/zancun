@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>单击和双击</title>
+		<style type="text/css">	
+			#redDiv{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="redDiv"></div>
+	</body>
+	<script type="text/javascript">
+		var redDiv = document.getElementById('redDiv');
+		var timer;
+		var count = 1;
+		redDiv.onclick = function(){
+			clearTimeout(timer);
+			timer = setTimeout(function(){
+				console.log(++count);
+				console.log("送一个爱心");
+			}, 300);	
+		}
+		redDiv.ondblclick = function(){
+			clearTimeout(timer);
+			console.log("保存图片到本地");
+		}
+
+		redDiv.onclck=function(){
+			clearTimeout(timer);
+			timer=setTimeout(function(){
+				console.log(++count);
+
+			},300);
+		}
+
+
+
+		
+
+	</script>
+</html>

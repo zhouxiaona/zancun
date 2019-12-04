@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>图片内容翻转显示</title>
+		<style>
+			.warp{
+				margin: 100px auto;
+				width: 1100px;
+				background-color: black;
+			}
+			ul{
+				padding: 0;
+				margin: 0;
+				list-style: none;
+				width: 1100px;
+				height: 700px;
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+				flex-wrap: wrap;
+			}
+			li{
+				perspective: 400px;
+				width: 200px;
+				height: 200px;
+				border-radius: 10px;
+				cursor: pointer;
+				background-color: white;
+			}
+			.item{
+				transform-style: preserve-3d;
+				width: 200px;
+				height: 200px;
+			}
+			.info{
+				width: 200px;
+				height: 200px;
+				border-radius: 10px;
+				background-color: green;
+			}
+		</style>
+	</head>
+	<body>
+	<div class="warp">
+		<ul>
+			<li><div class="item"></div></li>
+			<li><div class="item"></div></li>
+			<li><div class="item"></div></li>
+			<li><div class="item"></div></li>
+			<li><div class="item"></div></li>
+			<li><div class="item"></div></li>
+			<li><div class="item"></div></li>
+			<li><div class="item"></div></li>
+			<li><div class="item"></div></li>
+			<li><div class="item"></div></li>
+			<li><div class="item"></div></li>
+			<li><div class="item"></div></li>
+			<li><div class="item"></div></li>
+			<li><div class="item"></div></li>
+			<li><div class="item"></div></li>
+		</ul>
+	</div>
+		
+	</body>
+	<script>
+		var items = document.getElementsByClassName('item');
+		var lis = document.getElementsByTagName('li');
+		var num = 0;
+		for(var i=0;i<items.length;i++){
+			items[i].index= i;
+			items[i].onmouseenter=function(ev){
+				num = this.index;
+				this.innerHTML = '';
+				// this.children[0].remove();
+				var info = document.createElement('div');
+				info.className='info';
+				var evObj = window.evevt || ev ;
+				// 鼠标距离四个边的距离
+				var Lx = evObj.offsetX; //左
+				var Rx = items[0].offsetWidth - evObj.offsetX; //右
+				var Ty = evObj.offsetY; // 上
+				var By = items[0].offsetHeight - evObj.offsetY; //下
+				// 左边进入
+				if(Lx<Rx && Lx<Ty && Lx< By){
+					info.style.transformOrigin = '0 50% 0';
+					info.style.transform = 'rotateY(90deg)';
+					info.style.transition = '.2s linear';
+					setTimeout(function(){
+						info.style.transform = 'rotateY(0deg)';
+					},10);
+					
+				}
+				// 右边进入
+				else if(Rx<Lx && Rx<Ty && Rx< By){
+					info.style.transformOrigin = '200px 50% 0';
+					info.style.transform = 'rotateY(-90deg)';
+					info.style.transition = '.2s linear';
+					setTimeout(function(){
+						info.style.transform = 'rotateY(0deg)';
+					},10);
+				}
+				// 上边进入
+				else if(Ty<Rx && Ty<Lx && Ty< By){
+					info.style.transformOrigin = '50% 0 0';
+					info.style.transform = 'rotateX(-90deg)';
+					info.style.transition = '.2s linear';
+					setTimeout(function(){
+						info.style.transform = 'rotateX(0deg)';
+					},10);
+				}
+				// 下边进入
+				else{
+					info.style.transformOrigin = '50% 100% 0';
+					info.style.transform = 'rotateX(90deg)';
+					info.style.transition = '.2s linear';
+					setTimeout(function(){
+						info.style.transform = 'rotateX(0deg)';
+					},10);
+				}
+				this.appendChild(info);
+			}
+			// 鼠标移出
+			items[i].onmouseleave=function(ev){
+				var evObj = window.event || ev ;
+				items[num].children[0].remove();
+				var info = document.createElement('div');
+				info.className='info';
+				items[num].appendChild(info);
+				var _this = this;
+				// 左边移出
+				if(evObj.clientX<lis[num].offsetLeft){
+					this.children[0].style.transition = '0';
+					this.children[0].style.transformOrigin = '0 50% 0';
+					this.children[0].style.transform = 'rotate(0deg)';
+					setTimeout(function(){
+						_this.children[0].style.transition = '.2s linear';
+						_this.children[0].style.transform = 'rotateY(106deg)';
+					},10)
+					clearOut(num);
+				}
+				// 右边移出
+				else if(evObj.clientX>lis[num].offsetLeft+lis[num].offsetWidth-8){
+					this.children[0].style.transition = '0';
+					this.children[0].style.transformOrigin = '200px 50% 0';
+					this.children[0].style.transform = 'rotate(0deg)';
+					setTimeout(function(){
+						_this.children[0].style.transition = '.2s linear';
+						_this.children[0].style.transform = 'rotateY(-106deg)';
+					},10)
+					clearOut(num);
+				}
+				// 上边移出
+				else if(evObj.clientY<lis[num].offsetTop){
+					this.children[0].style.transition = '0';
+					this.children[0].style.transformOrigin = '50% 0 0';
+					this.children[0].style.transform = 'rotate(0deg)';
+					setTimeout(function(){
+						_this.children[0].style.transition = '.2s linear';
+						_this.children[0].style.transform = 'rotateX(-106deg)';
+					},10)
+					clearOut(num);
+				}
+				// 下边移出
+				else{
+					this.children[0].style.transition = '0';
+					this.children[0].style.transformOrigin = '50% 100% 0';
+					this.children[0].style.transform = 'rotate(0deg)';
+					setTimeout(function(){
+						_this.children[0].style.transition = '.2s linear';
+						_this.children[0].style.transform = 'rotateX(106deg)';
+					},10)
+					clearOut(num);
+				}
+			}
+			lis[i].style.background = 'url(img/zzr' + i + '.jpeg)  0 0/ cover ';
+		}
+		// 鼠标离开后 的清除
+		function clearOut(num){
+			setTimeout(function(){
+				items[num].children[0].remove();
+			},210);
+		}
+	</script>
+</html>
+
+
+
+
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css样式-文字设置</title>
+	<style>
+		html{
+			/*小于12px，会默认以12px结算。*/
+			font-size:20px;
+		}
+		body{
+		}
+		/*span{
+			font-size:1.6rem;
+		}*/
+		div{
+			width:10rem;
+			height:10rem;
+			background:red;
+			/*font-size设置 大于12px按照设置的倍数 小于12px按照12 px*/
+			font-size:1.2rem;
+
+		}
+		h2{
+			margin:0;
+			font-weight:normal;
+		}
+		.one{
+			font-weight:900;
+		}
+		.three{
+			font-weight:bold;
+		}
+		.test{
+			text-indent:2em; 
+			
+		}
+		em{
+		}
+	</style>
+</head>
+<body>
+	<!-- color 文字颜色设置 -->
+	<!-- font-size 文字 字号 可以百分比 em倍数 rem根倍数-->
+	<!-- 首行缩进设置 中文 text-indent -->
+
+	<!-- font-weight 字重  bold(500~900) 加粗 bolder 更粗(已淘汰) lighter(100~300) 更细 normal(400)正常的-->
+	<!-- font-style  斜体设置 italic 斜体设置 noraml正常设置-->
+	
+	<!-- font-family 字体设置 -->
+
+	<h2 class="one">hell world</h2>
+	<h2 class="two">hell world2</h2>
+	<h2 class="three">hell world3</h2>
+	<p class="test">asdkljalksdjlajsjsflkjal;jflkasjdf</p>
+	<p>asdkljalksdjlajsjsflkjal;jflkasjdf</p>
+	<p class="test">首行缩进设置首行缩进设置首行缩进设置首行缩进设置</p>
+	<p>首行缩进设置首行缩进设置首行缩进设置首行缩进设置</p>
+	<em>我是em</em>
+	<i>我是I</i>
+	<div>
+		hello world
+	</div>
+</body>
+</html>

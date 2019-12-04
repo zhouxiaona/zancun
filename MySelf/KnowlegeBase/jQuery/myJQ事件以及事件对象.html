@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>JQ事件以及事件对象</title>
+		<style type="text/css">
+			.box{
+				width: 200px;
+				height: 200px;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<!-- <span></span>
+			<button>点击</button> -->
+			<p class="test">白茶清欢无别事，我在等风也等你。</p>
+		</div>
+		<!-- <input type="text" id="inp1">
+		<input type="textfiled" name=""> -->
+		<textarea class="first">1232131231231231231</textarea>
+		<textarea class="second">1232131231231231231</textarea>
+		<select>
+			<option>lala</option>
+			<option>zz</option>
+			<option>nana</option>
+		</select>
+	</body>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		$(".box").css({
+			"width":"40px",
+			"height":"400px"
+		});
+		console.log($(".box").css("width"));
+
+		$(function(){
+			console.log('lalalalalall');
+		});
+
+		$(".box").css({
+			"width":"40px",
+			"height":"400px"
+		});
+		console.log($(".box").css("width"));
+	/******************************************************************
+		//bind()为匹配元素添加事件
+		// $(".box").bind("click",function(){
+		// 	$("span").text("hello lala,i am your friends");
+		// });
+
+
+		//blur()/focus()input失去/得到焦点的事件
+		$("#inp1").blur(function(){
+			$("#inp1").css("backgroundColor","red");
+		});
+		$("#inp1").focus(function(){
+			$("#inp1").css("backgroundColor","blue");
+		});
+
+
+
+		//change()　该事件仅适用于文本域（text field），以及 textarea 和 select 元素
+		$("select").change(function(){
+			$(this).css("backgroundColor","yellow");
+		});
+
+		$("textarea").change(function(){
+			$(this).css("color","red");
+		});
+
+
+		//click()/dblclick()
+		
+
+		//delegate()为匹配元素的子集添加事件函数
+		// $(".box").delegate("button","click",function(){
+		// 	$("p").css("color","red");
+		// });
+
+		//die()----live()
+		$(".box").live("click",function(){
+			$("span").text("hello lala,i am your friends");
+		});
+		// $('.box').die();
+		
+
+		//$("img").error(function(){});
+	*************************************************************/
+	</script>
+</html>

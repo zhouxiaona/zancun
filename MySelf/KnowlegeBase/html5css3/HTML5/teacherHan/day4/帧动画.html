@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>帧动画</title>
+	<style>
+		.div1{
+			width: 140px;
+			height: 140px;
+			border: 1px red solid;
+			background-image: url('images/run.png');
+			background-position: 0 0;
+			animation-name: run;
+			animation-duration: 1s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+			/* animation-timing-function: steps(11,start); */
+			margin: 0 auto;
+
+		}
+		@keyframes run{
+			0%,8%{
+				background-position: 0 0;
+			}
+			9%,17%{
+				background-position: -140px 0;
+			}
+			18%,26%{
+				background-position: -280px 0;
+			}
+			27%,35%{
+				background-position: -420px 0;
+			}
+			36%,44%{
+				background-position: -560px 0;
+			}
+			45%,53%{
+				background-position: -700px 0;
+			}
+			54%,62%{
+				background-position: -840px 0;
+			}
+			63%,71%{
+				background-position: -980px 0;
+			}
+			72%,80%{
+				background-position: -1120px 0;
+			}
+			81%,89%{
+				background-position: -1260px 0;
+			}
+			90%,98%{
+				background-position: -1400px 0;
+			}
+			100%{
+				background-position: -1540px 0;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="div1"></div>
+</body>
+</html>

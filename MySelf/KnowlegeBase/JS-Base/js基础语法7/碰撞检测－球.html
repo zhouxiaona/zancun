@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>碰撞检测－球</title>
+		<style type="text/css">
+			.wrap{
+				width: 500px;
+				height: 500px;
+				border: 5px solid black;
+				margin: 20px auto;
+				position: relative;
+			}
+			.red,.blue{
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				position: absolute;
+			}
+			.red{
+				background: red;
+				top: 0;
+				left: 230px;
+			}
+			.blue{
+				background: blue;
+				top: 230px;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="red"></div>
+			<div class="blue"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var wrap=document.getElementsByClassName('wrap')[0];
+		var red=document.getElementsByClassName('red')[0];
+		var blue=document.getElementsByClassName('blue')[0];
+		//获取到红球的定位顶部距离以及活动的最大高度
+		var rTop=red.offsetTop;
+		var maxTop=wrap.clientHeight-red.offsetHeight;
+		//获取到蓝球的定位左部距离以及活动的最大宽度
+		var bLeft=blue.offsetLeft;
+		var maxLeft=wrap.clientWidth-blue.offsetWidth;
+
+		//定义相撞开关
+		var isF=true;
+		//分别定义两个变量来定义红球和蓝球的速度
+		var speedY=7;
+		var speedX=5;
+		var timer=setInterval(function(){
+			rTop+=speedY;
+			bLeft+=speedX;
+			if(rTop>=maxTop || rTop<0){
+				speedY*=-1;
+			}
+			if(bLeft>=maxLeft || bLeft<0){
+				speedX*=-1;
+			}
+			red.style.top=rTop+'px';
+			blue.style.left=bLeft+'px';
+
+			//检测两个小球是否相撞的条件
+			//两个球的圆心距等于两个球的半径之和即相撞
+			var rBan=red.offsetWidth/2;
+			var bBan=blue.offsetWidth/2;
+			var y1=blue.offsetTop+bBan-(red.offsetTop+rBan);
+			var x1=blue.offsetLeft+bBan-(red.offsetLeft+rBan);
+			
+			//两个球之间的距离，如果距离等于圆心距，则两球相撞并且撞色
+			var res=Math.sqrt(x1*x1+y1*y1);
+			
+			if(res<=(rBan+bBan)){
+				speedY*=-1;
+				speedX*=-1;
+				// if(isF){
+				// 	isF=false;
+				// 	red.style.backgroundColor="rgb("+colorFn()+","+colorFn()+","+colorFn()+")";
+				// 	blue.style.backgroundColor="rgb("+colorFn()+","+colorFn()+","+colorFn()+")";
+				// }
+				
+				// clearInterval(timer);
+			}else{
+				isF=true;
+			}
+
+			function colorFn(){
+				return parseInt(Math.random()*256);
+			}
+		},20);
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

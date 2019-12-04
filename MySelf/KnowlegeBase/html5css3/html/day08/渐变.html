@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>渐变</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+			}
+			.item{
+				width: 200px;
+				height: 200px;
+				border: 1px solid pink;
+				float: left;
+				margin: 10px;
+				color: white;
+				font-size: 50px;
+				text-align: center;
+				line-height: 200px;
+
+			}
+			/* ...............................线性渐变.............................. */
+			.item1{
+				/*默认top从上到下,不加webkit前缀，要写to 方向，表示往哪个方向去
+					兼容写法,加上webkit前缀，不写to ,方向为起始方向.*/
+				background: -webkit-linear-gradient(blue,green,red,yellow);
+
+				background: linear-gradient(to right,blue,green,red,yellow);
+			}
+			.item2{
+				/* 方向可以给角度 */
+				background: -webkit-linear-gradient(78deg,blue,green,red,yellow);
+			}
+			.item3{
+				/* 50px 60px 代表蓝红的渐变区域是50px到60px之间 */
+				background: -webkit-linear-gradient(0deg,blue 50px,red 60px);
+			}
+			.item4{
+				/* 50px 60px 代表蓝红的渐变区域是20%到80%之间 */
+				background: -webkit-linear-gradient(0deg,blue 20%,red 80%);
+			}
+			.item5{
+				/* 50px 60px 代表蓝红的渐变区域是20%到80%之间,重复平铺 */
+				background: -webkit-repeating-linear-gradient(0deg,blue 20%,red 80%);
+			}
+
+
+
+			/* ..............................径向渐变............................. */
+			.item6{
+				/* 不能指定角度，圆的旋转无意义,100px代表的是半径 */
+				background: -webkit-radial-gradient(blue 100px,red 100px);
+			}
+			.item7{
+				/* 不能指定角度，圆的旋转无意义,100px代表的是半径 */
+				background: -webkit-radial-gradient(top,blue 50px,red 100px);
+			}
+			.item8{
+				/* 不能指定角度，圆的旋转无意义,100px代表的是半径 */
+				background: -webkit-repeating-radial-gradient(blue 20px,red 40px);
+			}
+			.item9{
+				/* 在长方形内，径向渐变是椭圆，可以添加circle属性变成圆形 */
+				width: 420px;
+				background: -webkit-repeating-radial-gradient(100px,blue 20px,red 40px);
+			}
+			.item10{
+				/* 草坪示例 */
+				width: 800px;
+				height: 30px;
+				background-image: linear-gradient(135deg,transparent 30%,green 32%);
+				background-size: 10px 10px;
+				background-repeat: repeat-x;
+				border: none;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="item item1">1</div>
+		<div class="item item2">2</div>
+		<div class="item item3">3</div>
+		<div class="item item4">4</div>
+		<div class="item item5">5</div>
+		<div class="item item6">6</div>
+		<div class="item item7">7</div>
+		<div class="item item8">8</div>
+		<div class="item item9">9</div>
+		<div class="item item10">10</div>
+	</body>
+</html>

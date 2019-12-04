@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>my滚动条</title>
+		<style type="text/css">
+			* { 
+				margin: 0; 
+				padding: 0; 
+			}
+			#wrap { 
+				position: absolute; 
+				top: 100px; 
+				left: 50%; 
+				margin-left: -150px; 
+				width: 295px; 
+				height: 400px; 
+				border: 1px #ccc solid; 
+				border-radius: 10px; 
+				overflow: hidden; 
+			}
+			#middle { 
+				position: absolute; 
+				padding: 10px 20px 10px 10px; 
+				font-size: 16px; 
+				line-height: 20px; 
+			}
+			#sliderWrap { 
+				position: absolute; 
+				top: 0; 
+				right: 0; 
+				height: 100%; 
+				width: 20px; 
+				background: #ccc;  
+				border-radius: 10px; 
+			}
+			#slider { 
+				position: absolute; 
+				height: 50px; 
+				width: 20px; 
+				background: #7B68EE; 
+				border-radius: 10px; 
+				cursor: pointer; 
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<p id="middle">随着数字革命逐渐渗透到人们日常生活中方方面面，它也开始渗入到我们的语言以及我们对事物工作机制最基本的看法里。科技做的就是这样的事情。在启蒙运动时期，牛顿和笛卡尔鼓励人们将宇宙想象成一个精美的钟表。到了工业时代，激起人们新认知的是带活塞的机器。到了今天，计算机开始从根本上改变人的认知。如果世界是一台计算机，那么这个世界就是可以被编程的。<br/>代码具有逻辑的，代码是可以被控制的，代码就是命运。这些理念是数字时代生活的核心原则。随着软件逐渐吞噬着整个世界，就好比著名的风险资本家 Marc Andreessen 之前说过的那样，我们现在正生活在机器的海洋里，机器将我们的行为、想法和情绪转变成了数据，数据则是用来给工程师进行编码操控的原材料。我们现在已经将生活看成了一种被一系列指令控制的有规则的东西，这些指令可以被发现、利用、优化甚至重写。公司用代码来理解我们最密切的联系，Facebook 的 Mark Zuckerberg甚至猜想在人类关系里可能存在一种基本的数学定律，这个定律控制着我们所关心的人和事的平衡。2013年，著名的基因科学家 Craig Venter 曾宣称，在人类基因组解码的 10年后，他就已经开始编写能够让他创造合成生物的代码了。“在这个星球上，我们知道的所有活细胞都是 DNA 软件驱动的生物机器。”甚至一些自助文学也阐明这样了这样一个观点，即你是可以控制自己的源代码的，你可以对你的恋爱生活、睡眠习惯和消费习惯重新进行编程。<br/>在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”</p>
+			<div id="sliderWrap">
+				<div id="slider"></div>
+			</div>
+		</div>
+	</body>
+	<!-- <script type="text/javascript" src="mouseWheel.js"></script> -->
+	<script type="text/javascript">
+		var wrap=document.getElementById('wrap');
+		var middle=document.getElementById('middle');
+		var sliderWrap=document.getElementById('sliderWrap');
+		var slider=document.getElementById('slider');
+		var y=0;;
+		var y1=0;;
+		var scale2;
+		//定义动态滚动条的高度，以防止middle内的内容增多
+		var scale=wrap.clientHeight/middle.offsetHeight;
+		var height=scale*sliderWrap.offsetHeight;
+		if(height<=50){
+			height=50;
+		}
+		slider.style.height=height+'px';
+
+		//middle能滑到的最大高度
+		var contmaxHeight=middle.offsetHeight-wrap.clientHeight;
+		//slide能滑到的最大高度
+		var slidemaxHeight=sliderWrap.offsetHeight-slider.offsetHeight;
+
+		function move(){
+			if(y1<=0){
+				y1=0;
+			}else if(y1>=slidemaxHeight){
+				y1=slidemaxHeight;
+			}
+			slider.style.top=y1+'px';
+			scale2=y1/sliderWrap.offsetHeight;
+			middle.style.top=-(scale2*middle.offsetHeight)+'px';
+		}
+
+		//鼠标滑动事件
+		slider.onmousedown=function(ev){
+			var evObj=window.event || ev;
+			y=evObj.offsetY;
+			document.onmousemove=function(ev){
+				var evObj=window.event || ev;
+				y1=evObj.clientY-wrap.offsetTop-y;
+				move();
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+			}
+		}
+		
+		//滚轮事件
+		wrap.addEventListener("mousewheel",function(ev){
+			var evObj=window.event || ev;
+			if(evObj.wheelDelta>0){
+				y1+=20;
+			}else{
+				y1-=20;
+			}
+			move();
+		},false);
+		
+		//点击跳到相对的位置
+		sliderWrap.onclick=function(ev){
+			var evObj=window.event || ev;
+			y1=evObj.clientY-wrap.offsetTop-slider.offsetHeight/2;
+			move();
+		}
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

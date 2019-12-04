@@ -1,0 +1,15 @@
+.auto {
+  margin: 0 auto;
+}
+.layout {
+  width: 1226px;
+  height: 1226px;
+  background: lightblue;
+  margin: 0 auto;
+}
+.layout:hover {
+  background-color: lightblue;
+}
+.layout::after {
+  border-right: 1px solid red;
+}

@@ -1,0 +1,61 @@
+header {
+  width: 100%;
+  height: 90px;
+  background: white;
+  margin-bottom: 30px;
+}
+header .header_inner {
+  margin: 0 auto;
+  width: 1226px;
+  overflow: hidden;
+}
+header .header_inner h1 {
+  float: left;
+}
+header .header_inner h1 a {
+  display: block;
+  height: 90px;
+  line-height: 122px;
+}
+header .header_inner ul {
+  float: left;
+  margin-left: 30px;
+}
+header .header_inner ul li {
+  float: left;
+  height: 90px;
+  line-height: 90px;
+}
+header .header_inner ul li a {
+  color: black;
+  font-size: 16px;
+}
+header .header_inner ul li a:hover {
+  color: #29b572;
+}
+header .header_inner ul li:nth-of-type(n+2) {
+  margin-left: 44px;
+}
+header .header_inner ol {
+  float: right;
+}
+header .header_inner ol li {
+  float: right;
+  height: 90px;
+  line-height: 90px;
+}
+header .header_inner ol li a {
+  color: black;
+  font-size: 14px;
+}
+header .header_inner ol li a:hover {
+  color: #29b572;
+}
+header .header_inner ol li:nth-of-type(1)::before {
+  display: inline-block;
+  content: "";
+  width: 1px;
+  height: 13px;
+  background: #cccccc;
+  margin: 0 10px;
+}

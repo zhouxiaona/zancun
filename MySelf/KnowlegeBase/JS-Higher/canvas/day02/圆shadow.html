@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>阴影</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			对不起，您的浏览器版本过低，点击<a href="###">下载</a>
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		ctx.font="80px Arial";
+		ctx.fillStyle="pink";
+		//阴影的颜色
+		ctx.shadowColor="black";
+		//阴影的模糊程度
+		ctx.shadowBlur=20;
+		//阴影的偏移量
+		ctx.shadowOffsetX=10;
+		ctx.shadowOffsetY=10;
+		ctx.fillText("你好",100,100);
+	</script>
+</html>

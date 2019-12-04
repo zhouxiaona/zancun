@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas 进度条</title>
+		<style type="text/css">
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="200" height="200">
+			您的浏览器不支持canvas,请您更新浏览器.
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		//~~string转成number类型
+		//trim()去掉两端空格
+		//substr(indexStart,indexEnd)
+		//addColorStop("0.5","red");第一个参数加不加双引号都可以
+		var canvas=document.getElementById("canvas");
+		var ctx=canvas.getContext("2d");
+		var num=0;
+		function line(num){
+			ctx.beginPath();
+			ctx.arc(100,100,85,0,(num/10)*(Math.PI*2/10));
+			var grd=ctx.createLinearGradient(15,15,180,180);
+			grd.addColorStop(0,"blue");
+			grd.addColorStop(0.2,"pink");
+			grd.addColorStop(0.5,"yellow");
+			grd.addColorStop(0.8,"green");
+			grd.addColorStop(1,"red");
+			ctx.strokeStyle=grd;
+			ctx.lineWidth = 30;
+			ctx.stroke();
+		}
+		function arc(){
+			ctx.beginPath();
+			ctx.arc(100,100,70,0,Math.PI*2);
+			ctx.fillStyle="white";
+			ctx.fill();
+		}
+		function text(num){
+			ctx.clearRect(58,58,70,70);
+			ctx.beginPath();
+			ctx.font=`50px Arial`;
+			ctx.fillStyle="blue";
+			ctx.textBaseline="middle";
+			ctx.textAlign="center";
+			ctx.fillText(`${num}%`,100,100);
+		}
+		var timer=setInterval(function(){
+			num+=10;
+			if(num==90){
+				clearInterval(timer);
+			}
+			line(num);
+			arc();
+			text(num);
+		},100);
+	</script>
+</html>

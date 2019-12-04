@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>flex延伸</title>
+		<style type="text/css">
+			.wrap{
+				width: 500px;
+				height: 500px;
+				border: 10px solid lightblue;
+				margin: 100px auto;
+				display: flex;
+				flex-wrap: wrap;
+				/* justify-content: center; */
+				align-items: center;
+				/* align-content: flex-start|flex-end|center; */
+				/* align-content: flex-end; */
+				/* 复合写法flex-flow: flex-direction flex-wrap; */
+				
+			}
+			.box{
+				width: 100px;
+				height: 200px;
+				background: red;
+				font-size: 30px;
+				text-align: center;
+				line-height: 200px;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box">1</div>
+			<div class="box">2</div>
+			<div class="box">3</div>
+			<div class="box">4</div>
+			<div class="box">5</div>
+			<!-- <div class="box">6</div>
+			<div class="box">7</div>
+			<div class="box">8</div>
+			<div class="box">9</div>
+			<div class="box">10</div> -->
+		</div>
+	</body>
+</html>

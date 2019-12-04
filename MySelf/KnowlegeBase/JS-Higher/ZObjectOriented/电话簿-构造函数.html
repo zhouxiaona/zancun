@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>电话簿-构造函数</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			ul{
+				width:300px;
+				margin-bottom: 20px;
+			}
+			ul li{
+				overflow: hidden;
+			}
+			.fl{
+				float: left;
+			}
+			.fr{
+				float: right;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<!--<li>
+				<span class="name fl">张三</span>
+				<span class="phone fr">13120186172</span>
+			</li>-->
+		</ul>
+		姓名：<input type="text" name="add" value="" />
+		<input type="text" name="phone" value="" />
+		<input type="button" value="增加" name="adds"/>
+		</br>
+		姓名：<input type="text" name="find" value="" />
+		<input type="button" value="查找" name="finds"/>
+		<input type="text" name="phones" value="" />
+		</br>
+		姓名：<input type="text" name="del" value="" />
+		<input type="button" value="删除" name="dels"/>
+		</br>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		//呈现视图单独分离成函数----------
+		//分别写添加、删除、查找功能
+		//属性、行为功能隔离
+//------------------------------------构造函数-----------------------------------------------------
+//		function Phonebook(){
+//			this.data=[];
+//		}
+//		//增加联系人
+//		Phonebook.prototype.add=function(name,phone){
+//			var obj={
+//				"name":name,
+//				"phone":phone
+//			};
+//			this.data.push(obj);
+//			var li=document.createElement("li");
+//			li.innerHTML=`<span class='name fl'>${obj.name}</span>
+//			            <span class='phone fr'>${obj.phone}</span>`;
+//			$("ul").append(li);
+//		}
+//		//查找联系人
+//		Phonebook.prototype.find=function(name){
+//			for(var i=0;i<this.data.length;i++){
+//				if(this.data[i].name==name){
+//					return this.data[i].phone;
+//				}
+//			}  
+//		}
+//		//删除联系人
+//		Phonebook.prototype.del=function(name){
+//			var lis=$("ul li");
+//			for(var i=0;i<lis.length;i++){
+//				if($(lis[i]).children(".name").html()==name){
+//					$(lis[i]).remove();
+//					this.data.splice(i,1);
+//				}
+//			}
+//		}
+//--------------------------------------------------------------------------------------------		
+		
+//-------------------------------------类------------------------------------------------	
+		class Phonebook{
+			constructor(){
+				this.data=[];
+			}
+			showData(){
+				var html="";
+				for(var i=0;i<this.data.length;i++){
+					html+=`<li>
+								<span class='name fl'>${this.data[i].name}</span>
+					       		<span class='phone fr'>${this.data[i].phone}</span>
+					       </li>`;
+				$("ul").html(html);
+				}
+			}
+			add(name,phone){
+				var obj={name,phone};
+				this.data.push(obj);
+			}
+			find(name){
+				for(var i=0;i<this.data.length;i++){
+					if(name==this.data[i].name){
+						return this.data[i].phone;
+					}
+				}
+			}
+			del(name){
+				for(var i=0;i<this.data.length;i++){
+					if(name==this.data[i].name){
+						this.data.splice(i,1);
+						i--;
+					}
+				}
+			}
+		}
+//--------------------------------------------------------------------------------------------			
+		//实例化电话簿---类
+		var myPhoneBook=new Phonebook();
+//--------------------------------------------------------------------------------------------	
+		//实例化电话簿---构造函数
+//		var myPhoneBook=new Phonebook();
+//--------------------------------------------------------------------------------------------			
+		$("input:text").each(function(){
+			$(this)[0].onfocus=function(){
+				$("input:text[name='phones']").val("");
+				$("input:text[name='find']").val("");
+			}
+		});
+		//添加联系人
+		$("input:button[name='adds']").click(function(){
+			var name=$("input:text[name='add']").val();
+			var phone=$("input:text[name='phone']").val();
+			myPhoneBook.add(name,phone);
+			myPhoneBook.showData();
+			$("input:text[name='add']").val("");
+			$("input:text[name='phone']").val("");
+		});
+		//查找联系人
+		$("input:button[name='finds']").click(function(){
+			var name=$("input:text[name='find']").val();
+			$("input:text[name='phones']").val(myPhoneBook.find(name));
+		});
+		//删除联系人
+		$("input:button[name='dels']").click(function(){
+			var name=$("input:text[name='del']").val();
+			myPhoneBook.del(name);
+			myPhoneBook.showData();
+			$("input:text[name='del']").val("");
+		});
+	</script>
+</html>

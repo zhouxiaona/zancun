@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>无缝滚动</title>
+		<style type="text/css">
+			* { margin: 0; padding: 0; }
+			#wrap { position: relative; width: 600px; height:300px; margin: 20px auto; border: 1px #ccc solid; overflow: hidden; }
+			#roll { position: absolute; left: 0; width: 9999px; overflow: hidden; }
+			#roll img { float: left; width: 300px; height: 300px; }
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="roll">
+				<img src="images/img01.jpg" alt="" />
+				<img src="images/img02.jpg" alt="" />
+				<img src="images/img03.jpg" alt="" />
+				<img src="images/img04.jpg" alt="" />
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+		function rollFn() {
+			var wrap = document.getElementById("wrap");
+			var roll = document.getElementById("roll");
+			var imgs = roll.getElementsByTagName("img");
+
+			var width = imgs[0].offsetWidth * imgs.length; //这里获取的长度是复制之前的长度
+			var step = 0;
+			var timer = null;
+
+			//自动滚动
+			function rollAuto() {
+				timer = setInterval(function() {
+					move();
+				}, 30);
+			}
+
+			//清除定时器
+			function clear() {
+				clearInterval(timer);
+				timer = null;
+			}
+
+			//执行滚动
+			function move(){
+				step -= 2;
+				if (step <= -width) {
+					step = 0;
+				}
+				roll.style.left = step + "px";
+			}
+
+			//事件绑定
+			function bind() {
+				wrap.onmouseover = function() {
+					clear();
+				}
+
+				wrap.onmouseout = function() {
+					rollAuto();
+				}
+			}
+
+			//初始化
+			function init() {
+				roll.innerHTML += roll.innerHTML;
+
+				//主动事件
+				bind();
+
+				//自动调用
+				rollAuto();
+			}
+			init();
+		}
+		rollFn();
+
+	</script>
+</html>

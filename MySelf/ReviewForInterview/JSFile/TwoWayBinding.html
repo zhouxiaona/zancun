@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js-TwoWayBinding</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<body>
+    <!-- Object.defineProperty() -->
+    <!-- v-model: input-type -->
+    <!-- text/textarea 调用value属性 and input事件 -->
+    <!-- checkbox/radio 调用checked属性 and change事件  -->
+    <!-- select/option 调用value属性 and change事件 -->
+    <div id="app">
+        <input type="text" id="txt">
+        <p id="show"></p>
+    </div>
+</body>
+<script type="text/javascript">
+    var obj = {}
+    Object.defineProperty(obj, 'txt', {
+        get: function () {
+            return obj
+        },
+        set: function (newValue) {
+            document.getElementById('txt').value = newValue
+            document.getElementById('show').innerHTML = newValue
+        }
+    })
+    document.addEventListener('keyup', function (e) {
+        obj.txt = e.target.value
+    })
+</script>
+</html>

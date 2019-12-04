@@ -1,0 +1,103 @@
+/*App.css*/
+.wrap{
+    width:100vw;
+    height:100vh;
+    text-align: center;
+}
+
+.title1,.title2{
+    margin:6px 0;
+    font-size: 24px;
+}
+.btn{
+    width:70%;
+    height:9%;
+    margin:15px auto;
+    line-height: 280%;
+    font-size: 23px;
+    background:#32AF81;
+    color:white;
+    border-radius: 10px;
+}
+.intro{
+    color:#7E7C83;
+}
+
+/*Pay.css*/
+.wraps{
+    width:100vw;
+    height:100vh;
+    text-align: center;
+    position: fixed;
+    top:0;
+    left:0;
+}
+.top{
+    padding-top: 20px;
+}
+.pays{
+    position: relative;
+    height:15%;
+}
+.pays .p1{
+    position: absolute;
+    left:20px;
+    top:15px;
+}
+.pays .p2{
+    position: absolute;
+    right:28px;
+    top:26px;
+}
+.pays span{
+    position: absolute;
+    top:40px;
+    left:180px;
+}
+.btns{
+    width:70%;
+    height:9%;
+    margin:300px auto 0;
+    line-height: 280%;
+    font-size: 23px;
+    background:#32AF81;
+    color:white;
+    border-radius: 10px;
+}
+/*Main.css*/
+ul,li{
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+.swiper{
+    width:100vw;
+    height:60vh;
+    overflow: hidden;
+    position: relative;
+}
+.swiper ul{
+    position: absolute;
+    left:0;
+    top:0;
+    width:300vw;
+    /*overflow: hidden;*/
+}
+.swiper ul li{
+    float:left;
+    width:100vw;
+}
+.OnOff{
+    width:50%;
+    margin:10px auto;
+    text-align: center;
+}
+.OnOff span{
+    display:inline-block;
+    margin:0 15px;
+    width:10px;
+    height:10px;
+    background: lightgray;
+    border-radius: 50%;
+}
+

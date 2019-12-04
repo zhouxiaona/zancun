@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>新留言板</title>
+	<style type="text/css">
+		ul{
+			list-style: none;
+		}
+		.box{
+			width:480px;
+			height: 220px;
+			border:1px solid #CBCCCB;
+			margin: 10px auto;
+			background-color: #F3F4F3;
+			padding:20px;
+		}
+		#name{
+			margin-bottom: 10px;
+			width: 400px;
+			height: 25px;
+		}
+		#content{
+			vertical-align: top;
+			width: 400px;
+			border-color: inherit;
+		}
+		.handon{
+			width: 60px;
+			height: 30px;
+			background-color: #BFC0BF;
+			text-align: center;
+			line-height: 30px;
+			font-size: 14px;
+			margin-top: 6px;
+			margin-left: 400px;
+		}
+		.word{
+			width: 520px;
+			height: 40px;
+			border: 1px solid transparent;
+			margin:10px auto;
+			font-size: 20px;
+			line-height: 40px;
+			margin-left: -20px;
+		}
+		.bottom #list a{
+			float: right;
+			margin-right: 20px;
+			/*display: */
+		}
+		.bottom #list h3{
+			width:520px;
+			height: 30px;
+			margin-left: -60px;
+			background-color: #ccc;
+			font-size: 14px;
+			line-height: 30px;
+			text-indent: 20px;
+		}
+		.bottom #list p{
+			width: 520px;
+			height: 60px;
+			margin-left: -60px;
+			margin-top: -15px;
+			background-color: #F3F4F3;
+			font-size: 14px;
+			line-height: 60px;
+			text-indent: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<label for="name">姓名：</label>
+		<input type="text" id="name" />
+		<br/>
+		<label for="content">内容：</label>
+		<textarea id="content" cols="10" rows="10"></textarea>
+		<div class="handon">提交</div>
+		<div class="word">显示留言</div>
+		<div class="bottom">
+			<ul id="list">
+				 <!--<li><h3>名字</h3><p>内容<a href="###">删除</a></p></li>--> 
+			</ul>
+		</div>
+
+	</div>
+
+
+	
+</body>
+<script type="text/javascript">
+	var name1 = document.getElementById("name");
+	var cont = document.getElementById("content");
+	var hd = document.getElementsByClassName("handon")[0];
+	var list = document.getElementById("list");
+	
+	// 把鼠标放在提交上，出现小手样式
+	hd.onmouseover=function(){
+		hd.style.cursor="pointer";
+	}
+	
+	hd.onclick = function(){
+		var nameVal = name1.value;
+		var contVal = cont.value;
+		if(nameVal=="" || contVal==""){
+			alert("请小主填写内容哦😯~");
+		}else{
+			var li = document.createElement("li");
+			list.appendChild(li);
+			li.innerHTML = "<h3>"+nameVal+"</h3><p>"+contVal+"<a href='###' class='del'>删除</a></p>";
+			list.insertBefore(li,list.firstChild);
+		}
+		name1.value="";
+		cont.value="";
+		
+		var del = document.getElementsByClassName("del")[0];
+		del.onclick = function(){
+			list.removeChild(li);
+		}
+	}
+</script>
+</html>

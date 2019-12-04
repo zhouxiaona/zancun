@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>碰撞检测</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			及时更新浏览器！
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		
+		function Rect(x,y,width,height,color,speedx,speedy){
+			this.x=x;
+			this.y=y;
+			this.width=width;
+			this.height=height;
+			this.color=color;
+			this.speedx=speedx;
+			this.speedy=speedy;
+		}
+		Rect.prototype.draw=function(){
+			ctx.beginPath();
+			ctx.fillStyle=this.color;
+			ctx.fillRect(this.x,this.y,this.width,this.height);
+		}
+		Rect.prototype.move=function(){
+			this.x+=this.speedx;
+			this.y+=this.speedy;
+			//碰壁检测
+			if(this.x<0 || this.x>mycanvas.width-this.width){
+				this.speedx*=-1;
+			}
+			if(this.y<0 || this.y>mycanvas.height-this.height){
+				this.speedy*=-1;
+			}
+		}
+		var rect1=new Rect(0,0,50,50,"pink",2,5);
+		var rect2=new Rect(450,0,50,50,"blue",5,2);
+		function act(){
+			ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+			rect1.draw();
+			rect1.move();
+			rect2.draw();
+			rect2.move();
+			//检测碰撞方法一：
+//			if((rect1.x+rect1.width) > rect2.x && rect1.x < (rect2.x+rect2.width) && (rect1.y+rect1.height) > rect2.y && rect1.y< (rect2.y+rect2.height)){
+//				console.log("lla");
+//				rect1.speedx*=-1;
+//				rect1.speedy*=-1;
+//				rect2.speedx*=-1;
+//				rect2.speedy*=-1;
+//			}
+			//检测碰撞方法一：
+			if(isCrash(rect1,rect2)){
+				console.log("lla");
+				rect1.speedx*=-1;
+				rect1.speedy*=-1;
+				rect2.speedx*=-1;
+				rect2.speedy*=-1;
+			}
+			window.requestAnimationFrame(act);
+		}
+		act();
+		
+		//检测方法二封装方法
+		function isCrash(rect1,rect2){
+			var min1x = rect1.x;
+			var max1x = rect1.x+rect1.width;
+			var min2x = rect2.x;
+			var max2x = rect2.x+rect2.width;
+			
+			var min1y = rect1.y;
+			var max1y = rect1.y+rect1.height;
+			var min2y = rect2.y;
+			var max2y = rect2.y+rect2.height;
+			
+			//假设碰撞出新的方块；
+			var nminx=Math.max(min1x,min2x);
+			var nmaxx=Math.min(max1x,max2x);
+			var nminy=Math.max(min1y,min2y);
+			var nmaxy=Math.min(max1y,max2y);
+			if(nmaxx>nminx && nmaxy>nminy){
+				return true;
+			}
+		}
+		
+	</script>
+</html>

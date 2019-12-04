@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>瀑布流进阶</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.list{
+				position: relative;
+				margin: 0 auto;
+			}
+			.list img{
+				position: absolute;
+				width:100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<progress min="0" max="100" value="0"></progress>
+		</div>
+		<div class="list"></div>
+	</body>
+	<script type="text/javascript">
+		var progress=document.getElementsByTagName("progress")[0];
+		//图片预加载处理--------------------------------------------------
+		var count=0;
+		var srcArr=[];
+		for(var i=0;i<16;i++){
+			var readyImg=new Image();
+			srcArr.push(readyImg);
+			readyImg.src="img/P_0"+i+".jpg";
+			readyImg.onload=function(){
+				count++;
+				progress.value=(count/16)*100;
+				if(count==16){
+					main();
+				}
+			}
+		}
+		function main(){
+			var list=document.getElementsByClassName('list')[0];
+			var width=100;
+			var margin=10;
+			//一共能排几列照片
+			var cols=parseInt(document.documentElement.clientWidth/(width+margin));
+			//定义一个数组来放每列的top值
+			var topArr=[];
+			for(var i=0;i<cols;i++){
+				topArr[i]=0;
+			}
+			//生成img的循环
+			for(var j=0;j<16;j++){
+				var img=document.createElement('img');
+				img.src=srcArr[j].src;
+				var minTop=topArr[0];
+				var minIndex=0;
+				for(var a=0;a<topArr.length;a++){
+					if(topArr[a]<minTop){
+						minTop=topArr[a];
+						minIndex=a;
+					}
+				}
+				img.style.top=topArr[minIndex] + "px";
+				img.style.left=(minIndex*(width+margin)) + "px";
+				list.appendChild(img);
+				topArr[minIndex]+=(img.offsetHeight+margin);
+			}
+		}
+		
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

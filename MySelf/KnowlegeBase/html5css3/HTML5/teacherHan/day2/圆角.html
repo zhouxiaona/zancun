@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.div2{
+			width: 200px;
+			height: 100px;
+			background-color: #000;
+			border-radius: 50px 50px;
+		}
+		.div1{
+
+			border-radius: 20px 20px 20px 20px/10px 20px 20px 20px;
+			width: 400px;
+			height: 300px;
+			box-sizing: border-box;
+			margin: 100px auto;
+			border-left: 200px transparent solid;
+			border-right: 200px transparent solid;
+			border-top: 300px red solid;
+			border-bottom: 0px yellow solid;
+			/* border-radius:  x y */
+	
+			
+			position: relative;
+
+		}
+		.div1::before{
+			display: block;
+			content: "";
+			width:200px;
+			height: 200px;
+			background-color: red;
+			position: absolute;
+			left: 0;
+			top: -400px;
+			border-radius: 50%;
+
+		}
+		.div1::after{
+			display: block;
+			content: "";
+			width:200px;
+			height: 200px;
+			background-color: red;
+			position: absolute;
+			right: 0;
+			top: -400px;
+			border-radius: 50%;
+
+		}
+	</style>
+</head>
+<body>
+	<!-- border-radius：x y 设置圆角 -->
+	<!-- border-top-left-radius 设置左上角 -->
+	<!-- border-top-right-radius 设置右上上角 -->
+	<!-- border-bottom-left-radius 设置左下角 -->
+	<!-- border-bottom-right-radius 设置右下角角 -->
+
+	<!-- border-top-left-radius: x y; x代表左上角x轴偏移量，y代表左上角y轴的偏移量，可以设置像素以及百分比-->
+	<!-- 一个值得情况，表示左上，右上，右下，左下的x和y都是这个值。 -->
+	<!-- 	border-radius:50%;-->
+	<!-- 两个值  第一个值表示左上 右下  第二个值表示右上 左下-->
+	<!-- border-radius: 50% 50% -->
+	<!-- 三个值 第一个值表示左上，第二个值表示 右上和左下，第三个值表示右下 -->
+	<!-- 四个值 分别代表左上，右上，右下，左下 -->
+
+
+	<!-- border-radius: 四个方向的x偏移/四个方向的y轴偏移
+	border-radius: 20px 20px 20px 20px/10px 20px 20px 20px;
+				 -->
+
+	<div class="div1">
+		
+	</div>
+	<div class="div2"></div>
+</body>
+</html>

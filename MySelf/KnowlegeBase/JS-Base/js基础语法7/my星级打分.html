@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>星级打分</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			#wrap{
+				display: flex;
+			}
+			#wrap ul{
+				display: flex;
+				margin-left: 10px;
+			}
+			#wrap ul li{
+				margin:0 0px;
+				position: relative;
+			}
+			#wrap ul li a{
+				display: inline-block;
+				width: 19px;
+				height: 23.5px;
+				background: url('img/star.png') no-repeat;
+				background-position:  center top;
+				background-size: 19px;
+			}
+
+			#wrap ul li .box{
+				width: 107px;
+				height: 80px;
+				border: 1px solid black;
+				border-radius: 7px;
+				box-sizing: border-box;
+				padding: 3px;
+				position: absolute;
+				bottom: -85px;
+				left: -1px;
+				font-size: 12px;
+				display: none;
+			}
+			#wrap ul li .box h4{
+				color: orange;
+			}
+			#wrap ul li .box p{
+				color: gray;
+			}
+			
+
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<span>点击星星就能打分</span>
+			<ul>
+				<li>
+					<a href="###"></a>
+					<div class="box">
+						<h4>
+							<span class="sp">1分</span>
+							<span>很不满意</span>
+						</h4>
+						<p>差得太离谱，与卖家描述的严重不符，非常不满</p>
+					</div>
+				</li>
+				<li>
+					<a href="###"></a>
+					<div class="box">
+						<h4>
+							<span class="sp">2分</span>
+							<span>不满意</span>
+						</h4>
+						<p>部分有破损，与卖家描述的不符，不满意</p>
+					</div>
+				</li>
+				<li>
+					<a href="###"></a>
+					<div class="box">
+						<h4>
+							<span class="sp">3分</span>
+							<span>一般</span>
+						</h4>
+						<p>质量一般，没有卖家描述的那么好</p>
+					</div>
+				</li>
+				<li>
+					<a href="###"></a>
+					<div class="box">
+						<h4>
+							<span class="sp">4分</span>
+							<span>满意</span>
+						</h4>
+						<p>质量不错，与卖家描述的基本一致，还是挺满意的</p>
+					</div>
+				</li>
+				<li>
+					<a href="###"></a>
+					<div class="box">
+						<h4>
+							<span class="sp">5分</span>
+							<span>非常满意</span> 
+						</h4>
+						<p>质量非常好，与卖家描述的完全一致，非常满意</p>
+					</div>
+				</li>
+			</ul>
+			<div id="enter"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var ass=document.getElementsByTagName('a');
+		var boxs=document.getElementsByClassName('box');
+		var enter=document.getElementById('enter');
+		var sps=document.getElementsByClassName('sp');
+		var ps=document.getElementsByTagName('p');
+		var score=0;
+		// 给每个星星添加鼠标移入，移出，点击事件
+		for(var i=0;i<ass.length;i++){
+			ass[i].index=i;
+			//鼠标移入
+			ass[i].onmouseover=function(){
+				for(var i=0;i<ass.length;i++){
+					if(i<=this.index){
+						ass[i].style.backgroundPosition="0px -28px";
+					}else{
+						ass[i].style.backgroundPosition="center top";
+					}
+				}
+				boxs[this.index].style.display='block';
+				
+			}
+			//鼠标移出
+			ass[i].onmouseout=function(){
+				for(var j=0;j<ass.length;j++){
+					if(j<score){
+						ass[j].style.backgroundPosition="0px -28px";
+						boxs[j].style.display='none';
+					}else{
+						ass[j].style.backgroundPosition="center top";
+						boxs[j].style.display='none';
+					}
+				}
+			}
+
+			//鼠标点击
+			ass[i].onclick=function(){
+				score=this.index+1;
+				enter.innerHTML=sps[this.index].innerHTML+"("+ps[this.index].innerHTML+")";
+			}
+		}
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>重力</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			及时更新浏览器！
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		
+		function draw(x,y){
+			ctx.beginPath();
+			ctx.fillStyle="pink";
+			ctx.fillRect(x,y,50,50);
+		}
+		
+		var x=0;
+		var y=0;
+		var speedX=7;
+		draw(x,y);
+		function act(){
+			var t2=new Date();
+			var t=(t2-t1)/1000;
+			ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+			var h=9.8*0.5*t*t*100;
+			x+=speedX;
+			if(h>mycanvas.height-50){
+				h=mycanvas.height-50;
+				speedX=0;
+			}
+			draw(x,h);
+			window.requestAnimationFrame(act);
+		}
+		
+		
+		mycanvas.onmousedown=function(){
+			t1=new Date();
+			act();
+		}
+		
+	</script>
+</html>

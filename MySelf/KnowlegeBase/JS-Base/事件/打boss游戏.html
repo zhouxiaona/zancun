@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>打boss游戏</title>
+		<style type="text/css">
+			.wrap{
+				width: 600px;
+				height: 700px;
+				border: 1px solid black;
+				margin: 10px auto;
+				position: relative;
+			}
+			.wrap .keys{
+				width: 100px;
+				height: 80px;
+				text-align: center;
+  				line-height: 80px;
+				font-size: 40px;
+				color: white;
+				position: absolute;
+				bottom: 0;
+			}
+			.green{
+				left: 0;
+				background-color: green;
+			}
+			.blue{
+				left: 100px;
+				background-color: blue;
+			}
+			.red{
+				left: 200px;
+				background-color: red;
+			}
+			.black{
+				left: 300px;
+				background-color: black;
+			}
+			.orange{
+				left: 400px;
+				background-color: orange;
+			}
+			.cyan{
+				left: 500px;
+				background-color: cyan;
+			}
+			.wrap .keys .zidan{
+				width: 40px;
+				height: 40px;
+				transform: rotate(-90deg);
+				background: url('img/03.png') no-repeat center/100%;
+				position: absolute;
+				top: 0;
+				left: 35px;
+			}
+			.boss{
+				width: 100px;
+				height: 80px;
+				background: pink;
+				text-align: center;
+				line-height: 80px;
+				font-size: 30px;
+				color: black;
+				position: absolute;
+				top: 100px;
+				left: 0;
+			}
+			.blood{
+				width: 100%;
+				position: absolute;
+				top: 20px;
+				left: 10px;
+			}
+			.bloodLine{
+				width: 400px;
+				height: 26px;
+				border: 1px solid black;
+				border-radius: 120px;
+				float: left;
+				background-color: rgba(0, 0, 0, 0.2);
+			}
+			.innerLine{
+				width: 400px;
+				height: 26px;
+				border-radius: 120px;
+				background: rgba(0, 255, 0, 0.4);
+			}
+			.bloodNum{
+				margin-left: 10px;
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="green keys">A</div>
+			<div class="blue keys">S</div>
+			<div class="red keys">D</div>
+			<div class="black keys">J</div>
+			<div class="orange keys">K</div>
+			<div class="cyan keys">L</div>
+			<!-- boss的定义 -->
+			<div class="boss">boss</div>
+			<!-- boss血条及血量的定义 -->
+			<div class="blood">
+				<div>boss的血量值:</div>
+				<div class="bloodLine">
+					<div class="innerLine"></div>
+				</div>
+				<span class="bloodNum">100</span>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var wrap=document.getElementsByClassName('wrap')[0];
+		var boss=document.getElementsByClassName('boss')[0];
+		var keys=document.getElementsByClassName('keys');
+		//获取血条和血量数
+		var innerLine=document.getElementsByClassName('innerLine')[0];
+		var bloodNum=document.getElementsByClassName('bloodNum')[0];
+		//定义碰撞次数
+		var count=0;
+		//获取boss的血量值
+		var innerWidth=innerLine.offsetWidth;
+		var bloodNums=Number(bloodNum.innerText);
+
+
+		var arr=[65,83,68,74,75,76];
+		//boss的运动轨迹
+		var bLeft=boss.offsetLeft;
+		var maxLeft=wrap.clientWidth-boss.offsetWidth;
+		var speedX=4;
+		var timer=setInterval(function(){
+			bLeft+=speedX;
+			if(bLeft>=maxLeft || bLeft<0){
+				speedX*=-1;
+			}
+			boss.style.left=bLeft+'px';
+		},20);
+
+	
+		
+		//键盘按下事件
+		document.onkeydown=function(ev){
+			var evObj=window.event || ev;
+			//为每个字母添加子弹A65  S83  D68  J74  K75  L76
+			var index=arr.indexOf(evObj.keyCode);
+			if(index>=0){
+				var newKey=document.createElement('div');
+				//控制只发一个子弹
+				if(keys[index].children.length){
+					return;
+				}
+				keys[index].appendChild(newKey);
+				keys[index].style.backgroundColor='lightgray';
+				keys[index].style.color='black';
+				newKey.className='zidan';
+				var tops=newKey.offsetTop;
+				var maxTop=wrap.clientHeight-keys[index].offsetHeight;
+				var speedY=4;
+				
+
+				var timer1=setInterval(function(){
+					tops-=speedY;
+					var topAbs=Math.abs(tops);
+					//子弹相对于wrap定位的距离(上的距离)
+					var topIndex=wrap.clientHeight-topAbs-keys[index].offsetHeight;
+					//判断子弹与boss是否相撞（子弹相对于键盘定位，boss相对于wrap定位）
+					//　zidan上<boss下　zidan下>boss上　　zidan左<boss右　　zidan右>boss左
+					
+					if(topAbs>=maxTop || (topIndex<(boss.offsetTop+boss.offsetHeight) && (topIndex+newKey.offsetHeight)>boss.offsetTop && (newKey.offsetLeft+index*100)<(boss.offsetLeft+boss.offsetWidth) && (newKey.offsetLeft+index*100+newKey.offsetWidth)>boss.offsetLeft)){
+						newKey.remove();
+					}
+					//碰撞时血量数字和血量减少
+					if(topIndex<(boss.offsetTop+boss.offsetHeight) && (topIndex+newKey.offsetHeight)>boss.offsetTop && (newKey.offsetLeft+index*100)<(boss.offsetLeft+boss.offsetWidth) && (newKey.offsetLeft+index*100+newKey.offsetWidth)>boss.offsetLeft){
+
+						bloodNums-=1;
+						innerWidth-=4;
+						if(bloodNums<=0 || innerWidth<=0){
+							clearInterval(timer1);
+							clearInterval(timer);
+							speedY=0;
+							bloodNums=0;
+							innerWidth=0;
+							alert('boss已死,游戏结束,玩家胜利！！！👏');
+							//游戏结束
+						}
+						innerLine.style.width=innerWidth+'px';
+						bloodNum.innerText=bloodNums;
+					}
+					newKey.style.top=tops+'px';
+				},20);
+			}
+		}
+
+
+
+
+
+
+		//键盘抬起事件
+		document.onkeyup=function(ev){
+			var evObj=window.event || ev;
+			if(evObj.keyCode==65){
+				keys[0].style.backgroundColor='green';
+				keys[0].style.color='white';
+			}
+			if(evObj.keyCode==83){
+				keys[1].style.backgroundColor='blue';
+				keys[1].style.color='white';
+			}
+			if(evObj.keyCode==68){
+				keys[2].style.backgroundColor='red';
+				keys[2].style.color='white';
+			}
+			if(evObj.keyCode==74){
+				keys[3].style.backgroundColor='black';
+				keys[3].style.color='white';
+			}
+			if(evObj.keyCode==75){
+				keys[4].style.backgroundColor='orange';
+				keys[4].style.color='white';
+			}
+			if(evObj.keyCode==76){
+				keys[5].style.backgroundColor='cyan';
+				keys[5].style.color='white';
+			}
+		}
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

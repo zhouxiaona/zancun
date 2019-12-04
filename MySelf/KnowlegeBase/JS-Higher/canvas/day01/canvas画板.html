@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas画板</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="400" height="400">
+			您的浏览器不支持canvas,请及时更新
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var canvas=document.getElementById("mycanvas");
+		var ctx=canvas.getContext("2d");
+		canvas.onmousedown=function(e){
+			var evObj=e || window.event;
+			var x=evObj.clientX-canvas.offsetLeft;
+			var y=evObj.clientY-canvas.offsetTop;
+			ctx.beginPath();
+			ctx.moveTo(x,y);
+			canvas.onmousemove=function(e){
+				var evObj=e || window.event;
+				var x1=evObj.clientX-canvas.offsetLeft;
+				var y1=evObj.clientY-canvas.offsetTop;
+				ctx.lineTo(x1,y1);
+				ctx.lineWidth=5;
+				ctx.strokeStyle="#FF0000";
+				ctx.stroke();
+			}
+		}
+		document.onmouseup=function(){
+			canvas.onmousemove=null;
+		}
+		
+	</script>
+</html>

@@ -1,0 +1,78 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        //可以多行写，也可以用冒号
+        title 我的网站
+    body
+        div
+            //转义
+            |haha
+            a: img(src="###")
+        div(style={width:"100px",height:"100px"}) 测试div
+
+        div(class="test") 我是类名为test的div
+        .test 我是类名
+        #myid 我是id名
+        .myclass#myid2
+
+        -var name="张三"
+
+        div 名字是#{name}
+        //我是注释
+        //
+            我是注释一
+            啦啦啦啦
+
+        //- 我是jade注释
+        //-
+            我是但是卡就是
+            是对方v的可视辣女分开了
+        ul
+            -for(var i=0;i<3;i++)
+                li 我是循环的li
+        -var arr=["张三","李四","网二"]
+            for val in arr
+                p #{val}
+        -var arrs=[{name:"张三",age:18},{name:"李四",age:19}]
+            for val in  arrs
+                p 姓名是#{val.name} 年龄是#{val.age}
+        -var obj={name:"张三",age:18}
+            for item,index in obj
+                p #{index}的值是#{item}
+        -var judge=true
+            if judge
+                p judge的值是true
+            else
+                p judge的值是false
+        -var num=2
+            case num
+                when 1
+                    p #{num}的值等于一
+                when 2
+                    p #{num}的值等于二
+                when 3
+                    p #{num}的值等于三
+                default
+                    p #{num}是其他值
+
+        script(type="text.javascript").
+            console.log(111);
+            function test(){
+                console.log(444);
+            }
+        //js里的封装函数=============
+        mixin list
+            ul
+                -for(var i=0;i<3;i++)
+                    li 我是li里的内容
+        +list
+        +list
+
+        mixin pet(name,sex)
+            p 宠物的名字是#{name},宠物的性别是#{sex}
+        +pet("大黄","男")
+        +pet("小强","男")
+
+
+

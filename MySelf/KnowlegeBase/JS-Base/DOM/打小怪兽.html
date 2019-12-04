@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>打怪兽</title>
+		<style type="text/css">
+			.box{
+				width: 73px;
+				height: 73px;
+				margin-top: 200px;
+				margin-left: 20px;
+				background: url('img/01.png') no-repeat center/100%;
+				position: relative;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box"></div>
+	</body>
+	<script type="text/javascript">
+	// testdjafsbjasbdv akbgsvdmsannvajnj
+		var box=document.getElementsByClassName('box')[0];
+		var timer;
+		box.onclick=function(){
+			clearTimeout(timer);
+			box.style.background="url('img/02.png') no-repeat center/100%";
+			timer=setTimeout(function(){
+				box.style.background="url('img/01.png') no-repeat center/100%";
+			},120);
+
+			var divs=document.createElement('div');
+			box.appendChild(divs);
+			divs.style.width='24px';
+			divs.style.height='14px';
+			divs.style.background="url('img/03.png') no-repeat center/100%";
+			divs.style.position='absolute';
+			divs.style.top='35px';
+			divs.style.left='73px';
+			var move=setInterval(function(){
+				var length=parseInt(divs.style.left);
+				length+=10;
+				if(length>600){
+					clearInterval(move);
+					divs.remove();
+				}
+				divs.style.left=length+'px';
+				
+			},80);
+
+		}
+	</script>
+</html>

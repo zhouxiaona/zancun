@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>背景图滚动飞机</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="400" height="400">
+			及时更新浏览器！
+		</canvas>
+		
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		
+		//两张图的预加载
+//		var arr=["img/3.png","img/sky.png"];
+		var imgObj={"fly":"img/3.png","sky":"img/sky.png"};
+		var imgNum=0;
+		//统计对象的长度
+		for(var i in imgObj){
+			imgNum++;
+		}
+		
+		
+		var num=0;
+		var imgArr={};
+		for(let i in imgObj){
+			var img=new Image();
+			img.src=imgObj[i];
+			img.onload=function(){
+				imgArr[i]=this;
+				num++;
+				if(num>=imgNum){
+					main(imgArr);
+				}
+			}
+		}
+		
+		function main(imgArr){
+			mycanvas.width=imgArr.sky.width;
+			mycanvas.height=imgArr.sky.height;
+			x=0;
+			function act(){
+				ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+				skyImg(imgArr.sky);
+				flyImg(imgArr.fly);
+				window.requestAnimationFrame(act);
+			}
+			act();
+		}
+		
+		
+//==================数组形式的遍历图片=================		
+//		for(let i=0;i<arr.length;i++){
+//			var img=new Image();
+//			img.src=arr[i];
+//			img.onload=function(){
+//				num++;
+//				imgArr[i]=this;
+//				if(num >= arr.length){
+//					console.log("加载完成");
+//					main(imgArr);
+//				}
+//			}
+//		}
+		
+		//封装让画布移动的函数
+		function skyImg(sky){
+			ctx.beginPath();
+			ctx.drawImage(sky,x,0);
+			ctx.drawImage(sky,mycanvas.width+x-1,0);
+			x-=4;
+			if(Math.abs(x) > mycanvas.width){
+				x=0;
+			}
+		}
+		//封装画飞机的函数
+		function flyImg(fly){
+			ctx.beginPath();
+			ctx.drawImage(fly,0,0,fly.width,fly.height,20,20,83,60);
+		}
+//======================只有背景图的时候背景图移动======================		
+//		var img=new Image();
+//		img.src="img/sky.png";
+//		img.onload=function(){
+//			mycanvas.width=img.width;
+//			mycanvas.height=img.height;
+//			var x=0;
+//			function act(){
+//				ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+//				ctx.drawImage(img,x,0);
+//				ctx.drawImage(img,mycanvas.width+x-1,0);
+//				x-=4;
+//				if(Math.abs(x) > mycanvas.width){
+//					x=0;
+//				}
+//				window.requestAnimationFrame(act);
+//			}
+//			act();
+//		}
+
+
+	</script>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>css布局-position定位</title>
+	<style>
+
+		body{
+			height:2000px;
+			margin:0;
+		}
+		.fixed{
+			width:100px;
+			height:300px;
+			background:blue;
+			position:fixed;
+			left:0;
+			top:0%;
+			/*透明度设置0~1*/
+			opacity: 1;
+			/*层级设置*/
+			z-index:0;
+
+			/*如何让元素上下左右居中*/
+			/*left:50%;
+			top:50%;
+			margin-left:-25px;
+			margin-top:-100px;*/
+
+
+		}
+		.fixed2{
+			width:100px;
+			height:300px;
+			background:gold;
+			position:fixed;
+			left:40px;
+			top:40px;
+			z-index:0;
+		}
+		.fixed3{
+			width:100px;
+			height:300px;
+			background:purple;
+			position:fixed;
+			left:80px;
+			top:80px;
+			z-index:-1;
+		}
+		.content{
+			width:400px;
+			background:pink;
+			height:100%;
+
+		}
+		.div1{
+			width:50px;
+			height:150px;
+			background:red;
+		}
+	</style>
+</head>
+<body>
+	<!-- 定位：position: relative | absolute | fixed  -->
+	<!-- relative 相对定位 -->
+	<!-- absolute 绝对定位 -->
+	<!-- fixed 固定定位 以浏览器视窗定位的一种方式-->
+
+	<!-- position:fixed 固定定位 可以设置负数 可以设置百分比。设置固定定位后，一定要初始化位置。-->
+	<!-- 会改变行标签和块标签的表现 参考float-->
+	<!-- 一但给元素设置了固定定位，浮动将不会产生作用 -->
+	
+	<div class="content">
+		1231231238123912648726348926742
+	</div>
+	
+	<div class="fixed">
+	</div>
+	<!-- <div class="fixed2"></div>
+	<div class="fixed3"></div> -->
+	
+</body>
+</html>

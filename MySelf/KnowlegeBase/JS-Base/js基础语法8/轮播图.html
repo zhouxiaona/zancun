@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>轮播图</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				text-decoration: none;
+			}
+
+			.icon {
+			   width: 1em; height: 1em;
+			   vertical-align: -0.15em;
+			   fill: currentColor;
+			   overflow: hidden;
+			}
+
+			.window{
+				width: 600px;
+				height: 330px;
+				margin: 100px auto;
+				box-shadow: 15px 15px 20px lightgray;
+				position: relative;
+				overflow: hidden;
+			}
+			.window ul{
+				width: 2400px;
+				position: absolute;
+				transition:.5s;
+			}
+			.window ul li{
+				float: left;
+			}
+			.window img{
+				width: 600px;
+				height: 330px;
+			}
+			.window ol{
+				width: 150px;
+				position: absolute;
+				left: 0;
+				right: 0;
+				margin: auto;
+				bottom: 10px;
+				display: flex;
+				justify-content: space-around;
+			}
+			.window ol li a{
+				display: inline-block;
+				width: 15px;
+				height: 15px;
+				background: rgba(0, 0, 0, 0.5);
+				border-radius: 50%;
+				/* transition:.5s; */
+			}
+			.btn_left,.btn_right{
+				position: absolute;
+				width: 50px;
+				height: 70px;
+				text-align: center;
+				line-height: 70px;
+				color: white;
+				font-size: 38px;
+				background: rgba(0, 0, 0, 0.4);
+				top: 0;
+				bottom: 0;
+				margin: auto;
+			}
+			.btn_left{
+				left: 0;
+			}
+			.btn_right{
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="window">
+			<ul style="left:0;">
+				<li>
+					<a href="###">
+						<img src="img/01.jpg">
+					</a>
+				</li>
+				<li>
+					<a href="###">
+						<img src="img/02.jpg">
+					</a>
+				</li>
+				<li>
+					<a href="###">
+						<img src="img/03.jpg">
+					</a>
+				</li>
+				<li>
+					<a href="###">
+						<img src="img/04.jpg">
+					</a>
+				</li>
+				<!-- <li>
+					<a href="###">
+						<img src="img/01.jpg">
+					</a>
+				</li> -->
+			</ul>
+			<ol>
+				<li><a style="background-color: white;" href="###"></a></li>
+				<li><a href="###"></a></li>
+				<li><a href="###"></a></li>
+				<li><a href="###"></a></li>
+			</ol>
+			<a class="btn_left" href="###">
+				<svg class="icon" aria-hidden="true">
+				  <use xlink:href="#icon-fanhui-copy"></use>
+				</svg>
+			</a>
+			<a class="btn_right" href="###">
+				<svg class="icon" aria-hidden="true">
+				  <use xlink:href="#icon-fanhui-copy1"></use>
+				</svg>
+			</a>
+		</div>
+	</body>
+	<script src="iconfont.js"></script>
+	<script type="text/javascript">
+		var windows=document.querySelector('.window');
+		var slider=document.querySelector('.window ul');
+		var lis=document.querySelectorAll('.window ol a');
+		var last=document.querySelector('.btn_left');
+		var next=document.querySelector('.btn_right');
+		
+		var index=0;
+		var w=windows.offsetWidth;
+		// slider.style.width=w*lis.length+'px';
+		//slider运动的函数
+		function move(){
+			index++;
+			if(index>lis.length-1){
+				index=0;
+			}
+			var l=-index*w;
+			slider.style.left=l+'px';
+
+			//小按钮变色
+			lis[index].style.backgroundColor='white';
+			if(index==0){
+				lis[index+1].style.backgroundColor='rgba(0, 0, 0, 0.5)';
+				lis[index+2].style.backgroundColor='rgba(0, 0, 0, 0.5)';
+				lis[index+3].style.backgroundColor='rgba(0, 0, 0, 0.5)';
+			}
+			if(index==1){
+				lis[index-1].style.backgroundColor='rgba(0, 0, 0, 0.5)';
+				lis[index+1].style.backgroundColor='rgba(0, 0, 0, 0.5)';
+				lis[index+2].style.backgroundColor='rgba(0, 0, 0, 0.5)';
+			}
+			if(index==2){
+				lis[index-1].style.backgroundColor='rgba(0, 0, 0, 0.5)';
+				lis[index-2].style.backgroundColor='rgba(0, 0, 0, 0.5)';
+				lis[index+1].style.backgroundColor='rgba(0, 0, 0, 0.5)';
+			}
+			if(index==3){
+				lis[index-1].style.backgroundColor='rgba(0, 0, 0, 0.5)';
+				lis[index-2].style.backgroundColor='rgba(0, 0, 0, 0.5)';
+				lis[index-3].style.backgroundColor='rgba(0, 0, 0, 0.5)';
+			}
+		}
+
+		//计时器执行运动函数
+		var timer=setInterval(function(){
+			move();
+		},1000);
+
+		//清除计时器叠加
+		function clearTimer(){
+			clearInterval(timer);
+			timer=setInterval(function(){
+				move();
+			},1000);
+		}
+
+
+		//上一张按钮点击事件
+		last.onclick=function(){
+			index--;
+			if(index<0){
+				index=lis.length-1;
+			}
+			var l=-index*w;
+			slider.style.left=l+'px';
+			// clearTimer();
+		}
+
+
+		//下一张按钮点击事件
+		next.onclick=function(){
+			move();
+			// clearTimer();
+		}
+
+
+		//小按钮的变色与点击事件
+		for(var i=0;i<lis.length;i++){
+			lis[i].indexs=i;
+			lis[i].onclick=function(){
+				var l=-(this.indexs)*w;
+				slider.style.left=l+'px';
+				clearTimer();
+
+				lis[this.index].style.backgroundColor='lightgray';
+				if(this.index==0){
+					lis[this.index+1].style.backgroundColor='gray';
+					sps[this.index+2].style.backgroundColor='gray';
+					sps[this.index+3].style.backgroundColor='gray';
+				}
+				if(this.index==1){
+					sps[this.index-1].style.backgroundColor='gray';
+					sps[this.index+1].style.backgroundColor='gray';
+					sps[this.index+2].style.backgroundColor='gray';
+				}
+				if(this.index==2){
+					sps[this.index-1].style.backgroundColor='gray';
+					sps[this.index-2].style.backgroundColor='gray';
+					sps[this.index+1].style.backgroundColor='gray';
+				}
+				if(this.index==3){
+					sps[this.index-1].style.backgroundColor='gray';
+					sps[this.index-2].style.backgroundColor='gray';
+					sps[this.index-3].style.backgroundColor='gray';
+				}
+			}
+		}
+
+
+		//窗口的鼠标移入事件
+		windows.onmouseover=function(){
+			clearInterval(timer);
+		}
+		//窗口的鼠标移出事件
+		windows.onmouseout=function(){
+			clearTimer();
+		}
+
+
+
+
+	</script>
+</html>

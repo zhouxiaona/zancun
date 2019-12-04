@@ -1,0 +1,22 @@
+div,
+input {
+  width: 100px;
+  height: 100px;
+}
+div:hover,
+input:hover {
+  color: #f00;
+}
+div a,
+input a {
+  color: #00f;
+}
+#logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 80px;
+  margin-left: -75px;
+  margin_top: -40px;
+}

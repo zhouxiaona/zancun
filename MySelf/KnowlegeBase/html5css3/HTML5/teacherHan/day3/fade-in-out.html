@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>fade-in-out</title>
+	<style>
+		*{margin:0;padding:0;}
+		.fade-layout{
+			width: 790px;
+			height: 340px;
+			overflow: hidden;
+			margin: 50px auto;
+			border: 10px red solid;
+			position: relative;
+		}
+		ol{
+			list-style: none;
+			position: absolute;
+			width: 80px;
+			height: 20px;
+			left: 50%;
+			margin-left: -40px;
+			bottom: 30px;
+			font-size: 0;
+
+		}
+		ol li{
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background-color: #fff;
+			margin-right: 10px;
+		}
+		ol li.sp{
+			margin: 0;
+		}
+		ol li.active a{
+			background-color: red;
+		}
+		ol li.active a img{
+			opacity: 1;
+		}
+		a{
+			display: block;
+			height: 20px;
+			border-radius: 50%;
+		}
+		a:hover{
+			background-color: red;
+		}
+		a:hover img{
+			opacity: 1;
+		}
+		a img{
+			width: 790px;
+			position: absolute;
+			left: -365px;
+			top: -290px;
+			z-index: -1;
+			opacity: 0;
+			transition: all 0.5s;
+		}
+	</style>
+</head>
+<body>
+	<div class="fade-layout">
+		<ol class="btns">
+			<li class="active">
+				<a href="###">
+					<img src="https://img10.360buyimg.com/babel/jfs/t7396/221/2371751992/119965/df8599e4/59ad0688Nb2c7fbd1.jpg" alt=""/>
+				</a>
+			</li>
+			<li>
+				<a href="###">
+					<img src="https://img1.360buyimg.com/da/jfs/t9157/335/552883988/49715/42cdaede/59ad3ebfN1faa94f5.jpg" alt=""/>
+				</a>
+			</li>
+			<li class="sp">
+				<a href="###">
+					<img src="https://img11.360buyimg.com/babel/jfs/t8230/255/666968510/171530/15ce6694/59acfe40N5559e5ed.jpg" alt=""/>
+				</a>
+			</li>
+		</ol>
+	</div>
+</body>
+</html>

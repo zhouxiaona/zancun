@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>cookie</title>
+		<style type="text/css">
+			p{
+				width: 100px;
+				height: 100px;
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="0">
+		<p></p>
+	</body>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		if(getCookie("count")){
+			document.getElementsByTagName("input")[0].value=getCookie("count");
+		}
+		document.getElementsByTagName("input")[0].onclick=function(){
+			this.value++;
+			var date=new Date();
+			date.setDate(date.getDate()+3);
+			document.cookie="count="+this.value+";expires="+date.toUTCString();
+		}
+
+
+		// 存储cookie　"键＝值;expires=过期时间;"
+		// 读取  document.cookie
+		// cookie 必须依赖于服务器环境
+		// cookie过期,让过期时间-1
+		var date=new Date();
+		date.setDate(date.getDate()-1);
+		document.cookie="age=18;expires="+date.toUTCString();
+		document.cookie="name=lisi;expires="+date.toUTCString();
+		console.log(document.cookie);
+
+		console.log(getCookie("name"));
+		console.log(getCookie("age"));
+
+		function getCookie(key){
+			var arr=document.cookie.split("; ");
+			for(index in arr){
+				var resArr=arr[index].split("=");
+				if(resArr[0]==key){
+					return resArr[1];
+				}
+			}
+		}
+		
+		//-------localStorage---------------------------------------------------
+		
+		if(localStorage){
+			if(localStorage["b"]){
+				$("p").html(localStorage["b"]);
+			}
+		}
+		$("p").on("click",function(){
+			var res=parseInt($(this).html())++;
+			localStorage["b"]=$(this).html(res);
+		});
+		localStorage.removeItem("a");
+		localStorage.removeItem("b");
+	</script>
+</html>

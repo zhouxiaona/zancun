@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>递归</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		//函数名
+		//参数
+		//返回值
+		//函数的定义　function a(){}
+		//函数的调用 a();
+		//命名函数表达式：调用使用fn不能用c　
+		//var fn=function c(){}
+		
+		//匿名函数
+		//匿名函数的自执行
+		//回调函数
+		//闭包
+		
+
+
+
+		//递归　　在函数内部调用自身
+		
+		//快速排序－－－递归
+		//函数内部定义函数－－可以形成闭包
+		//函数内部调用其他函数－－－函数调用
+		//函数内部调用参数传过来的函数－－－回调函数
+		//函数内部调用自己这个函数－－－递归
+	
+		var i=10;
+		function test(){
+			var a=i--;//a(i--) 10 9 8 7 6 5 4 3 2 1 0 
+			if(i<0){//     i    9 8 7 6 5 4 3 2 1 0 -1
+				return;
+			}
+			test();
+			console.log(a);
+		}
+		test();
+
+
+		// var x=10;
+		
+		// function f1(){
+		// 	var y=x++;
+		// }
+		// var c=f1();
+		// console.log(x);
+		
+		function add(num){
+			if(num==1){
+				return 1;
+			}
+			return num+add(num-1);
+		}
+		var res=add(2);
+		console.log(res);
+
+
+		var i=10;
+		function sort(){
+			var a=i--;
+			if(a<0){
+				return;
+			}
+			sort();
+			console.log(a);
+		}
+		sort();
+
+		function add(num){
+			if(num==1){
+				return 1;
+			}
+			return num+add(num-1);
+		}
+		console.log(add(3));
+	</script>
+
+</html>

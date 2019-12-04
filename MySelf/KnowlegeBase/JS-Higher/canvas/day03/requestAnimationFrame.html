@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>requestAnimationFrame</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//更能节约性能。相比较setInterval
+		var num=0;
+		var num2=0;
+		function act(){
+			num++;
+			if(num%100==0){
+				num2++;
+				document.title=num2;
+			}
+			window.requestAnimationFrame(act);
+		}
+		act();
+	</script>
+</html>

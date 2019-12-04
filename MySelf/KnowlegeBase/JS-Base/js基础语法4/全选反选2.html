@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<div>
+			<label for="all" id="title">全选</label>
+			<input id="all" type="checkbox" >
+			<input id="reverse" type="button"  value="反选">
+		</div>
+		<div>
+			<input type="checkbox" class="item">
+		</div>
+		<div>
+			<input type="checkbox" class="item">
+		</div>
+		<div>
+			<input type="checkbox" class="item">
+		</div>
+		<div>
+			<input type="checkbox" class="item">
+		</div>
+		<div>
+			<input type="checkbox" class="item">
+		</div>
+		<div>
+			<input type="checkbox" class="item">
+		</div>
+		<div>
+			<input type="checkbox" class="item">
+		</div>
+		<div>
+			<input type="checkbox" class="item">
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		var selectAll=document.getElementById('all');
+		var selectTitle=document.getElementById('title');
+		var reverse=document.getElementById('reverse');
+		var inputs=document.getElementsByClassName('item');
+		selectAll.onclick=function(){
+			for(var i=0;i<inputs.length;i++){
+				inputs[i].checked=selectAll.checked;
+			}
+			selectTitle.innerHTML=selectAll.checked?"全不选":"全选";
+		}
+
+		reverse.onclick=function(){
+			var count=0;
+			for(var i=0;i<inputs.length;i++){
+				inputs[i].checked=!inputs[i].checked;
+				count+=Number(inputs[i].checked);
+			}
+			seclectAll.checked=count==8;
+			selectTitle.innerHTML=selectAll.checked?"全不选":"全选";
+		}
+
+		for(var i=0;i<inputs.length;i++){
+			inputs[i].onclick=function(){
+				var count=0;
+				for(var j=0;j<inputs[j].length;j++){
+					count+=Number(inputs[j].checked);
+				}
+				selectAll.checked=count==8;
+				selectTitle.innerHTML=selectAll.checked?"全不选":"全选";
+			}
+		}
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

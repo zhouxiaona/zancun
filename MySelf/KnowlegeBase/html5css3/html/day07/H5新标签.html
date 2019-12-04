@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>h5新标签</title>
+		<style type="text/css">
+		/* 	.wrap{
+				width: 500px;
+				height: 500px;
+				position: relative;
+				background: lightcyan;
+				
+			} */
+			.div1{
+				width: 200px;
+				height: 200px;
+				background: pink;
+				float: left;
+				margin: 0 auto;
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+	<!-- open属性可以展开列表 -->
+		<details open>
+			<summary>111</summary>
+			<summary>222</summary>
+			<summary>333</summary>
+		</details>
+		
+		<dialog open>
+			这是一个对话框
+		</dialog>
+		
+		<!-- 图表 (浏览器份额查询)-->
+		<figure>
+			<figcaption>图标标题</figcaption>
+			<div>图１</div>
+			<div>图２</div>
+			<div>图３</div>
+		</figure>
+		
+		<img src="src/001.png" border="0" usemap="#planetmap" alt="myPic">
+		<map id="planetmap" name="planetmap">
+			<area shape="circle" coords="100,100,100" href="http://www.baidu.com" alt="areatest">
+		</map>
+		
+		<address>文档作者的联系信息/拥有者的信息</address>
+		
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum assumenda pariatur, hic <mark>incidunt ullam fuga</mark> optio eum, quia reiciendis enim architecto at, <time>ipsum</time> reprehenderit laboriosam molestias. Voluptatibus tempora animi magnam?</p>
+
+		<meter max="100" value="70" min="30"></meter>
+		<progress value="50" max="100" min="20"></progress>
+		
+		<ruby>
+		  漢 <rp>(</rp><rt>Kan</rt><rp>)</rp>
+		  字 <rp>(</rp><rt>ji</rt><rp>)</rp>
+		</ruby>
+
+		<!-- 有SEO优化功能的标签 -->
+		The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.
+		The <span title="World Health Organization">WHO</span> was founded in 1948.
+		
+		<br>
+		<cite>引入：cite</cite>
+		<blockquote>引入：blockquote</blockquote>
+		<q>引入：q</q>
+
+		<!-- 显示正常的文字 -->
+		<code>
+		var a=10;
+		console.log(10);
+		</code>
+		
+		<!-- 保留了换行符 -->
+		<pre>
+		var a=10;
+		console.log(10);
+		</pre>
+		
+
+		<!-- <div class="wrap"> -->
+			<div class="div1"></div>
+		<!-- </div>	 -->
+	</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style type="text/css">
+			.wrap{
+				width: 744px;
+				height: 412px;
+				margin: 100px auto;
+				position: relative;
+								
+			}
+			img{
+				width: 744px;
+				height: 412px;			}
+			.mask{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				z-index: 1;
+				margin-top: -106px;
+				margin-left: -222px;
+				width: 444px;
+				height: 212px;
+				text-align: center;
+				line-height: 106px;
+				color: white;
+				background: rgba(255, 255, 255, 0.5);
+			}
+			.mask_2{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -106px;
+				margin-left: -222px;
+				width: 444px;
+				height: 212px;
+				background: url('img/4-1.jpg') no-repeat center/170%;
+				filter: blur(6px);
+				/* background-attachment: fixed; */
+
+		}
+			
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<img src="img/4-1.jpg">
+			<div class="mask">
+				<h2>这是标题</h2>
+				
+			</div>
+			<div class="mask_2"></div>
+		</div>
+
+
+	</body>
+</html>

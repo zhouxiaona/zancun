@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas写字</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="300" height="300"></canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		mycanvas.onmousedown=function(ev){
+			var evobj=window.event || ev;
+			console.log(evobj.clientX,evobj.clientY);
+			console.log(evobj.pageX,evobj.pageY);
+			console.log(evobj.offsetX,evobj.offsetY);
+			var startX=evobj.clientX-mycanvas.offsetLeft;
+			var startY=evobj.clientY-mycanvas.offsetTop;
+			ctx.beginPath();
+			ctx.moveTo(startX,startY);
+			mycanvas.onmousemove=function(ev){
+				var evobj=window.event || ev;
+				var endX=evobj.clientX-mycanvas.offsetLeft;
+				var endY=evobj.clientY-mycanvas.offsetTop;
+				ctx.lineTo(endX,endY);
+				ctx.strokeStyle="pink";
+				ctx.lineWidth=4;
+				ctx.stroke();
+			}
+		}
+		document.onmouseup=function(){
+			mycanvas.onmousemove=null;
+		}
+	</script>
+</html>

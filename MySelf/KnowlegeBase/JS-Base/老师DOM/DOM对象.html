@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>DOM对象</title>
+		<style type="text/css">
+			h1{
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<!-- 一首诗 -->
+			<h1>泗泾</h1>
+			<p>泗泾啊泗泾</p>
+			<p>你什么时候高楼林立</p>
+			<p>蓝鸥啊蓝鸥</p>
+			<p>你什么时候成为CBD</p>
+			<address>--------韩大神</address>
+		</div>
+	</body>
+	<script type="text/javascript">
+	// 获取节点.
+		var redDiv = document.getElementsByTagName('div')[0];
+		console.log(redDiv);
+
+	// 创建标签类型节点
+		var span = document.createElement("span");
+		// span.innerText = "2016年8月8号";
+
+		// 创建文本类型的节点
+		var text = document.createTextNode("2016年8月8号");
+		span.appendChild(text);
+
+	// 在redDiv末尾插入span标签
+		// redDiv.appendChild(span);
+	// 在XXX之前插入span
+	redDiv.insertBefore(span, redDiv.children[1]);
+
+	// 移出的方法。
+	var p = document.getElementsByTagName("address")[0];
+	// 移出div的子节点p
+	// redDiv.removeChild(p);
+
+	// 移出p标签
+	p.remove();
+
+	var h2 = document.createElement("h2");
+	h2.innerText = "泗泾";
+	h2.style.color = "blue";
+	redDiv.replaceChild(h2, redDiv.children[0]);
+	//  增删改查	
+
+
+
+	</script>
+</html>

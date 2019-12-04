@@ -1,0 +1,287 @@
+<template>
+  <view class="container">
+
+    <scroll-view scroll-y class="scrollNode">
+      <repeat for="{{videoList}}" index="index" item="item" key="key">
+        <view class="video_container">
+          <view class="video_box" data-index="{{index}}">
+            <video
+              src="{{item.src}}"
+              style="width:100%;"
+              class="video_video"
+              wx:if="{{item.isPlay}}"
+              controls="{{true}}"
+              autoplay="{{true}}"
+              loop="{{true}}"
+              initial-time="{{item.currentTime}}"
+              bindtimeupdate="eventPlayupdate"
+              bindfullscreenchange="eventFullScreen"
+            ></video>
+            <image class="video_cover" src="{{item.cover}}" wx:if="{{!item.isPlay}}" mode="aspectFill" lazy-load="{{true}}" @tap="eventPlay({{index}})" />
+          </view>
+          <view class="video_info">
+            <view class="videoTitle">{{item.title}}</view>
+            <view class="videoInfo">
+              <view class="infoLeft">
+                <text class="baoshai">222人暴晒</text>
+                <view class="y-split"></view>
+                <text class="zhuanfa">222人转发</text>
+              </view>
+              <button class="infoRight">支持Ta</button>
+            </view>
+          </view>
+        </view>
+      </repeat>
+    </scroll-view>
+
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class morevideo extends wepy.page {
+    config = {
+      enablePullDownRefresh: false,
+      backgroundTextStyle: 'light',
+      onReachBottomDistance: 50,
+      navigationBarBackgroundColor: '#69BEFF',
+      navigationBarTitleText: 'myvideo',
+      navigationBarTextStyle: 'white'
+    }
+    data = {
+      videoList: [
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/ec4d7780ly1fsvx1996xoj20da07in0t.jpg',
+          src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+          width: 480,
+          height: 272,
+          currentTime: 0,
+          title: '腾讯大学视频',
+          isPlay: false
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/ec4d7780ly1fsvx1996xoj20da07in0t.jpg',
+          src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+          width: 480,
+          height: 272,
+          currentTime: 0,
+          title: '腾讯大学视频2',
+          isPlay: false
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/ec4d7780ly1fsvx1996xoj20da07in0t.jpg',
+          src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+          width: 480,
+          height: 272,
+          currentTime: 0,
+          title: '腾讯大学视频3',
+          isPlay: false
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/ec4d7780ly1fsvx1996xoj20da07in0t.jpg',
+          src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+          width: 480,
+          height: 272,
+          currentTime: 0,
+          title: '腾讯大学视频4',
+          isPlay: false
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/ec4d7780ly1fsvx1996xoj20da07in0t.jpg',
+          src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+          width: 480,
+          height: 272,
+          currentTime: 0,
+          title: '腾讯大学视频5',
+          isPlay: false
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/ec4d7780ly1fsvx1996xoj20da07in0t.jpg',
+          src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+          width: 480,
+          height: 272,
+          currentTime: 0,
+          title: '腾讯大学视频6',
+          isPlay: false
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/ec4d7780ly1fsvx1996xoj20da07in0t.jpg',
+          src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+          width: 480,
+          height: 272,
+          currentTime: 0,
+          title: '腾讯大学视频7',
+          isPlay: false
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/ec4d7780ly1fsvx1996xoj20da07in0t.jpg',
+          src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+          width: 480,
+          height: 272,
+          currentTime: 0,
+          title: '腾讯大学视频8',
+          isPlay: false
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/ec4d7780ly1fsvx1996xoj20da07in0t.jpg',
+          src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+          width: 480,
+          height: 272,
+          currentTime: 0,
+          title: '腾讯大学视频9',
+          isPlay: false
+        },
+        {
+          cover: 'https://wx4.sinaimg.cn/mw690/ec4d7780ly1fsvx1996xoj20da07in0t.jpg',
+          src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+          width: 480,
+          height: 272,
+          currentTime: 0,
+          title: '腾讯大学视频10',
+          isPlay: false
+        }
+      ]
+
+    }
+
+    methods = {
+      // 点击当前视频播放，并且关闭其他视频
+      eventPlay (index) {
+        this.showVideoList(index)
+      }
+    }
+    // 视频播放时随时记录视频的播放位置，下次视频的initial-time为此次更新的时间
+    eventPlayupdate (e) {
+      // console.log('当前播放信息', e)
+      let _this = this
+      const {detail: { currentTime }, currentTarget: {dataset: {index}}} = e
+      _this.videoList[index].currentTime = currentTime
+      _this.$apply()
+    }
+
+    eventFullScreen () {
+
+    }
+
+    // 控制视频的播放
+    showVideoList (index) {
+      let _this = this
+      _this.videoList.map((val) => {
+        val.isPlay = false
+        return val
+      })
+      _this.videoList[index]['isPlay'] = true
+      _this.$apply()
+    }
+
+    onPageScroll () {
+      this.getVideoLocation()
+      // wepy.createSelectorQuery().select(".scrollNode").boundingClientRect(function(res) {
+
+      // }).exec()
+    }
+
+    // 获取每个视频的位置
+    getVideoLocation () {
+      let _this = this
+
+      wepy.createSelectorQuery().selectAll('.video_box').boundingClientRect(function(rects) {
+        rects.forEach(function(rect) {
+          // rect.id      // 节点的ID
+          // rect.dataset // 节点的dataset
+          // rect.left    // 节点的左边界坐标
+          // rect.right   // 节点的右边界坐标
+          // rect.top     // 节点的上边界坐标
+          // rect.bottom  // 节点的下边界坐标
+          // rect.width   // 节点的宽度
+          // rect.height  // 节点的高度
+          // console.log(rect.dataset.index, 'andandand', rect.bottom)
+          if (rect.top > wepy.getSystemInfoSync().windowHeight / 4 && rect.bottom < wepy.getSystemInfoSync().windowHeight) {
+            _this.videoList[rect.dataset.index].isPlay = true
+          } else {
+            _this.videoList[rect.dataset.index].isPlay = false
+          }
+        })
+      }).exec()
+      _this.$apply()
+    }
+
+    onLoad () {
+      // this.getVideoLocation()
+    }
+  }
+</script>
+<style>
+  .container{
+      background: rgb(253, 253, 253);
+  }
+  .video_box{
+    width: 100%;
+    height: 424rpx;
+    position: relative;
+  }
+  .video_video{
+    width: 100%;
+    height: 100%;
+  }
+  .video_cover{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .video_info{
+    padding: 20rpx 31rpx;
+  }
+  .videoTitle{
+    margin-bottom:15rpx;
+  }
+  .videoInfo{
+    position: relative;
+    height: 100rpx;
+  }
+  .infoLeft{
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .baoshai{
+    font-size: 28rpx;
+    color: #FF9100;
+  }
+  .y-split {
+    display: inline-block;
+    width: 2rpx;
+    height: 24rpx;
+    background: #D9D9E2;
+    margin: 0 24rpx;
+    vertical-align: middle;
+  }
+  .zhuanfa{
+    font-size: 28rpx;
+    color: #D9D9E2;
+  }
+  /* .zhuanfa::before{ */
+    /* display: block; */
+    /* content:'';
+    width: 2rpx;
+    height: 10rpx;
+    background: black;
+  } */
+  .infoRight{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 168rpx;
+    height: 55rpx;
+    background: linear-gradient(90deg,rgba(255,234,0,1),rgba(255,219,0,1));
+    box-shadow: 0 12rpx 16rpx -6rpx rgba(255,221,0,0.65);
+    border-radius: 32rpx;
+    color: #383549;
+    line-height: 55rpx;
+    font-size: 28rpx;
+    text-align: center;
+    font-weight: 500;
+  }
+</style>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>发射子弹</title>
+		<style type="text/css">
+			#box{
+				width: 75px;
+				height: 75px;
+				background-image: url(p1.png); 
+				top: 60px;
+				left: 60px;
+				position: relative;
+			}
+			.bo{
+				position: absolute;
+				width: 25px;
+				height: 16px;
+				background-image: url("b.png");
+				top: 25px;
+				left: 75px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		var timer;
+		var move;
+		box.onclick = function(){
+			clearTimeout(timer);
+			box.style.backgroundImage = "url('p2.png')";
+			timer = setTimeout(function(){
+				box.style.backgroundImage = "url('p1.png')";
+			}, 100);
+
+			var newDiv = document.createElement("div");
+			newDiv.className = "bo";
+			box.appendChild(newDiv);
+			var move = setInterval(function(){
+				var bLeft = newDiv.offsetLeft + 3;
+				if (bLeft >= 700) {
+					clearInterval(move);
+					newDiv.remove();
+					// box.removeChild(newDiv);
+				}
+				newDiv.style.left = bLeft + "px";
+			}, 20);
+
+		}
+
+
+
+
+
+		// var a = 10;
+		// function t(){
+		// 	console.log(a);
+		// 	var a = 20;
+		// 	console.log(a);
+		// }
+		// t();
+
+
+
+
+	</script>
+</html>

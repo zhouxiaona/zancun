@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style type="text/css">
+			.wrap{
+				width: 400px;
+				height: 500px;
+				border: 10px solid lightblue;
+				margin: 100px auto;
+				display: flex;
+			}
+			.box{
+				width: 120px;
+				height: 220px;
+				background: red;
+				font-size: 30px;
+				box-sizing: border-box;
+				border: 5px solid #fff;
+				text-align: center;
+				line-height: 200px;
+				color: white;
+				/* flex-shrink: 0; */
+				/* flex-grow: 1; */
+				align-self: flex-end;
+				align-content: flex-end;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 伸缩项目上的属性 -->
+		<!-- 1.order:0;默认为0；整数 -->
+		<!-- 2.flex-grow:默认0;伸缩元素的放大比例 -->
+		<!-- 3.flex-shrink:默认1,伸缩元素的缩小比例-->
+		<!-- 4.flex-basis:设置width，默认auto -->
+		<!-- flex:flex-grow 0|flex-shrink 1 |flex-basis auto; -->
+		<!-- 5.align-self:== align-items; -->
+		<div class="wrap">
+			<div class="box" style="order:0; flex-shrink: 0; flex-basis:40px; align-self: flex-end;">1</div>
+			<div class="box" style="order:0; align-content: flex-start;flex-shrink: 0;">2</div>
+			<div class="box" style="order:0; flex-shrink: 0;">3</div>
+			<div class="box" style="order:0; flex-shrink: 0;">4</div>
+			<!-- <div class="box" style="order:0; flex-shrink: 0;">5</div> -->
+			<!-- <div class="box">6</div>
+			<div class="box">7</div>
+			<div class="box">8</div>
+			<div class="box">9</div>
+			<div class="box">10</div> -->
+		</div>
+	</body>
+</html>

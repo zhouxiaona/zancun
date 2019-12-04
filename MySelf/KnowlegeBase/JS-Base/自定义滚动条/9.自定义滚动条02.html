@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自定义滚动条01</title>
+		<style type="text/css">
+			* { 
+				margin: 0; 
+				padding: 0; 
+			}
+			#wrap { 
+				position: absolute; 
+				top: 100px; 
+				left: 50%; 
+				margin-left: -150px; 
+				width: 295px; 
+				height: 400px; 
+				border: 1px #ccc solid; 
+				border-radius: 10px; 
+				overflow: hidden; 
+			}
+			#middle { 
+				position: absolute; 
+				padding: 10px 20px 10px 10px; 
+				font-size: 16px; 
+				line-height: 20px; 
+			}
+			#sliderWrap { 
+				position: absolute; 
+				top: 0; 
+				right: 0; 
+				height: 100%; 
+				width: 20px; 
+				background: #ccc;  
+				border-radius: 10px; 
+			}
+			#slider { 
+				position: absolute; 
+				height: 50px; 
+				width: 20px; 
+				background: #7B68EE; 
+				border-radius: 10px; 
+				cursor: pointer; 
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<p id="middle">随着数字革命逐渐渗透到人们日常生活中方方面面，它也开始渗入到我们的语言以及我们对事物工作机制最基本的看法里。科技做的就是这样的事情。在启蒙运动时期，牛顿和笛卡尔鼓励人们将宇宙想象成一个精美的钟表。到了工业时代，激起人们新认知的是带活塞的机器。到了今天，计算机开始从根本上改变人的认知。如果世界是一台计算机，那么这个世界就是可以被编程的。<br/>代码具有逻辑的，代码是可以被控制的，代码就是命运。这些理念是数字时代生活的核心原则。随着软件逐渐吞噬着整个世界，就好比著名的风险资本家 Marc Andreessen 之前说过的那样，我们现在正生活在机器的海洋里，机器将我们的行为、想法和情绪转变成了数据，数据则是用来给工程师进行编码操控的原材料。我们现在已经将生活看成了一种被一系列指令控制的有规则的东西，这些指令可以被发现、利用、优化甚至重写。公司用代码来理解我们最密切的联系，Facebook 的 Mark Zuckerberg甚至猜想在人类关系里可能存在一种基本的数学定律，这个定律控制着我们所关心的人和事的平衡。2013年，著名的基因科学家 Craig Venter 曾宣称，在人类基因组解码的 10年后，他就已经开始编写能够让他创造合成生物的代码了。“在这个星球上，我们知道的所有活细胞都是 DNA 软件驱动的生物机器。”甚至一些自助文学也阐明这样了这样一个观点，即你是可以控制自己的源代码的，你可以对你的恋爱生活、睡眠习惯和消费习惯重新进行编程。<br/>在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”在如今的这个世界上，编程的能力已不仅仅是一个理想的技能，它已经成为了一种语言。懂得这门语言，意味着你就获得了权利杠杆。未来学家 Marc Goodman 曾这样说过：“如果你控制了代码，你就控制了整个世界。” 相比之下，Paul Ford 的用词稍微委婉一些：“即使控制代码的人没能控制世界，他们也控制了可以控制世界的东西。”</p>
+			<div id="sliderWrap">
+				<div id="slider"></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="mouseWheel.js"></script> <!-- 引用封装方法的js文件 -->
+	
+	<script type="text/javascript">
+	
+		function scrollFn() {
+			var wrap = document.querySelector("#wrap");
+			var middle = document.querySelector("#middle");
+			var sliderWrap = document.querySelector("#sliderWrap");
+			var slider = document.querySelector("#slider");
+			var y = 0;
+
+			//设置滚动按钮高度
+			function scrollHeight() {
+				var scale = wrap.clientHeight / middle.offsetHeight; //框架高度与内容高度的比例
+				var height = sliderWrap.offsetHeight * scale; //以内容占据的比例计算滚动按钮在滚动条中的高度
+				if (height < 50){ //限制最小高度50
+					height = 50;
+				}
+				slider.style.height = height+"px";
+			}
+			scrollHeight();
+
+			var contMaxHeight = middle.offsetHeight - wrap.clientHeight; //内容最大滚动高度
+			var sliderMaxHeight = sliderWrap.offsetHeight - slider.clientHeight; //滚动按钮最大滚动高度
+
+			//滚动函数
+			function move() {
+				if (y <= 0) { //限制滚动范围
+					y = 0;
+				}else if (y >= sliderMaxHeight) {
+					y = sliderMaxHeight;
+				}
+
+				var moveScale = y / sliderMaxHeight; //滚动按钮移动的距离与整体高度的比例
+
+				slider.style.top = y + "px";
+				middle.style.top = - contMaxHeight * moveScale + "px"; //内容区域以相同比例滚动
+			}
+			
+			//滚动按钮拖拽
+			slider.onmousedown = function (event){
+
+				var event = event || window.event;
+				//event距离slider的顶部距离+wrap距离视口的上距离（固定）
+				var disY = event.clientY - slider.offsetTop;
+
+				document.onmousemove = function (event){
+
+					var event = event || window.event;
+					y = event.clientY - disY;
+					move();
+					
+				}
+				document.onmouseup = function (){
+					document.onmousemove = null;
+				}
+				return false;
+			}
+
+			//自定义滚动距离
+			mouseWheel(wrap, function (event, down){
+				if (down){
+					y += 20;
+				}else{
+					y -= 20;
+				}
+				
+				move();
+			});
+/***********
+			//键盘上下键控制上下滚动
+			document.onkeydown = function (event){
+			
+				var event = event || window.event;
+				switch (event.keyCode){
+					case 38:
+						y -= 5;
+						break;
+					case 40:
+						y += 5;
+						break;
+				}
+				move();
+			}
+**************/
+
+			//点击滚动条，跳到相应位置
+			sliderWrap.onmousedown = function (event){
+			
+				var event = event || window.event;
+		
+				//计算移动的距离
+				/*
+					鼠标垂直坐标 - 最外层元素上间距 = 鼠标移动的距离 y值是鼠标移动的距离再减去滚动按钮高度的一半，目的使滚动按钮高度的中心位置对准鼠标坐标
+				*/
+		
+				y = event.clientY - wrap.offsetTop - slider.offsetHeight / 2;
+				
+				move();
+			}
+
+		}
+		scrollFn();
+	
+	</script>
+	
+</html>

@@ -1,0 +1,138 @@
+<template>
+  <view class="wrap">
+    <!-- 动态圆开始 -->
+    <view class="cirBox">
+      <canvas class="circleBg" canvas-id="bgProCanvas"></canvas>
+      <canvas class="circleInner" canvas-id="innerProCanvas"></canvas>
+      <view class="proText">
+        <text>{{progress_txt}}</text>
+      </view>
+    </view>
+    <!-- 动态圆结束 -->
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Carousel extends wepy.page {
+    config = {
+      enablePullDownRefresh: false,
+      backgroundTextStyle: 'light',
+      onReachBottomDistance: 50,
+      navigationBarBackgroundColor: '#69BEFF',
+      navigationBarTitleText: 'CircleProgress',
+      navigationBarTextStyle: 'white'
+    }
+
+    data = {
+      count: 0,
+      countTimer: null,
+      progress_txt: '加载中...'
+    }
+
+    drawBgCircle() {
+      const Bctx = wx.createCanvasContext('bgProCanvas')
+      Bctx.setLineWidth(10)
+      Bctx.setStrokeStyle('lightgray')
+      Bctx.setLineCap('round')
+      Bctx.beginPath()
+      Bctx.arc(100, 100, 90, 0, 2 * Math.PI, false)
+      Bctx.stroke()
+      Bctx.draw()
+    }
+
+    drawProgress(step) {
+      const Ictx = wx.createCanvasContext('innerProCanvas')
+      // Ictx.save()
+      let gr = Ictx.createLinearGradient(0,90,100,100)
+      gr.addColorStop(0,'red')
+      gr.addColorStop(0.5,'blue')
+      gr.addColorStop(1,'yellow')
+      Ictx.setLineWidth(10)
+      Ictx.setStrokeStyle(gr)
+      Ictx.setLineCap('round')
+      Ictx.beginPath()
+      Ictx.arc(100, 100, 90, -Math.PI / 2, step * Math.PI - Math.PI / 2) // 默认顺时针 step最大值为2
+      Ictx.stroke()
+      Ictx.draw()
+      // Ictx.restore()
+      this.$apply()
+    }
+
+    /**
+     * ctx.arc(x,y,r,startDeg,endDeg,false) 圆心坐标x,y,圆的半径r,开始角度和结束角度,默认false顺时针画，true为逆时针画
+     *
+     *             -Math.PI/2
+     *                 *
+     *                 *
+     *                 *
+     * Math.PI ******************* 0
+     *                 *        *
+     *                 *       *
+     *                 *     *
+     *                 *    *  false顺时针画（默认）
+     *                 *  *
+     *                 *
+     *             Math.PI/2
+     */
+
+    startProgress (){
+      this.count = 0
+      this.$apply()
+      // 设置倒计时 定时器 每100毫秒执行一次，计数器count+1 ,耗时6秒绘一圈
+      this.countTimer = setInterval(() => {
+        if (this.count <= 60) {
+          /* 绘制彩色圆环进度条
+          注意此处 传参 step 取值范围是0到2，
+          所以 计数器 最大值 60 对应 2 做处理，计数器count=60的时候step=2
+          */
+          this.drawProgress(this.count / 30)
+          this.count++
+          this.$apply()
+        } else {
+          clearInterval(this.countTimer)
+          this.progress_txt = '加载完毕...'
+          this.$apply()
+          // this.startProgress() // 需要重新绘制时
+        }
+      }, 80)
+    }
+
+    onLoad(){
+      this.drawBgCircle()
+      this.startProgress()
+    }
+  }
+</script>
+<style lang="less">
+  .wrap{
+    width: 100vw;
+    height: 100vh;
+    .cirBox{
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      .circleBg{
+        width: 200px;
+        height: 200px;
+        position: absolute;
+      }
+      .circleInner{
+        width: 200px;
+        height: 200px;
+        position: absolute;
+      }
+      .proText{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+</style>

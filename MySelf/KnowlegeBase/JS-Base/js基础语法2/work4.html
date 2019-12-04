@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<span>请输入您的行李重量：</span>
+		<input type="number" id="inp1" name="" value="">
+		<span>公斤</span>
+		</br>
+		<button id="btn">计算托运费</button>
+		</br>
+		<span>您的托运费为：</span>
+		<input type="text" id="inp2" name="" value="">
+		<span>元</span>
+	</body>
+	<script type="text/javascript">
+		var inp1=document.getElementById('inp1');
+		var btn=document.getElementById('btn');
+		var inp2=document.getElementById('inp2');
+		btn.onclick=function(){
+			var num=Number(inp1.value);
+			if(num<=50 && num>0){
+				inp2.value=num * 0.15;
+			}else{
+				inp2.value=50 * 0.15 + (num-50) * 0.25;
+			}
+		}
+	</script>
+</html>

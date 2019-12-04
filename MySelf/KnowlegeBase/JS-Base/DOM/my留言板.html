@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>my留言板</title>
+		<style type="text/css">
+			.form{
+				width: 500px;
+				height: 280px;
+				border: 1px solid rgba(0, 0, 0, 0.2);
+				border-radius: 3px;
+				background-color: rgba(0, 0, 0, 0.1);
+				margin: 0 auto;
+				box-sizing: border-box;
+				padding: 15px 10px;
+				overflow: hidden;
+			}
+			.content{
+				margin-top: 10px;
+			}
+			.content span{
+				vertical-align: top;
+			}
+
+			#names{
+				width: 418px;
+				height: 30px;
+				outline: none;
+			}
+			#files{
+				width: 418px;
+				height: 160px;
+				outline: none;
+				/* resize: none; */
+			}
+			#submits{
+				width: 60px;
+				height: 30px;
+				border-radius: 3px;
+				background: rgba(0, 0, 0, 0.2);
+				font-size: 16px;
+				float: right;
+				margin-top: 7px;
+			}
+			.liuyan{
+				width: 500px;
+				margin: 20px auto 30px;
+				font-size: 20px;
+			}
+			
+			.banks .bank .top{
+				width: 500px;
+				margin: 15px auto 0;
+				background: rgba(0, 0, 0, 0.2);
+				box-sizing: border-box;
+				padding: 7px 0 7px 15px;
+			}
+			.banks .bank .bottom{
+				width: 500px;
+				margin: auto;
+				background: rgba(0, 0, 0, 0.1);
+				box-sizing: border-box;
+				padding: 20px 0 20px 15px;
+				overflow: hidden;
+			}
+			.banks .bank .bottom a{
+				float: right;
+				margin-right: 15px;
+				text-decoration: none;
+				color: blue;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="form">
+			<div class="namess">
+				<span>姓名：</span>
+				<input type="text" id="names">
+			</div>
+			
+			<div class="content">
+				<span>内容：</span>
+				<textarea id="files"></textarea>
+			</div>
+			
+			<input type="submit" id="submits" value="提交">
+		</div>
+		<div class="liuyan">显示留言</div>
+		<div class="banks"></div>
+		
+
+	</body>
+	<script type="text/javascript">
+		var names=document.getElementById('names');
+		var files=document.getElementById('files');
+		var submits=document.getElementById('submits');
+		var banks=document.getElementsByClassName('banks')[0];
+		submits.onclick=function(){
+			if(names.value=='' || files.value==''){
+				alert('不能有空白！');
+			}else{
+				var newBank=document.createElement('div');
+				newBank.innerHTML="<div class='top'>"+names.value+"</div><div class='bottom'>"+files.value+"<a href='###'>删除</a>"+"</div>";
+				newBank.className='bank';
+				banks.insertBefore(newBank,banks.children[0]);
+				//显示提交成功的提示框
+				alert('提交成功！');
+				//点击提交过后让留言框内的名字和留言内容为空
+				names.value='';
+				files.value='';
+				//删除留言记录的时候，从banks的第一个子节点开始删除
+				var dels=document.getElementsByTagName('a')[0];
+				dels.onclick=function(){
+					banks.removeChild(newBank);
+				}
+			}
+		}
+		
+		
+
+
+	</script>
+</html>

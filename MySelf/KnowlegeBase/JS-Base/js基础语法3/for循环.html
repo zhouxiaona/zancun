@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>for循环</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		// 循环
+		// 循环执行了多少次
+		// 每次执行代码的时候，a的值是多少
+		for(var i=1;i<10;i++){
+			for(var j=1;j<=i;j++){
+				document.writeln(i+'*'+j+'='+ i*j);
+			}
+			document.write('</br>');
+		}
+
+		// var arr=[10,49,40,78,44,90];
+		// for(var a=0;a<arr.length;a++){
+		// 	console.log(arr[a]);
+		// }
+		for(var b=1000;b<=9999;b++){
+			var s1=parseInt(b/1000);//5432
+			var s2=parseInt(b%1000/100);
+			var s3=parseInt(b%1000%100/10);
+			var s4=parseInt(b%1000%100%10);
+			if(s1*s1*s1*s1 + s2*s2*s2*s2 + s3*s3*s3*s3 + s4*s4*s4*s4 ==b){
+				console.log(b);
+			}
+		}
+	</script>
+</html>

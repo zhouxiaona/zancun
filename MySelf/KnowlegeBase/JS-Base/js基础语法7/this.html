@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>this</title>
+		<style type="text/css">
+			#red{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="red"></div>
+	</body>
+	<script type="text/javascript">
+		var red=document.getElementById('red');
+		//this的指向
+		//谁调用的方法，this就指向谁
+		//1.直接调用方法，this指向window
+		//2.定时器里的this指向window
+		function test(){
+			var _this=this;
+			setTimeout(function(){
+				console.log('test 方法',_this);
+			},1000);
+		}
+		// test();
+		// console.log(window.test);
+
+		// red.onclick=test;
+		// red.onclick();
+		// function fn(){
+		// 	console.log('lala this');
+		// }
+		// setTimeout(fn,1000);
+
+
+		//call
+		//改变this的指向
+
+		// var a={
+		// 	name:'lala',
+		// 	eat:function(num,num1){
+		// 		console.log('eat'+num+num1,this);
+		// 	}
+		// };
+		// var b={name:'nana'};
+		//把a.eat里面的this指向b
+		// a.eat('香蕉');
+		// a.eat.call(b,"菠萝",'葡萄');
+		// a.eat.apply(b,["香蕉",'葡萄']);
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>css3选择器</title>
+		<style type="text/css">
+			/* div > p 子代选择器 */
+			/* 选择的是p标签，而且必须是div的p标签 */
+			/* div>p{
+				color: red;
+			} */
+
+
+			/* 兄弟毗邻选择器
+					紧跟在div之后的p标签，中间不能有其他元素 */
+			/* div+p{
+				color: blue;
+			} */
+
+
+			/* div之后的所有p标签,同级关系 */
+			/* div~p{
+				color: red;
+			} */
+
+
+			/* 属性选择器 */
+			/* 带有title属性的p标签 */
+		/* 	p[title]{
+				color: red;
+			} */
+			/* title属性值为ssss的p标签 */
+			/* p[title=ssss]{
+				color: blue;
+			} */
+			/* title属性值包含1的p标签 */
+			/* 　p[title*=1]{
+				color: red;
+			} */
+			/* title属性值以test结尾的p标签 */
+			/* p[title$=test]{
+				color: red;
+			} */
+			/* alt属性值以test开头的p标签 */
+			/* p[alt^=test]{
+				color: red;
+			} */
+
+
+			/* 伪类选择器 
+				在同级里面，找到第一个标签，并且是p标签，然后赋值样式*/
+			/* p:nth-child(2){
+				color: red;
+			} */
+			/* only-child 是独生子的p标签,不能有其他标签*/
+			/* p:only-child{
+
+			} */
+			/* p:nth-of-type(1) 的顺序只会看p标签顺序 */
+			/* 标签里面只有一个ｐ标签，可以有其他标签 */
+			/* p:only-of-type{
+
+			} */
+
+			/* 被选中的复、单选框 */
+			/* input:checked{
+				height: 200px;
+			} */
+
+			
+		</style>
+	</head>
+	<body>
+		<input type="checkbox" name="" checked="">
+		<div>
+			<p title="lalatest">pppp</p>
+			<div>no1 div</div>
+			<h3>333</h3>
+			<p title="testssss1">son</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo voluptas molestiae, molestias a eius officiis porro odit, neque debitis voluptatem omnis, magni recusandae. Enim eaque laboriosam quaerat perspiciatis voluptas repellat optio praesentium asperiores, magnam ipsum ipsam laudantium assumenda inventore eveniet officiis ullam quo error, saepe velit soluta est quis. Ipsum.</p>
+			<section>
+				<p>grandchild</p>
+			</section>
+		</div>
+		<p>paaaa</p>
+	</body>
+</html>

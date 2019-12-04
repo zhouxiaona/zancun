@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        #app{
+            width:700px;
+            margin:100px auto;
+        }
+        .col-sm-3{
+            color: #9B4851;
+        }
+        .red{
+            color: #9B4851;
+        }
+        .green{
+            color: #2F6446;
+        }
+        .bg1{
+            background:#88CB85;
+            color:white;
+        }
+        .bg2{
+            background:#E27C7B;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <form class="form-horizontal">
+            <!--姓名-->
+            <div class="form-group">
+                <label for="username" class="col-sm-2 control-label">姓名：</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="username" placeholder="请输入用户名" v-model="name">{{watchName}}
+                </div>
+                <div class="col-sm-3" v-show="isShowName">用户名必须是2-5位</div>
+            </div>
+            <!--密码-->
+            <div class="form-group">
+                <label for="password" class="col-sm-2 control-label">密码：</label>
+                <div class="col-sm-7">
+                    <input type="password" class="form-control" id="password" placeholder="请输入密码" v-model="pwd">{{watchPwd}}
+                </div>
+                <div class="col-sm-3" v-show="isShowPwd">密码必须是8-12位</div>
+            </div>
+            <!--性别-->
+            <div class="form-group">
+                <div class="col-sm-2 control-label">性别：</div>
+                <div class="col-sm-7">
+                    <input type="radio" id="male" name="sex" value="0" v-model="sex" @click="watchSex0">
+                    <label for="male">男</label>
+
+                    <input type="radio" id="female" name="sex" value="1" v-model="sex" @click="watchSex1">
+                    <label for="female">女</label>
+                </div>
+            </div>
+            <!--是否同意条款-->
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <!--字体颜色的改变 .green:绿色  .red:红色-->
+                            <input type="checkbox" :checked="chec" @click="check"> <b :class="chec?'green':'red'">是否同意条款</b>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!--城市-->
+            <div class="form-group">
+                <div class="col-sm-2 control-label">城市：</div>
+                <div class="col-sm-7">
+                    <select class="form-control" v-model="city">{{watchCity}}
+                        <option value="-1">--请选择城市--</option>
+                        <option value="0">北京</option>
+                        <option value="1">上海</option>
+                        <option value="2">深圳</option>
+                    </select>
+                </div>
+                <div class="col-sm-3" v-show="isShowCity">请选择城市</div>
+            </div>
+            <!--注册和重置按钮-->
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default bg1" @click="zhuce">注册</button>
+                    <button type="submit" class="btn btn-default bg2" @click.prevent="reset">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<script src="jQuery.js"></script>
+<script src="bootstrap.min.js"></script>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            isShowName:true,
+            isShowPwd:true,
+            isShowCity:true,
+            chec:false,
+            name:"",
+            pwd:"",
+            sex:"0",
+            city:"-1"
+        },
+        methods:{
+          check:function(){
+              this.chec=!this.chec;
+          },
+          watchSex0:function(){
+              this.sex="0";
+          },
+          watchSex1:function(){
+              this.sex="1";
+          },
+          reset:function(){
+              //重置表单
+              this.isShowName=true;
+              this.isShowPwd=true;
+              this.isShowCity=true;
+              this.chec=false;
+              this.name="";
+              this.pwd="";
+              this.sex="0";
+              this.city="-1";
+          },
+          zhuce:function(){
+              var sexs="男";
+              var citys="上海";
+              if(this.sex=="1"){
+                  sexs="女";
+              }
+              if(this.city=="0"){
+                  citys="北京";
+              }else if(this.city=="2"){
+                  citys="深圳";
+              }else{
+                  citys=citys;
+              }
+              var str="/get?name="+this.name+"&sex="+sexs+"&city="+citys;
+              //发送ajax请求
+              fetch(str,{
+                  method:"get"
+              }).then(function(res){
+                  return res.json();
+              }).then(function(data){
+                  alert(data.message);
+              }).catch(function(err){
+                  console.log(err);
+              });
+          }
+        },
+        computed:{
+            watchName:function(){
+                if(this.name.length>=2 && this.name.length<=5){
+                    this.isShowName=false;
+                }else{
+                    this.isShowName=true;
+                }
+            },
+            watchPwd:function(){
+                if(this.pwd.length>=8 && this.pwd.length<=12){
+                    this.isShowPwd=false;
+                }else{
+                    this.isShowPwd=true;
+                }
+            },
+            watchCity:function(){
+                if(this.city!="-1"){
+                    this.isShowCity=false;
+                }else{
+                    this.isShowCity=true;
+                }
+            }
+
+        }
+    });
+</script>
+</html>

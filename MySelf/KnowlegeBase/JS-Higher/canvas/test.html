@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas基础</title>
+		<style>
+			canvas{
+				border: 1px solid black;
+			}
+		</style>  
+	</head>
+	<body>
+		<canvas id="mycanvas" width="250" height="400">
+			对不起，您的浏览器版本过低，点击<a href="###">下载</a>
+		</canvas>
+		<input type="file" id="files" onclick="sub()"/>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById('mycanvas');
+		var ctx=mycanvas.getContext("2d");
+		function sub(){
+			console.log(document.getElementById("files").files[0]);
+		}
+	</script>
+</html>

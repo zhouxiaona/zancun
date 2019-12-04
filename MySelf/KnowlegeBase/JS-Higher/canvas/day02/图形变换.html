@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图形变换</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			对不起，您的浏览器版本过低，点击<a href="###">下载</a>
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		//图形变换实际上并不是变换图形；变换的是坐标系
+		//平移
+//		ctx.beginPath();
+//		ctx.fillStyle="pink";
+//		ctx.fillRect(0,0,50,50);
+//		
+//		ctx.beginPath();
+//		ctx.translate(200,0);
+//		ctx.fillStyle="blue";
+//		ctx.fillRect(0,0,50,50);
+		//旋转
+//		ctx.beginPath();
+//		ctx.rotate(Math.PI/4);
+//		ctx.fillStyle="pink";
+//		ctx.fillRect(200,0,50,50);
+//		
+//		ctx.beginPath();
+//		ctx.fillStyle="blue";
+//		ctx.fillRect(300,0,50,50);
+		//缩放
+		
+		//状态的保存和释放
+		//保存状态,两两对应出现
+		ctx.save();//存放没改变坐标系之前的状态
+		ctx.beginPath();
+		ctx.scale(2,2);
+		ctx.save();//存放改变坐标系之后的状态
+		ctx.fillStyle="pink";
+		ctx.fillRect(100,0,50,50);
+		//释放状态，回到save之前的状态
+		ctx.restore();//释放改变坐标系之后的状态，类似于进栈出栈，先进后出
+		ctx.restore();//释放没改变坐标系之前的状态
+		ctx.fillStyle="#FF0000";
+		ctx.fillRect(0,0,50,50);
+		
+	</script>
+</html>

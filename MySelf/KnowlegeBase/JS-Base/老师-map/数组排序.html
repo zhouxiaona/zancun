@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>数组排序</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		// var arr = [];
+		// var arr2 = [];
+		// for(var i = 0; i < 10000; i++){
+		// 	var num = parseInt(Math.random()*600);
+		// 	arr[i] = num;
+		// 	arr2[i] = num;
+		// }
+
+		// // 最经典的：冒泡排序。(标准版)
+		// var count = 0;
+		// for(var j = 0; j < arr.length - 1; j ++){
+		// 	for(var i = 0; i < arr.length - 1 - j; i++){
+		// 		count++;
+		// 		if (arr[i] > arr[i + 1]) {
+		// 			var temp = arr[i];
+		// 			arr[i] = arr[i + 1];
+		// 			arr[i + 1] = temp;
+		// 		}
+		// 	}
+		// }	
+		// console.log(count);
+
+
+		// var count2 = 0;
+		// for(var j = 0; j < arr.length - 1; j ++){
+		// 	for(var i = 0; i < arr.length - 1; i++){
+		// 		count2 ++;
+		// 		if (arr[i] > arr[i + 1]) {
+		// 			var temp = arr[i];
+		// 			arr[i] = arr[i + 1];
+		// 			arr[i + 1] = temp;
+		// 		}
+		// 	}
+		// }
+		// console.log(count2);
+		// console.log(arr);
+
+
+		var arr = [3, 4, 6, 3, 6, 7, 1, 3, 2];
+
+		// [0, 1, 1, 3, 1, 0, 2, 1, 0];出现的次数
+		//  0, 1, 2, 3, 4, 5, 6, 7, 8　arr中的元素 cArr的下标
+		var cArr = [];
+		for(var i = 0; i < 9; i++){
+			cArr[i] = 0;
+		}
+		for(var i = 0; i < arr.length; i++){
+			cArr[arr[i]]++;
+		}
+		console.log(cArr);
+
+		var newArr = [];
+		var count = 0; 
+
+		for(var i = 0; i < arr.length; i++){
+			// 5个3
+			for(var j = 0; j < cArr[i]; j++){
+				count++;
+				newArr.push(i);
+			}
+		}
+		console.log(newArr, count);
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</html>

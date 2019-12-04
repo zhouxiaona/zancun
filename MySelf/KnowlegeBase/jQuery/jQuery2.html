@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery2</title>
+		<style type="text/css">
+			#wrap{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap"></div>
+		<input type="button" name="">
+	</body>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		$("input").on("click",function(){
+			$("#wrap").toggle("1000");
+		});
+
+	</script>
+</html>

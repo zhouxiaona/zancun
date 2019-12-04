@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>卫生间</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.4&key=5cce211231b0a2db5d5390bd0654a57f"></script>
+    <style type="text/css">
+        body,html,#container{
+            height: 100%;
+            margin: 0px;
+        }
+        .amap-geolocation-con{
+            left:10px;
+        }
+        .amap-scalecontrol{
+            margin-left: 50px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container" tabindex="0"></div>
+
+</body>
+<script type="text/javascript">
+    var map = new AMap.Map('container',{
+        resizeEnable: true,
+        zoom: 15
+    });
+
+    AMap.plugin(['AMap.ToolBar','AMap.Scale','AMap.OverView'],
+    function(){
+        map.addControl(new AMap.ToolBar());
+
+        map.addControl(new AMap.Scale());
+    });
+
+    //路线规划实例化
+    AMap.service('AMap.Walking',function(){//回调函数
+        //实例化Walking
+        walking = new AMap.Walking({
+            map: map,
+            // panel: "panel"
+        });
+
+    });
+
+    map.plugin('AMap.Geolocation', function() {
+        geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+            timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+            zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+            buttonPosition:'RB'
+        });
+        map.addControl(geolocation);
+
+        //自动定位
+        geolocation.getCurrentPosition();
+
+        AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+        AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+    });
+
+    //定位成功继续定位
+    function onComplete(data){
+        // console.log("定位成功的data值:",data);
+        if(data.info=="SUCCESS" && data.status==1){
+            //定位成功，根据定位的坐标查找附近的卫生间
+            AMap.service(["AMap.PlaceSearch"], function() {
+                var placeSearch = new AMap.PlaceSearch({ //构造地点查询类
+                    pageSize: 5,
+                    pageIndex: 1,
+                    map: map,
+                    // panel:"panel"
+                });
+
+                var cpoint =data.position; //中心点坐标
+                placeSearch.searchNearBy('卫生间', cpoint, 2000, function(status, result) {
+                    // console.log(status,result);
+                    if(status=="complete"){
+                        var toilets=result.poiList.pois;
+                        toilets.forEach(function(v,k){
+                            console.log("--",v);
+                            //画maker
+                            var marker = new AMap.Marker({ //添加自定义点标记
+                                map: map,
+                                position: v.location, //基点位置
+                                offset: new AMap.Pixel(-25, -60), //相对于基点的偏移位置
+                                draggable: false,  //是否可拖动
+                                content: `<div style="background:orange;white-space: nowrap;">${v.distance}米</div>`   //自定义点标记覆盖物内容
+                            });
+                            //给marker绑定click事件
+                            AMap.event.addListener(marker, 'click', showInfoWin);//返回定位信息
+                            function showInfoWin(){
+                                // alert("11111");
+                                //显示信息窗口
+                                var infoWindow = new AMap.InfoWindow({
+                                    isCustom: true,  //使用自定义窗体
+                                    content: `<div style="background:white;border:1px solid black;width:200px;">
+                                                   <p style="background:#3781FD;color:white;margin:0;">卫生间 <span onclick="closeInfoWindow()" style="float:right;margin-right: 10px;">X</span></p>
+                                                   <p>名称：${v.name}</p>
+                                                   <p>距您：${v.distance}米</p>
+                                                   <p>地址：${v.address}</p>
+                                              </div>`,
+                                    offset: new AMap.Pixel(16, -45)
+                                });
+                                infoWindow.open(map,marker.getPosition());
+
+                                //规划步行的行走路线
+                                //步行导航
+
+                                //根据起终点坐标规划步行路线
+                                walking.search(cpoint,v.location);
+                            }
+
+                        });
+                    }
+                });
+            });
+        }
+    }
+    //定位失败函数
+    function onError(){
+        console.log("定位失败");
+    }
+    //关闭信息窗体
+    function closeInfoWindow(){
+        map.clearInfoWindow();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="test.css" />
+</head>
+<body>
+    <h1>我是主页</h1>
+    <div id="exchange"></div>
+    <button onclick="sub()">点击获取数据</button>
+</body>
+<script src="jQuery.js"></script>
+<script>
+    function sub(){
+        $.ajax({
+            type:"get",
+            url:"/",
+            data:{
+                name:"张三",
+                age:18
+            },
+            dataType:"json",
+            success:function(data){
+                console.log(data);
+                var html=`<p>姓名是${data.name};年龄是${data.age}</p>`;
+                $('#exchange').html(html);
+            }
+        })
+    }
+</script>
+</html>

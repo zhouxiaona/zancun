@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>黑马旋转</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				perspective: 3000px;
+			}
+			.wrap{
+				width: 560px;
+				height: 340px;
+				border: 1px solid black;
+				margin: 10px auto;
+				background-color: black;
+				overflow: hidden;
+			}
+			.box{
+				float: left;
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				margin-left: 10px;
+				margin-top: 10px;
+				position: relative;
+				transform-style: preserve-3d;
+			}
+			.hidden{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: none;
+				transition: 1s;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box box1">
+				<div class="hidden"></div>
+			</div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		// var wrap=document.getElementsByClassName('wrap')[0];
+		// var boxs=document.getElementsByClassName('box');
+
+	</script>
+</html>
+
+
+
+
+
+
+
+

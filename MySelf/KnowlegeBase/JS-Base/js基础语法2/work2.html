@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<input type="number" id="inp1" name="" value="">
+		<button id="btn">判断</button>
+		<input type="text" id="inp2" name="" value="">
+	</body>
+	<script type="text/javascript">
+		var inp1=document.getElementById('inp1');
+		var btn=document.getElementById('btn');
+		var inp2=document.getElementById('inp2');
+		btn.onclick=function(){
+			var num=Number(inp1.value);
+			if(num<0){
+				inp2.value="负数";
+			}else if(num>0){
+				inp2.value='正数';
+			}else{
+				inp2.value='0';
+			}
+		}
+	</script>
+</html>

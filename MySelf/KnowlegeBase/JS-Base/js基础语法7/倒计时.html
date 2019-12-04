@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>倒计时</title>
+		<style type="text/css">
+			.wrap{
+				width: 250px;
+				height: 150px;
+				background: black;
+				margin: 0 auto;
+				text-align: center;
+			}
+			.wrap div{
+				width: 70%;
+				padding: 20px 38px;
+				color: white;
+			}
+			#inp1,#inp2{
+				width: 30px;
+				text-align: center;
+				margin-right: 9px;
+				font-size: 20px;
+			}
+			#btn{
+				width: 90%;
+				height: 40px;
+				font-size: 20px;
+				color: white;
+				text-align: center;
+				border-radius: 7px;
+				background-color: green;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div>
+				<input type="text" id="inp1" value="1">分钟
+				<input type="text" id="inp2" value="2">秒
+			</div>
+			<button id="btn">启动</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var inp1=document.getElementById('inp1');
+		var inp2=document.getElementById('inp2');
+		var btn=document.getElementById('btn');
+		btn.onclick=function(){
+			var min=Number(inp1.value);
+			var sec=Number(inp2.value);
+			if(btn.style.backgroundColor=='red' && btn.innerHTML=='取消'){
+				btn.style.backgroundColor='green';
+				btn.innerHTML='启动';
+				clearInterval(timer);
+
+			}else{
+				btn.style.backgroundColor='red';
+				btn.innerHTML='取消';
+				timeFn();
+			}
+			
+			
+			
+			function timeFn(){
+				timer=setInterval(function(){
+					sec--;
+					if(min>0 && sec<0){
+						sec=59;
+						min--;
+					}else if(min<=0 && sec>0){
+						min=0;
+					}else if(sec<0){
+						sec=0;
+					}
+					inp1.value=min;
+					inp2.value=sec;
+				},1000);
+			}
+		}
+			
+
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

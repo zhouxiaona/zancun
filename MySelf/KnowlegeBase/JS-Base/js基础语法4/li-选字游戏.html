@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>选字游戏</title>
+		<style type="text/css">
+			* { margin:0; padding: 0; font-family: simsun; }
+			#wrap { width: 420px; margin: 0 auto; position: relative; min-height: 540px; max-height: 640px; border: 1px #ccc solid; border-radius: 5px; background: #dcdee0; }
+			#time { position: absolute; left: 20px; top: 20px; font-size: 30px; }
+			#scoring { position: absolute; top: 20px; right: 20px; font-size: 30px; }
+			#show { font-size: 10em; top: 90px; left: 126px; position: absolute; }
+			#menu { padding: 40px 30px; font-size: 30px; top: 250px; position: absolute; }
+			#list { position: absolute; left: 10px; bottom: 20px; list-style: none; }
+			#list li { float: left; font-size: 5em; }
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="time">剩余时间：20</div>
+			<div id="scoring">完成：0</div>
+			<div id="show">红</div>
+			<div id="menu">根据上面的字的颜色从下面选择正确的字，选择正确自动开始</div>
+			<ul id="list">
+				<li>绿</li>
+				<li>蓝</li>
+				<li>黑</li>
+				<li>黄</li>
+				<li>红</li>
+			</ul>
+		</div>
+		<div id=""></div>
+	</body>
+	<script type="text/javascript">
+
+	
+	// -----------------游戏参数--------------
+		var time = 50;//每局游戏的时间
+		var errorTime = 5;//点错之后扣除的时间
+		var colors = ["red", "blue", "green", "yellow", "black", "purple"];//定义字的颜色数组
+		var fonts = ["红", "蓝", "绿", "黄", "黑", "紫色"];//定义字的数组
+
+		
+
+	// ------------------------------
+		var show = document.getElementById('show');
+		var lis = document.querySelectorAll("#list li");
+		// for(var i = 0; i < fonts.length; i++){
+		// 	ul.appendChild (document.createElement("li"));
+
+		// }
+
+		var showIndex;
+		var colorArr;
+		var fontArr;
+		randomCF();
+		document.getElementById("time").innerHTML = "剩余时间：" + time;
+
+		var timer = setInterval(subTime, 1000);
+
+		for(var i = 0; i < lis.length; i++){
+			lis[i].onclick = function(){
+				// if (this.innerHTML == fonts[showIndex]) {
+				// 	console.log("点对了");
+				// }
+				if (showIndex == this.fontIndex) {
+					console.log("点对了");
+					// 分数++；
+					randomCF();
+				} else {
+					// 分数-1  
+					// 游戏时间减少
+					time -= errorTime;
+					document.getElementById("time").innerHTML = "剩余时间：" + time;
+					clearInterval(timer);
+					timer = setInterval(subTime, 1000);
+				}
+			}
+		}
+
+		//游戏时间减少的函数
+		function subTime(){
+			time--;
+			document.getElementById("time").innerHTML = "剩余时间：" + time;
+			if (time <= 0) {
+				clearInterval(timer);
+				// 点击事件 = null;
+			}
+		}
+
+		function randomCF(){
+			// 随机大字的颜色，和字
+			showIndex = parseInt(Math.random()*lis.length);
+			show.style.color = colors[showIndex];
+			show.innerHTML = fonts[parseInt(Math.random()*lis.length)];
+			
+			// 随机小字的颜色和字
+			colorArr = getArr();//[1, 3, 0, 2, 4]
+			fontArr = getArr(); //
+			for(var i = 0; i < lis.length; i++){
+				lis[i].style.color = colors[colorArr[i]];
+				lis[i].innerHTML = fonts[fontArr[i]];
+				lis[i].fontIndex = fontArr[i];
+			}
+		}
+
+		//定义指定长度和指定范围的无重数组方法
+		function getArr(){
+			var arr = [];
+			for(var i = 0; i < lis.length; i++){
+				var num = parseInt(Math.random() * lis.length);
+				arr[i] = num;
+				for(var j = 0; j < i; j++){
+					if (num == arr[j]) {
+						i--;
+					}
+				}
+			}
+			return arr;
+		}
+
+
+
+		
+	</script>
+</html>

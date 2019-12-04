@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>cookie2</title>
+		<style type="text/css">
+			p{
+				width: 300px;
+				height: 400px;
+				overflow: auto;
+				margin: 50px auto;
+				box-sizing: border-box;
+				padding: 5px;
+				border: 5px solid pink;
+				/* font-family:"STKaiti"; */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="btn">
+			<!-- 字体按钮 -->
+			<select class="wordType" onchange='main(".wordType","fontFamily")'>
+				<option value="0" sps="PingFang SC">字体</option>
+				<option value="1" sps="PingFang SC">默认</option>
+				<option value="2" sps="STKaiti">楷体</option>
+			</select>
+			<!-- 颜色按钮 -->
+			<select class="wordColor" onchange='main(".wordColor","color")'>
+				<option value="0" sps="black">颜色</option>
+				<option value="1" sps="black">默认</option>
+				<option value="2" sps="red">红色</option>
+			</select>
+			<!-- 字体大小按钮 -->
+			<select class="wordSize" onchange='main(".wordSize","fontSize")'>
+				<option value="0" sps="16px">大小</option>
+				<option value="1" sps="16px">默认</option>
+				<option value="2" sps="20px">20px</option>
+			</select>
+			<!-- 滚屏按钮 -->
+			<!-- 背景颜色按钮 -->
+			<select class="bgsColor" onchange='main(".bgsColor","backgroundColor")'>
+				<option value="0" sps="white">背景</option>
+				<option value="1" sps="white">默认</option>
+				<option value="2" sps="lightblue">淡蓝</option>
+			</select>
+			<!-- 宽度按钮 -->
+			<select class="bgWidth" onchange='main(".bgWidth","padding")'>
+				<option value="0" sps="5px">宽度</option>
+				<option value="1" sps="5px">默认</option>
+				<option value="2" sps="20px">60%</option>
+			</select>
+			<!-- 翻页 单选-->
+			<!-- 夜间 单选 -->
+			<span style="font-size: 12px;">夜间</span>
+			<input type="checkbox" class="nightBtn">
+		</div>
+		<p>现在知道了，那些恣意飞扬的岁月里，我们每一次躁动不安的梦想，年轻气盛的誓言，猝不及防的暗恋，义无反顾地摔倒又爬起，其实都藏着一颗颗饱满的种子，它让我们有了脊椎，有了思想，有了人格，通晓了嘴巴和手真正的功能。在人生每一场来势凶猛的暗战中，保全了自己。
+6、 “人们很早开始学习生活的道理，“老人说道，带着一种痛苦的表情，”也许正是因为如此，人们早早的放弃了自己的梦想，人生就是如此。“ ——保罗·戈埃罗 《牧羊少年奇幻之旅》
+7、 梦想和自由一样，都有代价，但都值得。
+8、 当你遇到我的梦想，告诉他，我在路上！
+9、 1、有主见，不埋怨，少是非。2、欣赏自己，但不追求完美。3、面带微笑、宽容别人。4、明白事情并不是非黑则白，还有很多中间状态。5、不与别人比较。6、沟通最难但还要多沟通。7、知道好动机未必好结果。8、永远有梦想，有梦想就有希望。9、知道做个好人很难，但仍要做好人。
+10、 春节长假乐开怀，阖家欢乐展笑颜；喜气环绕在身旁，调整心态收收心；带着快乐的激情，载上幸福的氛围；为工作燃起斗志，为梦想继续奋斗。祝朋友节后愉快！
+11、 烟花绚烂人欢笑，饭菜飘香幸福绕，平安吉祥蛇年到，希望梦想随春到，和睦兴隆好运交，新春短信把喜报，福寿康宁财气高。除夕快乐。
+12、 春节假期悄悄结束，鞭炮声声渐渐远去，收拾心情重返岗位，同事之间互道声好，共同努力干番事业，怀揣梦紧抓机遇，不断进取收获成功，愿你新年新气象，大展鸿图！
+13、 不去抱怨，不浮躁，不害怕孤单，能很好的处理寂寞，沉默却又努力，那时说不定你想要苦苦追寻的梦想，已经握在你手中了。
+14、 出发之前永远是梦想，出发之后永远是挑战。
+15、 你的梦想是这么的儿戏？如果梦想只是拿来讲，而不去切切实实地去实践，那就等于是在闲聊。 《男人如衣服》
+16、 梦想这东西和经典一样，永远不会因为时间而褪色，反而更显珍贵！ 《老男孩》
+17、 什么是理想？我想它包括两方面，第一，理想是心中的愿景，也叫梦想、规划、憧憬，总之是对美好未来的描述。现在MBA课堂上把这叫愿景，而之前我们叫它梦想，或者用最朴素的表达方式：长大以后干什么。 ——冯仑 《理想丰满》
+18、别让别人徘徊的脚步踩碎你明天美好的梦想，天下没有不散的宴席，也许这人间真的只有朦朦胧胧才是真
+19、 "你拆了城墙让我去流浪,一个人完成自己的梦想"
+20、 没有梦想，何必远方。 ——向月娥 《残酷月光》
+21、 你有梦想总无法实现，或你很迷茫找不到出路，你觉得对方不爱你，你觉得这社会没辙了。每每听到这些话，我现在只有一句话反问：可你为了改变这一切又做过些什么 ——庄雅婷
+22、 梦想不分远近，再远的梦想也要勇敢的迈出最近的那一步！
+23、 玛格 丽特 那是你的梦， 里面有流光旋转， 紫色丝绒和芭蕾的提琴。 舞蹈的天鹅停止G大调的忧伤， 在风中静立， 片片飘走的白云。 随着鲁宾逊漂流， 假面骑士和茶花女赞颂， 与带烟斗的兔子， 梦想最蓝的眼睛， 直至接近黎明， 奔向下一场盛装的熄灭。 请让我做夜生的精灵， 交付在白昼里干涸的灵魂。 请让我为你狂欢， 在这醉人的，缭乱的天堂。
+24、 时间使人忘记梦想、原则和朋友，偏偏有些事情我们又记得很清楚，我们记得自己曾经有梦想、有原则和有朋友。 ——张小娴
+25、 人生其实就是一场赌局。赌博你的职业，赌博你的将来，赌你的梦想能最终撑过现实，赌你的现实能压倒你梦想的躁动，赌你的爱人能最终爱上你，赌时间能让你忘记你曾经的爱人。关键在于，为了什么，你可以愿赌服输。
+26、 我有一间房子 网络为壁 花草为幕 寒冷的冬日 取心湖之冰 镶嵌于窗 我有一间房子 梦想为床 等待为被 深深的夜里 独依窗前 看霓虹闪烁
+27、 这个世界最容易碎的.就是男人的酒杯.信赖的承诺.女人的梦想.钢丝上的爱情.现实社会的善良和高贵的心。
+28、 你不是屈服于梦想，你屈服在一个你没有而且也不会有的事情。 《和平战士》
+29、 只是那个时候的我们，都一同选择了将梦想延续下去的路，往后想念，只好说—— 请时间原谅，那时我们都还年轻。 ——布安格 《雨落在旧光阴的原点》
+30、 有人说，年轻真好，可以超越时间，追逐梦想；有人说，恋爱真好，可以义无反顾，不理后果；但我说，活着真好，因为可以为所欲为。 《倾城之泪》
+31、 别让心底的梦想终老一生。
+32、 人一有梦想就容易胡思乱想 ——李亨民 (www.siaNdian.com 闪点情话网) 《坏男人》
+33、 /思念/梦想这东西说出来就不值钱了，还是藏在心里默默努力就好！
+34、 只有一只脚的稻草人，在这残酷的世界，身体已飘散在冷峻的风中，却不能像蒲公英那般自由飞翔，只因心已死。 “哀莫大于心死”，无法再对任何事物有热情，再也无法感受当初心因为过于激动的感触。 不会再抱着任何希望，随波逐流。 蒲公英经是我的梦想，但看清现实后，我却变成稻草人，注定和自由绝缘。
+35、 再美好的梦想，最终都要正视现实；不切实际的梦想，就是幻想、空想；不付出行动的梦想，永远成不了现实，而只是一个美好的梦境···
+36、 曾经的岁月如歌，如今的惨淡未来。曾经的天真童年，如今的恐惧成长。曾经的满怀梦想，如今的步步为艰。曾经的年少无知，如今的上下求索。曾经的事不关己，如今的三思而行。曾经的爱心田长，如今的爱心底竭。曾经的………………。如今的物是人非。时间可以创造或证明一切，也可以灭掉一切。
+37、 欲望，这一秒带你飞升天际，下一秒就将你狠狠地摔在地上，毫不留情；而梦想，给你压力，却让你一步步走得更扎实，回头看时，心里也会满满的充盈着感激。
+38、 男人的梦想最初都是从女人开始的。 ——陈可辛 《中国合伙人》
+39、 生活是一把无情刻刀，改变我们模样。未曾绽放就要枯萎吗？我有过梦想！ 《喜爱夜蒲2》
+40、 我想做神仙，那里是“天堂我想做魔鬼，那里有”地狱我想要现实，那里会“痛苦我想要梦想，那里太”遥远还是学会忘记吧，也许会有很多甜蜜…… 《喜爱夜蒲2》</p>
+	</body>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		if(getCookie("scrollTop")){
+			$("p").scrollTop(getCookie("scrollTop"));
+		}
+		$("p").on("scroll",function(){
+			var date=new Date();
+			date.setDate(date.getDate()+3);
+			document.cookie="scrollTop="+$(this).scrollTop()+";expires="+date.toUTCString();
+		});
+
+		function getCookie(key){
+			var arr=document.cookie.split("; ");
+			for(index in arr){
+				var resArr=arr[index].split("=");
+				if(resArr[0]==key){
+					return resArr[1];
+				}
+			}
+		}
+
+		
+// -------------------------------------------------------------
+		var arr=[];
+		function main(owner,style){
+			if($(""+owner+" option:selected").attr("value")==0 || $(""+owner+" option:selected").attr("value")==1){
+				$("p").css(style,$(""+owner+" option:selected").attr("sps"));
+				addCookie(style,$(""+owner+" option:selected").attr("sps"));
+			}
+			if($(""+owner+" option:selected").attr("value")==2){
+				$("p").css(style,$(""+owner+" option:selected").attr("sps"));
+				addCookie(style,$(""+owner+" option:selected").attr("sps"));
+			}
+
+		}
+
+		function addCookie(cookieKey,cookieValue){
+			var date=new Date();
+			date.setDate(date.getDate()+3);
+			document.cookie=cookieKey+"="+cookieValue+";expires="+date.toUTCString();
+		}
+
+		$(".nightBtn").click(function(){
+			if(this.checked){
+				addCookie("checked","true");
+				$("p").css("backgroundColor","black");
+				addCookie("backgroundColor","black");
+			}else{
+				addCookie("checked","false");
+				$("p").css("backgroundColor","white");
+				addCookie("backgroundColor","white");
+			}
+		});
+
+// cookieKey:
+
+// "fontFamily"
+// "color"
+// "fontSize"
+// "backgroundColor"
+// "padding"
+	if(getCookie("checked")){
+		if(getCookie("checked")=="true"){
+			$(".nightBtn").attr("checked",true);
+		}
+		if(getCookie("checked")=="false"){
+			$(".nightBtn").attr("checked",false);
+		}
+	}
+	if(getCookie("fontFamily")){
+		$("p").css("fontFamily",getCookie("fontFamily"));
+	}
+	if(getCookie("color")){
+		$("p").css("color",getCookie("color"));
+	}
+	if(getCookie("fontSize")){
+		$("p").css("fontSize",getCookie("fontSize"));
+	}
+	if(getCookie("backgroundColor")){
+		$("p").css("backgroundColor",getCookie("backgroundColor"));
+	}
+	if(getCookie("padding")){
+		$("p").css("padding",getCookie("padding"));
+	}
+// console.log($("p").css("fontFamily"));
+
+// console.log(window.getComputedStyle($("p")[0],null).fontFamily);
+		
+		
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

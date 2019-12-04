@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas 文字</title>
+		<style>
+			canvas{
+				border:1px solid black;
+				background: lightgray;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			对不起，您的浏览器版本过低，点击<a href="###">下载</a>
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+//		ctx.beginPath();
+//		ctx.moveTo(100,0);
+//		ctx.lineTo(100,400);
+//		ctx.stroke();
+		//================
+		ctx.beginPath();
+//		ctx.moveTo(0,100);
+//		ctx.lineTo(400,100);
+//		ctx.stroke();
+		//上下基准线
+		ctx.textBaseline="middle";
+		//左右基准线
+		ctx.textAlign="center";
+		//第三个字体参数不能省略
+		ctx.font="50px Arial";
+		var grd=ctx.createLinearGradient(0,0,200,0);
+		grd.addColorStop(0,"blue");
+		grd.addColorStop(0.5,"yellow");
+		grd.addColorStop(1,"red");
+		ctx.fillStyle=grd;
+		ctx.fillText("hello lala",250,250);
+	</script>
+</html>

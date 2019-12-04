@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		// var arrs=[1,2,3,4,5,6,7,8,9];
+	//........................................
+		// var arr=[];
+		// var sec=0;
+		// var max=0;
+		// for(var i=0;i<10;i++){
+		// 	arr[i]=parseInt(Math.random()*50);
+		// 	if(sec<arr[i]){
+		// 		sec=arr[i];
+		// 	}
+		// 	if(sec>max){
+		// 		var temp=sec;
+		// 		sec=max;
+		// 		max=temp;
+		// 	}
+		// }
+		// console.log(arr,max,sec);
+
+		// // var arr1=[];
+		// var sec1=0;
+		// var maxindex=0;
+		// for(var i=0;i<10;i++){
+		// 	// arr1[i]=parseInt(Math.random()*50);
+		// 	if(arr[i]>arr[maxindex]){
+		// 		maxindex=i;
+		// 	}
+		// }
+		// for(var j=0;j<10;j++){
+		// 	if(j!=maxindex){
+		// 		if(arr[j]>sec1){
+		// 			sec1=arr[j];
+		// 		}
+		// 	}
+		// }
+		// console.log(arr,arr[maxindex],sec1);
+
+		// for(var i=arr.length-1;i>=0;i--){
+		// 	console.log(arr[i]);
+		// }
+		
+	//..........................................
+		// var arr=[];
+		// for(var i=0;i<27;i++){
+		// 	arr[i]=0;
+		// }
+		// for(var i=100;i<=999;i++){
+		// 	var sum=parseInt(i/100)+parseInt(i%100/10)+i%10;
+		// 	arr[sum-1]++;
+		// }
+		// for(var i=0;i<27;i++){
+		// 	console.log("和值"+(i+1)+"出现的次数为："+arr[i]);
+		// }
+		
+		// for(var i=1;i<=27;i++){
+		// 	var count=0;
+		// 	for(var j=100;j<=999;j++){
+		// 		var sums=parseInt(j/100)+parseInt(j%100/10)+j%10;
+		// 		if(sums==i){
+		// 			// console.log(i);
+		// 			count++;
+		// 		}
+		// 	}
+		// 	console.log(i+"次数"+count);
+		// }
+//..............................................
+
+		// var countarr=[];
+		// var arr=[];
+		// for(var i=0;i<400;i++){//0--399
+		// 	countarr[i]=0;
+		// }
+		// for(var j=0;j<100000;j++){
+		// 	arr[j]=parseInt(Math.random()*400+100);
+		// 	countarr[arr[j]-100]++;
+		// }
+		// for(var i=100;i<500;i++){
+		// 	console.log("三位数"+i+"出现的次数为："+countarr[i-100]);
+		// }//2,3,4,5,6,7
+
+
+		// var countArr1=[];
+		
+		// for(var i=0;i<400;i++){
+		// 	countArr1[i]=0;
+		// }
+		// for(var j=0;j<100000;j++){
+		// 	var num=parseInt(Math.random()*400+100);
+		// 	countArr1[num-100]++;
+		// }
+		// for(var i=100;i<500;i++){
+		// 	console.log("三位数"+i+"出现的次数是："+countArr1[i-100]);
+		// }
+
+		var arr=[1,1,1,1,1,1,1,1,1,1,1,1,1];
+		var count=0;
+		var p=0;
+		for(var i=0;i<arr.length;i++){
+			if(arr[i]){
+				count++;
+				if(count==4){
+					count=1;
+				}
+				if(count==3){
+					arr[i]=0;
+					p++;
+					if(p==arr.length-1){
+						break;
+					}
+				}
+			}
+			if(i==arr.length-1){
+				i=-1;
+			}
+		}
+
+
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

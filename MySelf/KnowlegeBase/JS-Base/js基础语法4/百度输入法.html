@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style type="text/css">
+			div{
+				width: 200px;
+				margin: 20px auto;
+				text-align: left;
+			}
+			#inp1{
+				width: 50px;
+				border: 1px solid lightgray;
+				border-radius: 6px;
+				text-decoration: none;
+				color: black;
+			}
+			ul{
+				width: 62px;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				border: 1px solid blue;
+				display: none;
+				margin-top: 10px;
+			}
+			ul li{
+				overflow: hidden;
+			}
+			ul li:hover{
+				background: lightgray;
+			}
+			ul li:nth-of-type(2){
+				border-bottom: 1px solid blue;
+			}
+			ul li a{
+				float: left;
+				padding: 2px 0 2px 2px;
+				color: blue;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<a href="###" id="inp1">输入法</a>
+			<ul id="uls">
+				<li id="shouxie">
+					<a href="###">手写</a>
+				</li>
+				<li id="pinyin">
+					<a href="###">拼音</a>
+				</li>
+				<li id="guanbi">
+					<a href="###">关闭</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var inp1=document.getElementById('inp1');
+		var shouxie=document.getElementById('shouxie');
+		var pinyin=document.getElementById('pinyin');
+		var guanbi=document.getElementById('guanbi');
+		var uls=document.getElementById('uls');
+		inp1.onclick=function(){
+			if(uls.style.display=='block'){
+				uls.style.display='none';
+			}else{
+				uls.style.display='block';
+			}
+		}
+		shouxie.onclick=function(){
+			inp1.innerHTML='手写';
+		}
+		pinyin.onclick=function(){
+			inp1.innerHTML='拼音';
+		}
+		guanbi.onclick=function(){
+			uls.style.display='none';
+			inp1.innerHTML='输入法';
+		}
+
+
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

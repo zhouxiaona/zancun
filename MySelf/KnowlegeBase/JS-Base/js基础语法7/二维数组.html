@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>二维数组</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	// var arr=["苹果","梨子","香蕉","葡萄","哈密瓜"];
+	// //遍历 /历遍一维数组
+	// for(var i=0;i<arr.length;i++){
+	// 	console.log(arr[i]);
+	// }
+
+	//二维数组的概念
+	//数组里面的元素也是一个数组
+	// var arr2=[["苹果","梨子","香蕉"],["菠菜","生菜","豆角"],["米饭","馒头","油条"]];
+	// for(var j=0;j<arr2.length;j++){
+	// 	console.log(arr2[j]);
+	// 	for(var i=0;i<arr2[j].length;i++){
+	// 		console.log(arr2[j][i]);
+	// 	}
+	// }
+	
+
+	var arr3 = [[["苹果", "梨子"],["榴莲", "菠萝"]], [["青菜","菠菜"],["西红柿", "红萝卜"]], [["米饭","蒸米"], ["面条","馒头"]]];
+	for(var i=0;i<arr3.length;i++){
+		console.log(arr3[i]);
+		for(var j=0;j<arr3[i].length;j++){
+			console.log(arr3[i][j]);
+			for(var a=0;a<arr3[i][j].length;a++){
+				console.log(arr3[i][j][a]);
+			}
+		}
+	}
+ 
+
+</script>
+</html>

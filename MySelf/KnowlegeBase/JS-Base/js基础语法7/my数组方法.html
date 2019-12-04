@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>my数组方法</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+	
+		var arr1=[1,2,3,4,5,6];
+
+		var arr2=[4,5,6];
+		var arr3=[7,8,9];
+		
+
+//myConcat.......................................................
+		Array.prototype.myConcat=function(){
+			var newArr=[];
+			for(var i=0;i<this.length;i++){
+				newArr[i]=this[i];
+			}
+
+			for(var i=0;i<arguments.length;i++){
+				for(var j=0;j<arguments[i].length;j++){
+					newArr[newArr.length]=arguments[i][j];
+				}
+			}
+
+			return newArr;
+		}
+
+		//concat,连接数组，多个数组,返回生成一个新的数组，原来的数组不会被改变
+		// function myConcat(){
+		// 	var newArr=[];
+		// 	for(var i=0;i<arguments[0].length;i++){
+		// 		newArr[i]=arguments[0][i];
+		// 	}
+		// 	for(var j=1;j<arguments.length;j++){
+		// 		for(var i=0;i<arguments[j].length;i++){
+		// 			newArr[newArr.length]=arguments[j][i];
+		// 		}
+		// 	}
+		// 	return(newArr);
+		// }
+
+
+		// console.log(myConcat(arr1,arr2,arr3),arr1,arr2,arr3);
+		console.log(arr1.myConcat(arr2),arr1);
+		console.log(arr1.concat(arr2),arr1);
+
+
+//myReverse......................................................................
+		Array.prototype.myReverse=function(){
+			for(var i=0;i<parseInt(this.length/2);i++){
+				var temp=this[i];
+				this[i]=this[this.length-i-1];
+				this[this.length-i-1]=temp;
+			}
+			return this;
+		}
+		// console.log(arr1.myReverse(),arr1);
+
+
+		//reverse,数组反转,对原数组进行更改,返回的是被反转后的数组
+		// function myReverse(){
+		// 	var newArr=[];
+		// 	for(var i=0;i<arguments[0].length;i++){
+		// 		newArr[i]=arguments[0][i];
+		// 	}
+		// 	for(var i=0;i<newArr.length;i++){
+		// 		arguments[0][i]=newArr[newArr.length-i-1];
+		// 	}
+		// 	return arguments[0];
+		// }
+		// myReverse(arr1);
+		// console.log(arr1);
+		
+		
+		// console.log(arr1.reverse(),arr1);		
+//myUnfhift.................................................................
+		Array.prototype.myUnshift=function(){
+			this.myReverse();
+			for(var i=arguments.length-1;i>=0;i--){
+				this.myPush(arguments[i]);
+			}
+			this.myReverse();
+			return this.length;
+		}
+
+		// console.log(arr1.myUnshift(10,11,11),arr1);
+		// var arrs=[1,2,3,4,5,6];
+		// console.log(arrs.unshift(10,11,11),arrs);
+
+
+
+		// unshift,从数组头部添加元素,多个元素,对原数组进行更改，返回的是添加元素后的数组的长度
+		// function myUnshift(){
+		// 	var count=arguments[0].length;
+		// 	var num=0;
+		// 	var arr=[];
+		// 	for(var i=0;i<arguments[0].length;i++){
+		// 		arr[i]=arguments[0][i];
+		// 	}
+		// 	for(var i=0;i<arguments.length-1;i++){
+		// 		arguments[0][i]=arguments[i+1];
+		// 		count++;
+		// 		num++;
+		// 	}
+		// 	arguments[0].length=count;
+		// 	for(var j=0;j<arr.length;j++){
+		// 		arguments[0][num+j]=arr[j];
+		// 	}
+		// 	return arguments[0];
+		// }
+		
+		// console.log(myUnshift(arr1,55,88),arr1);
+		
+		// var arrs=[1,2,3,6,5,4];
+		// arrs.unshift(55,88);
+		// console.log(arrs);
+
+//myPush...........................................................
+		Array.prototype.myPush=function(){
+			for(var i=0;i<arguments.length;i++){
+				this[this.length]=arguments[i];
+			}
+			return this.length;
+		}
+
+
+		// push，从数组尾部添加元素,多个元素,对原数组进行更改,返回的是添加元素后的数组的长度
+		// function myPush(){
+		// 	for(var i=1;i<arguments.length;i++){
+		// 		arguments[0][arguments[0].length]=arguments[i];
+		// 	}
+		// 	return arguments[0];
+		// }
+		// console.log(myPush(arr1,5,5,5,5),arr1);
+
+
+//myPop.....................................................................
+		Array.prototype.myPop=function(){
+			var res=this[this.length-1];
+			this.length=this.length-1;
+			return res;
+		}
+		// var arrs=[1,2,3,4,5,6];
+		// console.log(arr1.myPop(),arr1);
+		// console.log(arrs.pop(),arrs);
+
+
+		//pop,从单个数组尾部删除一个元素,对原数组进行更改,返回的是删除的那个元素
+		// function myPop(){
+		// 	arguments[0][arguments[0].length-1]=null;
+		// 	arguments[0].length--;
+		// 	return arguments[0];
+		// }
+
+		// console.log(myPop(arr2),arr2);
+		
+
+
+//myShift...................................................................
+		Array.prototype.myShift=function(){
+			this.myReverse();
+			var res=this.myPop();
+			this.myReverse();
+			return res;
+		}
+
+		// var arrs=[1,2,3,4,5,6];
+		// console.log(arr1.myShift(),arr1);
+		// console.log(arrs.shift(),arrs);
+
+
+
+		//shift,从单个数组头部删除一个元素,对原数组进行更改,返回的是从头部删除掉的那个元素
+		// function myShift(){
+		// 	for(var i=0;i<arguments[0].length;i++){
+		// 		arguments[0][i]=arguments[0][i+1];
+		// 	}
+		// 	arguments[0][arguments[0].length-1]=null;
+		// 	arguments[0].length--;
+		// 	return arguments[0];
+		// }
+		// console.log(myShift(arr2),arr2);
+		
+
+
+//myJoin.............................................................................
+		
+		// Array.prototype.myJoin=function(icon){
+		// 	if(icon===undefined){
+		// 		icon=',';
+		// 	}
+		// 	var str=this[0];
+		// 	for(var i=1;i<this.length;i++){
+		// 		str+=icon+this[i];
+		// 	}
+		// 	return str;
+		// }
+
+		// var arrs=[1,2,3,4,5,6];
+		// console.log(arr1.myJoin('-'),arr1);
+		// console.log(arrs.join('-'),arrs);
+
+		//join 将数组用指定的字符分隔成字符串，原数组不会发生改变,返回拼接后的字符串
+		// function myJoin(arr,icon){
+		// 	var newArr=[];
+		// 	for(var i=0;i<arr.length;i++){
+		// 		newArr[i]=arr[i];
+		// 	}
+		// 	var str=new String('');
+		// 	for(var i=0;i<newArr.length;i++){
+		// 		if(i==newArr.length-1){
+		// 			str+=newArr[newArr.length-1];
+		// 		}else{
+		// 			str+=newArr[i]+icon;
+		// 		}
+		// 	}
+		// 	return str;
+		// }
+
+		// var arr4=myJoin(arr1,'');
+		// console.log(arr4,arr1);
+
+		// console.log(arr1.join('-'),arr1);
+
+//mySplice........................................................	
+		//splice,数组方法,改变的是原数组的内容,返回的是被截取的元素组成的数组
+		//第一个参数代表下标
+		//第二个参数代表长度
+		// 后面的参数表示从第一个参数开始，包括第一个参数位置的元素，
+		//开始用后面的参数列表替换长度为第二个参数的元素
+		//第二个参数为０时表示插入
+		//第三个参数为０时表示删除
+		//还支持负数下标的设置，表示倒数位置开始，包括这个位置
+		//只有一个参数时，表示从此下标开始到整个数组结束，包括此下标，全都截取掉。
+		
+		Array.prototype.mySplice=function(index,length){
+			//存放返回的元素数组
+			var arr=[];
+			//存放改变后的数组
+			var resArr=[];
+			for(var i=index;i<index+length;i++){
+				resArr.myPush(this[i]);
+			}
+
+			//1.index之前的原数组元素
+			for(var i=0;i<index;i++){
+				arr.myPush(this[i]);
+			}
+			//2.arguments参数列表中得的元素
+			for(var i=2;i<arguments.length;i++){
+				arr.myPush(arguments[i]);
+			}
+			//3.index+length之后的原数组的元素
+			for(var i=index+length;i<this.length;i++){
+				arr.myPush(this[i]);
+			}
+			this.length=0;
+			for(var i=0;i<arr.length;i++){
+				this[i]=arr[i];
+			}
+
+
+			return resArr;
+		}
+		
+		// var arrs=[1,2,3,4,5,6];
+		// console.log(arr1.mySplice(-2,0,666),arr1);
+		// console.log(arrs.splice(-2,0,666),arrs);
+
+
+		
+		
+
+		
+		
+
+
+//mySlice.............................................................
+
+		//slice,不改变原来数组的内容，返回被截取的数组
+		//两个参数，第一个下标表示起始的位置
+		//第二个下标表示结束的位置
+		//只有一个参数时，表示从下标１开始，截取到最后
+		//从第一个位置开始截取，包括第一个位置，截取到结束位置的前一个数，不包括第二个位置
+		
+
+		
+
+
+		function mySlice(arr,start,end){
+			var newArr=[];
+			for(var i=0;i<arr.length;i++){
+				newArr[i]=arr[i];
+			}
+			if(end==undefined && start>=0){
+				for(var i=0;i<start;i++){
+					myShift(newArr);
+				}
+			}else if(end!=undefined && start<0){
+				newArr=[];
+			}else if(end==undefined && start<0){
+				for(var i=0;i<(arr.length-(-start));i++){
+					myShift(newArr);
+				}
+			}else if(end>=0){
+				for(var i=0;i<start;i++){
+					myShift(newArr);
+				}
+				for(var j=0;j<arr.length-end;j++){
+					myPop(newArr);
+				}
+			}else if(end<0){
+				for(var i=0;i<start;i++){
+					myShift(newArr);
+				}
+				for(var j=0;j<(-end);j++){
+					myPop(newArr);
+				}
+			}
+			return newArr;
+		}
+
+		// var arrs=[1,2,3,4,5,6];
+		// console.log(arrs.slice(2),arrs);
+
+
+
+
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

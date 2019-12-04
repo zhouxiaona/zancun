@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>选字游戏</title>
+		<style type="text/css">
+			* { 
+				margin:0; 
+				padding: 0; 
+				font-family: simsun; 
+			}
+			#wrap { 
+				width: 420px; 
+				margin: 0 auto;
+				position: relative;
+				min-height: 540px; 
+				max-height: 640px; 
+				border: 1px #ccc solid; 
+				border-radius: 5px; 
+				background: #dcdee0; 
+			}
+			#time { 
+				position: absolute; 
+				left: 20px; 
+				top: 20px; 
+				font-size: 30px; 
+			}
+			#scoring { 
+				position: absolute; 
+				top: 20px; 
+				right: 20px; 
+				font-size: 30px; 
+			}
+			#show { 
+				font-size: 10em; 
+				top: 90px; 
+				left: 126px; 
+				position: absolute; 
+			}
+			#menu { 
+				padding: 40px 30px; 
+				font-size: 30px; 
+				top: 250px; 
+				position: absolute; 
+			}
+			#list { 
+				position: absolute; 
+				left: 10px; 
+				bottom: 20px; 
+				list-style: none; 
+			}
+			#list li { 
+				float: left; 
+				font-size: 5em;
+				 }
+		</style>
+</head>
+<body>
+<div id="wrap">
+	<div id="time">剩余时间：10</div>
+	<div id="scoring">完成：0</div>
+	<div id="show">红</div>
+	<div id="menu">根据上面的字的颜色从下面选择正确的字，选择正确自动开始</div>
+	<ul id="list">
+		<li>绿</li>
+		<li>蓝</li>
+		<li>黑</li>
+		<li>黄</li>
+		<li>红</li>
+	</ul>
+</div>
+</body>
+<script type="text/javascript">
+
+	function fontGame(){
+		var show = document.querySelector("#show");
+		var lis  = document.querySelectorAll("#list>li");
+		var menu = document.querySelector("#menu"); 
+		var time = document.querySelector("#time");
+		var scoring = document.querySelector("#scoring");
+
+		var colors = ["red" , "green" , "blue" , "yellow" , "black"];
+		var fonts = ["红" , "绿" , "蓝" , "黄" , "黑"];
+
+		var count = 10; //计时
+		var num = 0; //计分
+		var timeBol = false; //时间开关
+		var clickBol = true; //点击开关
+
+		//游戏结束
+		function gameOver() {
+			if (num < 2) {
+				alert("你这成绩我没话说");
+			}else if (num < 5) {
+				alert("科科, 真厉害");
+			}else if (num < 10){
+				alert("和太阳肩比肩？");
+			}else{
+				alert("除了你我们都不配有眼睛");
+			}
+		}
+
+		//计时
+		var timer = setInterval(function(){
+			if (timeBol) {
+				count--;
+				time.innerHTML = "剩余时间：" + count;
+
+				if (count == 0) {
+					gameOver();
+					clearInterval(timer);
+					timer = null;
+					count = 0;
+					clickBol = false;
+				}
+			}
+		}, 1000);
+
+		//获取随机数
+		function randFn(max){
+			var rand = parseInt(Math.random() * max);
+			return rand;
+		}
+		//console.log(randFn(5)); //0-4，不包含最大值5
+		
+		//设置“题目”的文字和字色
+		function showRand(){
+			colorIndex = randFn(5); //全局变量，为选择时比较
+			var fontIndex = randFn(5);
+
+			show.style.color = colors[colorIndex];
+			show.innerHTML = fonts[fontIndex];
+		}
+
+		//定义设置“选项”的随机数组
+		function compare(){
+			var arr = [];
+			
+			while(arr.length < 5){ //长度五位
+				var rand = randFn(5); //取随机数
+				var bol = true;
+				
+				for (var i = 0; i < arr.length; i++){
+					if (arr[i] == rand){ //比较查重，重复项将不被push进数组
+						bol = false;
+						break;
+					}
+				}
+				if (bol){
+					arr.push(rand);
+				}
+			}
+			return arr;
+		}
+
+		//设置“选项”的文字与字色
+		function liRand(){
+			var colorArr = compare();
+			var fontArr = compare();
+
+			for (var i = 0; i < colorArr.length; i++){
+				lis[i].style.color = colors[colorArr[i]];
+				lis[i].innerHTML = fonts[fontArr[i]];
+				lis[i].fontIndex = fontArr[i]; //给每个li定义一个下标用于同题目文字下标比较，从而得知选择正误
+			}
+		}
+
+		//开始选择
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].onclick = function(){
+				if (this.fontIndex == colorIndex && clickBol) {
+					menu.style.display = "none";
+
+					timeBol = true; //开始计时
+					liRand(); //重新设置选项文字与字色
+					showRand(); //重新设置题目文字与字色
+
+					num++; //计算完成度
+					scoring.innerHTML = "完成" + num;
+				}	
+			}
+		}
+
+		//初始化
+		function init() {
+			showRand(); //调用设置题目的函数
+			liRand(); //调用设置选项的函数		
+		}
+		init();
+	}
+	fontGame();
+
+</script>
+</html>

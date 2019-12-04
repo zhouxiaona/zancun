@@ -1,0 +1,316 @@
+<template>
+  <view class="container">
+    <!-- <canvasShare painting="{{painting}}" bind:getImage="eventGetImage"/> -->
+    <canvas canvas-id="myCanvas" style="width:{{windowWidth}}px;height:{{windowHeight}}px;"/>
+    <view class="btns">
+      <button class="btn btn_share">转发到群</button>
+      <button class="btn btn_img" @tap.stop="shareToImg">生成图片分享好友</button>
+      <button class="btn btn_back">重输</button>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  // import canvasShare from '@/components/canvasShare'
+  export default class canvasImg extends wepy.page {
+    config = {
+      enablePullDownRefresh: false,
+      backgroundTextStyle: 'light',
+      onReachBottomDistance: 50,
+      navigationBarBackgroundColor: '#69BEFF',
+      navigationBarTitleText: 'canvasImg',
+      navigationBarTextStyle: 'white'
+    }
+    components = {
+      // canvasShare
+    }
+    // 绘制网络图片要先转成本地临时图片进行绘制
+    data = {
+      windowWidth: '',
+      windowHeight: '',
+      ctx: wx.createCanvasContext('myCanvas'),
+      startY: 120,
+      saveImage: "",
+      rpx: '',
+      testJson: {
+        // https://wx.qlogo.cn/mmopen/vi_32/RJbpfppQibaIK174ico7admiaUs8jTWEkJUNIibFicNicRib6gKSEFahc7xoZ6AcjcJryupKXC8UuQsjuHNXYFlxichMDw/132
+        // https://img.igowu123.com/img/qz/minwxapp/bg.png
+        // https://img.igowu123.com/img/qz/minwxapp/bannerCode.png
+        avater: '../img/avater.jpg',
+        nickName: '面条君面条君===>==>',
+        content: `今日走了12050步，平均每一步值8.30元，超过了全国67.8%的用户，这一步也太值钱了。`,
+        walkNum: 12050,
+        averageMoney: 12,
+        percent: '67.8%',
+        randName: '江湖人称',
+        randImg: '../img/bg.png',
+        Qtitle: '趣走',
+        Qcont: '小运动，大收获',
+        QcodeImg: '../img/bannerCode.png'
+      }
+    }
+
+    components = {
+
+    }
+
+    methods = {
+      shareToImg:() => {
+        let _this = this
+        console.log(_this.saveImage,'_this.saveImage_this.saveImage_this.saveImage_this.saveImage')
+        wx.getSetting({
+          success: (res) => {
+            if(!res.authSetting['scope.writePhotosAlbum']){
+              wx.authorize({
+                scope: 'scope.writePhotosAlbum',
+                success: () => {
+                  wx.downloadFile({
+                    url: _this.saveImage,
+                    success: (res) => {
+                      let path = res.tempFilePath;
+                      wx.saveImageToPhotosAlbum({
+                        filePath: path,
+                        success: (e) => {
+                          // console.log('toast', 'show', '图片保存成功');
+                          wx.showToast({
+                            title: '图片保存成功',
+                            icon: 'success',
+                            duration: 2000
+                          })
+                        },
+                        fail: (err) => {
+                          // console.log('toast', 'show', '图片保存失败！');
+                          wx.showToast({
+                            title: '图片保存失败！',
+                            icon: 'success',
+                            duration: 2000
+                          })
+                        }
+                      });
+                    },
+                    fail: (res)=> {
+                      // console.log('toast', 'show', res.errMsg);
+                      wx.showToast({
+                        title: `${res.errMsg}111`,
+                        icon: 'success',
+                        duration: 2000
+                      })
+                    }
+                  });
+                },
+                fail:(err)=>{
+                  wx.openSetting({
+                    success: (res) => {
+                      if (res.authSetting[authData] === false||!authSetting[authData]) {
+                        // this.$invoke('toast', 'show', res);
+                        wx.showToast({
+                          title: `${res}222`,
+                          icon: 'success',
+                          duration: 2000
+                        })
+                      } else {
+                        // this.$invoke('toast', 'show', res);
+                        wx.showToast({
+                          title: `${res}333`,
+                          icon: 'success',
+                          duration: 2000
+                        })
+                      }
+                    }
+                  })
+                }
+              });
+            }
+
+          },
+          fail: (err) =>{
+
+          }
+      })
+
+      },
+      makeImg:() => {
+        let _this  = this
+        wx.canvasToTempFilePath({
+          x: 0,
+          y: 0,
+          // width,
+          // height,
+          // destWidth: 100,
+          // destHeight: 150,
+          canvasId: 'myCanvas',
+          fileType: 'jpg',
+          success: function(res) {
+            console.log(res.tempFilePath)
+            _this.saveImage = res.tempFilePath;
+            _this.$apply();
+          }
+        })
+      }
+    }
+
+    // 昵称居中显示并且超出变...
+    drawNickname (text) {
+      const _this = this
+      // console.log(_this.ctx.measureText(text).width);
+      _this.ctx.setFontSize(20 * _this.rpx) // 设置字体大小再计算文本宽度
+      // console.log(_this.ctx.measureText(text).width,'==========',_this.windowWidth*0.7)
+      var reStr = _this.ctx.measureText(text).width > _this.windowWidth*0.7 ? text.slice(0, 6)+'...' : text
+      return reStr
+    }
+
+    // 绘制文本多行显示
+    drawTextArea (texts) {
+      const _this = this
+      var startX = (_this.windowWidth - _this.windowWidth*0.8)/2
+      var len = 0
+      var lastSubStrIndex = 0
+      var textArr = []
+      // console.log(_this.ctx.measureText(texts[0]).width)
+      _this.ctx.setFontSize(13*_this.rpx)  // 设置字体大小再计算文本宽度
+      // console.log(_this.ctx.measureText(texts[0]).width)
+      for(var i = 0; i < texts.length; i++){
+        len += _this.ctx.measureText(texts[i]).width
+        if( len >  _this.windowWidth*0.8 ) {
+          var obj = {}
+          obj.text = texts.substring(lastSubStrIndex,i)
+          obj.startX = startX
+          obj.startY = _this.startY
+          textArr.push(obj);
+          _this.startY += 30 * _this.rpx
+          len = 0
+          lastSubStrIndex = i
+        }
+        if (i == texts.length - 1) {  // 绘制剩余部分
+          var objs = {}
+          objs.text = texts.substring(lastSubStrIndex,i+1);
+          objs.startX = startX;
+          objs.startY = _this.startY;
+          _this.startY += 40 * _this.rpx
+          textArr.push(objs);
+        }
+      }
+      console.log(textArr,'textArr======================')
+      return textArr;
+    }
+
+    // 绘制图片
+    drawImg (tempFilePaths,width,height,positionX){
+      const _this = this
+      _this.ctx.save();
+      _this.ctx.drawImage(tempFilePaths, positionX, _this.startY, width, height)
+      _this.startY += height+20
+      _this.ctx.restore()
+    }
+
+    // 绘制不居中文字
+    drawText(textObj) {
+      let _this = this
+      _this.ctx.save()
+      _this.ctx.setFontSize(textObj.fontSize)
+      _this.ctx.fillText(textObj.text,textObj.x,textObj.y)
+      _this.ctx.restore()
+    }
+
+    drawShareImg() {
+      const _this = this
+      // 画圆形头像
+      _this.ctx.save()
+      _this.ctx.arc(_this.windowWidth/2, 50 * _this.rpx, 30 * _this.rpx, 0, Math.PI*2, true)
+      _this.ctx.clip()
+      _this.ctx.drawImage(_this.testJson.avater, (_this.windowWidth - 60*_this.rpx)/2, 20 * _this.rpx, 60 * _this.rpx, 60 * _this.rpx);
+      _this.ctx.restore();
+
+      // 画昵称
+      _this.ctx.save()
+      let mynickName = _this.drawNickname(_this.testJson.nickName)
+      _this.ctx.fillText(mynickName,(_this.windowWidth - _this.ctx.measureText(mynickName).width)/2, _this.startY)
+      _this.startY += 40*_this.rpx
+      _this.ctx.restore();
+
+      // 画info
+      _this.ctx.save()
+      let myContent = _this.drawTextArea(_this.testJson.content)
+      for(var i = 0; i<myContent.length; i++){
+        _this.ctx.fillText(myContent[i].text, myContent[i].startX, myContent[i].startY)
+      }
+      _this.ctx.restore();
+
+      // 画title2
+      _this.ctx.save()
+      let h2 = _this.drawNickname(_this.testJson.randName)
+      _this.ctx.fillText(h2,(_this.windowWidth - _this.ctx.measureText(h2).width)/2, _this.startY)
+      _this.startY += 20 * _this.rpx
+      _this.ctx.restore()
+
+      // 画排名图
+      _this.drawImg(_this.testJson.randImg, 120 * _this.rpx, 120 * _this.rpx,(_this.windowWidth - 120 * _this.rpx)/2);
+
+      // 画二维码
+      _this.drawImg(_this.testJson.QcodeImg, 80 * _this.rpx, 80 * _this.rpx, (_this.windowWidth - 110 * _this.rpx));
+
+
+      _this.drawText({text:_this.testJson.Qtitle,fontSize:15 * _this.rpx,x:(_this.windowWidth - 110 * _this.rpx - _this.ctx.measureText(_this.testJson.Qtitle).width + 10 * _this.rpx),y:_this.startY - 80 * _this.rpx})
+
+      _this.drawText({text:_this.testJson.Qcont,fontSize:15 * _this.rpx,x:(_this.windowWidth - 110 * _this.rpx - _this.ctx.measureText(_this.testJson.Qcont).width - 10 * _this.rpx),y:_this.startY - 30 * _this.rpx})
+
+      // _this.ctx.draw()
+      _this.ctx.draw(false, () => {
+        _this.methods.makeImg()
+      })
+    }
+
+    onLoad() {
+      const _this = this
+      wx.getSystemInfo({
+        success: function(res) {
+          // console.log(res.windowWidth)
+          // console.log(res.windowHeight)
+          // 1px = 700rpx / 350px =
+          _this.rpx = res.windowWidth/375
+          _this.windowWidth = res.windowWidth * 0.9 * _this.rpx
+          // _this.windowHeight = res.windowHeight
+          _this.windowHeight = 520 * _this.rpx
+          _this.startY = _this.startY * _this.rpx
+          _this.$apply()
+        }
+      })
+      _this.drawShareImg();
+    }
+  }
+</script>
+<style lang="less">
+  .container{
+    width: 100%;
+    height: auto;
+    .btns{
+      width: 100%;
+      padding-top: 30rpx;
+      padding-bottom: 15rpx;
+      display: flex;
+      background: white;
+      justify-content: space-between;
+      align-content: center;
+      .btn{
+        width: 30%;
+        color: white;
+        padding: 0;
+        background: lightblue;
+        font-size: 25rpx;
+        line-height: 7vh;
+      }
+      .btn_share{
+        background: lightblue;
+      }
+      .btn_img{
+        background: pink;
+      }
+      .btn_back{
+        background: gray;
+      }
+      .btn::after{
+        border: 0;
+      }
+    }
+  }
+</style>

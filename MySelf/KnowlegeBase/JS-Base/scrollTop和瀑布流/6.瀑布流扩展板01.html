@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>瀑布流-扩展版01</title>
+		<style type="text/css">
+			* { 
+				margin: 0; 
+				padding: 0; 
+			}
+			#list { 
+				list-style: none; 
+				position: relative; 
+				margin: 0 auto;
+			}
+			#list li { 
+				position: absolute; 
+				width: 200px; 
+				font-size: 50px; 
+				-webkit-transition: all 0.5s;
+				-moz-transition: all 0.5s;
+				-ms-transition: all 0.5s;
+				-o-transition: all 0.5s;
+				transition: all 0.5s;
+				background-color: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="list"></ul>
+	</body>
+	<script type="text/javascript">
+		
+		function flowFn() {
+			var list = document.getElementById("list");
+			var width = 200; //定义li的宽度为200
+			var padding = 10; //定义li的padding值为10
+			var i = 0;
+			//随机函数
+			function randFn(min,max){
+				return parseInt(Math.random()*(max-min))+min;
+			}
+
+			//创建li
+			function creatLi() {
+				var windowBody = document.documentElement.clientWidth;
+				var cols = parseInt(windowBody / width);
+				//通过窗口宽度除以每个li的宽度，算出可视区li列数
+				var topArr = [];
+
+				for (var i = 0; i < cols; i++){
+					topArr[i] = 0; //让存储top值的数组位数与瀑布流列数相等，每列top值初始为0
+				}
+
+				//开始创建
+				for (var i = 1; i < 21; i++){ //控制li个数
+					var li = document.createElement("li");
+					var height = randFn(100,300);
+
+					li.innerHTML = i;
+					li.style.height = height + "px";
+
+					var minTop = topArr[0]; //假定高度最小的是数组中的第一项
+					var minIndex = 0;
+					for (var j = 0; j < topArr.length; j++){
+						if (minTop > topArr[j]){
+							minTop = topArr[j];
+							minIndex = j;
+						}
+					}
+					//此段代码目的同非拓展版一样，只是参考值由height改为top，目的在于将li优先插入top值相对小的一列，平衡ul的高度
+
+					li.style.top = topArr[minIndex] + "px"; //已知minIndex，设定li的top
+					li.style.left = minIndex * (width + padding) + "px"; //已知minIndex，设定li的left
+					topArr[minIndex] += (height + padding); //存储最小top值，和即将加进来的li的高度和padding值，方便下一层li的创建
+					list.appendChild(li);	
+
+				}
+			}
+			creatLi();	
+		}
+		flowFn();
+
+	</script>
+</html>

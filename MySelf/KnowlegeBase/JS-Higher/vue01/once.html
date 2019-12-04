@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style>
+        p{
+            width:100px;
+            height:100px;
+            background:pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--v-once只会更新一次，首次更新也算,注意：节点里的所有变量都只会更新一次-->
+        <div v-once>
+            {{str}}
+        </div>
+        <button @click="changeText">点击我改变</button>
+
+        <p v-if="num==0">num的值是{{num}}</p>
+        <p v-else="num==1">num的值是{{num}}</p>
+        <p v-show="num==2">num的值是{{num}}</p>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            str:"我是str数据",
+            num:0
+        },
+        methods:{
+            changeText(){
+                this.str="我是改变的文字";
+            }
+        }
+    })
+</script>
+</html>

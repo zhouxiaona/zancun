@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>ajax</title>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<input type="button" value="点我刷新">
+	</body>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		var btn=document.getElementsByTagName("input")[0];
+		btn.onclick=function(){
+			// Ajax是能够在不刷新页面的情况下，让网页局部数据更新的技术
+			// 使用ajax请求数据分为三步
+			// １.创建对象
+			var request = new XMLHttpRequest();
+			// ２.发送请求
+			// GET/POST
+			
+			 // 跨域
+			 // 单线程　双线程
+			 // 同步　异步
+
+
+			// false 同步（不能干其他的事儿）
+			// true  异步（能干其他的事儿）
+			request.open("GET","hot.json",true);
+			request.send();
+			// ３.等待响应
+			// 每次网络请求的状态代表都会调用这个方法。
+			// request.readyState 有以下值:
+			// 0: 请求未初始化
+			// 1: 服务器连接已建立
+			// 2: 请求已接收
+			// 3: 请求处理中
+			// 4: 请求已完成，且响应已就绪
+			// 可以类比快递的装填（正在揽件、已经开始运输、正在派件、已签收）
+			request.onreadystatechange=function(){
+				if(request.readyState==4 && request.status==200){
+					// 代表请求成功并返回了数据
+					// responseXML XML格式的数据
+					// responseText json格式（字符串）的数据
+					console.log(request.responseText);
+					console.log(JSON.parse(request.responseText));
+				}
+			}	
+/****************************************************
+			// JQ方式的请求
+			$.ajax({
+				type:"GET",
+				url:"test.json",
+				success:function(msg){
+					alert("Data Saved:" + msg);
+					console.log(JSON.parse(msg));
+				}
+			});
+******************************************************/
+		}
+		// function test(a){
+		// 	console.log(a);
+		// }
+	</script>
+	<!-- <script type="text/javascript" src="https://api.douban.com/v2/movie/in_theaters?callback=test"></script> -->
+</html>

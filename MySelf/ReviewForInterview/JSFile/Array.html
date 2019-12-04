@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>array</title>
+</head>
+<body>
+</body>
+<script>
+    // 数组方法
+    // 都不会改变原来的数组
+    // reduce(function(prev,cur,index,array){}), 对数组的前后两项进行操作，并返回最终值，
+    // filter(function(item,index,array){}), 返回一个新数组
+    // map(function(item,index,array){}), 返回一个新数组
+    // some(function(item,index,array){}),  true or false
+    // every(function(item,index,array){}), true or false
+    // forEach(function(item,index,array){}) 无返回值
+    // let arrObject = [
+    //     {
+    //         count: 1,
+    //         name: 'haha',
+    //     },
+    //     {
+    //         count: 2,
+    //         name: 'nana',
+    //     },
+    //     {
+    //         count: 3,
+    //         name: 'lala',
+    //     },
+    // ]
+    
+    // let testArr = arrObject.reduce(function(prev, cur, index, array){
+    //     console.log(prev, cur, index, array)
+    //     prev.count += cur.count
+    //     return prev
+    // },{count:100,name:'haha'})
+    // console.log(testArr,'testArr===')
+
+    // let obj = arrObject.reduce((inittial,item)=>{
+    //     inittial.countSum += item.count;
+    //     inittial.nameArr.push(item.name);
+    //     return inittial;
+    // },{countSum:0, nameArr:[]})
+    // console.log(obj,'obj==')
+
+    // let res = arrArray.reduce(function(res, cur, index, array) {
+    //     console.log(res,cur,index,array)
+    //     res[cur] ? res[cur] ++ : res[cur] = 1
+    //     return res;
+    // }, {})
+  
+    // console.log(res,'arrArray')
+    // let arr = [1,2,3];
+    // let str = 'zhouna';
+    // let obj = {a:1,b:2};
+    // let func = function(){
+    //     console.log('111')
+    // }
+    // console.log(Object.keys(obj))
+
+    // 数组去重方法
+    // let arr = [1,2,3,3,5,5,6,6,7,7,8,8,9,9,11]
+    // let newArr = new Set(arr)
+    // console.log(arr,'arr===', newArr)
+
+    // 方法一：new Set ES6
+    // return [...new Set(arr)] 
+
+    // 方法二：双层for循环 (说这样性能不好，让我只用一层for循环的方法)
+    // function unique(arr){
+    //     var res=[]
+    //     for (var i = 0; i < arr.length; i++) {
+    //         for (var j = i+1; j < arr.length; j++) {
+    //             if (arr[i] === arr[j]) {
+    //                 ++ i
+    //                 j = i
+    //             }
+    //         }
+    //         res.push(arr[i])
+    //     }
+    //     return res
+    // }
+
+    // 方法三：单层for循环 + indexOf
+    // function unique(array){
+    //     var res = []
+    //     for(var i = 0; i < array.length; i++) {
+    //         if (array.indexOf(array[i]) === i) {
+    //             res.push(array[i])
+    //         }
+    //     }
+    //     return res
+    // }
+
+    // 方法三：或者这样
+    // function unique(array){
+    //     let res = []
+    //     for(var i = 0; i < array.length; i++) {
+    //         if (res.indexOf(array[i]) === -1) {
+    //             res.push(array[i])
+    //         }
+    //     }
+    //     return res
+    // }
+
+    // 方法四：如果可以容忍改变原有数组的情况下，怎么改进性能更好
+    // function unique(array){
+    //     console.log(array,'array===')
+    //     for(var i = array.length - 1; i > 0; i--) { 
+    //         console.log(array.indexOf(array[i]),'===haha===',i)
+    //         if (array.indexOf(array[i]) !== i) {
+    //             array.splice(i, 1)
+    //         }
+    //     }
+    //     return array
+    // }
+    // console.log(unique(arr))
+
+    
+
+    // 比较数组中两个对象是否相同，使用Lodash
+    // new Set(arr) 数组去重，返回一个对象
+    // import Loadsh from 'lodash'
+    // Loadsh.uniqWith(arr, Loadsh.isEqual)
+    // let arr = [4,5,6,4,4,4,3,3,3,2,1,{x:1,y:2},{x:1,y:2}]
+    // let tempArr = new Set(arr)
+    // console.log(arr,'====',tempArr)
+    
+    // 返回一个数字中有几个百分位等于个位，且不等于十位的三位数的个数
+    let num = 123213314145251251254787112434 
+    console.log(num.length,'numArr=======')
+    let numArr = num.toString().split("")
+    let resArr = []
+    console.log(numArr.length,'numArr=======')
+    for(let i = 0; i < numArr.length; i++){
+        if(i+2 > numArr.length){break;}
+        if(numArr[i] === numArr[i+2] && numArr[i] !== numArr[i+1] && numArr[i+1] !== numArr[i+2]){
+            let nums = numArr[i] + numArr[i+1] + numArr[i+2]
+            resArr.push(nums)
+        }
+    }
+    console.log(resArr,'===>',resArr.length)
+
+
+    // 返回字符串中没有重复字符的最长子串
+    // function Func(str){
+    //   let charArr = str.split("")
+    //   let arrMax = []
+    //   let arrMax2 = []
+    //   let i = 0
+    //   while(i <= charArr.length - 1){
+    //     arrMax2 = []
+    //     for(let a = i; a < charArr.length; a++){
+    //      if(arrMax2.indexOf(charArr[a]) < 0){
+    //        arrMax2.push(charArr[a])
+    //      }else{
+    //        break;
+    //      }
+    //     }
+
+    //     if(arrMax2.length > arrMax.length){
+    //      arrMax = arrMax2
+    //     }
+    //     i++;
+    //   }
+    //   return arrMax.length;
+    // }
+
+    // let str = 'abcdabcde'
+    // let str = 'bbbbbb'
+    // let str= ''
+    // Func(str)
+    // console.log(Func(str))
+
+    // 快速创建/指定长度/指定初始化内容/的数组
+    let arrForm = ['Andy','Sor','Andy','Red','Green']
+    let arr = [...Array(10).keys()]
+    let array = Array(10).fill(0)
+    // console.log(arr,'arr===') // 0,1,...,10
+    // console.log(0.1+0.2)
+    // console.log(array,'array===')
+    console.log(Array.from(new Set(arrForm)))
+    console.log([...new Set(arrForm)])
+
+    
+    // 小数计算函数0.1 + 0.2 !== 0.3
+    // function judgeFloat(n, m) {
+    //   const binaryN = n.toString(2);
+    //   const binaryM = m.toString(2);
+    //   console.log(`${n}的二进制是    ${binaryN}`);
+    //   console.log(`${m}的二进制是    ${binaryM}`);
+      // const MN = m + n;
+      // const accuracyMN = (m * 100 + n * 100) / 100;
+      // const binaryMN = MN.toString(2);
+      // const accuracyBinaryMN = accuracyMN.toString(2);
+    //   console.log(`${n}+${m}的二进制是${binaryMN}`);
+    //   console.log(`${accuracyMN}的二进制是    ${accuracyBinaryMN}`);
+    //   console.log(`${n}+${m}的二进制再转成十进制是${to10(binaryMN)}`);
+    //   console.log(`${accuracyMN}的二进制是再转成十进制是${to10(accuracyBinaryMN)}`);
+    //   console.log(`${n}+${m}在js中计算是${(to10(binaryMN) === to10(accuracyBinaryMN)) ? '' : '不'}准确的`);
+    //     return to10(accuracyBinaryMN)
+    // }
+    
+    // function to10(n) {
+    //   const pre = (n.split('.')[0] - 0).toString(2);
+    //   const arr = n.split('.')[1].split('');
+    //   let i = 0;
+    //   let result = 0;
+    //   while (i < arr.length) {
+    //     result += arr[i] * Math.pow(2, -(i + 1));
+    //     i++;
+    //   }
+    //   return result;
+    // }
+
+    // judgeFloat(0.1, 0.2)
+    // console.log(judgeFloat(0.1, 0.2))
+    // console.log(judgeFloat(0.6, 0.7))
+    // console.log(null == null,undefined == undefined)
+    // console.log(null == undefined)
+    // console.log(null === undefined)
+    // console.log('100'*100)
+
+    // 数组扁平化
+    // let arr = [1, [2, [3, 4]]];
+    // 方法一：
+    // function Flatten(arr) {
+    //   var result = [];
+    //   for (var i = 0, len = arr.length; i < len; i++) {
+    //     if (Array.isArray(arr[i])) {
+    //       result = result.concat(Flatten(arr[i]))
+    //     } else {
+    //       result.push(arr[i])
+    //     }
+    //   }
+    //   return result;
+    // }
+
+    // 方法二：
+    // function Flatten(arr1){
+    //   return arr1.reduce((prev,next,index,arr)=>{
+    //     return prev.concat(Array.isArray(next) ? Flatten(next) : next)
+    //   },[])
+    // }
+    // console.log(Flatten(arr))
+
+    // 冒泡排序
+    // let arr = [1,3,4,5,5,3,2,6,8,7,4,3,2,0]
+    // for(let i = 0; i < arr.length-1; i++){
+    //   for(let j = 0; j < arr.length-1-i; j++){
+    //     if(arr[j] > arr[j+1]){
+    //       let temp = arr[j]
+    //       arr[j+1] = temp
+    //       arr[j] = arr[j+1]
+    //     }
+    //   }
+    // }
+    // console.log(arr,'arr===')
+    
+</script>
+</html>

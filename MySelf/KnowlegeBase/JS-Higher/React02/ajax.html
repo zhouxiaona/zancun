@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入方式按照这个顺序来-->
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="browser.min.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<script type="text/babel">
+    // 通过form表单提交
+    // "Content-type":"application/x-www-form-urlencoded"
+    //  body:"name=张三&pwd=123"
+
+    class Hello extends React.Component{
+        constructor(props){
+            super(props);
+            this.state={
+                data:[]
+            }
+        }
+        render(){
+            let arr=[];
+            for(var i=0;i<this.state.data.length;i++){
+                var str=<li key={i}>姓名是：{this.state.data[i].namke};年龄是：{this.state.data[i].age}</li>;
+                arr.push(str);
+            }
+            return <div><ul>{arr}</ul></div>
+        }
+        componentDidMount(){
+            fetch("/post",{
+                method:"post",
+                headers:{
+                    "Content-type":"application/json"
+                },
+                body:JSON.stringify({name:"张三",pwd:123})
+
+            }).then((res)=>{
+                // console.log(res);
+                return res.json();
+
+            }).then((data)=>{
+                // console.log(data);
+                this.setState({data:data});
+
+            }).catch((err)=>{
+                if(err){
+                    console.log(err);
+                }
+
+            });
+        }
+    }
+
+    ReactDOM.render(<Hello></Hello>,document.getElementById("app"));
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>小方块和碰壁反弹</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="600">
+			及时更新浏览器！
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+//小方块
+//		function draw(x,y){
+//			ctx.beginPath();
+//			ctx.arc(x,y,25,0,Math.PI*2);
+//			ctx.fillStyle="pink";
+//			ctx.fill();
+////			ctx.fillRect(x,y,50,50);
+//		}
+//=====================================================
+//小球
+		function Arc(x,y,color){
+			ctx.beginPath();
+			ctx.arc(x,y,25,0,Math.PI*2);
+			ctx.fillStyle=color;
+			ctx.fill();
+		}
+		
+		var x=25;
+		var y=25;
+		var speedX=4;
+		var speedY=3;
+		function act(){
+			//清空画布
+			ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+			//更新画布
+			x+=speedX;
+			y+=speedY;
+			//碰壁检测
+			if(x < 25 || x > mycanvas.width-25 ){
+				speedX*=-1;
+			}
+			if(y < 25 || y > mycanvas.height-25 ){
+				speedY*=-1;
+			}
+			//重新绘制画布
+//			draw(x,y);
+			new Arc(x,y,"pink");
+			window.requestAnimationFrame(act);
+		}
+		//执行递归动画函数
+		act();
+		
+	</script>
+</html>

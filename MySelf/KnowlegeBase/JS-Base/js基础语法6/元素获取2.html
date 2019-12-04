@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>元素获取2</title>
+	</head>
+	<body>
+		<div class="item">1</div>
+		<div class="item">2</div>
+		<div class="item">3</div>
+	</body>
+	<script type="text/javascript">
+		//通过css选择器获取到一组元素
+		//静态数组，当html结构发生变化的时候，不会影响到这个数组的内容
+		// var divs=document.querySelectorAll('.item');
+		// console.log(divs);
+
+		//通过querySelector获取到的元素是选择器选中的元素的第一个,(或者理解为ｓ是数组divss中得第一个元素)
+		// var s=document.querySelector('item');
+		// console.log(s);
+		//动态数组，当html结构发生变化的时候，这个数组的内容也会发生改变
+		var divss=document.getElementsByClassName('item');
+		document.body.innerHTML='<div class="item">4</div>';
+		console.log(divss);
+	</script>
+</html>

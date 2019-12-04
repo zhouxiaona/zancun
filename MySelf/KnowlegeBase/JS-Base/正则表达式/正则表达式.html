@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>正则表达式</title>
+	</head>
+	<body>
+		<div>
+			<a href="http:www.baidu.com">百度的网址是http:www.baidu.comfhfgh</a>
+			<a href="http:www.baidu.com">百度</a>
+			<a href="http:www.taobao.com">淘宝
+				<a href="http:www.baidu.com">百度</a>
+			</a>
+		</div>
+	</body>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		// var As=document.getElementsByTagName("a");
+		var div=document.getElementsByTagName("div")[0];
+		// for(var i=0;i<As.length;i++){
+		// 	var oldHerf=As[i].getAttribute("href");
+		// 	var newHref="javascript:void(0);";
+		// 	As[i].setAttribute("href",newHref);
+		// }
+		var str=div.innerHTML;
+		console.log(str);
+		var reg=/http:www\.[\w\.]+/g;
+		console.log(str.match(reg));
+
+		var oldHref=str.match(reg);
+		console.log(oldHref);
+		var newHref="href=javascript:void;";
+		
+		for(var i=0;i<oldHref.length;i++){
+			console.log(str.replace(oldHref[i],newHref));
+		}
+		
+/***********************************************************************
+		//正则表达式
+		//正则(所描述的规则)、正则属性(设置条件,如匹配一个还是多个)
+		//创建正则
+		//1.直接量、字面量
+		// g 代表多次匹配
+		var reg=/flower/g
+		//２.对象
+		var reg2=new RegExp("flower","");
+
+		var str="hello i'm like flower,she is cui flower";
+		
+		console.log(str.match(reg));
+		//字符串的replace支持正则，/g可以替换所有的flower
+		console.log(str.replace(reg,"hua"));
+
+
+		//元字符 
+		//\d代表的是数字
+		//\w　单词字符(数字、字母、下划线)
+		//\s  匹配空格 (空格、换行、\t)
+		//\n  换行符
+		//. 匹配的是所有的字符（不包括换行）(在js中没有结束符\0)
+		//\b 单词边界，单词分隔的地方  \bbox\b box这个单词
+		//\bbox 作为单词开头的box  box\b　 作为单词结尾的box
+		//
+		var reg3=/\bbox\b/g
+		var str3="item bigbox 周娜box re周娜d boxdeg";
+		console.log(str3.match(reg3));
+
+		//[\u4e00-\u9fa5]匹配汉字
+		var reg4=/[\u4e00-\u9fa5]/g
+		var str4="item bigbox 周娜box re周娜d boxdeg";
+		console.log(str4.match(reg4));
+
+
+		var reg5=/\w\d/g
+		var str5="_hello are you, flower";
+		console.log(str5.match(reg5));
+
+
+		//量词 
+		//*  零个或多个　任意个
+		//＋  一个或多个 至少一个
+		//？　一个或零个
+		//n{x} x个n 
+		//n{x,y} x--y个n   n{2,4}2个或3个或4个n
+		//如果符合条件，尽可能会向数量多的匹配
+		//^x 作为字符串开头的x
+		//x$ 作为字符串结尾的x
+		var reg6=/^5.*n$/g
+		var str6="5ghkjghn";
+		console.log(str6.match(reg6));
+
+
+		//中括号
+		//[123]  匹配123中的任何一个
+		//[^123] 匹配123以外的任意字符(不能是123)
+		//[1-5]  匹配1-5的任意数字
+		//[1-36-8] 123678
+		//[1-356-8] 1235678
+		//[a-z]
+		//[A-Z]
+		//[A-Za-z]大小写字母的范围
+		var reg7=/[a-z]/g
+		var str7="12sdfashcbw345678";
+		console.log(str7.match(reg7));
+
+
+		//匹配
+		//(3|5) 括号代表一个整体,｜或者。３或者５
+		//匹配有特殊含义字符的时候要加反斜杠。
+		//如: + . ? * {} []
+		var reg8=/(3|2[13])/g;
+		var str8="13sdfa15|s|hc33bw55345678";
+		console.log(str8.match(reg8));
+
+		//手机号码
+		var reg9=/^1(3[0-35-9]|5[49])\d{8}$/g;
+		var str9="15900000000";
+
+		reg9.test(str9);//返回true false
+
+
+		console.log(str9.match(reg9));
+
+		//邮箱正则
+		var str10="1?????a??A";
+		function t(str){
+			var reg10=/^[\w\.\?,\*]{6,18}$/g.test(str);
+			var x=str.search(/[a-z]/g);
+			var y=str.search(/[A-Z]/g);
+			var z=str.search(/[0-9]/g);
+			return reg10 && (x!=-1) && (y!=-1) && (z!=-1);	
+		}
+		console.log(t(str10));
+***********************************************************************/
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

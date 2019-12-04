@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>transition-过渡</title>
+	<style>
+		.div1{
+			width: 200px;
+			height: 200px;
+			background: red;
+			transition: all 1.5s cubic-bezier(0.95, 0.25, 0.06, 1.62) 0s;
+		}
+		.div1:hover{
+			width: 400px;
+			height: 400px;
+			background-color: blue;
+			
+		}
+	</style>
+</head>
+<body>
+	<!-- transition 过渡 -->
+	<!-- transition-property: all 指定可以过渡的属性 -->
+	<!-- transition-duration: 0s 过渡完成需要的时间，单位是s秒-->
+	<!-- transition-timing-function: ease 过渡完成的动画类型  -->
+	<!-- transition-delay: 0s 延迟执行过渡的时间，单位是s秒 -->
+	<div class="div1"></div>
+</body>
+</html>

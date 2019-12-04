@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>scrollTop兼容</title>
+	</head>
+	<body style="height: 2000px; width: 2000px;">
+		
+	</body>
+	<script type="text/javascript">
+		
+		//scroll事件 当用户滚动带滚动条的元素中的内容时,在该元素上面触发
+		window.onscroll = function (){
+			//由于chrome不支持document.documentElement.scrollTop(或left)
+			var t = document.body.scrollTop; //chrome支持
+			var t2 = document.documentElement.scrollTop; //其他浏览器支持
+			console.log(t,t2);
+
+			//兼容写法
+			var t = document.body.scrollTop||document.documentElement.scrollTop; //方法一
+			var t2 = document.body.scrollTop+document.documentElement.scrollTop; //方法二
+			//由于chrome不支持一直显示为0,因此相加也可以实现兼容
+		}
+
+		var arr1=[2,3,5,4,6,8,1,13,12,24,13,12,4,5];
+		let unique= [...new Set(arr1)];
+		console.log(unique);
+		// var arr1=[];
+		// for(var i=0;i<arr.length;i++){
+		// 	if(arr1.indexOf(arr[i])==-1){
+		// 		arr1.push(arr[i]);
+		// 	}
+		// }
+		// console.log(arr1);
+		// for(var i=0;i<arr1.length-1;i++){
+		// 	for(var j=0;j<arr1.length-1-i;j++){
+		// 		if(arr1[j]>arr1[j+1]){
+		// 			var temp=arr1[j];
+		// 			arr1[j]=arr1[j+1];
+		// 			arr1[j+1]=temp;
+		// 		}
+		// 	}
+		// }
+		// console.log(arr1);
+		
+		var str="hello world";
+		var str1=[...str].reverse().join("");
+		console.log(str1);
+
+		// var arr=[4,3,45,12,4];
+		// console.log(arr.reverse());
+
+	</script>
+</html>

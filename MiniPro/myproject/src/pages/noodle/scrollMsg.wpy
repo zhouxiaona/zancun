@@ -1,0 +1,89 @@
+<template>
+  <view class="wrap">
+    <view class="msgWrap">
+      <view class="msgInner" animation="{{animation}}">{{msg}}</view>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class scrollMsg extends wepy.page {
+    config = {
+      enablePullDownRefresh: false,
+      backgroundTextStyle: 'light',
+      onReachBottomDistance: 50,
+      navigationBarBackgroundColor: '#69BEFF',
+      navigationBarTitleText: 'scrollMsg',
+      navigationBarTextStyle: 'white'
+    }
+
+    data = {
+      msg:'活动期间若小程序被封，则调会话列表，分享H5链接活动期间若小程序被封，则调会话列表，分享H5链接活动期间若小程序被封，则调会话列表，分享H5链接活动期间若小程序被封，则调会话列表，分享H5链接11',
+      animation:{},
+      w:0
+    }
+
+    showScrollMsg() {
+      let _this = this
+      let w = 0
+      wx.createSelectorQuery().select('.msgInner').boundingClientRect(function(rect){
+        w = rect.width
+        const animation = wx.createAnimation()
+        animation.left( -parseInt(w) ).step({duration: 14000}).left( parseInt(100) ).step({duration:0})
+        _this.animation = animation.export()
+        _this.$apply()
+        setInterval(()=>{
+          console.log(111)
+          // const animation = wx.createAnimation()
+          animation.left( -parseInt(w) ).step({duration: 14000}).left( parseInt(100) ).step({duration:0})
+          _this.animation = animation.export()
+          _this.$apply()
+        },14000)
+      }).exec()
+    }
+
+    onLoad() {
+      this.showScrollMsg()
+    }
+  }
+</script>
+<style lang="less">
+.wrap{
+  width: 100vw;
+  padding-top: 100rpx;
+  .msgWrap{
+    width: 90vw;
+    height: 90rpx;
+    border: 1rpx solid black;
+    overflow: hidden;
+    margin: 0 auto;
+    .msgInner{
+      height: 100%;
+      line-height: 90rpx;
+      display: inline-block;
+      position: relative;
+      left: 100%;
+      white-space: nowrap;
+      // -webkit-animation: aniStep 14s infinite linear;
+      // animation: aniStep 14s infinite linear;
+    }
+  }
+  @-webkit-keyframes aniStep {
+    0%{
+      left: 100%;
+    }
+    100%{
+      left: var(--rectWidth--);
+    }
+  }
+  @keyframes aniStep {
+    0%{
+      left: 100%;
+    }
+    100%{
+      left: var(--rectWidth--);
+    }
+  }
+
+}
+</style>

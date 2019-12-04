@@ -1,0 +1,221 @@
+
+
+<style lang="less">
+/** less **/
+.my {
+  image {
+    width: 750rpx;
+    height: 240rpx;
+  }
+  .user {
+    .avatar {
+      image {
+        width: 168rpx;
+        height: 168rpx;
+        border-radius: 50%;
+        vertical-align: top;
+        box-shadow: rgba(65, 63, 63, 0.3) 7rpx 7rpx 7rpx;
+      }
+    }
+    text {
+      position: absolute;
+      top: 200rpx;
+      left: 242rpx;
+      font-family: PingFangSC-Medium;
+      font-size: 53rpx;
+      color: #2d2c2b;
+      letter-spacing: 0;
+    }
+  }
+  .btn{
+    width: 400rpx;
+    height: 90rpx;
+    text-align: center;
+    line-height: 90rpx;
+    border-radius: 10rpx;
+    background: lightblue;
+    color: white;
+    margin: 10px auto;
+  }
+}
+</style>
+
+<template lang="wxml">
+    <view class="my">
+      <!-- <movable-area style="height: {{windowHeight}}; width: 750rpx;" class="user">
+        <movable-view class="avatar" style="width:168rpx;height:168rpx;margin-top:80rpx;" x="{{x}}" y="{{y}}" damping="50" friction="0" inertia="true" @change="htouchmove" direction="all">
+          <image src="{{userInfo.avatarUrl}}" mode="aspectFit" />
+        </movable-view>
+        <text @tap.stop="comeBack">{{userInfo.nickName}}</text>
+      </movable-area> -->
+      <toast />
+      <!-- <authorization /> -->
+      <view class="btn" @tap.stop="gotoOther('shareCanvas')">gotoCanvas</view>
+      <view class="btn" @tap.stop="gotoOther('circleProgress')">gotoProgress</view>
+      <view class="btn" @tap.stop="gotoOther('alert')">gotoAlert</view>
+      <view class="btn" @tap.stop="gotoOther('ani')">gotoAni</view>
+      <view class="btn" @tap.stop="gotoOther('scrollMsg')">gotoscrollMsg</view>
+      <view class="btn" @tap.stop="gotoOther('asyncAwait')">gotoAsyncAwait</view>
+      <view class="btn" @tap.stop="gotoOther('canvasImg')">gotoCanvasImg</view>
+      <view class="btn" @tap.stop="gotoOther('carousel')">gotoCarousel</view>
+      <view class="btn" @tap.stop="gotoOther('morevideo')">gotoMorevideo</view>
+      <view class="btn" @tap.stop="gotoOther('photosalbum')">gotoPhotosalbum</view>
+      <view class="btn" @tap.stop="gotoOther('scroll')">gotoScroll</view>
+      <view class="btn" @tap.stop="gotoOther('swiper')">gotoSwiper</view>
+      <view class="btn" @tap.stop="gotoOther('tab')">gotoTab</view>
+      <view class="btn" @tap.stop="gotoOther('clock')">gotoClock</view>
+      <view class="btn" @tap.stop="gotoOther('threeD')">gotoThreeDimension</view>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy';
+// import home from '@/api/api';
+import U from '@/utils/utils';
+import { ISLOGIN } from '@/utils/storageKey';
+// import authorization from '@/components/authorization';
+import toast from '@/components/Toast';
+
+export default class My extends wepy.page {
+  config = {
+    enablePullDownRefresh: false,
+    backgroundTextStyle: 'light',
+    onReachBottomDistance: 50,
+    navigationBarBackgroundColor: '#FFF',
+    navigationBarTitleText: '我的',
+    navigationBarTextStyle: 'black'
+  };
+
+  components = {
+    // authorization,
+    toast
+  }
+
+  data = {
+    userInfo: wx.getStorageSync('userInfo'),
+  }
+
+
+  methods = {
+    gotoOther (arg) {
+      switch(arg){
+        case 'shareCanvas':
+          wx.navigateTo({
+            url:'/pages/noodle/shareCanvas'
+          })
+          break;
+        case 'circleProgress':
+          wx.navigateTo({
+            url:'/pages/noodle/circleProgress'
+          })
+          break;
+        case 'alert':
+          wx.navigateTo({
+            url:'/pages/noodle/alert'
+          })
+          break;
+        case 'ani':
+          wx.navigateTo({
+            url:'/pages/noodle/ani'
+          })
+          break;
+        case 'scrollMsg':
+          wx.navigateTo({
+            url:'/pages/noodle/scrollMsg'
+          })
+          break;
+        case 'asyncAwait':
+          wx.navigateTo({
+            url:'/pages/noodle/asyncAwait'
+          })
+          break;
+        case 'canvasImg':
+          wx.navigateTo({
+            url:'/pages/noodle/canvasImg'
+          })
+          break;
+        case 'carousel':
+          wx.navigateTo({
+            url:'/pages/noodle/carousel'
+          })
+          break;
+        case 'morevideo':
+          wx.navigateTo({
+            url:'/pages/noodle/morevideo'
+          })
+          break;
+        case 'photosalbum':
+          wx.navigateTo({
+            url:'/pages/noodle/photosalbum'
+          })
+          break;
+        case 'scroll':
+          wx.navigateTo({
+            url:'/pages/noodle/scroll'
+          })
+          break;
+        case 'swiper':
+          wx.navigateTo({
+            url:'/pages/noodle/swiper'
+          })
+          break;
+        case 'tab':
+          wx.navigateTo({
+            url:'/pages/noodle/tab'
+          })
+          break;
+        case 'clock':
+          wx.navigateTo({
+            url:'/pages/noodle/clock'
+          })
+          break;
+        case 'threeD':
+          wx.navigateTo({
+            url:'/pages/noodle/threeDimension'
+          })
+          break;
+        default:
+          break;
+      }
+    }
+
+  }
+
+  async login() {
+    // 登录授权弹层
+    // this.$invoke('authorization', 'openLayer');
+  }
+
+  onLoad() {
+    // let _this = this;
+    // wx.getNetworkType({
+    //   success(res) {
+    //     let networkType = res.networkType;
+    //     if (networkType == 'none') {
+    //       _this.$invoke('toast', 'show', '无网络，请稍后重试');
+    //     } else {
+    //       _this.login();
+    //     }
+    //   }
+    // });
+    // wx.onNetworkStatusChange(function(res) {
+    //   res.isConnected && _this.login();
+    // });
+    let str = 'test3456'
+    console.log(~0,'~0')
+    console.log(~-1,'~-1 == 0')
+    console.log(~1,'~1')
+    console.log(~-2,'~-2')
+
+    if(~str.indexOf(2)){
+      console.log(~str.indexOf(2))
+      console.log('存在')
+    }else{
+      console.log(~str.indexOf(2))
+      console.log('不存在')
+    }
+  }
+
+  onShow() {}
+}
+</script>

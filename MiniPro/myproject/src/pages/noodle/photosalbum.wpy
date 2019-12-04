@@ -1,0 +1,352 @@
+<template>
+  <view class="wrap">
+    <view class="myinfo">
+      <image src="{{userInfo.avatarUrl || ExpectData.avatarUrl}}" class="touxiang"></image>
+      <text>{{userInfo.nickName || ExpectData.nickName}}</text>
+    </view>
+    <view class="btns">
+      <button class="btn" open-type='getUserInfo' bindgetuserinfo='bindGetUserInfo'>登录注册</button>
+    </view>
+    <view class="btns">
+      <button class="btn" @tap='savePic'>保存头像至相册</button>
+      <button class="btn" open-type="share">分享小程序给朋友</button>
+    </view>
+    <view class="btns">
+      <button class="btn" @tap="testJB">测试角标</button>
+    </view>
+    <!-- input输入框 -->
+    <view class="box">
+      <view class="inner">
+          <view class="inps">
+            <repeat for="{{length}}" index="index" key="index">
+              <view class="line">{{Value[index]}}</view>
+            </repeat>
+          </view>
+          <view class="trueInp">
+            <input class="inp" type="number" maxlength='6' bindinput="getvalue" focus='{{isFocus}}'/>
+          </view>
+      </view>
+      <view class="btn" @tap="sendData">SUBMIT</view>
+    </view>
+    <view class="countdown">
+      <text class="txtout" wx:if="{{!isTrue}}"><text class='txtinner'>{{countNum}}s</text>后重新发送</text>
+      <text class="txtout" wx:else @tap="countNumFn">点击重新获取</text>
+    </view>
+  </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class photosalbum extends wepy.page {
+  config = {
+    enablePullDownRefresh: true,
+    backgroundTextStyle: 'light',
+    onReachBottomDistance: 50,
+    navigationBarBackgroundColor: '#69BEFF',
+    navigationBarTitleText: '保存照片',
+    navigationBarTextStyle: 'white'
+  }
+  data = {
+    userInfo: {},
+    ExpectData: {
+      avatarUrl: '',
+      nickName: '--'
+    },
+    badge: 1,
+    length: 6,
+    Value: '',
+    isFocus: true,
+    countNum: 10,
+    isTrue: false,
+    timer: ''
+  }
+
+  methods = {
+    savePic: () => {
+      // 打印全局变量信息
+      // console.log("全局变量用户信息",wepy.$instance.globalData.userInfo);
+
+      let _this = this
+      wepy.getSetting({
+        success(res) {
+          if (!res.authSetting['scope.writePhotosAlbum']) {
+            // 未授权，获取微信相册授权
+            wepy.authorize({
+              scope: 'scope.writePhotosAlbum',
+              success() {
+                console.log('授权相册成功')
+                // 保存图片
+                // console.log(_this.userInfo.avatarUrl)
+                // 下载图片
+                wepy.downloadFile({
+                  url: _this.userInfo.avatarUrl,
+                  success: function(res) {
+                    // console.log('下载头像成功',res);
+                    wepy.saveImageToPhotosAlbum({
+                      filePath: res.tempFilePath,
+                      success(res) {
+                        console.log('保存头像成功')
+                        // wepy.showToast({
+                        //   title: '保存头像成功',
+                        //   icon: 'success',
+                        //   duration: 2000
+                        // })
+                      },
+                      fail () {
+                        // console.log('保存头像失败');
+                        wepy.showToast({
+                          title: '保存头像失败',
+                          icon: 'fail',
+                          duration: 2000
+                        })
+                      }
+                    })
+                  },
+                  fail(err) {
+                    console.log('下载图片失败', err)
+                    wepy.showToast({
+                      title: '下载图片失败',
+                      icon: 'fail',
+                      duration: 2000
+                    })
+                  }
+                })
+              },
+              fail () {
+                console.log('授权相册失败')
+              }
+            })
+          } else {
+            // 已经授权，直接保存图片
+            wepy.downloadFile({
+              url: _this.userInfo.avatarUrl,
+              success: function (res) {
+                // console.log ('下载头像成功', res);
+                wepy.saveImageToPhotosAlbum({
+                  filePath: res.tempFilePath,
+                  success(res) {
+                    console.log('保存头像成功')
+                    // wepy.showToast({
+                    //   title: '保存头像成功',
+                    //   icon: 'success',
+                    //   duration: 2000
+                    // })
+                  },
+                  fail() {
+                    // console.log ('保存头像失败') ;
+                    wepy.showToast({
+                      title: '保存头像失败',
+                      icon: 'fail',
+                      duration: 2000
+                    })
+                  }
+                })
+              },
+              fail(err) {
+                console.log('下载图片失败', err)
+                wepy.showToast({
+                  title: '下载图片失败',
+                  icon: 'fail',
+                  duration: 2000
+                })
+              }
+            })
+          }
+        }
+      })
+    },
+    // 点击获取用户信息
+    bindGetUserInfo: (e) => {
+      console.log('获取到的用户信息为======',e);
+      this.userInfo = e.detail.userInfo
+      this.$apply()
+    },
+    // 测试角标
+    testJB: () => {
+      let _this = this
+      _this.badge += 1
+      _this.$apply()
+      wepy.setTabBarBadge({
+        index: 0,
+        text: `${_this.badge}`
+      })
+    },
+    getvalue: (e) => {
+      console.log('实时获取的input输入值', e.detail.value)
+      this.Value = e.detail.value
+      this.$apply()
+    },
+    sendData: () => {
+      let _this = this
+      console.log('input框的值为', _this.Value)
+      wepy.showToast({
+        title: `${_this.Value}`,
+        icon: 'success',
+        duration: 2000
+      })
+    },
+    countNumFn: () => {
+      this.countNumFns()
+    },
+  }
+  // 倒计时函数
+  countNumFns () {
+    let _this = this
+    _this.isTrue = false
+    _this.timer = setInterval(() => {
+      _this.countNum--
+      if (_this.countNum <= 0) {
+        clearInterval(_this.timer)
+        _this.countNum = 10
+        _this.isTrue = true
+      }
+      _this.$apply()
+    }, 1000)
+    _this.$apply()
+  }
+  onHide() {
+    let _this = this
+    clearInterval(_this.timer)
+    _this.countNum = 10
+    _this.$apply()
+  }
+  onUnload() {
+    let _this = this
+    clearInterval(_this.timer)
+    _this.countNum = 10
+    _this.$apply()
+  }
+
+  // 获取信息
+  getInfos() {
+    let _this = this
+    wepy.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wepy.getUserInfo({
+            success: function (res) {
+              console.log('获取到的用户信息', res.userInfo)
+              _this.userInfo = res.userInfo
+              _this.$apply()
+            }
+          })
+        }else{
+          console.log('该用户未授权')
+        }
+      }
+    })
+    _this.countNumFns()
+  }
+  async onShow() {
+    this.getInfos()
+  }
+  async onload() {
+    this.getInfos()
+  }
+}
+</script>
+<style lang='less'>
+.wrap{
+  .myinfo{
+    width: 100%;
+    margin-top: 50rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .touxiang{
+      width: 100rpx;
+      height: 100rpx;
+      border-radius: 50%;
+      background-color: rgb(220, 182, 229);
+      margin-bottom: 20rpx;
+    }
+  }
+  .btns {
+    width: 100%;
+    margin-top: 50rpx;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    .btn {
+      height: 80rpx;
+      background-color:lightblue;
+      text-align: center;
+      line-height: 80rpx;
+      font-size: 28rpx;
+      color: #fff;
+    }
+    .btn:after {
+      border: 0;
+    }
+  }
+  .box{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30rpx;
+    .inner{
+      position: relative;
+       .inps{
+         width: 100%;
+          display: flex;
+          justify-content: space-around;
+          .line{
+            width: 80rpx;
+            height: 80rpx;
+            text-align: center;
+            line-height: 80rpx;
+            border-bottom: 1rpx solid gray;
+            color: gray;
+          }
+        }
+        .trueInp{
+          .inp{
+            width:100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            z-index: 0;
+            font-size: 1rpx;
+            text-align: left;
+            color: transparent;
+            caret-color: transparent;
+            // margin-left: -100%;
+            -webkit-tap-highlight-color: transparent;
+          }
+        }
+    }
+    .btn{
+      width: 200rpx;
+      height: 60rpx;
+      line-height: 60rpx;
+      text-align: center;
+      background-color: lightblue;
+      color: white;
+      margin: 20rpx auto;
+      border-radius: 10rpx;
+    }
+  }
+  .countdown{
+    margin: 20rpx auto;
+    font-size: 30rpx;
+    text-align: center;
+    .txtinner{
+      color: lightblue;
+    }
+  }
+  .gotovideo{
+    width: 400rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    background-color: lightblue;
+    border-radius: 20rpx;
+    color: white;
+    margin: 0 auto 20rpx;
+  }
+}
+</style>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>transform-2D</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			
+			.div1{
+				width: 200px;
+				height:  200px;
+				margin: 100px auto;
+				position: relative;
+			}
+			.div1::before{
+				display: block;
+				content: "";
+				width: 10px;
+				height: 200px;
+				background: black;
+				position: absolute;
+				top: 0;
+				left: 0;
+				margin-left: -10px;
+				z-index: 1;
+			}
+			.div1::after{
+				display: block;
+				content: "";
+				width: 200px;
+				height: 10px;
+				background: black;
+				position: absolute;
+				top: 0;
+				left: 0;
+				margin-top: -10px;
+				z-index: 1;
+			}
+			.div2{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 200px;
+				height: 200px;
+				background: red;
+				transition: all 2s;
+			}
+			.div2:hover{
+				transform: skewY(15deg);
+			}
+		
+		</style>
+	</head>
+	<body>
+		<!-- transform 变形 -->
+
+		<!-- 1. translateX 在x轴上进行位移或变形，大写X -->
+		<!--　	translateY 在y轴上进行位移或变形,大写Y -->
+		<!-- 	translate:(x,y)，在x轴和y轴上位移或变形
+				一个值的时候在x轴上位移或变形-->
+
+
+
+		<!-- 2. scaleX scaleY scale()缩放-->
+		<!-- scaleX 在x轴上的缩放比例 -->
+		<!-- scaleY 在y轴上的缩放比例 -->
+		<!-- 可以设置负数　一个值的时候，表示在x轴y轴上同时缩放比例 -->
+		<!-- 使用场景：设置字体大小小于12px; 
+				zoom可以设置缩放，不支持transition，不以中心点缩放 -->
+
+
+		<!-- 3. rotateX rotateY rotate(deg)单位角度,2D旋转，正数顺时针，负数逆时针-->
+
+
+		<!-- 4.transform-origin:50% 50%;center -->
+
+		<!-- 5.transform:skewX(angle) skewY(angle)绕x轴和y轴进行倾斜,这里的x轴和y轴与平常的两个轴互换方向 -->
+		<div class="div1">
+			<div class="div2"></div>
+		</div>
+		
+	</body>
+</html>

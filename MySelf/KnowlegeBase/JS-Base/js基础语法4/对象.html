@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>对象</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		// 对象类型和基本数据类型
+		// 对象类型：数组
+		// 值拷贝　引用
+		
+		// 对象：概念：一个具体存在的事物。
+		// 类：概念：某一类具有相同特征和行为的事物的统称，类是抽象存在的。
+		// 特征：属性
+		// 行为：方法和函数
+		// 在js中创建对象：
+		
+		var lala={
+			name:'lala',
+			age:18,
+			height:160
+		};
+		// 对象类型的赋值都是引用，虽然变量名不一样，但代表的是同一个对象。
+		var lalazhou=lala;
+		// 对象属性的取值和赋值都是"."
+		lalazhou.age+=1;
+		console.log(lala.age);
+		//可以给对象添加自定义属性
+		lalazhou.gender='女';
+		console.log(lala);
+
+		// var a=10;
+		// var b=a;
+		// b=20;
+		// console.log(a,b);
+		var arr1=[1,2,4,5,7];
+		var arr2=arr1;
+		arr2[0]=5;
+		console.log(arr1);
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Document</title>
+		<style type="text/css">
+			.bg{
+				width: 1000px;
+				height: 606px;
+				background-image: url("bg.jpg");
+				background-size: 100%;
+				margin: 0 auto;
+				position: relative;
+				overflow: hidden;
+			}
+			.item{
+				width: 78px;
+				height: 78px;
+				background-image: url("zou.png");
+				position: absolute;
+				left: 10px;
+				top: 400px;
+			}
+			.bo{
+				width: 50px;
+				height: 32px;
+				position: absolute;
+				background-size: 100%;
+				background-image: url('tt.png');
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bg">
+			<div class="item"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var item = document.getElementsByClassName('item')[0];
+		var bg = document.getElementsByClassName('bg')[0];
+		var k37, k38, k39, k40, kk, kj;
+		var iskup = true;
+		var isjup = true;
+		var toRight = true;
+		var jTimer;
+		var kTimer;
+		function keyIn(keyCode, isup){
+			eval("k"+ keyCode +" = " + isup);
+		}
+		document.onkeydown = function(ev){
+
+			var keyCode = ev.keyCode;
+			
+			if (keyCode == 65) {
+				k37 = true;
+				toRight = false;
+				item.style.transform = "rotateY(180deg)";
+			}	
+			if (keyCode == 68) {
+				k39 = true;
+				toRight = true;
+				item.style.transform = "rotateY(0deg)";
+			}
+			if (keyCode == 87) {
+				k38 = true;
+			}		
+			if (keyCode == 83) {
+				k40 = true;
+			}
+			
+			
+			if (keyCode == 74) {
+				if (isjup) {
+					kj = true;
+					setTimeout(function(){
+						kj = false;
+					}, 15);
+					isjup = false;
+					jTimer = setTimeout(function(){
+						item.style.backgroundImage = "url('quan.png')";
+						setTimeout(function(){
+							item.style.backgroundImage = "url('zou.png')";
+						}, 80)	
+					}, 20);
+					
+				}
+				
+			}
+			if (keyCode == 75) {
+				if (iskup) {
+					kk = true;
+					iskup = false;
+					setTimeout(function(){
+						kk = false;
+					}, 15);
+					kTimer = setTimeout(function(){
+						item.style.backgroundImage = "url('tui.png')";
+						setTimeout(function(){
+							item.style.backgroundImage = "url('zou.png')";
+						}, 80)
+					}, 20);
+				}
+			}
+			if (kj && kk) {
+				clearTimeout(kTimer);
+				clearTimeout(jTimer);
+				item.style.backgroundImage = "url('bo.png')";
+				setTimeout(function(){
+					item.style.backgroundImage = "url('zou.png')";
+				}, 80)
+
+				var bo = document.createElement("div");
+				// 给冲击波赋值样式
+				bo.className = "bo";
+				// 添加冲击波
+				bg.appendChild(bo);
+				var boLeft = item.offsetLeft;
+				var speed = 3;
+				if (toRight) {
+					boLeft += 78;
+				}else{
+					speed = -3;
+					bo.style.transform = "rotateY(180deg)";
+				}
+				bo.style.left = boLeft + "px";
+				bo.style.top = item.offsetTop + 22 + "px";
+				var move = setInterval(function(){
+					boLeft += speed;
+					if (boLeft > 1030 || boLeft < -10) {
+						clearInterval(move);
+						bo.remove();
+					}
+					bo.style.left = boLeft + "px";
+				}, 10);
+			}
+
+		}
+		document.onkeyup = function(ev){
+			var keyCode = ev.keyCode;
+			if (keyCode == 65) {
+				k37 = false;
+			}	
+			if (keyCode == 68) {
+				k39 = false;
+			}
+			if (keyCode == 87) {
+				k38 = false;
+			}		
+			if (keyCode == 83) {
+				k40 = false;
+			}
+			if (keyCode == 74) {
+				isjup = true;
+				kj = false;
+			}
+			if (keyCode == 75) {
+				iskup = true;
+				kk = false;
+			}
+		}
+
+
+		// 控制人物移动的定时器
+		setInterval(function(){
+			var x = 0;
+			var y = 0;
+			var speed = 3;
+			if (k37) {
+				x -= speed;
+			}
+			if (k38) {
+				y -= speed;
+			}
+			if (k39) {
+				x += speed;
+			}
+			if (k40) {
+				y += speed;
+			}
+			x += item.offsetLeft;
+			y += item.offsetTop;
+			y = y > 526 ? 526 : y < 388 ? 388 : y;
+			x = x > 916 ? 916 : x < 7 ? 7 : x;
+			item.style.left = x + "px";
+			item.style.top = y + "px";
+		}, 20)
+
+
+
+
+	</script>
+</html>

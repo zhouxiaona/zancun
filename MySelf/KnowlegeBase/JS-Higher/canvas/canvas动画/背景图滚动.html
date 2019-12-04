@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>背景图滚动</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="400" height="400">
+			及时更新浏览器！
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		
+		var img=new Image();
+		img.src="img/sky.png";
+		img.onload=function(){
+			mycanvas.width=img.width;
+			mycanvas.height=img.height;
+			var x=0;
+			function act(){
+				ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+				ctx.drawImage(img,x,0);
+				ctx.drawImage(img,mycanvas.width+x-1,0);
+				x-=4;
+				if(Math.abs(x) > mycanvas.width){
+					x=0;
+				}
+				window.requestAnimationFrame(act);
+			}
+			act();
+		}
+	</script>
+</html>

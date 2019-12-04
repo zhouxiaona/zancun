@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>数组对象</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+
+		// 面试题
+		// [10, 20, 30, 40]
+		// 	  *2
+		// [20, 40, 60, 80]
+
+		var arr = [10, 20, 30, 40].map(function(a, b, c){
+			console.log(a, b, c);
+			return a * 2;	
+		})
+		console.log(arr);
+
+
+
+		console.log([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(parseInt));
+		// 等价于下面
+		console.log([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(function(a, b, c){
+			return parseInt(a, b, c);
+		}));
+		
+		
+		parseInt(1, 0);//1
+		parseInt(2, 1);//NaN
+		parseInt(3, 2);
+		parseInt(4, 3);
+		parseInt(5, 4);
+		parseInt(6, 5);
+		parseInt(7, 6);
+		parseInt(8, 7);
+		parseInt(9, 8);
+		parseInt(10, 9);//9
+		parseInt(11, 10);//11
+		parseInt(12, 11);//13
+		parseInt(13, 12);//15
+
+
+
+
+
+		// 数组对象
+		// 生成空的数组。
+		var arr = new Array();
+		// 生成有10个空间的数组
+		var arr2 = new Array(10);
+		// 生成内容为 "10" 的数组
+		var arr3 = new Array("10");
+		// 生成数组，内容为10，20，30
+		var arr4 = new Array(10, 20, 30);
+		var arr5 = [1, 2, 3, 4];
+		console.log(arr);
+		console.log(arr2);
+		console.log(arr3);
+		console.log(arr4);
+		console.log(arr5);
+		// 属性
+		arr5[7] = 10;// 7下标为10，456为空
+		console.log(arr5);
+
+		// 可以修改数组长度。
+		arr5.length = 2;
+		console.log(arr5);
+		// 方法
+		// 数组拼接
+		console.log(arr5.concat([11, 22], [98, 89], 100));
+
+		// 在数组最后面添加元素
+		arr5.push(200, 300);
+		console.log(arr5);
+		// 在数组最前面添加元素
+		arr5.unshift(11);
+		console.log(arr5);
+		// 删除数组最后一位。
+		arr5.pop();
+		console.log(arr5);
+		// 删除数组第一位
+		arr5.shift();
+		console.log(arr5);
+
+		// 把数组拼接为字符串
+		// join
+		var arr6 = ["你好", "word", "123"];
+		console.log(arr6.join("😄"));
+
+		// 把数组的内容进行反序,修改原数组
+		arr6.reverse()
+		console.log(arr6);
+
+		// splice(下标，长度，元素1...元素N)
+		// 下标和长度可以形成一个范围，把这个范围内的元素替换成 元素1...元素N。元素1...元素N为空代表删除。长度为0代表添加。下标可以为负数，-3代表倒数第三个。
+		var arr7 = [0, 1, 2, 3, 4, 5, 6, 7];
+		console.log(arr7.splice(-3, 0, 11));
+		console.log(arr7);
+
+
+		// 字符串反转
+		console.log("sdlfjkgh".split("").reverse().join(""));
+
+		// "hgkjflds"
+
+
+
+	</script>
+</html>

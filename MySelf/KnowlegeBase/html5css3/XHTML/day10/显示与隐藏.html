@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>visible|hidden</title>
+		<style>
+			.div1{
+				/*visibility: visible|hidden;其在浏览器中的位置没有被完全释放，浏览器会继续渲染它。*/
+				visibility: visible;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- display:none | block;设置为none后，其位置完全释放，浏览器不会渲染。 -->
+		<div class="div1">i am div1</div>
+		<span>i am a span</span>
+	</body>
+</html>

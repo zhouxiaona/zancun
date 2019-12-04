@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图片转码base64</title>
+	</head>
+	<body>
+		<input type="file" id="myfile" value="" onchange="sub()"/>
+	</body>
+	<script type="text/javascript">
+		
+		function sub(){
+			var myfile=document.getElementById("myfile").files[0];
+			console.log(myfile);
+			var fileRead=new FileReader();
+			fileRead.readAsDataURL(myfile);
+			fileRead.onload=function(e){
+				console.log(e);
+				var base64=e.target.result;
+				var img=new Image();
+				img.src=base64;
+				document.getElementsByTagName("body")[0].appendChild(img);
+			}
+		}
+		
+		
+	</script>
+</html>

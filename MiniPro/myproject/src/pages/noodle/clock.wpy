@@ -1,0 +1,136 @@
+<template>
+  <view class="wrap">
+    <view class="clockBg">
+      <view class="center"></view>
+      <view class="hour" style='transform:rotateZ({{hour-90}}deg)'></view>
+      <view class="minutes" style='transform:rotateZ({{minu-90}}deg)'></view>
+      <view class="second" style='transform:rotateZ({{sec * 6-90}}deg)'></view>
+      <view class="line" style='transform:rotateZ(0deg)'>
+        <span class='fl' style='transform:rotateZ(0deg)'>9</span>
+        <span class='fr' style='transform:rotateZ(0deg)'>3</span>
+      </view>
+      <view class="line" style='transform:rotateZ(30deg)'>
+        <span class='fl' style='transform:rotateZ(-30deg)'>10</span>
+        <span class='fr' style='transform:rotateZ(-30deg)'>4</span>
+      </view>
+      <view class="line" style='transform:rotateZ(60deg)'>
+        <span class='fl' style='transform:rotateZ(-60deg)'>11</span>
+        <span class='fr' style='transform:rotateZ(-60deg)'>5</span>
+      </view>
+      <view class="line" style='transform:rotateZ(90deg)'>
+        <span class='fl' style='transform:rotateZ(-90deg)'>12</span>
+        <span class='fr' style='transform:rotateZ(-90deg)'>6</span>
+      </view>
+      <view class="line" style='transform:rotateZ(120deg)'>
+        <span class='fl' style='transform:rotateZ(-120deg)'>1</span>
+        <span class='fr' style='transform:rotateZ(-120deg)'>7</span>
+      </view>
+      <view class="line" style='transform:rotateZ(150deg)'>
+        <span class='fl' style='transform:rotateZ(-150deg)'>2</span>
+        <span class='fr' style='transform:rotateZ(-150deg)'>8</span>
+      </view>
+    </view>
+
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Clock extends wepy.page {
+    config = {
+      enablePullDownRefresh: false,
+      backgroundTextStyle: 'light',
+      onReachBottomDistance: 50,
+      navigationBarBackgroundColor: '#69BEFF',
+      navigationBarTitleText: 'Clock',
+      navigationBarTextStyle: 'white'
+    }
+
+    data = {
+      Timer: null,
+      hour:0,
+      minu:0,
+      sec:0,
+    }
+
+    onLoad(){
+      this.Timer = setInterval(() => {
+        let nowDate = new Date()
+        this.sec = nowDate.getSeconds()
+        this.minu = nowDate.getMinutes()*6 + this.sec*0.1
+        this.hour = nowDate.getHours()*30 + nowDate.getMinutes() * 0.5
+        this.$apply()
+      }, 1000);
+    }
+  }
+</script>
+<style lang="less">
+  .wrap{
+    width: 100vw;
+    height: 100vh;
+    .clockBg{
+      width: 400rpx;
+      height: 400rpx;
+      border: 20rpx solid rgba(0,0,0,0.5);
+      margin: 100rpx auto;
+      background: lightgray;
+      border-radius: 50%;
+      position: relative;
+      .line{
+        width: 100%;
+        height: 40rpx;
+        position: absolute;
+        left: 0;
+        top:0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        .fl{
+          float: left;
+        }
+        .fr{
+          float: right;
+        }
+      }
+      .center{
+        width: 20rpx;
+        height: 20rpx;
+        border-radius: 50%;
+        background: black;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      .hour{
+        width:100rpx;
+        height: 20rpx;
+        background: lightcyan;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform-origin:0 50%;
+      }
+      .minutes{
+        width:130rpx;
+        height: 18rpx;
+        background: pink;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform-origin:0 50%;
+      }
+      .second{
+        width:150rpx;
+        height: 15rpx;
+        background: yellow;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform-origin:0 50%;
+      }
+    }
+  }
+
+</style>

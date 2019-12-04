@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 通常，函数的作用域及其所有变量都会在函数执行结束后被销毁。但是，在创建了一个闭包以后，这个函数的作用域就会一直保存到闭包不存在为止
+    // 在javascript中，如果一个对象不再被引用，那么这个对象就会被垃圾回收机制回收
+    // 如果两个对象互相引用，而不再被第3者所引用，那么这两个互相引用的对象也会被回收
+    function makeAdder(x){
+        console.log(x,'x===')
+        return function(y){
+            return x + y
+        }
+    }
+    // let add0 = makeAdder(2)
+    // let add1 = makeAdder(7)
+
+    // 返回Closure函数
+    // console.log(add0)
+    // console.log(add1)
+
+    // 执行Closure函数
+    // console.log(add0(10), 'add0(10)')
+    // console.log(add1(10), 'add1(10)')
+
+
+    function fun(n,o){
+        console.log(o)
+        return {
+                fun: function(m){
+                return fun(m,n)
+            }
+        }
+    }
+
+    // var a = fun(0);  // ?undefined
+    // a.fun(1);        // ? 0     
+    // a.fun(2);        // ? 0
+    // a.fun(3);        // ? 0
+
+    // var b = fun(0).fun(1).fun(2).fun(3);  // ? undefined 0 1 2
+
+    // var c = fun(0).fun(1);  // ? 0
+    // c.fun(2);        // ? 1
+    // c.fun(3);        // ? 1
+
+</script>
+</html>

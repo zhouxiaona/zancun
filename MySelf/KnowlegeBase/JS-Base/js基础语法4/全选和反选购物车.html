@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>全选和反选购物车</title>
+		<style type="text/css">
+			table{
+				border: 1px solid black;
+				border-top: 3px solid #a7cbff;
+				border-collapse: collapse;
+				margin: 50px auto;
+			}
+			table th,table td{
+				border: 1px solid #a7cbff;
+				text-align: center;
+			}
+			table td{
+				height: 80px;
+			}
+			.deleteCell td{
+				height: 40px;
+				background: #eaeaea;
+				overflow: hidden
+			}
+			.deleteCell td a{
+				float: left;
+				margin-left: 66px;
+				color: black;
+				text-decoration: none;
+			}
+			.deleteCell td span{
+				float: right;	
+			}
+			.sps1,.sps2{
+				margin-right: 60px;
+			}
+			mark{
+				background-color: transparent;
+				color: red;
+			}
+			table th{
+				height: 40px;
+				background: #e2f2ff;
+			}
+			table th:nth-of-type(1){
+				width: 135px;
+			}
+			table th:nth-of-type(2){
+				width: 200px;
+			}
+			table th:nth-of-type(3){
+				width: 90px;
+			}
+			table th:nth-of-type(4){
+				width: 150px;
+			}
+			table th:nth-of-type(5){
+				width: 90px;
+			}
+			table th:nth-of-type(6){
+				width: 80px;
+			}
+			.inp{
+				width: 30px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<th>
+					<label id="inpallTitle" for="inpall">全选</label>
+					<input type="checkbox" id='inpall' value="" name="">
+					<input type="button" id="inpfan" value="反选" name="">
+				</th>
+				<th>商品</th>
+				<th>单价</th>
+				<th>数量</th>
+				<th>小计</th>
+				<th>操作</th>
+			</tr>
+			<tr class="trs" style="display: table-row;">
+				<td>
+					<input type="checkbox" class="inp1"  name="">
+				</td>
+				<td>优益C</td>
+				<td class="price">100</td>
+				<td>
+					<input type="button" class="inpsub" value="-">
+					<input type="text" class="inp" disabled value="0">
+					<input type="button" class="inpsum"  value="+">
+				</td>
+				<td class="xiaoji">0</td>
+				<td>
+					<input type="button" class='delete' value="删除" name="">
+				</td>
+			</tr>
+			<tr class="trs" style="display: table-row;">
+				<td>
+					<input type="checkbox" class="inp1"  name="">
+				</td>
+				<td>海之言</td>
+				<td class="price">200</td>
+				<td>
+					<input type="button" class="inpsub" value="-">
+					<input type="text" class="inp" disabled value="0">
+					<input type="button" class="inpsum"  value="+">
+				</td>
+				<td class="xiaoji">0</td>
+				<td>
+					<input type="button" class='delete' value="删除" name="">
+				</td>
+			</tr>
+			<tr class="trs" style="display: table-row;">
+				<td>
+					<input type="checkbox" class="inp1"  name="">
+				</td>
+				<td>小茗同学</td>
+				<td class="price">300</td>
+				<td>
+					<input type="button" class="inpsub" value="-">
+					<input type="text" class="inp" disabled value="0">
+					<input type="button" class="inpsum"  value="+">
+				</td>
+				<td class="xiaoji">0</td>
+				<td>
+					<input type="button" class='delete' value="删除" name="">
+				</td>
+			</tr>
+			<tr class="deleteCell">
+				<td colspan='6'>
+					<a href="###" id="deleteAll">删除所有</a>
+					<span class="sps1">￥<mark>0</mark></span>
+					<span>合计：</span>
+					<span class="sps2">已选商品<mark>0</mark>种</span>		
+				</td>		
+			</tr>
+		</table>
+	</body>
+	<script type="text/javascript">
+		var title=document.getElementById('inpallTitle');
+		var inpall=document.getElementById('inpall');
+		var inpfan=document.getElementById('inpfan');
+		var inp1s=document.querySelectorAll('.inp1');	
+
+		var heji=document.getElementsByTagName('mark')[0];//合计按钮
+		var yixuan=document.getElementsByTagName('mark')[1];//商品种类选取
+
+		var price=document.getElementsByClassName('price');
+		var inpsub=document.getElementsByClassName('inpsub');
+		var inpsum=document.getElementsByClassName('inpsum');
+		var xiaoji=document.getElementsByClassName('xiaoji');
+		var inp=document.getElementsByClassName('inp');
+		
+		var deletes=document.getElementsByClassName('delete');
+		var trs=document.getElementsByClassName('trs');
+
+		var deleteAll=document.getElementById('deleteAll');
+		
+
+		//删除商品 点击事件
+		function fnDelete(btnDelete,trsD,mark2s,titles,inpalls){
+			btnDelete.onclick=function(){
+				var suma=Number(mark2s.innerHTML);
+				suma--;
+				if(suma<0){
+					suma=0;
+				}
+				return trsD.style.display='none',mark2s.innerHTML=suma,title.innerHTML=inpall.checked?"全不选":"全选";
+			}
+		}
+		for(var i=0;i<deletes.length;i++){
+			fnDelete(deletes[i],trs[i],mark2,title,inpall);
+
+		}
+
+		//复选框的点击事件
+		inpall.onclick=function(){
+			var sums=0;
+			for(var i=0;i<inp1s.length;i++){
+				inp1s[i].checked=inpall.checked;
+				sums+=trs[i].style.display=='table-row' && inpall.checked?1:0;
+			}
+			mark2.innerHTML=sums;
+
+			var sum=0;
+			if(inpall.checked){
+				for(var i=0;i<xiaoji.length;i++){
+					sum+=Number(xiaoji[i].innerHTML);
+				}
+				mark1.innerHTML=sum;
+			}else{
+				mark1.innerHTML=0;
+			}		
+		}
+
+		for(var i=0;i<inp1s.length;i++){
+			inp1s[i].onclick=function(){
+				var count=0;
+				var zong=0;
+				var shuxing=0;
+				var shuxing2=0;
+				for(var j=0;j<inp1s.length;j++){
+					inp1s[j].index=j;
+					if(trs[j].style.display=='table-row'){
+						trs[j].indexs=j;
+						shuxing++;
+						if(inp1s[j].checked){
+							shuxing2++;
+						}
+					}
+					count+=inp1s[j].checked && trs[j].style.display=='table-row'?1:0;
+					mark2.innerHTML=count;
+					zong+=Number(xiaoji[inp1s[j].index].innerHTML)*inp1s[j].checked;
+				}
+
+				mark1.innerHTML=zong;
+				inpall.checked=shuxing==shuxing2;
+				title.innerHTML=inpall.checked?"全不选":"全选";
+
+
+			}
+		}
+		
+		inpfan.onclick=function(){
+			var count=0;
+			var zong=0;
+			for(var i=0;i<inp1s.length;i++){
+				inp1s[i].index=i;
+				inp1s[i].checked=!inp1s[i].checked;
+				count+=Number(inp1s[i].checked);
+				mark2.innerHTML=count;
+				zong+=Number(xiaoji[inp1s[i].index].innerHTML)*inp1s[i].checked;
+			}
+			mark1.innerHTML=zong;
+			inpall.checked=count==inp1s.length;
+			title.innerHTML=inpall.checked?"全不选":"全选";
+		}
+
+		//数量与小计的点击计算事件
+		function fn(marks,inp1,is,sub,inp,sum,count,money){
+			var num=Number(inp[is].value);
+			var zongArr=[];
+			var sumArr=0;
+			sub[is].onclick=function(){
+				sumArr=0;
+				num--;
+				if(num<0){
+					num=0;
+				}
+				inp[is].value=num;
+				count[is].innerHTML=Number(money[is].innerHTML)*inp[is].value;
+				for(var i=0;i<inp1s.length;i++){
+					zongArr[i]=Number(count[i].innerHTML)*inp1[i].checked;
+					sumArr+=zongArr[i];
+				}
+				marks.innerHTML=sumArr;
+				return inp[is].value,count[is].innerHTML,marks.innerHTML;	
+			}
+
+			sum[is].onclick=function(){
+				sumArr=0;
+				num++;
+				inp[is].value=num;
+				marks.innerHTML = 0;
+				count[is].innerHTML=Number(money[is].innerHTML)*inp[is].value;
+				for(var i=0;i<inp1s.length;i++){
+					zongArr[i]=Number(count[i].innerHTML)*inp1[i].checked;
+					sumArr+=zongArr[i];
+				}
+				marks.innerHTML=sumArr;
+				return inp[is].value,count[is].innerHTML,marks.innerHTML;
+			}
+		}
+
+		for(var i=0;i<price.length;i++){
+			fn(mark1,inp1s,i,inpsub,inp,inpsum,xiaoji,price);
+		}
+
+		
+		//删除所有 点击事件
+		deleteAll.onclick=function(){
+			for(var i=0;i<trs.length;i++){
+				trs[i].style.display='none';
+			}
+		}
+		
+		
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>键盘事件对象</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		//键盘事件对象
+		//keydown支持特殊按键，command shift,但不区分大小写，A和a的keycode都是65
+		//keypress不支持特殊按键，keycode区分大小写
+		document.onkeydown=function(ev){
+			//获取事件对象可以使用window.event
+			//注意：在火狐获取不到
+			// console.log(window.event);
+			//在火狐需要通过参数获取
+			// console.log(ev);
+			//兼容性的写法
+			var evObj=window.event || ev;
+			
+			//如何判断是否按了组合键
+			if(evObj.keyCode==67 && evObj.metaKey){
+				console.log('按了command和c');
+			}
+		}
+
+
+		
+	</script>
+</html>
+
+
+

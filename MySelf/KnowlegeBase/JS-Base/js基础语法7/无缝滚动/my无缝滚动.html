@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>my无缝滚动</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			#window{
+				width: 500px;
+				height: 300px;
+				margin: 10px auto;
+				overflow: hidden;
+				position: relative;
+			}
+			#slider{
+				width: 2400px;
+				height: 300px;
+				position: absolute;
+				left: 0;
+			}
+			#slider img{
+				float: left;
+				width: 300px;
+				height: 300px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="window">
+			<ul id="slider">
+				<li>
+					<img src="images/img01.jpg">
+				</li>
+				<li>
+					<img src="images/img02.jpg">
+				</li>
+				<!-- <li>
+					<img src="images/img03.jpg">
+				</li>
+				<li>
+					<img src="images/img04.jpg">
+				</li> -->
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var windows=document.getElementById('window');
+		var slider=document.getElementById('slider');
+		var imgs=document.getElementsByTagName('img');
+		var maxWidth=imgs[0].offsetWidth*imgs.length;
+		console.log(imgs.length);
+
+		var step=0;
+		timer=null;
+		slider.innerHTML+=slider.innerHTML;
+		
+		function move(){
+			timer=setInterval(function(){
+				step-=2;
+				if(step<= -maxWidth){
+					step=0;
+				}
+				slider.style.left=step+'px';
+			},25);
+		}
+		move();
+		slider.onmouseover=function(){
+			clearInterval(timer);
+		}
+		slider.onmouseout=function(){
+			move();
+		}
+		
+	</script>
+</html>

@@ -1,0 +1,31 @@
+/*
+* css选择器的优先级：作用的元素一样，样式一样，就会有优先级问题。
+* 通配选择器	0
+* 标签名选择器 1
+* 类选择器 10
+* id选择器 100
+* 后代选择器 选择器1 选择器2 ...（会有相加的过程）
+* 群组选择器 选择器1,选择器2,... (不会有相加的过程)
+*
+*	1.相同类型的选择器 样式冲突下 后覆盖前
+*	2.不同类型的选择器 样式冲突下 优先级高覆盖优先级低
+*	3.* < Tags < class < id < style < !important
+*	4.!important慎用(非得用的时候，要加注释说明一下)
+*/
+
+span{
+	display: block;
+	width:200px;
+	height:200px;
+	background:red;
+}
+div{
+	width:200px;
+	height:200px;
+	background:blue;
+}
+
+#test{
+	background:gold;
+}
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>瀑布流-固定列01</title>
+		<style type="text/css">
+			* { margin: 0; padding: 0; }
+			.wrap {width: 600px; margin: 0 auto; padding: 20px 10px; border: 1px #999 solid; overflow: hidden; }
+			.wrap ul { float: left; width: 200px; list-style: none; padding: 0 10px; box-sizing: border-box; } /*注意此处加了box-sizing: border-box，此元素的内边距和边框不再会增加它的宽度*/
+			.wrap ul li { background: #ccc; margin-bottom: 20px; font-size: 50px; }
+			
+		</style>
+	</head>
+	<body>
+		<div class="wrap" id="wrap">
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+		function flowFn() {
+			var wrap = document.getElementById('wrap');
+			var list = document.getElementsByTagName('ul');
+
+			//随机函数用于随机设定单个元素高度
+			function randFn(min, max){
+				 var rand = parseInt(Math.random() * (max-min)) + min;
+				 return rand;
+			}
+		
+			//创建li元素
+			function creatLi(){
+				for (var i = 1; i < 10; i++) { //控制li个数
+					var li = document.createElement('li');
+					var height = randFn(100,300);
+
+					li.innerHTML = i;
+					li.style.height = height + 'px';
+
+					var heightArr = [];
+					var minIndex = 0;
+					for (var j = 0; j < list.length; j++) {
+
+						heightArr.push(list[j].offsetHeight); 
+
+						var minHeight = heightArr[0]; //先假定最小数值是数组中的第一项
+						if (minHeight > heightArr[j]) { //与数组中的每一项进行比较，筛选出最小高度
+							minHeight = heightArr[j]; //minHeight始终存储最小高度
+							minIndex = j; //最小高度的下标
+						}
+						list[minIndex].appendChild(li); //将li优先插入高度最小的ul中，目的在于平衡每个ul的高度
+					}
+				}
+			}
+			creatLi();
+		}
+		flowFn();
+		
+	</script>
+</html>

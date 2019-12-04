@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>贝塞尔曲线</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			您的浏览器不支持canvas，请及时更新浏览器!
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+//		ctx.beginPath();
+		//二次贝塞尔曲线，一个开始点，一个控制点，一个结束点
+		//开始点
+//		ctx.moveTo(0,0);
+		//控制点与结束点
+//		ctx.quadraticCurveTo(500,0,500,500);
+//		ctx.stroke();
+
+		//三次贝塞尔曲线，一个开始点，两个控制点，一个结束点
+//		ctx.bezierCurveTo(500,0,0,500,500,500);
+//		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.moveTo(0,0);
+		ctx.bezierCurveTo(500,0,0,500,500,500);
+		ctx.stroke();
+
+
+
+//		ctx.beginPath();
+//		ctx.moveTo(200,200);
+//		ctx.quadraticCurveTo(10,150,200,400);
+//		ctx.strokeStyle="red";
+//		ctx.stroke();
+		
+//		ctx.moveTo(200,200);
+//		ctx.quadraticCurveTo(390,150,200,400);
+//		ctx.strokeStyle="red";
+//		ctx.stroke();
+//		ctx.closePath();
+//		ctx.fillStyle="red";
+//		ctx.fill();
+		
+//		ctx.beginPath();
+//		ctx.arc(200,205,99,0,Math.PI*2);
+//		ctx.fillStyle="red";
+//		ctx.fill();
+		
+//		ctx.beginPath();
+//		ctx.moveTo(350,10);
+//		ctx.quadraticCurveTo(300,20,350,100);
+//		ctx.closePath();
+//		ctx.fillStyle="red";
+//		ctx.fill();
+	</script>
+</html>

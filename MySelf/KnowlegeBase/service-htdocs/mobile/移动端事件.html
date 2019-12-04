@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>移动端事件</title>
+		<meta name="viewport" content="width=device-width">
+		<style type="text/css">
+			#redDiv,#blueDiv{
+				width: 300px;
+				height: 300px;
+				background-color: red;
+				font-size: 50px;
+				color: white;
+				text-align: center;
+				line-height: 70px;
+			}
+			#blueDiv{
+				background-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="redDiv"></div>
+		<div id="blueDiv"></div>
+	</body>
+	<script type="text/javascript">
+		var redDiv=document.getElementById('redDiv');
+		var blueDiv=document.getElementById('blueDiv');
+		var count=0;
+		//移动端可以使用onclick，据说有300ms的延迟
+		redDiv.onclick=function(){
+			this.innerHTML=count++;
+		}
+		
+
+
+
+
+		//正版的移动端事件
+		
+		//ontouchstart   相当于onmousedown
+		//ontouchmove    等价于pc的onmouosemove
+		//ontouchend     等价于onmouseup
+		//ontouchcancel  取消触摸的时候触发。比如来电话、信息等，
+		//系统终止触摸事件的时候会触发，每个手机触发方式不一样。
+		var count2=0;
+		blueDiv.ontouchmove=function(ev){
+		// 	var evObj=window.event || ev;
+		// 	//touches位于屏幕上的所有手指列表
+		// 	//targetTouches 元素内的所有手指列表
+		// 	//changedTouches  改变了状态的手指列表
+			
+		
+			redDiv.innerHTML=parseInt(evObj.changedTouches[0].clientX)+','+parseInt(evObj.changedTouches[0].clientY);
+			this.innerHTML=parseInt(evObj.changedTouches[0].pageX)+','+parseInt(evObj.changedTouches[0].pageY);
+			
+
+
+		// 	//ontouchmove的时候，使用return false;可以阻止默认事件，让网页不会跟着滑动
+			return false;
+		}
+
+
+
+
+
+
+
+		//两个设备事件　加速计和陀螺仪
+		//动态的重力加速度
+		//判断手机是否支持加速计和陀螺仪
+		if (window.DeviceMotionEvent){
+			redDiv.innerHTML='支持';
+			//动态的重力加速度
+			window.ondevicemotion=function(ev){
+				var evObj=window.event || ev;
+				//accelerationIncludingGravity属性
+				//包括了重力加速度的x、y、z三个方向的重力加速度
+				// var x=parseInt(evObj.accelerationIncludingGravity.x);
+				// var y=parseInt(evObj.accelerationIncludingGravity.y);
+				// var z=parseInt(evObj.accelerationIncludingGravity.z);
+			
+
+				// count++;
+				// blueDiv.innerHTML=count;
+				// blueDiv.innerHTML="x:"+x+","+"y:"+y+","+"z:"+z;
+			}
+			window.ondeviceorientation=function(ev){
+				var evObj=window.event || ev;
+				var alpha=parseInt(evObj.alpha);
+				var beta=parseInt(evObj.beta);
+				var gamma=parseInt(evObj.gamma);
+
+				blueDiv.innerHTML="alpha:"+alpha+"</br>"+"beta:"+beta+"</br>"+"gamma:"+gamma;
+			}
+		}else{
+			redDiv.innerHTML='换个手机吧';
+		}
+		//静态的手机朝向
+		
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

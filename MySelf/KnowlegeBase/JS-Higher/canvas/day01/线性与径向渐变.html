@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			canvas{
+				border:1px solid black;
+				background: lightgray;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			对不起，您的浏览器版本过低，点击<a href="###">下载</a>
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		ctx.beginPath();
+		//线性渐变
+//		var grd=ctx.createLinearGradient(0,0,500,500);
+		//径向渐变
+		var grd=ctx.createRadialGradient(200,200,100,200,200,250);
+		grd.addColorStop(0,"blue");
+		grd.addColorStop(0.5,"yellow");
+		grd.addColorStop(1,"red");
+		ctx.fillStyle=grd;
+		ctx.fillRect(0,0,mycanvas.width,mycanvas.height);
+	</script>
+</html>

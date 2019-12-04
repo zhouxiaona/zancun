@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Document</title>
+		<style type="text/css">
+			.box{
+				width: 420px;
+				height: 600px;
+				border: 1px red solid;
+				margin: 0 auto;
+				position: relative;
+			}
+			.boss{
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				position: absolute;
+				top: 100px;
+				left: 185px;
+				z-index: 100px;
+				background-image: url("boss.png");
+				background-size: 100%;
+			}
+			ul{
+				list-style-type: none;
+				padding: 0px;
+				margin: 0px;
+				position: absolute;
+				bottom: 0px;
+			}
+			ul li{
+				border: 1px red solid;
+				width: 70px;
+				height: 70px;
+				float: left;
+				font-size: 50px;
+				line-height: 68px;
+				text-align: center;
+				color: white;
+				text-shadow: purple 0px 0px 2px, purple 0px 0px 3px, purple 0px 0px 5px, purple 0px 0px 7px, purple 0px 0px 9px, purple 0px 0px 10px, purple 0px 0px 15px, purple 0px 0px 30px, purple 0px 0px 30px, purple 0px 0px 30px;
+				box-sizing: border-box;
+				position: relative;
+
+			}
+			.active{
+				color: red;
+				padding: 3px 0px 0px 3px;
+				box-shadow: 3px 3px 3px inset;
+			}
+			.zd{
+				width: 30px;
+				height: 30px;
+				position: absolute;
+				background-color: blue;
+				top: -30px;
+				left: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="boss"></div>
+			<ul>
+				<li class="item">S</li>
+				<li class="item">D</li>
+				<li class="item">F</li>
+				<li class="item">J</li>
+				<li class="item">K</li>
+				<li class="item">L</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+	// ————————————游戏参数—————————————————
+	var bossSpeed = 3;
+	var zdSpeend = 10;
+	// ———————————————————————————————————
+
+	// 83 68 70   74 75 76
+	var keyCodeArr = [83, 68, 70, 74, 75, 76];
+	var box = document.getElementsByClassName("box")[0];
+	var boss = document.getElementsByClassName("boss")[0];
+	var items = document.getElementsByClassName('item');
+	document.onkeydown = function(ev){
+		var index = keyCodeArr.indexOf(ev.keyCode);
+		if (index != -1) {
+			// 点击按键的时候，让按键颜色变化
+			items[index].className += " active";
+			// 如果已经有一个子弹了，就直接返回，结束函数。
+			if (items[index].children.length) {
+				return;
+			}
+			var newDiv = document.createElement("div");
+			newDiv.className = "zd";
+			items[index].appendChild(newDiv);
+			var timer = setInterval(function(){
+				var dTop = newDiv.offsetTop;
+				newDiv.style.top = dTop - zdSpeend + "px";
+				if (isC(newDiv, boss)) {
+					clearInterval(timer);
+					newDiv.remove();
+				}
+				if (dTop <= -530) {
+					clearInterval(timer);
+					newDiv.remove();
+				}
+			}, 15);	
+		}
+
+	}
+	// 抬起按键的时候让按键的颜色恢复
+	document.onkeyup = function(ev){
+		var index = keyCodeArr.indexOf(ev.keyCode);
+		if (index != -1) {
+			items[index].className = items[index].className.replace(" active", "");
+		}
+	}
+	// boss移动。
+	var bossMove = setInterval(function(){
+		if (boss.offsetLeft < 0 || boss.offsetLeft + boss.offsetWidth > box.offsetWidth) {
+			bossSpeed *= -1;
+		}
+		boss.style.left = boss.offsetLeft + bossSpeed + "px";
+	}, 20);
+	// 检测子弹是否和boss碰撞
+	function isC(obj1, obj2){
+		return obj1.offsetLeft + obj1.offsetWidth + 1 + obj1.parentNode.offsetLeft > obj2.offsetLeft && obj1.offsetLeft + 1 + obj1.parentNode.offsetLeft < obj2.offsetLeft + obj2.offsetWidth && obj1.offsetTop + obj1.offsetHeight + 531 > obj2.offsetTop && obj1.offsetTop + 531 < obj2.offsetTop + obj2.offsetHeight;
+	}
+	</script>
+</html>

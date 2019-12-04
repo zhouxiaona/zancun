@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css样式-overflow</title>
+	<style>
+		body,h2,ul{
+			margin:0;
+		}
+		ul,ol{
+			padding:0;
+			list-style-type:none;
+		}
+		.nav{
+			height:48px;
+			background:#000;
+			overflow: hidden;
+
+		}
+		h2{
+			width:200px;
+			height:48px;
+			background:red;
+			line-height:48px;
+		}
+		ul{
+			width:200px;
+			border:1px #000 solid;
+		}
+		ul li{
+			height:24px;
+			line-height:24px;
+			border-bottom: 1px dashed red; 
+		}
+		ol{
+			background:red;
+			overflow: auto;
+		}
+		ol li{
+			height:27px;
+			margin-top: 10px;
+			background:blue;
+			float:left;
+		}
+	</style>
+</head>
+<body>
+	<!-- 内容超出处理：overflow: auto hidden scroll -->
+	<!-- auto 容器自适应内容，内容高度超出容易，会出现竖直滚动条，如果内容宽度超出容器，会出现水平滚动条 -->
+	<!-- hidden 是把超出容器的内容部分给裁减掉 -->
+	<!-- scroll  给容器设置滚动条，如果内容没有超出容器，将无法滚动-->
+
+	<!-- overflow-x: 对容器的水平方向处理-->
+	<!-- overflow-y: 对容器的垂直方向处理-->
+
+	<!-- overflow:auto hidden两个属性还可以用于清除浮动 -->
+
+	<ol class="test">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ol>
+
+	<div class="nav">
+		<div class="menu">
+			<h2>热门类目</h2>	
+			<ul>
+				<li>水果</li>
+				<li>零食</li>
+				<li>玩具</li>
+				<li>家电</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

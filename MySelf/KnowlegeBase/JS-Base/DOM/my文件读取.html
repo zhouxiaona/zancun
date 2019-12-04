@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>my文件读取</title>
+	</head>
+	<body>
+		<div class="container">
+		    <!--文本文件验证-->
+		    <input type="file" id="file" multiple accept="text/plain" />
+		    <input type="button" id="btn1" value="读取文件内容" onclick="showFiles();" />
+		    <h4>选择文件如下:</h4>
+		    <blockquote></blockquote>
+		</div>
+	</body>
+	<script type="text/javascript">
+
+		//读取文本文件实例
+		var fileBox = document.getElementById('file');
+		var blockquote=document.getElementsByTagName('blockquote')[0];
+		function showFiles() {
+		    //获取选择文件的数组,选中的可能是多个文件
+		    var fileList = fileBox.files;
+		    for (var i = 0; i < fileList.length; i++) {
+		        var file = fileList[i];
+		        readFile(file);
+		    }
+		}
+		//读取文件内容
+		function readFile(file) {
+		    var reader = new FileReader();
+		    //中文windows系统 txt 文本多数默认编码 gbk
+		    // reader.readAsText(file, 'gbk');
+		    // reader.readAsText(file, "UTF-16");
+		    reader.readAsText(file, "UTF-8");
+		    reader.onload = function (e) {
+		        var result = reader.result;
+		        blockquote.innerHTML = result;
+		        // $('.container blockquote').text(result);
+		        // run(result);
+		    }
+		}
+		// function run(str){
+		// 	var arr = str.split("\n");
+		// 	console.log(arr);
+		// 	for(var i = 0; i < arr.length; i++){
+		// 		if (arr[i].split("[")[1]) {
+		// 			var time = arr[i].split("[")[1].split("]")[0];
+		// 			console.log(time);
+		// 			if (Number(time.splite(":"))) {}
+		// 		}
+				
+		// 	}
+		// }
+	</script>
+</html>

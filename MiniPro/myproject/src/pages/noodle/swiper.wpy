@@ -1,0 +1,132 @@
+<template>
+  <view class="wrap">
+    <swiper
+      indicator-dots="{{indicatorDots}}"
+      autoplay="{{autoplay}}"
+      interval="{{interval}}"
+      duration="{{duration}}"
+      bindchange="swiperChange"
+      current="{{current}}"
+      class="swiper"
+      previous-margin="150rpx"
+      next-margin="150rpx"
+    >
+      <repeat for="{{imgData}}" index="index" item="item" key="index">
+        <swiper-item class="myitem">
+          <image
+          src="{{index == current ? item.bigsrc : item.src }}"
+          style="{{index == current ?'width:90%;height:260px;':'width:70%;height:240px;'}}" class="slide-image"/>
+        </swiper-item>
+      </repeat>
+    </swiper>
+    <view class="infos">
+      <view class="title">{{title}}</view>
+      <button class="buyBtn">{{currency}}趣币/月</button>
+    </view>
+    <!-- <button @tap="changeIndicatorDots"> indicator-dots </button> -->
+    <!-- <button @tap="changeAutoplay"> autoplay </button> -->
+    <!-- <slider bindchange="intervalChange" show-value min="500" max="2000"/> interval
+    <slider bindchange="durationChange" show-value min="1000" max="10000"/> duration -->
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Swiper extends wepy.page {
+    config = {
+      enablePullDownRefresh: false,
+      backgroundTextStyle: 'light',
+      onReachBottomDistance: 50,
+      navigationBarBackgroundColor: '#69BEFF',
+      navigationBarTitleText: 'swiper',
+      navigationBarTextStyle: 'white'
+    }
+    data = {
+      imgData: [
+        {
+          src: '../img/slider1_1.png',
+          bigsrc: '../img/slider1.png',
+          title: '海贼王',
+          currency: 5
+        },
+        {
+          src: '../img/slider2_1.png',
+          bigsrc: '../img/slider2.png',
+          title: '海盗船',
+          currency: 15
+        },
+        {
+          src: '../img/slider3_1.png',
+          bigsrc: '../img/slider3.png',
+          title: '宝藏王',
+          currency: 20
+        },
+        {
+          src: '../img/slider4_1.png',
+          bigsrc: '../img/slider4.png',
+          title: '游艇飞机王',
+          currency: 25
+        }
+      ],
+      indicatorDots: true,
+      autoplay: false,
+      interval: 5000,
+      duration: 1000,
+      current: 0,
+      title: '宝藏王',
+      currency: 25
+    }
+
+    methods = {
+      swiperChange: function(e) {
+        console.log(e.detail)
+        this.title = this.imgData[e.detail.current]['title']
+        this.currency = this.imgData[e.detail.current]['currency']
+        this.current = e.detail.current
+        this.$apply()
+      }
+    }
+    onLoad() {
+
+    }
+  }
+</script>
+<style>
+  .wrap{
+    width: 100%;
+    height: 700rpx;
+  }
+  .swiper{
+    padding-top: 100rpx;
+    height: 100%;
+  }
+  .slide-image{
+    /* width: 275px;
+    height: 276px; */
+    display: block;
+    margin: 0 auto;
+  }
+  .title{
+    text-align: center;
+    color: #494C6F;
+    font-size: 36rpx;
+    letter-spacing: 5rpx;
+    margin-top: 20rpx;
+    -webkit-text-stroke: 0.2px;
+  }
+  .buyBtn{
+    background:  linear-gradient(-161deg, #37AAF4 0%, #1F6CEC 100%);
+    box-shadow: 0 8px 13px 4px #CCE1FF;
+    border-radius: 100px;
+    opacity: 0.65;
+    height: 80rpx;
+    line-height: 80rpx;
+    width: 36%;
+    margin: 40rpx auto;
+    color: #FFFFFF;
+    font-size: 30rpx;
+    letter-spacing: 5rpx;
+  }
+  .buyBtn:after{
+    border: 0;
+  }
+</style>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>3D变换</title>
+		<style type="text/css">
+			/*
+				transform:;
+				translateZ rotateXY scaleZ
+
+				形变中心点
+				transform-origin: 100px 0px;
+
+				视觉中心点
+				perspective-origin: 0px 0px; 
+
+			*/
+			.wrap{
+				/*景深层 */
+				/*perspective 可以理解为眼睛距离3d容器box的位置*/
+				perspective: 1600px;
+				/*perspective-origin 眼睛的位置，从不同的位置同一个物体会有不同的形状。*/
+				perspective-origin: center; 
+			}
+			.box{
+				/*transform-style  设置容器为3D容器，这样容器的内容除了可以上下左右移动之外，还可以前后移动（多了一个Z轴）*/
+				transform-style: preserve-3d;
+				height: 600px;
+				background-color: rgba(0,0,0,0.1);
+				border: 1px red solid;
+				transform: rotateY(0deg) rotateX(0deg) scaleZ(1) ;
+				position: relative;
+			}
+			.redDiv{
+				width: 200px;height: 200px;
+				background-color: red;
+				margin: 200px auto;
+				transform-origin: center center; 
+				transform:translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+			}			
+			.blueDiv{
+				width: 200px;height: 200px;
+				background-color: blue;
+				position: absolute;
+				top: 200px;
+				left: 50%;
+				margin-left: -100px;
+				transform-origin: 100px 0px;
+				transform: rotateX(90deg); 
+
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<div class="redDiv"></div>
+				<div class="blueDiv"></div>
+			</div>
+		</div>
+	</body>
+</html>

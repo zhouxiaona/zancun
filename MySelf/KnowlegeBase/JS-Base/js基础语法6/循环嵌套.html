@@ -1,0 +1,28 @@
+     <!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>循环嵌套</title>
+	</head>
+	<body>
+		
+	</body>
+	</body>
+	<script type="text/javascript">
+		for(var i=0;i<12;i++){
+			console.log("外层循环开始"+i);
+			for(var j=0;j<12;j++){
+				console.log("内层循环"+j);
+			}
+			console.log("外层循环结束"+i);
+		}
+
+		//九九乘法表
+		for(var i=1;i<=9;i++){
+			for(var j=1;j<=i;j++){
+				document.writeln(i+'*'+j+'='+i*j);
+			}
+			document.writeln("</br>");
+		}
+	</script>
+</html>

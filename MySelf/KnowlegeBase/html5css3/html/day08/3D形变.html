@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>3D形变</title>
+		<style type="text/css">
+			/* 
+				3D变换：transform:translate | rotate | scale;
+				2D变换:transform:translate | rotate | scale | skew;
+			 */
+			*{
+				margin: 0;
+			}
+			.wrap{
+				/* 景深层 */
+				perspective: 1600px;
+			/* 	perspective-origin: 10px 10px; */
+			}
+			.box{
+				width: 200px;
+				height: 200px;
+				box-sizing: border-box;
+				transform-style: preserve-3d;
+				margin: 100px auto;
+				background: transparent;
+				border: 1px solid red;
+				position: relative;
+				transition: all 10s linear;
+			}
+			.box:hover{
+				transform: rotateY(3600deg);
+			}
+			.box div{
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				opacity: 0.3;
+			}
+			.redDiv{
+				transform: translateZ(-100px);
+			}
+			.blueDiv{
+				transform: translateZ(100px);
+			}
+			.pinkDiv{
+				transform: rotateX(90deg) translateZ(-100px);
+			}
+			.yellowDiv{
+				transform: rotateX(90deg) translateZ(100px);
+			}
+			.orangeDiv{
+				transform: rotateY(90deg) translateZ(-100px);
+			}
+			.cyanDiv{
+				transform: rotateY(90deg) translateZ(100px);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<div class="redDiv" style="background:red;"></div>
+				<div class="blueDiv" style="background:blue;"></div>
+				<div class="pinkDiv" style="background:pink;"></div>
+				<div class="yellowDiv" style="background:yellow;"></div>
+				<div class="orangeDiv" style="background:orange;"></div>
+				<div class="cyanDiv" style="background:cyan;"></div>
+			</div>
+		</div>
+	</body>
+</html>

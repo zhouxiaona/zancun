@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>my移动端拖拽事件</title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				position: relative;
+			}
+			.red{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="red"></div>
+	</body>
+	<script type="text/javascript">
+		var red=document.getElementsByClassName('red')[0];
+		red.ontouchmove=function(ev){
+			var evObj=window.event || ev;
+			var x=evObj.changedTouches[0].pageX-red.offsetWidth/2;
+			var y=evObj.changedTouches[0].pageY-red.offsetHeight/2;
+			red.style.left=x+'px';
+			red.style.top=y+'px';
+			return false;
+		}
+	</script>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Debounce and Throttle</title>
+    </head>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: 19000px;
+        }
+        .inp{
+            width: 200px;
+            height: 50px;
+            margin: 100px auto;
+            background-color: lightgray;
+            line-height: 50px;
+            color: black;
+            font-size: 30px; 
+            background-color: white;
+        }
+    </style>
+    <body>
+        <input type="text" class='inp'/>
+    </body>
+    <script src='./common/jquery-3.2.1.min.js'></script>
+    <script>
+        //事件实例 
+        var inp = document.getElementsByClassName('inp')[0]
+
+        // 防抖
+        // function debounce(action, delay, immediate) {
+        //     let timer = null
+        //     return function () {
+        //         if (timer) clearTimeout(timer)
+        //         if(immediate){
+        //             let doNow = !timer
+        //             timer = setTimeout(()=>{
+        //                 timer = null
+        //             },delay)
+        //             doNow && action.apply(this,arguments)
+        //         }else{
+        //             timer = setTimeout(() => {
+        //                 action.apply(this, arguments);
+        //             }, delay)
+        //         }
+        //     }
+        // }
+
+        // 节流
+        // function throttle(action, delay){
+        //     let start = new Date()
+        //     return function(){
+        //         let now = new Date()
+        //         if(now - start > delay){
+        //             action.apply(this, arguments)
+        //             start = now
+        //         }
+        //     }
+        // }
+
+        // 节流
+        // function throttle(fn, cycle) {
+        //     let start = Date.now();
+        //     let now;
+        //     let timer;
+        //     return function () {
+        //         now = Date.now();
+        //         clearTimeout(timer);
+        //         if (now - start >= cycle) {
+        //             fn.apply(this, arguments);
+        //             start = now;
+        //         } else {
+        //             timer = setTimeout(() => {
+        //                 fn.apply(this, arguments);
+        //             }, cycle);
+        //         }
+        //     }
+        // }
+
+        // 节流
+        // function throttle(action, delay) {
+        //     var previous = 0;
+        //     return function() {
+        //         var now = new Date()
+        //         if(now - previous > delay) {
+        //             action.apply(this, arguments);
+        //             previous = now
+        //         }
+        //     }
+        // }
+
+        // 防抖
+        // function debounce(action, delay){
+        //     var timer = null
+        //     return function (){
+        //         if(timer){
+        //             clearTimeout(timer)
+        //         }
+        //         timer = setTimeout(()=>{
+        //             action.apply(this,arguments)
+        //         },delay)
+        //     }
+        // }
+
+        // 防抖频繁操作只会执行delay时间之后的一次,  isNow 判断第一次操作会执行函数，其余不会变
+        // function debounce(action, delay, isNow){
+        //     let timer = null
+        //     return function(){
+        //         let _this = this
+        //         if(timer){
+        //             // 返回整型数值id,是setTimeout的唯一标识符,可用于取消setTimeout设置的函数
+        //             clearTimeout(timer)
+        //             // timer = null //该句删除
+        //         }
+        //         if(isNow && !timer){
+        //             // let doNow = !timer
+        //             action.apply(_this, arguments)
+        //             // timer = setTimeout(function(){
+        //             //     timer = null
+        //             // },delay)
+        //         }
+        //         // else{
+        //             timer = setTimeout(function(){
+        //                 action.apply(_this, arguments)
+        //             },delay)
+        //         // }
+        //     }
+        // }
+
+        // 加强版防抖,在await时间内频繁操作会重新生成计时器，但是 awaitTemp 时间到了之后会执行fn
+        function debounce(action, awaitTemp){
+            let prevTemp = new Date()
+            let timer = null
+            return function() {
+                let _this = this
+                let nowTemp = new Date()
+                if(nowTemp - prevTemp < awaitTemp){
+                    if(timer){ clearTimeout(timer) }
+                    timer = setTimeout(function(){
+                        action.apply(_this, arguments)
+                    }, awaitTemp)
+                }else{
+                    action.apply(this, arguments)
+                    prevTemp = nowTemp
+                }
+            }
+        }
+        
+        // 节流1
+        // function throttle(action, delay){
+        //     let initTemp = 0
+        //     return function(){
+        //         let nowTemp = new Date()
+        //         if(nowTemp - initTemp > delay){
+        //             action.apply(this,arguments)
+        //             initTemp = nowTemp
+        //         }
+        //     }
+        // }
+
+        // 节流2
+        // function throttle(action, delay){
+        //     let timer = null
+        //     let initTemp = 0
+        //     return function(){
+        //         let nowTemp = new Date()
+        //         if(timer) clearTimeout(timer)
+        //         if(nowTemp - initTemp > delay){
+        //             action.apply(this, arguments)
+        //             initTemp = nowTemp
+        //         }else{
+        //             timer = setTimeout(()=>{
+        //                 action.apply(this, arguments)
+        //             },delay)
+        //         }
+        //     }
+        // }
+       
+        function actionFunc(){
+            console.log(inp.value)
+        }
+       
+        inp.oninput = debounce(actionFunc, 1000) // 防抖
+        // inp.oninput = throttle(actionFunc, 1000) // 节流
+        
+        // =====================<====================>
+        // const throFun = () => console.log('hello')
+        // const thro = throttle(throFun, 300)
+        // const thro = debounce(throFun, 300)
+        // document.body.onscroll = () => {
+        //    // 节流==》调用至少间隔 300 毫秒才会触发一次
+        //    // 防抖==》若一直调用则不会执行，空闲时间大于 300 毫秒才会执行
+        //    thro()  
+        // }
+
+        
+
+    </script>
+</html>

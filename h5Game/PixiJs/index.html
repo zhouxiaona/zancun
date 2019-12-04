@@ -1,0 +1,289 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./assets/base.css">
+  <title>PIXI</title>
+  <!-- <script src="./assets/dust.js"></script> -->
+  <!-- <script src="./assets/spriteUtilities.js"></script> -->
+  <!-- <script src="./assets/pixi.min.js.map"></script> -->
+</head>
+<body>
+  
+</body>
+<script src="./assets/pixi.min.js"></script>
+<script type="text/javascript">
+  // let type = "WebGL"
+  // if(!PIXI.utils.isWebGLSupported()){
+  //   type = "canvas"
+  // }
+  // PIXI.utils.sayHello(type)
+
+  let app = new PIXI.Application({
+      width: 256,         // default: 800
+      height: 256,        // default: 600
+      antialias: true,    // default: false
+      transparent: true, // default: false
+      resolution: 1       // default: 1
+  })
+  // * app.screen.width AND app.sceen.height
+  // * app.renderer.view.width AND app.renderer.view.height
+  
+  // app.renderer.backgroundColor = '0x061639';
+  // app.renderer.view.style.position = "absolute";
+  // app.renderer.view.style.display = "block";
+  app.renderer.autoResize = true;
+  app.renderer.resize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(app.view)
+  // let D = new Dust(PIXI)
+  // let SU = new SpriteUtilities(PIXI)
+
+  app.stage.interactive = true;
+
+const balloons = []
+let timerCount = 0
+let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2;
+let gravity = 0.01
+function createSprite(){
+  for (let i = 0; i < 3; i++) {
+    let balloonWidth = randomInt(90,100)
+    let balloonHeight = randomInt(100,130)
+    let balloonPosX = randomInt(0, app.screen.width - balloonWidth)
+    let balloonPosY =  randomInt(app.screen.height, app.screen.height + balloonHeight)
+    let balloon = new PIXI.Graphics();
+    let color = randomColor()
+    balloon.beginFill(color);
+    balloon.drawEllipse(0, 0, balloonWidth, balloonHeight);
+    balloon.endFill();
+    balloon = new PIXI.Sprite(balloon.generateTexture());
+    balloon.speedY = randomInt(3,7)
+    if(balloonPosX >= app.screen.width/2){
+      balloon.speedX = -balloon.speedY
+    }else{
+      balloon.speedX = balloon.speedY
+    }
+    balloon.color = color
+    balloon.x = balloonPosX
+    balloon.y = balloonPosY
+    balloon.anchor.set(0.5, 0.5)
+    // balloon.direction = Math.random() * Math.PI * 2; //0deg~~360deg
+    // balloon.turnSpeed = Math.random() - 0.8;
+    // balloon.scale.set(1 + Math.random() * 0.3);
+    // balloon.original = new PIXI.Point();
+    // balloon.original.copy(balloon.scale);
+    balloon.interactive = true
+    balloon.on('pointerdown',onClick)
+    balloons.push(balloon);
+    app.stage.addChild(balloon);
+  }
+}
+
+// 碎片
+class Bubble {
+  constructor(color, radius) {
+    let graphics = new PIXI.Graphics();
+    graphics.beginFill(color); 
+    graphics.moveTo(50, 350);
+    graphics.lineTo(120, 350);
+    graphics.lineTo(100, 370);
+    graphics.lineTo(50, 350);
+    graphics.closePath();
+    graphics.endFill();
+    this.bubble = new PIXI.Sprite(graphics.generateTexture());
+    this.bubble.alpha = 1;
+    this.size = radius;
+    this.x = 0;
+    this.y = 0;
+    this.vx = 0;
+    this.vy = 0;
+    this.launched = false
+    app.stage.addChild(this.bubble);
+  }
+
+  reset() {
+    this.bubble.scale.set(Math.random(), Math.random())
+    this.bubble.anchor.set(0.5, 0.5)
+    this.bubble.rotation = Math.random() * Math.PI * 2
+
+    this.x = mouseX;
+    this.y = mouseY;
+    this.vy = -randomInt(5,9);
+    this.vx = -5 + Math.random()*8;
+    this.bubble.alpha = 0.5 + Math.random()*0.5;
+    this.bubble.position.y = this.y;
+    this.bubble.position.x = this.x;
+    this.update()
+  }
+
+  update() {
+    const _this = this
+    if (!_this.launched) return;
+    app.ticker.add(() => {
+      _this.vy += gravity * _this.size;
+      _this.y += _this.vy;
+      _this.x += _this.vx;
+      _this.bubble.alpha -= 0.004;
+      _this.bubble.position.y = _this.y;
+      _this.bubble.position.x = _this.x;
+      // if( _this.bubble.alpha <= 0){
+      //   _this.launched = false
+      // }
+    })
+  }
+}
+
+// 点击气球
+function onClick(){
+  const _this = this
+  mouseX = _this.x + _this.width/2
+  mouseY = _this.y + _this.height/2
+  for (let i = 0; i < 50; i++) {
+    let bubble = new Bubble(_this.color, 20 + Math.random()*5, mouseX, mouseY)
+    bubble.launched = true
+    bubble.reset()
+  }
+  this.visible = false
+}
+ 
+// 初始化气球
+createSprite()
+
+// 渲染气球
+app.ticker.add(() => {
+    timerCount += 1
+    for (let i = 0; i < balloons.length; i++) {
+        const balloon = balloons[i];
+        // balloon.direction += balloon.turnSpeed * 0.01;
+        // balloon.x += Math.sin(balloon.direction) * balloon.speed;
+        // balloon.y -=  balloon.speed;
+        // balloon.rotation = -balloon.direction - Math.PI / 2;
+        // balloon.scale.x = balloon.original.x + Math.sin(count) * 0.2;
+
+        balloon.y -= balloon.speedY
+        balloon.x += balloon.speedX * 0.2
+        if (balloon.y < -balloon.height || balloon.x > app.screen.width + balloon.width) {
+          app.stage.removeChild(balloon)
+          balloons.splice(i,1)
+        }
+
+        if(timerCount >= 100){
+          timerCount = 0
+          createSprite()
+        }
+    }
+});
+
+
+
+
+
+    // function loadProgressHandler(loader, resource){
+    //   //Display the file `url` currently being loaded
+    //   console.log("loading: " + resource.url);
+    //   //Display the percentage of files currently loaded
+    //   console.log("progress: " + loader.progress + "%");
+    //   //If you gave your files names as the first argument
+    //   //of the `add` method, you can access them like this
+    //   //console.log("loading: " + resource.name);
+    // }
+
+    // PIXI.loader
+    // .add("./assets/balloon.png")
+    // .on("progress", loadProgressHandler)
+    // .load(setup);
+    // let balloon, state;
+    // let balloonArr = []
+    // function setup() {
+        // let balloonCount = 30
+        // let sizeRatio = 196/313
+        // for(let i = 0; i< balloonCount; i++){
+          // let balloon = new PIXI.Sprite(PIXI.loader.resources["./assets/balloon.png"].texture);
+          // let balloonWidth = randomInt(30,60)
+          // let balloonHeight = randomInt(60,90)
+          // let balloonSizeX = randomInt(0, app.renderer.view.width - balloonWidth)
+          // let balloonSizeY = app.renderer.view.height-100
+          
+          // let balloon = new PIXI.Graphics();
+          // balloon.beginFill(randomColor());
+          // balloon.drawEllipse(balloonSizeX, balloonSizeY, balloonWidth, balloonHeight);
+          // balloon.endFill();
+          // app.stage.addChild(balloon)
+          // app.ticker.add(()=>{
+          //   balloon.vx = 0
+          //   balloon.vy = -randomInt(1,7)
+          //   balloon.x += balloon.vx
+          //   balloon.y += balloon.vy
+          // })
+          // balloonArr.push(balloon)
+        // }
+        // app.ticker.add((delta)=>{
+        //   for(let j=0;j<balloonArr.length;j++){
+        //     const balloon = balloonArr[j]
+
+        //   }
+        // })
+        // 精灵位置==》212/315
+        // balloon.x = 50
+        // balloon.y = 50
+        // balloon.position.set(50, 50)
+
+        // balloon.vx = 0
+        // balloon.vy = 0
+        // 隐藏精灵==》
+        // app.stage.removeChild(balloon) OR balloon.visible = false
+
+        // 改变精灵大小和比例==>
+        // balloon.width = 80
+        // balloon.height = 120
+        // balloon.scale.x = 0.5
+        // balloon.scale.y = 0.5
+        // balloon.scale.set(0.5, 0.5)
+
+        // 精灵旋转与旋转中心(锚点)anchor(百分比) 与原点(像素) pivot==>
+        // balloon.rotation = 0.5
+        // balloon.anchor.x = 0.5
+        // balloon.anchor.y = 0.5
+        // balloon.anchor.set(x,y)
+        // balloon.pivot.x = 32
+        // balloon.pivot.y = 32
+        // balloon.pivot.set(x,y)
+
+        // app.stage.addChild(balloon)
+
+        // state = play
+        // app.ticker.add(delta => gameLoop(delta));
+    // }
+
+    // function gameLoop(delta){
+        // state(delta)
+        // console.log(balloonArr,'balloonArr===')
+        // balloon.vx = 0
+        // balloon.vy = randomInt(1,2)
+        // balloon.x += balloon.vx
+        // balloon.y += balloon.vy
+    // }
+
+    // function play(delta){
+    //     balloon.vx = 1
+    //     balloon.vy = 1
+    //     balloon.x += balloon.vx
+    //     balloon.y += balloon.vy
+    // }
+
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function randomColor(){
+      let str = "0x";
+      let random = 0;
+      let aryNum = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
+      for(let i = 0; i < 6; i++){
+          random = parseInt(Math.random() * 16);
+          str += aryNum[random];
+      }
+      return str;
+    }
+
+  </script>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的网站</title>
+    <script src="vue.js"></script>
+    <style>
+        .div1{
+            width:100px;
+            height:100px;
+            background: pink;
+        }
+        .div2{
+            width:100px;
+            height:100px;
+            background: lightblue;
+        }
+        .div11{
+            width:100px;
+            height:100px;
+            background: pink;
+        }
+        .div22{
+            width:100px;
+            height:100px;
+            background: lightblue;
+        }
+        .div33{
+            width:100px;
+            height:100px;
+            background: cyan;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--{{}}}表达式-->
+        {{ message }}
+        {{ 1+3 }}
+        {{ judge?"judge有值":str}}
+
+        <!--v开头的是指令-->
+        <div v-text="message"></div>
+        <!--可以解析标签-->
+        <div v-html="message"></div>
+
+        <!--节点不存在-->
+        <div v-if="is_show">显示了div</div>
+        <!--<div v-if="!is_show">不显示div</div>-->
+        <div v-else>不显示div</div>
+
+        <p v-if="num==1">num=1</p>
+        <p v-else-if="num==2">num=2</p>
+        <p v-else>num是其他值</p>
+
+        <!--display:none;节点存在,更节约性能-->
+        <div v-show="is_show">v-show指令</div>
+
+        <!--v-for-->
+        <ul>
+            <li v-for="v in arr">姓名是：{{v.name}},年龄是：{{v.age}}</li>
+            <!--索引做定位-->
+            <li v-for="(v,k) in arr">姓名是：{{v.name}},年龄是：{{v.age}},索引是：{{k}}</li>
+            <li v-for="(v,k) of arr">姓名是：{{v.name}},年龄是：{{v.age}},索引是：{{k}}</li>
+            <!--index只对obj有效-->
+            <li v-for="(v,k,index) in obj">键名是：{{k}},键值是：{{v}},索引是：{{index}}</li>
+        </ul>
+
+        <!--事件,括号可加可不加，最好不加-->
+        <button v-on:click="sub">点击我弹出</button>
+        <hr>
+        <!--每个引号里面是一个类js环境，可以做一些简单的逻辑处理-->
+        <!--<button v-on:click="is_show=!is_show">点击我切换</button>-->
+        <!--v-on等同于（简写）@  ,sub()加括号可以传参-->
+        <button @click="changediv">点击我切换</button>
+        <div class="div1" v-show="is_show"></div>
+        <div class="div2" v-show="!is_show"></div>
+
+        <hr>
+        <button v-on:click="nums=0">按钮一</button>
+        <button @click="nums=1">按钮二</button>
+        <button v-on:click="nums=2">按钮三</button>
+        <div class="div11" v-show="nums==0">div1</div>
+        <div class="div22" v-show="nums==1">div2</div>
+        <div class="div33" v-show="nums==2">div3</div>
+
+
+
+
+
+
+
+
+
+    </div>
+</body>
+<script>
+
+
+    new Vue({
+        el:"#app",
+        data:{
+            message:"<h1>hello world</h1>",
+            judge:true,
+            str:"judge没值",
+            is_show:false,
+            num:3,
+            arr:[{name:"张三",age:19},{name:"张fr",age:20},{name:"张hy",age:65}],
+            obj:{name:"张三",age:90},
+            nums:0,
+            myarr:[true,false,false]
+        },
+        //所有存放方法都写在message里面
+        methods:{
+            sub(){
+                //第一种解决方案
+                //修改数组的值，三个参数（要触发更新的数据（修改的数组名称），修改值的下标，修改后的值）
+                // Vue.set(this.myarr,0,true);
+
+                //第二种解决方案
+                //splice在vue中被重写（变异的方法）
+                //this.myarr.splice(0,1,true);
+
+                /*变异的函数方法
+                * pop()
+                * shift()
+                * unshift()
+                * sort()
+                * reverse()
+                * */
+
+
+
+                // alert(111);
+                //this指向Vue对象，可以获取对象里面的值
+                // console.log(this.message);
+                this.message="你好世界";
+            },
+            changediv(){
+                this.is_show=!this.is_show;
+            }
+
+
+        }
+    });
+
+</script>
+</html>

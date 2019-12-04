@@ -1,0 +1,33 @@
+body{
+	margin:0;
+	background-color:red;
+	font-size:14px;
+	color:;
+	font-family: ""
+}
+h1,h2{
+	margin:0;
+	padding:0;
+}
+
+a{
+
+}
+img{
+	
+}
+.ml10{
+	margin-left:10px;
+}
+.f10{
+	font-size:10px;
+}
+.f12{
+	font-size:12px;
+}
+.f14{
+	font-size:14px;
+}
+.auto{
+	margin:0 auto;
+}

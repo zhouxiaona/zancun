@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>DOM对象</title>
+		<style type="text/css">
+			h1{
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<!-- 一首诗 -->
+			<h1>h1</h1>
+			<p>p1</p>
+			<p>p2</p>
+			<p>p3</p>
+			<p>p4</p>
+			<address>----zn</address>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//获取节点
+		var redDiv=document.getElementsByTagName('div')[0];
+		console.log(redDiv);
+		
+		// 创建标签类型节点
+		var span=document.createElement('span');
+		// span.innerText='2016年08月08号';
+		
+		//创建文本类型节点
+		var text=document.createTextNode('2016年08月08号');
+		span.appendChild(text);
+		
+		// 在redDiv末尾插入span标签
+		// redDiv.appendChild(span);
+
+		//在XXX之前插入span
+		redDiv.insertBefore(span,redDiv.children[1]);
+
+		//移除方法
+		var address=document.getElementsByTagName('address')[0];
+		
+		//移除div的子节点address
+		// redDiv.removeChild(address);
+	
+		//移除address标签
+		address.remove();
+
+
+
+		var h1=document.getElementsByTagName('h1')[0];
+		var h2=document.createElement('h2');
+		var text2=document.createTextNode('h2');
+		h2.appendChild(text2);
+		h2.style.color='blue';
+		redDiv.replaceChild(h2,h1);
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

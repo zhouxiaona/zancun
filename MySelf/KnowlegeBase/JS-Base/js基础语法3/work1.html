@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		// var ji=1;
+		// for(var i=1;i<21;i++){
+		// 	ji=ji*i;
+		// }
+		// console.log(ji);
+
+		// .......................
+		// var sum=0;
+		// var sumou=0;
+		// var sumji=0;
+		// for(var j=1;j<101;j++){
+		// 	sum+=j;
+		// 	if(j%2==0){
+		// 		sumou+=j;
+		// 	}else{
+		// 		sumji+=j;
+		// 	}
+		// }
+		// console.log(sum);
+		// console.log(sumou);
+		// console.log(sumji);
+	
+		//..............................
+		// var sumss=0;
+		// for(var i=1;i<100;i++){//99
+		// 	var num=parseInt(i/10);
+		// 	if(i%7==0 || i%10==7 || num==7){
+		// 		console.log(i);
+		// 		sumss+=1;
+		// 	}
+		// }
+		// console.log(sumss);
+
+		//..................................
+		// var arr=[];
+		// var maxNum=0;
+		// var avgNum=0;
+		// var sumNum=0;
+		// for(var i=0;i<20;i++){
+		// 	var ranNum=parseInt(Math.random()*40+10);
+		// 	arr[i]=ranNum;
+		// 	sumNum+=arr[i];
+		// }
+		// avgNum=sumNum/arr.length;
+		// console.log(arr);
+		
+		// console.log(sumNum);
+		// console.log(avgNum);
+
+		// var arr2=arr.sort();
+		// console.log(arr2);
+		
+		// var minNum=arr[0];
+		// for(var i=0;i<arr.length;i++){
+		// 	if(maxNum<arr[i]){
+		// 		maxNum=arr[i];	
+		// 	}
+		// 	if(minNum>arr[i]){
+		// 		minNum=arr[i];	
+		// 	}
+			
+		// }
+		
+		// console.log(maxNum);
+		// console.log(minNum);
+	
+
+		
+
+		// for(var i=0;i<arr.length;i++){
+		// 	for(var j=0;j<arr.length;j++){
+		// 		if(arr[j+1]>arr[j]){
+		// 			var temp=arr[j+1];
+		// 			arr[j+1]=arr[j];
+		// 			arr[j]=temp;
+		// 		}
+		// 	}
+		// }
+		// console.log(arr[0]);
+		// console.log(arr[arr.length-1]);
+		 
+		// var arr2=[];
+		// // for(var i=arr.length;i--){}
+		// for(var j=arr.length-1;j>=0;j--){
+		// 	arr2[arr.length-1-j]=arr[j];
+		// }
+		// console.log(arr2);
+
+		// .........................................
+		// var arrs=[];
+		// for(var i=100;i<=999;i++){
+		// 	var s1=parseInt(i/100);
+		// 	var s2=parseInt(i%100/10);
+		// 	var s3=parseInt(i%100%10);
+		// 	var hezhi=s1+s2+s3;
+		// 	arrs[i-100]=hezhi;
+		// }
+		// console.log(arrs);//所有和值
+
+		// var arrs1=[];
+		// for(var i=1;i<28;i++){
+		// 	arrs1[i-1]=i;
+		// }
+		// console.log(arrs1);//1-27
+
+	
+		// for(var j=0;j<arrs1.length;j++){//1-27
+		// 	for(var i=0;i<arrs.length;i++){//所有和值
+		// 		if(arrs1[j]==arrs[i]){
+		// 			console.log(arrs1[j]);
+		// 		}
+		// 	}
+		// }
+		
+		// var count=0;
+		// for(var j=1;j<=27;j++){
+		// 	for(var i=100;i<=999;i++){
+		// 		var s1=parseInt(i/100);
+		// 		var s2=parseInt(i%100/10);
+		// 		var s3=parseInt(i%100%10);
+		// 		if(s1+s2+s3==j){
+		// 			// console.log(j);
+		// 			count++;
+		// 		}
+		// 	}
+		// 	console.log('j:'+j+"count"+count);
+		// }
+			
+
+		var arr=[];
+		for(var i=0;i<27;i++){//1--27
+			arr[i]=0;
+		}
+		for(var i=100;i<=999;i++){
+		//1 2 3 4...27
+		//0 1 2 3...26
+			var sum=parseInt(i/100)+parseInt(i%100/10)+parseInt(i%10);
+			arr[sum-1]++;
+		}
+		for(var j=1;j<=27;j++){
+			console.log("和值"+j+"出现的次数为："+arr[j-1]);
+		}
+
+
+
+	//..............................................
+	//2.
+		// var arrs2=[];
+		// // var arrs1=[];
+		// for(var j=1;j<28;j++){
+		// 	var cishu=0;
+		// 	for(var i=100;i<=999;i++){
+		// 		// arrs1[i-100]=i;
+		// 		var s1=parseInt(i/100);
+		// 		var s2=parseInt(i%100/10);
+		// 		var s3=parseInt(i%100%10);
+		// 		var hezhi=s1+s2+s3;
+		// 		if(hezhi==j){
+		// 			cishu++;
+		// 		}
+		// 	}
+		// 	arrs2[j-1]=cishu;
+		// }
+		// console.log(arrs2);
+		// ..................................
+		// var arr1=[];
+		// for(var i=0;i<10;i++){
+		// 	var ranNum=parseInt(Math.random()*400+100);
+		// 	arr1[i]=ranNum;
+		// }
+		// console.log(arr1);//十万个数字　数组
+
+		// var arr2=[];
+		// for(var j=0;j<arr1.length;j++){
+		// 	if(arr2.indexOf(arr1[j])==-1){
+		// 		arr2.push(arr1[j]);
+		// 	}
+		// }
+		// console.log(arr2);//给十万个数字去重后得到的数组
+
+		// for(var i=0;i<arr2.length;i++){
+		// 	for(var j=0;j<arr1.length;j++){
+		// 		if(arr2[i]==arr1[j]){
+		// 			console.log(arr2[i]);
+		// 		}
+		// 	}
+		// }
+
+				
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

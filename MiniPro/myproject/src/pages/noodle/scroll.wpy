@@ -1,0 +1,95 @@
+<template>
+  <view class="wrap">
+    <view class="scrollBar">
+      <view class="scrollBox">
+        <repeat for="{{resData}}" index="index" item="item">
+          <image wx:if="{{!!item.url}}" src="{{item.url}}" class="img"></image>
+          <image wx:else src="../img/index_l.png" class="img" @tap="alertFunc({{index}})"></image>
+        </repeat>
+        <view class="more" wx:if="{{sourceData.length > 20}}">more</view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Scroll extends wepy.page {
+    config = {
+      enablePullDownRefresh: false,
+      backgroundTextStyle: 'light',
+      onReachBottomDistance: 50,
+      navigationBarBackgroundColor: '#69BEFF',
+      navigationBarTitleText: 'scroll',
+      navigationBarTextStyle: 'white'
+    }
+    data = {
+      resData: [],
+      sourceData:[]
+    }
+    onShow () {
+
+    }
+    methods = {
+      alertFunc(index) {
+        console.log(index)
+      }
+    }
+
+    onLoad () {
+      let _this = this
+      var randNum = ~~(Math.random()*40)
+      console.log(randNum,'====随机长度')
+      for (var i = 0 ; i < randNum ; i++) {
+        var obj = {
+          url: '../img/index.png'
+        }
+        _this.sourceData.push(obj)
+      }
+      _this.resData = _this.sourceData
+
+      if(_this.resData.length<20) {
+        while(_this.resData.length<20) {
+          _this.resData.push({})
+        }
+      }else{
+        _this.resData = _this.resData.slice(0,20)
+      }
+      _this.$apply()
+      console.log(_this.resData)
+    }
+  }
+</script>
+<style lang="less">
+  .wrap{
+    width: 100%;
+    height: 100%;
+    .scrollBar{
+      width: 100%;
+      margin-top: 20rpx;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      .scrollBox{
+        // width: 209%;
+        white-space: nowrap;
+        .img{
+          width: 80rpx;
+          height: 80rpx;
+          border-radius: 50%;
+          margin-right: 15rpx;
+          border: 1rpx solid #eee;
+        }
+        .more{
+          width: 80rpx;
+          height: 80rpx;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 80rpx;
+          font-size: 30rpx;
+          border: 1rpx solid #eee;
+          display: inline-block;
+          vertical-align: top;
+        }
+      }
+    }
+  }
+</style>

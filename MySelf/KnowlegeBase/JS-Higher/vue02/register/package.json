@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.2",
+    "vue": "^2.5.13"
+  }
+}

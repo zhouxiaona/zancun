@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>js动画</title>
+		<style type="text/css">
+			#box{
+				width: 100px;
+				height: 100px;
+				background: pink;
+				position: absolute;
+				top:0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='box'></div>
+	</body>
+	<script type="text/javascript">
+		var box=document.getElementById('box');
+		
+		//使用定时器让元素移动
+		box.onclick=function(){
+			var boxLeft=0;
+			//移除点击事件
+			box.onclick=null;
+			var timer=setInterval(function(){
+			boxLeft+=10;
+			box.style.left=boxLeft+'px';
+				if(boxLeft>=600){
+					clearInterval(timer);
+				}
+			},100);
+		}
+		
+		
+	</script>
+</html>

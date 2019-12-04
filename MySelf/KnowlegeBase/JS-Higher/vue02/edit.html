@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        #app{
+            width:900px;
+            margin:100px auto;
+        }
+        .bg1{
+            background:#88CB85;
+            color:white;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>用户列表</h1>
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>编辑</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>所在城市</th>
+            </tr>
+            <tr v-for="(v,k) in list">
+                <td><button @click.prevent="edit(k)">编辑</button></td>
+                <td>{{v.name}}</td>
+                <td>{{v.sex}}</td>
+                <td>{{v.city}}</td>
+            </tr>
+        </table>
+        <!--点击编辑按钮跳出页面-->
+        <div class="mask" v-show="isMask">
+            <h1>编辑用户</h1>
+            <form class="form-horizontal">
+                <!--姓名-->
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">姓名：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" v-model="editname">
+                    </div>
+                </div>
+                <!--性别-->
+                <div class="form-group">
+                    <label for="sex" class="col-sm-2 control-label">性别：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="sex" v-model="editsex">
+                    </div>
+                </div>
+                <!--城市-->
+                <div class="form-group">
+                    <label for="city" class="col-sm-2 control-label">城市：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="city" v-model="editcity">
+                    </div>
+                </div>
+                <!--保存按钮-->
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default bg1" @click="update">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+<script src="jQuery.js"></script>
+<script src="bootstrap.min.js"></script>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            list:[],
+            isMask:false,
+            editname:"",
+            editsex:"",
+            editcity:"",
+            ids:-1
+        },
+        methods:{
+            edit:function(k){
+                this.isMask=true;
+                for(var i=0;i<this.list.length;i++){
+                    if(k==i){
+                        this.ids=this.list[k]._id;
+                        this.editname=this.list[k].name;
+                        this.editsex=this.list[k].sex;
+                        this.editcity=this.list[k].city;
+                    }
+                }
+            },
+            update:function(){
+                //发送ajax请求
+                var str="/update?name="+this.editname+"&sex="+this.editsex+"&city="+this.editcity+"&ids="+this.ids;
+                fetch(str,{
+                    method:"get"
+                }).then(function(res){
+                    return res.json();
+                }).then(function(data){
+                    alert(data.message);
+                }).catch(function(err){
+                    console.log(err);
+                });
+            }
+        },
+        mounted(){
+            $.ajax({
+                type:"get",
+                url:"/render",
+                dataType:"json",
+                success:(res)=>{
+                    var data=res;
+                    this.list=data;
+                    console.log(this.list);
+                }
+            });
+        }
+
+    });
+</script>
+</html>

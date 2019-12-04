@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>美羊羊接金币</title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				position: relative;
+			}
+			.bg{
+				width: 600px;
+				height: 650px;
+				border: 1px solid black;
+				position: absolute;
+				top: 10px;
+				left: 100px;
+			}
+			.sheep{
+				width: 90px;
+				height: 90px;
+				background: url('img/sheep.png') ;
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: 100% 100%;
+				position: absolute;
+				top: 560px;
+				left: 0;
+			}
+			.gold{
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				/* background-image: url('img/gold.png'); */
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: 100%;
+				position: absolute;
+				top: 0;
+			}
+			.score,.times{
+				font-size: 20px;
+				color: red;
+			}
+			.over,.start{
+				width: 200px;
+				height: 100px;
+				background-color: rgba(0, 0, 0, 0.6);
+				color: white;
+				text-align: center;
+				line-height: 100px;
+				font-size: 20px;
+				position: absolute;
+				z-index: 2;
+				left: 0;
+				right: 0;
+				margin: 100px auto;
+				display: none;
+			}
+			.start{
+				display: block;
+			}
+			@keyframes jump{
+				from{
+					top: 560px;
+				}
+				to{
+					top: 400px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bg">
+			<div class="times">时间:60s</div>
+			<div class="score">当前的分数为:0</div>
+			<div class="sheep" style="top:560px;"></div>
+			<div class="over"></div>
+			<div class="start">开始游戏</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var bg=document.getElementsByClassName('bg')[0];
+		var sheep=document.getElementsByClassName('sheep')[0];
+		var score=document.getElementsByClassName('score')[0];
+		var times=document.getElementsByClassName('times')[0];
+		var over=document.getElementsByClassName('over')[0];
+		var start=document.getElementsByClassName('start')[0];
+	
+		var scoreNum=0;
+		var timesNum=60;
+		//生成新金币的定时器
+		var goldCreatetimer;
+		//倒计时定时器
+		var delTimer;
+		//定义游戏的开关
+		var isPlay=false;
+	
+		//点击开始游戏按钮
+		start.onclick=function(){
+			startGame();
+		}
+		//游戏开始
+		function startGame(){
+			isPlay=true;
+			start.style.display='none';
+			delTimers();
+			//执行游戏
+			goldNew();
+		}
+		//游戏结束
+		function Over(){
+			isPlay=false;
+			over.style.display='block';
+			//游戏结束停止创建新的金币或炸弹
+			clearInterval(goldCreatetimer);
+			//停止计时
+			clearInterval(delTimer);
+			//游戏结束让羊不再动
+			document.onkeydown=null;
+			over.innerHTML="游戏结束";
+		}
+		//计时以及分数运算
+		function delTimers(){
+			delTimer=setInterval(function(){
+				timesNum-=1;
+				if(timesNum<0){
+					timesNum=0;
+					Over();
+				}
+				times.innerHTML="时间:"+timesNum+'s';
+			},1000);
+		}
+		
+		
+
+
+		//羊的键盘控制事件
+		var arr=[false,false,false];
+		document.onkeydown=function(ev){
+			var evDown=window.event || ev;
+			if(evDown.keyCode==38 && !sheep.style.animation && !arr[1]){
+				sheep.style.animation='jump 0.5s alternate 2';
+				setTimeout(function(){
+					sheep.style.animation='';
+				},1000);
+			}
+			arr[evDown.keyCode-37]=true;
+			if(evDown.keyCode==39){
+				sheep.style.transform="rotateY(180deg)";
+			}
+			
+			
+		}
+		document.onkeyup=function(ev){
+			var evUp=window.event || ev;
+			arr[evUp.keyCode-37]=false;
+			if(evUp.keyCode==39){
+				sheep.style.transform="rotateY(0deg)";
+			}
+		}
+		setInterval(function(){
+			var speed=5;
+			var lengthLeft=(arr[0]-arr[2])*(-speed);
+			var maxLeft=sheep.offsetLeft+lengthLeft;
+			if(maxLeft<0){
+				maxLeft=0;
+			}
+			if(maxLeft>=(bg.clientWidth-sheep.offsetWidth)){
+				maxLeft=bg.clientWidth-sheep.offsetWidth;
+			}
+			sheep.style.left=maxLeft+'px';
+		},20);
+
+		
+		
+		
+		//随机生成金币并下落的函数
+		function goldNew(){
+			goldCreatetimer=setInterval(function(){
+				var newGold=document.createElement('div');
+				bg.appendChild(newGold);
+				newGold.className='gold';
+				var imageNum=Math.random()*100;
+				//判断产生的随机数的范围，然后再决定newGold的背景色是炸弹还是金币还是磁铁
+				if(imageNum>90){
+					newGold.style.backgroundImage='url("img/bang.png")';
+				}else if(imageNum>80){ 
+					newGold.style.backgroundImage='url("img/Fe.png")';
+				}else{
+					newGold.style.backgroundImage='url("img/gold.png")';
+				}
+				//定义生成指定范围内的随机数
+				//金币在bg里的随机left值范围为0~bg.offsetWidth-newGold.offsetWidth
+				var newGoldLeft=Math.random()*(bg.offsetWidth-newGold.offsetWidth);
+				newGold.style.left=newGoldLeft+'px';
+				//金币下落需要的参数
+				var lengthTop=newGold.offsetTop;
+				var speedY=5;
+				
+				//金币的下落过程
+				newGold.fallDown=setInterval(function(){
+					lengthTop+=speedY;
+					
+					//如果金币掉出外界则清除
+					if(lengthTop>=bg.offsetHeight-newGold.offsetHeight){
+						clearInterval(newGold.fallDown);
+						newGold.remove();
+
+					//判断金币与羊是否相碰撞并且让分数加加,如果是炸弹碰羊，则时间减减(sheep上<newGold下　sheep下>newGold上　sheep左<newGold右　sheep右>newGold左)
+					}else if(sheep.offsetTop<(lengthTop+newGold.offsetHeight) && (sheep.offsetTop+sheep.offsetHeight)>lengthTop && sheep.offsetLeft<(newGoldLeft+newGold.offsetWidth) && (sheep.offsetLeft+sheep.offsetWidth)>newGoldLeft){
+						clearInterval(newGold.fallDown);
+						newGold.remove();
+						//获取所有金币
+						var newGolds=document.getElementsByClassName('gold');
+
+						if(newGold.style.backgroundImage=='url("img/Fe.png")'){//表示背景图为磁铁
+							//吸星大法
+							var count=0;
+							for(var i=0;i<newGolds.length;i++){
+								if(newGolds[i].style.backgroundImage=='url("img/gold.png")'){
+									count+=1;
+									clearInterval(newGolds[i].fallDown);
+									newGolds[i].style.transition='1s';
+									newGolds[i].style.top=sheep.style.top;
+									newGolds[i].style.left=sheep.style.left;
+									(function(a){
+										setTimeout(function(){
+											a.remove();
+										},1000);
+									})(newGolds[i]);
+								}
+							}
+							scoreNum+=count;
+						}else if(newGold.style.backgroundImage=='url("img/bang.png")'){ //表示背景图为炸弹
+							//游戏结束
+							Over();
+							for(var i=0;i<newGolds.length;i++){
+								clearInterval(newGolds[i].fallDown);
+							}
+						}else{//表示背景图为金币
+							scoreNum+=1;
+						}
+						score.innerHTML="当前的分数为:"+scoreNum;
+					}
+					newGold.style.top=lengthTop+"px";
+				},30);
+			},500);
+		}
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

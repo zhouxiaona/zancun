@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入方式按照这个顺序来-->
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="browser.min.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<script type="text/babel">
+    //ES6
+   // ES6里的类
+    //用类的方式创建React组件
+   class Hello extends React.Component{
+       render(){
+           return <h1>
+               姓名是：{this.props.name};年龄是：{this.props.age}
+
+               {
+                   //获取所有此组建下的所有子级元素
+                   // console.log(this.props.children)
+                   // console.log(React.Children)
+               }
+               {
+                   // 插槽传参
+               }
+               {React.Children.map(this.props.children,function(v,k){
+                   return  <div>{v}</div>;
+               })}
+           </h1>
+       }
+   }
+
+   //创建组件
+   // var Hello=React.createClass({
+   //     render:function(){
+   //         return <div>我的名字是{this.props.name}</div>
+   //     }
+   // })
+
+    ReactDOM.render(<Hello
+        name="张三"
+        age="20"
+    >
+        <p>我是第一条数据
+            <a href="###">我是p标签下的a标签</a>
+        </p>
+        <p>我是第二条数据</p>
+        <p>我是第三条数据</p>
+        <a href="###">我是a标签</a>
+    </Hello>,document.getElementById("app"));
+
+
+
+
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

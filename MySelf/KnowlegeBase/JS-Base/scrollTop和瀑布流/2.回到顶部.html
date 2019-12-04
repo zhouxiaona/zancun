@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>回到顶部</title>
+		<style type="text/css">
+			* { margin: 0; padding: 0; }
+			body { position: relative; }
+			body p { position: absolute; bottom: 0; left: 100px; font-size:22px; }
+			#go_up { position: fixed; bottom: 0; right: 0; width: 100px; height: 100px; background: #ccc; line-height: 100px; text-align: center; cursor: pointer; display: none; }
+		</style>
+	</head>
+	<body style="height: 2500px;">
+		<p>一Hi到底……一Hi到底……一Hi到底……一Hi到底……</p>
+		<div id="go_up">返回顶部</div>
+	</body>
+	<script type="text/javascript" src="tween.js"></script>
+	<script type="text/javascript">
+		
+		function goUp() {
+			var goBtn = document.getElementById("go_up");
+			var timer = null;
+
+			//scroll事件 当用户滚动带滚动条的元素中的内容时,在该元素上面触发
+			function topFn() {
+				var top = document.body.scrollTop||document.documentElement.scrollTop;
+				top > 0 ? goBtn.style.display="block" : goBtn.style.display="none";
+			}
+
+			function goFn() {
+				var nowTop = document.body.scrollTop||document.documentElement.scrollTop; 
+				//获取点击事件发生时滚动的距离
+				
+				var t = 0;
+				var b = nowTop; //初始值，滚动条返回顶部前的初始位置
+				var c = 0 - nowTop; //目标值(返回顶部是0)减当前值等于变化量
+				var d = 50;
+
+				timer = setInterval(function (){
+					t++;
+					if (t >= d){
+						clearInterval(timer);
+						timer = null;
+					}
+					if (document.documentElement.scrollTop){
+						document.documentElement.scrollTop = Tween.Bounce.easeOut(t,b,c,d);
+					}else{
+						document.body.scrollTop = Tween.Bounce.easeOut(t,b,c,d);
+					}
+				},30);
+			}
+
+			//事件绑定
+			function bind() {
+				//通过滚动事件，判断”返回顶部按钮“显示隐藏
+				window.onscroll = function () {
+					topFn();
+				}
+				//返回顶部按钮事件
+				goBtn.onclick = function () {
+					goFn();
+				}
+
+			}
+			bind();
+		}
+		goUp();
+
+	</script>
+</html>

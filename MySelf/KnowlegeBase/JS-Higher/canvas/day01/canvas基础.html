@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas基础</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>  
+	</head>
+	<body>
+		<!--1.有默认大小300px 150px-->
+		<!--2.不能在style标签里面规定大小，否则图形形状变化-->
+		<!--3.画布是透明色-->
+		<!--4.canvas画布坐标无限大，当前视口只是一个可视窗口，空间无限大-->
+		
+		<canvas id="mycanvas" width="500" height="500">
+			对不起，您的浏览器版本过低，点击<a href="###">下载</a>
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		//获取canvas节点
+		var mycanvas=document.getElementById('mycanvas');
+		//获取canvas画布的上下文
+		var ctx=mycanvas.getContext("2d");
+		//新建一个路径（图层）
+		ctx.beginPath();
+		//移动画笔开始画的位置
+		ctx.moveTo(0,0);
+		ctx.lineTo(250,250);
+		//设置线的颜色
+		ctx.strokeStyle="pink";
+		//设置线的宽度
+		ctx.lineWidth=5;
+		//将图形渲染到画布上======
+		ctx.stroke();
+//===============================================		
+		ctx.beginPath();
+		ctx.moveTo(500,0);
+		ctx.lineTo(250,250);
+		ctx.strokeStyle="aqua";
+		ctx.lineWidth=10;
+		ctx.stroke();
+		
+		
+	</script>
+</html>

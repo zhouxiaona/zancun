@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+    <!--post form表单会刷新页面，还有ajax不会刷新-->
+        <form action="/post" method="post">
+            姓名：<input type="text" name="username"></br>
+            年龄：<input type="text" name="age"></br>
+            <input type="submit" value="提交">
+        </form>
+        <button onclick="sub()">点击发送ajax的get请求</button>
+    </body>
+    <script>
+        function sub(){
+            fetch("/get?name=李四&age=20",{
+                method:"get"
+            }).then(function(res){
+                return res.json();
+            }).then(function(data){
+                console.log(data);
+            }).catch(function(err){
+                console.log(err);
+            });
+        }
+    </script>
+</html>

@@ -1,0 +1,69 @@
+.container{
+  width: 100vw;
+  height: 65vh;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 100px;
+  // 设置景深层
+  perspective: 800px;
+  perspective-origin: center;
+  .Wrap{
+    width: 33.3%;
+    height: 200px;
+    position: relative;
+    // 设置容器为3D容器
+    transform-style: preserve-3d;
+    transition: all 1s ease-in-out;
+    .front{
+      width: 230px;
+      height: 250px;
+      border-radius: 20px;
+      background-color: pink;
+      color: #fff;
+      text-align: center;
+      line-height: 250px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+    .back{
+      width: 230px;
+      height: 250px;
+      border-radius: 20px;
+      background-color: lightblue;
+      color: #fff;
+      text-align: center;
+      line-height: 250px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      transform: rotateY(180deg);
+    }
+    .backLuck{
+      background-color: pink;
+    }
+  }
+  // 动画类名
+  .wrapAni{
+    animation: rotateAni 1s ease-in-out 1 forwards;
+  }
+  @keyframes rotateAni
+  {
+    from {transform: rotateY(0deg)}
+    to {transform: rotateY(180deg)}
+  }
+
+  @-webkit-keyframes rotateAni /* Safari and Chrome */
+  {
+    from {transform: rotateY(0deg)}
+    to {transform: rotateY(180deg)}
+  }
+}

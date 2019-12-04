@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>接金币</title>
+		<style type="text/css">
+			.box{
+				width: 600px;
+				height: 400px;
+				margin: 50px auto;
+				border: 1px red solid;
+				position: relative;
+			}
+			.sheep{
+				width: 40px;
+				height: 70px;
+				background-color: red;
+				position: absolute;
+				top: 330px;
+			}
+			.coin{
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				background-color: gold;
+				position: absolute;
+				top: -30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="sheep" style="top: 330px;"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	// --------------------------------------游戏参数--------------------
+	var coinSpeed = 3;
+	var createSpeed = 500;//金币创建的时间间隔单位毫秒
+
+	// -----------------------------
+
+	var box = document.getElementsByClassName('box')[0];
+	var sheep = document.getElementsByClassName('sheep')[0];
+	// 	美羊羊接金币：
+	// 1、html创建div，设置div背景图-羊
+
+	// 2、方向键控制羊左右移动。(只能左右，不能上下。)
+	var boolArr = [false, false, false];
+	document.onkeydown = function(ev){
+		var evObj = window.event || ev;
+		boolArr[evObj.keyCode - 37] = true;
+	}
+	document.onkeyup = function(ev){
+		var evObj = window.event || ev;
+		boolArr[evObj.keyCode - 37] = false;
+	}
+	setInterval(function(){
+		var xSpeed = boolArr[0] * -7 + boolArr[2] * 7;
+		var sLeft = sheep.offsetLeft + xSpeed;
+		sLeft = sLeft < 0 ? 0 : sLeft > (box.clientWidth - sheep.offsetWidth) ? (box.clientWidth - sheep.offsetWidth) : sLeft;
+		// 3、羊左右的位置限制在box里面。（box是游戏区域，box添加背景图）
+		sheep.style.left = sLeft + "px";
+	}, 20);
+	
+
+	// 6、每个0。5秒生成一个金币，并下落
+	var createCoinTimer = setInterval(function(){
+
+		// 4、刷新页面之后生成一个金币插入到box的顶部
+		var coin = document.createElement("div");
+		coin.className = "coin";
+		box.appendChild(coin);
+		// 9、下落的金币随机给一个背景图，代表不同类型的金币（炸弹、加时间，吸星大法）
+		var num = Math.random()*100;
+		if(num > 90){
+			// 磁铁
+			coin.style.backgroundColor = "green";
+		} else if (num > 80){
+			// 炸弹
+			coin.style.backgroundColor = "black";
+		} else if (num > 70){
+			// 加时
+			coin.style.backgroundColor = "red"
+		} else {
+			coin.style.backgroundColor = "gold";
+		}
+
+		// 6、下落的金币金币的left值要随机。
+		console.log(coin.offsetWidth);
+		coin.style.left = Math.random()*(box.clientWidth - coin.offsetWidth) + "px";
+		
+		// 5、给金币添加定时器，让金币下落。
+		coin.coinDownTimer = setInterval(function(){
+			var cTop = coin.offsetTop;
+			coin.style.top = cTop + coinSpeed + "px";
+			// 金币掉落在游戏区域外。
+			if (cTop >= box.offsetHeight) {
+				coin.remove();
+				clearInterval(coin.coinDownTimer);
+			}
+			// 7、金币下落的定时器里判断金币和羊是否碰到，碰到之后金币消失。同时清除定时器（金币落到box之外也要消失。并清除定时器）
+			// sheep coin
+			if (sheep.offsetLeft < coin.offsetLeft + coin.offsetWidth && sheep.offsetLeft + sheep.offsetWidth > coin.offsetLeft && sheep.offsetTop < coin.offsetTop + coin.offsetHeight && sheep.offsetTop + sheep.offsetHeight > coin.offsetTop) {
+				coin.remove();
+				clearInterval(coin.coinDownTimer);
+				var coins = document.getElementsByClassName("coin");
+
+				if (coin.style.backgroundColor == "red") {
+					// 加时
+					// +=5;
+				} else if (coin.style.backgroundColor == "black"){
+					// 炸弹
+					clearInterval(createCoinTimer);
+					// 清除所有金币下落的定时器
+					for(var i = 0; i < coins.length; i++){
+						clearInterval(coins[i].coinDownTimer);
+					}
+					
+				} else if (coin.style.backgroundColor == "green"){
+					// 磁铁
+					// 获取到所有金色的金币。
+					for(var i = 0; i < coins.length; i++){
+						if (coins[i].style.backgroundColor == "gold") {
+							clearInterval(coins[i].coinDownTimer);
+							coins[i].style.transition = "1s";
+							coins[i].style.left = sheep.style.left;
+							coins[i].style.top = sheep.style.top;
+							(function(a){
+								setTimeout(function(){
+									a.remove();
+								}, 1000);
+							})(coins[i]);
+						}
+					}
+				} else {
+					// 加分
+					// 分数div ++
+				}
+
+			}
+		}, 20);
+	}, createSpeed);
+
+	
+
+
+// 8、添加定时器，让游戏时间减少，游戏时间为0的时候停止游戏。
+// 10、碰到金币的时候根据金币的背景图或属性来判断金币是什么类型。
+// 11、根据类型进行加分、加时间、结束游戏和吸星的操作。
+// 12、怎么让小羊跳起来。
+
+
+		
+	</script>
+</html>

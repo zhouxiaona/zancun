@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>滚轮控制元素放大缩小</title>
+		<style type="text/css">
+			#img{ position: absolute; top: 100px; left: 200px; }
+		</style>
+	</head>
+	<body>
+		<img id="img" src="images/img01.jpg" alt=""/>
+	</body>
+	<script type="text/javascript" src="mouseWheel.js"></script> <!-- 引用封装方法的js文件 -->
+	<script type="text/javascript">
+		
+		var img = document.querySelector("#img");
+
+		mouseWheel(img, function (event,down){
+
+			var oldWidth = this.offsetWidth; //宽高初始值
+			var oldHeight = this.offsetHeight;
+
+			var oldLeft = this.offsetLeft; //偏移量初始值
+			var oldTop = this.offsetTop;
+
+			var x = event.clientX; //鼠标坐标
+			var y = event.clientY;
+			
+			//鼠标坐标的位置在图片中的比例
+			var scaleX = (x - oldLeft) / oldWidth; 
+			var scaleY = (y - oldTop) / oldHeight;
+			//（鼠标坐标 - 元素初始偏移量 = 鼠标坐标在元素体内的距离）/ 元素初始宽高
+
+			if(down){
+				this.width = oldWidth + 10; //滚轮向下滚宽度+10
+				if (this.width > 800){
+					this.width = 800;
+				}
+			}else{
+				this.width = oldWidth - 10; //滚轮向上滚宽度-10
+				if (this.width < 300){
+					this.width = 300;
+				}
+			}
+			
+			//获取图片大小的变化量
+			var imgChangeWidth = this.offsetWidth - oldWidth;
+			var imgChangeHeight = this.offsetHeight - oldHeight;
+			
+			//鼠标在图片中的比例 * 图片大小的变化量 = left/top的变化量
+			var l = oldLeft - (scaleX * imgChangeWidth); 
+			var t = oldTop - (scaleY * imgChangeHeight);
+			this.style.left = l + "px";
+			this.style.top = t + "px";
+		});
+
+	</script>
+</html>

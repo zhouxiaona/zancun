@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>方向键控制div移动</title>
+		<style type="text/css">
+			body{
+				margin: 0px;
+				position: relative;
+			}
+			.redDiv{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="redDiv"></div>
+	</body>
+	<script type="text/javascript">
+		var redDiv = document.getElementsByClassName('redDiv')[0];
+		var boolArr = [false, false, false, false];
+		document.onkeydown = function(ev){
+			var evObj = window.event || ev;
+			boolArr[evObj.keyCode - 37] = true;
+		}
+		document.onkeyup = function(ev){
+			var evObj = window.event || ev;
+			boolArr[evObj.keyCode - 37] = false;
+		}
+		setInterval(function(){
+			var speed = 5;
+			// var leftSpeed = boolArr[0] * -speed + boolArr[2] * speed;
+			var leftSpeed = (boolArr[0] - boolArr[2]) * -speed;
+			var topSpeed = boolArr[1] * -speed + boolArr[3] * speed;
+			redDiv.style.left = redDiv.offsetLeft + leftSpeed + "px";
+			redDiv.style.top = redDiv.offsetTop + topSpeed + "px";
+		}, 10)
+
+
+
+	</script>
+</html>

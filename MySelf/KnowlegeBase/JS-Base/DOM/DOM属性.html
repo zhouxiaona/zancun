@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>DOM属性</title>
+		<style type="text/css">
+			.box,.box2{
+				width: 300px;
+				height: 300px;
+				border: 1px solid red;
+				float: left;
+				overflow: scroll;
+				position: fixed;
+			}
+			.redDiv{
+				width: 100px;
+				height: 1000px;
+				background-color: red;
+				margin-top: 10px;
+				border-top: 10px solid blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="redDiv"></div>
+		</div>
+		<div class="box2">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aperiam itaque repellendus reiciendis libero consectetur dolorum veniam dolorem voluptas quae, voluptates pariatur alias, amet, quod cumque voluptate possimus neque? Maiores ea blanditiis, animi laboriosam dolores, nostrum magni ex, quas minima quibusdam praesentium? Soluta enim eos, deserunt iusto, velit laboriosam rem?
+		</div>
+	</body>
+	<script type="text/javascript">
+		//DOM属性
+		//className id innerHTML innerText style
+		
+
+		var box=document.getElementsByClassName('box')[0];
+		var box2=document.getElementsByClassName('box2')[0];
+		var redDiv=document.getElementsByClassName('redDiv')[0];
+		
+		//大小 width height　　
+		
+		console.log(box.offsetHeight);//带边框的高度
+		console.log(box.clientHeight);//可视高度(不包含滚动条和边框等。)
+		console.log(box.scrollHeight);//内容总高度
+
+
+		//位置 left top
+		console.log(redDiv.offsetTop);//相对于定位父级的top值
+		console.log(redDiv.clientTop);//上边框的距离
+		box.onclick=function(){
+			console.log(box.scrollTop);//box滚动上去的那一部分,不能滚动的元素，scorllTop一般为零.
+		}
+		
+		// console.log(redDiv.clientTop);
+		
+		//窗口宽度
+		//　inner 不包含工具栏，控制台
+		console.log(window.innerWidth);
+		//　outer 包含工具栏，控制台
+		console.log(window.outerWidth);
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

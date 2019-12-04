@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入方式按照这个顺序来-->
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="browser.min.js"></script>
+</head>
+<body>
+    <!--react react+redux（第三方） react+flux (官方出的)webpack配置
+
+    react-native 简写rn-->
+
+    <div id="app">
+
+    </div>
+</body>
+<script type="text/babel">
+    // text/babel 支持jsx语法
+    /*我是注释*/
+    //jsx支持dom和js的混写
+    //jsx里遇到js就用{}括起来
+
+    // var str="我是字符串";
+
+    let arr=["张三","李四","王二"];
+    // ReactDOM.render(<h1>hello world {arr} {/*我是注释*/}</h1>,document.getElementById("app"));
+
+    //最外层需要一个标签包裹
+    ReactDOM.render(<div>{arr.map(function(v,k){
+        return <p key={k}>{v}</p>;
+    })}</div>,document.getElementById("app"));
+
+
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

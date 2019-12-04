@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.outer{
+			width:600px;
+			border:10px #000 solid;
+		}
+		.outer div{
+			width:200px;
+			height:200px;
+			float:left;
+		}
+		.clear{
+			clear:both;
+		}
+		.outer::after{
+			content:"";
+			display: block;
+			height:0;
+			clear:both;	
+		}
+		.clearfix{
+			/*兼容IE6/7*/
+			zoom:1;
+		}
+		.clearfix::after{
+			content:"";
+			display: block;
+			height:0;
+			clear:both;
+		}
+	</style>
+</head>
+<body>
+	<div class="outer clearfix">
+		<div class="div1"></div>
+		<div class="div2"></div>
+		<div class="div3"></div>
+
+	</div>
+	<div class="outer2 clearfix">
+		<div class="div1"></div>
+		<div class="div2"></div>
+		<div class="div3"></div>
+		
+	</div>
+</body>
+</html>

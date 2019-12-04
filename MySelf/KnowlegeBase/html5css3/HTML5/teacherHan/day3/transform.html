@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>transform-2D</title>
+	<style>
+		*{margin:0;padding:0;}
+		.div1{
+			width: 200px;
+			height: 200px;
+			background: red;
+			transition: all 1.5s;
+			margin: 200px auto;
+			font-size: 48px;
+			color: #fff;
+			transform-origin: 50% 50%;
+		}
+		.div1:hover{
+			transform: skewX(45deg);
+		}
+
+		.div2{
+			width: 200px;
+			height: 100px;
+			background-color: #000;
+		}
+		.f12{
+			font-size: 12px;
+		}
+		.f10{
+			font-size: 20px;
+			transform: scale(0.5, 0.5);
+		}
+	</style>
+</head>
+<body>
+	<!-- transform 变形	 -->
+	<!-- translateX 在x轴上面位移或者变形,大写X-->
+	<!-- translateY 在x轴上面位移或者变形,大写Y-->
+	<!-- translate(x,y) 在x轴和Y轴位移或者变形,当我们只设置一个值的时候，只有x轴生效-->
+	<!-- scaleX 设置元素在X轴方向缩放比例-->
+	<!-- scaleY 设置元素在Y轴方向缩放比例-->
+	<!-- scale(x,y) 设置元素在x,y轴方向缩放比例，可以设置一个值，表示x和y,可以设置负数，使用场景，设置小于12px的字体-->
+
+	<!-- rotate(deg) 2D旋转 设置元素在2d平面(z轴)
+	旋转，正数按顺时针，负数按逆时针-->
+
+	<!-- skewX 绕X轴发生倾斜-->
+	<!-- skewY 绕Y轴发生倾斜-->
+	<!-- skew(x,y) 绕x,y轴发生倾斜 x轴和Y轴和我们理解的相反，常用于平行四边形图案-->
+	<!-- transform-origin: x y 设置中心点 -->
+
+
+
+	<div class="div1">1</div>
+	<div class="div2"></div>
+	<div class="f16">我是16px</div>
+	<div class="f12">我是12px</div>
+	<div class="f10">我是10px字体</div>
+</body>
+</html>

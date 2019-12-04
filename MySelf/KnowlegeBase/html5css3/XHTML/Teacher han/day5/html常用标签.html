@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>xhtml-常用标签</title>
+	<style>
+		.list{
+			margin:15px 0;
+			padding-left:40px;
+			list-style-type:disc; 
+		}
+		.list div{
+			display: list-item;
+		}
+
+		a{
+			text-decoration:none; 
+		}
+		/*link状态不能乱用样式属性，会干扰其他状态，场景一：改变link默认字体颜色*/
+
+
+		/*爱恨法则 love && hate*/
+		/*a:link{
+			color:gold;
+		}
+		a:visited{
+			color:blue;
+		}
+*/
+		/*可以设置其他的样式*/
+		a:hover{
+			/*display:block;
+			width:200px;
+			height:200px;
+			background:red;*/
+		}
+		a:active{
+			border:1px red solid;
+		}
+		
+		.test:hover div{
+			color:red;
+		}
+	</style>
+</head>
+<body>
+	<!-- 标题标签 h1~h6 双标签 无默认属性 块级 -->
+	<!-- 一级标题 -->
+	<h1>我是h1</h1>
+	<!-- 二级标题 -->
+	<h2>我是h2</h2>
+	<!-- 三级标题 -->
+	<h3>我是h3</h3>
+	<h4></h4>
+	<h5></h5>
+	<h6></h6>
+
+	<!-- hr 分割线 块级 单标签 -->
+
+	<hr/>
+	<!-- 段落 双标签 块级  p标签内不能嵌套块级标签 -->
+	<p>
+		<span>123123</span>
+	</p>
+
+	<!-- 列表标签 双标签 组合标签 块级 -->
+	<!-- 有序列表 ol 有序列表区域 li 列表项 -->
+	<!-- ol 与 li不能单独使用，ol与li之间不可以出现其他标签 -->
+	<ol>
+		<li>我是列表项1</li>
+		<li>我是列表项2</li>
+		<li>我是列表项2</li>
+	</ol>
+
+	<!-- 无序列表 ul -->
+	<ul>
+		<li>我是列表项1</li>
+		<li>我是列表项2</li>
+		<li>我是列表项2</li>
+	</ul>
+
+
+	<!-- 字典列表 dl 双标签  块级-->
+	<dl>
+		<dt>列表标题</dt>
+		<dd>描述</dd>
+		<dt></dt>
+		<dd></dd>
+		<dt></dt>
+		<dd></dd>
+	</dl>
+
+
+	<!-- <div class="list">
+		<div>123</div>
+		<div>123</div>
+		<div>123</div>
+	</div> -->
+
+	<!-- 超链接 双标签 行级-->
+	<!-- href="" 跳转地址 必须的 而且不能为空-->
+	<!-- title="" 提示信息 -->
+	<!-- target="" 跳转方式 _blank 新窗口打开-->
+	<a href="float查漏补缺.html" title="这是一个空的链接" target="_blank">我是a标签</a>
+	<a href="#divblue" target="_blank">蓝色div</a>
+	<a href="#divpink">淘宝</a>
+	<a href="#divred">苏宁易购</a>
+	<!-- 超链接标签的四种状态：伪类设置 -->
+	<!-- link状态 链接未浏览状态  -->
+	<!-- visited状态 链接已被访问过  -->
+	<!-- hover状态 鼠标悬浮在链接上时的状态 -->
+	<!-- active状态 鼠标点击未松开时的状态 -->
+	<!-- hash 哈希 #会回到顶部 | ###不会 -->
+	<div style="height:1000px;"></div>
+	<a href="###">我是a标签</a>
+	<div id="divred" style="height:400px;background:red;"></div>
+	<div id="divblue" style="height:400px;background:blue;"></div>
+	<div id="divpink" style="height:400px;background:pink;"></div>
+
+
+	<a href="###" class="test">
+		<h2>我是标题</h2>
+		<div>hello <em>world</em> 你好 <i>世界</i>今天星期二，<small>明天</small>还上班</div>
+	</a>
+	<h1>今天<big>星期</big>二,<small>明天</small>还上班</h1>
+
+	<div>接天<sub>莲叶</sub>无穷碧，<sup>映日</sup>荷花别样<del>红</del>。</div>
+	<!-- 图片 img 单标签 比如特殊，虽然为行级，但是可以设置尺寸 -->
+	<!-- 支持宽高属性 不需要加单位 一般宽高只设置一个 -->
+	<img width="100" src="" alt=""/>
+
+
+	<!-- 粗体加重,作用于内容强调 strong 双标签 行级 b标签-->
+	<strong></strong>
+
+	<!-- 斜体，作用于内容强调 em 双标签 行级 i-->
+
+
+	<!--big 大字号 small标签 小字号 双标签 行级-->
+
+	<!-- sub sup del -->
+
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>子弹打飞机</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+			#canvas2{
+				position: absolute;
+				top: 8px;
+				left: 8px;
+				display:none;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="400" height="400">
+			及时更新浏览器！
+		</canvas>
+		<canvas id="canvas2" width="400" height="400">
+			及时更新浏览器！
+		</canvas>
+		<audio id="bgMusic" src="img2/audio/game_music.mp3" autoplay="autoplay" loop="loop"></audio>
+	</body>
+	<script type="text/javascript">
+		//对象：主机、敌机、子弹
+		//方法：画、动
+		//碰撞：主机碰撞敌机、子弹碰撞敌机；（像素碰撞--性能问题）--选做
+		//玩法、声音(选做)
+		
+		//预加载
+		var imgArr={
+			"bg":"img2/img/background.png",
+			"herofly":"img2/img/herofly.png",
+			"bullet2":"img2/img/bullet2.png",
+			"enemy5":"img2/img/enemy1.png",//5
+			"enemy6":"img2/img/enemy2.png",//6
+			"enemy10":"img2/img/enemy3.png"//10
+		};
+		
+		var imgLength=0;
+		for(var i in imgArr){
+			imgLength++;
+		}
+		
+		var num=0;
+		var loadArr={};
+		for(let i in imgArr){
+			var img=new Image();
+			img.src=imgArr[i];
+			img.onload=function(){
+				loadArr[i]=this;
+				num++;
+				if(num >= imgLength){
+					main(loadArr);
+				}
+			}
+		}
+		
+		function main(loadArr){
+			var canvas=document.getElementById("mycanvas");
+			//游戏结束界面
+			var canvas2=document.getElementById("canvas2");
+			var ctx=canvas.getContext("2d");
+			var ctx2=canvas2.getContext("2d");
+			canvas.width=loadArr.bg.width;
+			canvas.height=loadArr.bg.height;
+			canvas2.width=loadArr.bg.width;
+			canvas2.height=loadArr.bg.height;
+			ctx2.beginPath();
+			ctx2.fillStyle="rgba(0,0,0,0.4)";
+			ctx2.fillRect(0,0,canvas2.width,canvas2.height);
+			ctx2.beginPath();
+			ctx2.fillStyle="#000000";
+			ctx2.font="40px Arial";
+			ctx2.textAlign="center";
+			ctx2.textBaseline="middle";
+			ctx2.fillText("游戏结束",parseInt(canvas2.width/2),parseInt(canvas2.height/2));
+			
+			//主机对象
+			function Hero(x,y,blood,obj){
+				this.x=x;
+				this.y=y;
+				this.blood=blood;
+				this.obj=obj;
+				this.w=loadArr.herofly.width/5;
+				this.h=loadArr.herofly.height;
+				this.index=0;
+				this.num=0;
+				this.isLive=false;
+			}
+			Hero.prototype.draw=function(){
+				if(this.isLive){
+					this.blood-=50;
+					this.num++;
+					if(this.blood<0){
+						if(this.num%10==0){
+							this.index++;
+						}
+					}
+				}
+				ctx.drawImage(this.obj,this.index*this.w,0,this.w,this.h,this.x,this.y,this.w,this.h);
+			}			
+			
+			//子弹类构造函数
+			function Bullet(x,y,power,obj,speed){
+				this.x=x;
+				this.y=y;
+				this.power=power;
+				this.obj=obj;
+				this.w=obj.width;
+				this.h=obj.height;
+				this.speed=speed;
+			}
+			Bullet.prototype.draw=function(){
+				ctx.drawImage(this.obj,0,0,this.w,this.h,this.x,this.y,this.w,this.h);
+			}
+			Bullet.prototype.move=function(){
+				this.y-=this.speed;
+			}
+			Bullet.prototype.isClear=function(){
+				if(this.y<=0){
+					return true;
+				}else{
+					return false;
+				}
+			}
+			
+			//敌机构造函数
+			function Enemy(x,y,blood,obj,infoNum,speed){
+				this.x=x;
+				this.y=y;
+				this.blood=blood;
+				this.obj=obj;
+				this.infoNum=infoNum;
+				this.w=loadArr[enemyC[this.infoNum]]["width"]/(Number(enemyC[this.infoNum].split("y")[1]));
+				this.h=loadArr[enemyC[this.infoNum]]["height"];
+				this.index=0;
+				this.num=0;
+				this.speed=speed;
+				this.isLive=false;
+			}
+			Enemy.prototype.draw=function(){
+				//敌机一旦你被击中，开始减血
+				if(this.isLive){
+					this.blood-=50;
+					this.num++;
+					if(this.blood<0){
+						if(this.num%10==0){
+							this.index++;
+						}
+					}
+				}
+				//判断所画的每个敌机与子弹是否发生了碰撞
+				for(var i=0;i<bullet.length;i++){
+					//判断子弹与敌机是否相撞
+					if((bullet[i].x+bullet[i].w) > this.x && bullet[i].x < (this.x+this.w) && (bullet[i].y+bullet[i].h) > this.y && bullet[i].y< (this.y+this.h)){
+						//清除敌机
+						this.isLive=true;
+						if(this.index>=(Number(enemyC[this.infoNum].split("y")[1])-1)){
+							this.y=canvas.height+this.h;
+						}
+					}
+				}
+				//画敌机
+				ctx.drawImage(this.obj,this.index*this.w,0,this.w,this.h,this.x,this.y,this.w,this.h);
+			}
+			Enemy.prototype.move=function(){
+				this.y+=this.speed;
+			}
+			Enemy.prototype.isClear=function(){
+				if(this.y >= (canvas.height+this.h)){
+					return true;
+				}else{
+					return false;
+				}
+			}
+			//生成随机数的函数以及敌机的背景图数组
+			var enemyC=["enemy5","enemy6","enemy10"];
+			function randNum(max,min){
+				return parseInt(Math.random()*(max-min))+min;
+			}
+//==================参数列表=========================
+			//主机的实例化
+			var x=120;
+			var y =canvas.height-82;
+			var newHero=new Hero(x,y,100,loadArr.herofly);
+			//存放子弹的容器
+			var isFB=true;
+			bullet=[];
+			var num=0;
+			//画背景图
+			var bgY=0;
+			//存放敌机的容器
+			var isFE=true;
+			var enemy=[];
+			var num1=0;
+//==================================================
+			//控制主机的移动以及移动范围判断
+			document.onkeydown=function(e){
+				var ev=e || window.event;
+				switch (ev.keyCode){
+					case 37:
+						//left
+						if(newHero.x<=0){
+							newHero.x-=0;
+						}else{
+							newHero.x-=20;
+						}
+						break;
+					case 38:
+						//up
+						if(newHero.y<=0){
+							newHero.y-=0;
+						}else{
+							newHero.y-=20;
+						}
+						break;
+					case 39:
+						//right
+						if(newHero.x>=(canvas.width-newHero.w)){
+							newHero.x+=0;
+						}else{
+							newHero.x+=20;
+						}
+						break;
+					case 40:
+						//down
+						if(newHero.y>=(canvas.height-newHero.h)){
+							newHero.y+=0;
+						}else{
+							newHero.y+=20;
+						}
+						break;
+					default:
+						break;
+				}
+			}
+		
+			//做动画
+			function act(){
+				//清除画布
+				ctx.clearRect(0,0,canvas.width,canvas.height);
+				//=============画背景图=============
+				ctx.drawImage(loadArr.bg,0,bgY);
+				ctx.drawImage(loadArr.bg,0,bgY-canvas.height);
+				bgY+=3;
+				if(bgY > canvas.height){
+					bgY=0;
+				}
+				//==============画主机=================
+				newHero.draw();
+				//=============画敌机==================
+				if(isFE){
+					num1++;
+					if(num1%100==0){
+						var infoNum=randNum(3,0);
+						//敌机随机生成的坐标
+						var enemyX=randNum((canvas.width-loadArr[enemyC[infoNum]]['width']/(Number(enemyC[infoNum].split("y")[1]))),0);
+						var enemyY=randNum((-loadArr[enemyC[infoNum]]['height']),(-(loadArr[enemyC[infoNum]]['height'])-100));
+						//实例化敌机
+						var newEnemy=new Enemy(enemyX,enemyY,100,loadArr[enemyC[infoNum]],infoNum,3);
+						//放进敌机数组
+						enemy.push(newEnemy);
+					}
+					
+					for(var i=0;i<enemy.length;i++){
+						enemy[i].draw();
+						enemy[i].move();
+						//敌机与主机相碰撞，主机死亡
+						if((newHero.x+newHero.w) > enemy[i].x && newHero.x < (enemy[i].x+enemy[i].w) && (newHero.y+newHero.h) > enemy[i].y && newHero.y< (enemy[i].y+enemy[i].h)){
+							//清除主机,游戏停止,子弹停止
+							enemy[i].isLive=true;
+							if(enemy[i].index>=(Number(enemyC[enemy[i].infoNum].split("y")[1])-1)){
+								enemy[i].y=canvas.height+enemy[i].h;
+							}
+							//主机死亡
+							newHero.isLive=true;
+							//子弹停止生成
+							isFB=false;
+							//敌机停止生成
+							isFE=false;
+							//游戏停止界面生成
+							canvas2.style.display="block";
+							//游戏结束音乐
+							document.getElementById("bgMusic").src="img2/audio/game_over.mp3";
+							document.getElementById("bgMusic").loop=false;
+						}
+						//如果敌机超出画面，清除敌机
+						if(enemy[i].isClear()){
+							//清除敌机
+							enemy.splice(i,1);
+						}
+					}
+				}
+				
+				//==============画子弹================
+				if(isFB){
+					num++;
+					if(num%20==0){
+						//实例化子弹,根据主机的位置生成子弹
+						var newBullet=new Bullet(newHero.x+10,(newHero.y-10),2,loadArr.bullet2,2);
+						//放进子弹数组
+						bullet.push(newBullet);
+					}
+					for(var i=0;i<bullet.length;i++){
+						bullet[i].draw();
+						bullet[i].move();
+						//如果子弹超出界面，删除子弹
+						if(bullet[i].isClear()){
+							//清除子弹
+							bullet.splice(i,1);
+						}
+					}
+				}
+				
+				//执行动画=========================
+				window.requestAnimationFrame(act);
+			}
+			act();
+		}
+	
+	</script>
+</html>

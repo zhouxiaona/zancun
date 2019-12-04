@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ButtonType</title>
+</head>
+<style>
+    .container{
+        width: 50vw;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn{
+        padding: 20px 30px;
+        border: 1px solid gray;
+        border-radius: 80px;
+        margin: 20px 0; 
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .ripple:after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0; 
+        left: 0;
+        pointer-events: none;
+        /* 设置径向渐变 */
+        background-image: radial-gradient(circle, #666 10%, transparent 10.01%);
+        background-repeat: no-repeat;
+        background-color: lightgray;
+        background-position: 50%;
+        transform: scale(10, 10);
+        opacity: 0;
+        transition: transform .3s, opacity .5s;
+    }
+
+    .ripple:active:after {
+        transform: scale(0, 0);
+        opacity: .3;
+        /* 设置初始状态 */
+        transition: 0s;
+    }
+
+</style>
+<body>
+    <div class="container">
+        <div class="btn ripple">Button</div>
+        <div class="btn ripple">Button with very long content</div>
+    </div>
+</body>
+</html>

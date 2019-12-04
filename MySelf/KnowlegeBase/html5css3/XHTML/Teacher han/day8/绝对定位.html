@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>定位-绝对定位</title>
+	<style>
+		body{
+			margin:0;
+			height:3000px;
+			background:pink;
+		}
+		.content{
+			width:960px;
+			margin:0 auto;
+			height:2000px;
+			background:gold;
+		}
+		.div1{
+			width:400px;
+			height:400px;
+			background:blue;
+			
+			position:absolute;
+			left:200px;
+			top:0;
+		}
+		.div2{
+			width:100px;
+			height:100px;
+			background:red;
+			position: absolute;
+			left:0;
+			top:0;
+		}
+		span{
+			width:200px;
+			height:200px;
+			background:red;
+			/*position: absolute;
+			left:0;
+			top:0;*/
+		}
+	</style>
+</head>
+<body>
+	<!-- position:absolute; 绝对定位  定在文档中的某个位置，不会改变-->
+	<!-- 设置了绝对定位的元素，如果父级元素没有设置absolute或者relative或者fixed，那么该元素会以文档进行偏移，如果父级元素设置了absolute或者relative或者fixed,那么该元素会以父级元素进行偏移 -->
+	<div class="content"></div>
+
+	<div class="div1">
+		<div class="div2">
+		</div>
+	</div>
+	<span>我是span</span>
+</body>
+</html>

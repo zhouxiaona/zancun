@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>map</title>
+		<style type="text/css">
+			body{
+				position: relative;
+			}
+			#box{
+				width: 500px;
+				height: 500px;
+				border:  1px solid red;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			#blue,#red{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+				top: 10px;
+				left: 20px;
+			}
+			#blue{
+				background-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="red"></div>
+		<div id="blue"></div>
+
+	</body>
+	<script type="text/javascript" src="system.js"></script>
+	<script type="text/javascript">
+		var red=document.getElementById('red');
+		var blue=document.getElementById('blue');
+		// blue.onmousedown=function(ev){
+		// 	var evObj=window.event || ev;
+		// 	var x=evObj.offsetX;
+		// 	var y=evObj.offsetY;
+		// 	document.onmousemove=function(ev){
+		// 		var evObj=window.event || ev;
+		// 		var x1=evObj.pageX-8-x;
+		// 		var y1=evObj.pageY-8-y;
+		// 		blue.style.left=x1+'px';
+		// 		blue.style.top=y1+'px';
+		// 	}
+		// }
+		// blue.onmouseup=function(){
+		// 	document.onmousemove=null;
+		// }
+
+		
+		// document.onmousemove=function(ev){
+		// 	var evObj=window.event || ev;
+		// 	red.style.left=(evObj.pageX-8-50)+'px';
+		// 	red.style.top=(evObj.pageY-8-50)+'px';
+		// }
+
+//-------------------------------------------------------------------------
+
+
+		//map 数组的方法
+		// test();
+		// Array.prototype.double=function(fn){
+		// 	var newArr=[];
+		// 	for(var i=0;i<this.length;i++){
+		// 		newArr.push(fn(this[i],i,this));
+		// 	}
+		// 	return newArr;
+		// }
+
+
+
+		var arr=[1,2,3];
+		// var arr2=arr.double(function(a,b,c){
+		// 	console.log(a,b,c);
+		// 	return a*2;
+		// });
+		// console.log(arr2);
+//-----------------------------------------------
+		
+
+		Array.prototype.myMap=function(fn){
+			var newArr=[];
+			for(var i=0;i<this.length;i++){
+				newArr.push(fn(this[i],i,this));
+			}
+			return newArr;
+		}
+
+		var arr2=arr.myMap(function(a,b,c){
+			// console.log(a,b,c);
+			return a*2;
+		});
+		console.log(arr2);
+
+
+//------------------------------------------------------------
+		// var obj={name:'lala'};
+		// obj.name='zz';
+		// console.log(obj.name);
+		// //第二种写法
+		// obj['name']='zza';
+		// console.log(obj['name']);
+
+		// function print(a){
+		// 	console.log(obj[a]);//不能直接写obj.a,参数a与obj.a中得a不是同一个
+		// }
+		// print('name');
+
+
+
+		//eval 把字符串当做代码执行
+		//慎用　如果字符串运行的时候出错，会导致后面的代码都不执行了
+		// console.log(eval('1+2+3+4'));
+		// eval("print('name')");
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

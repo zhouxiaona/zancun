@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>圆周运动</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="400" height="400">
+			及时更新浏览器！
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		
+		//移动坐标系
+		ctx.translate(200,200);
+		function draw(){
+			ctx.beginPath();
+			ctx.arc(100,100,20,0,Math.PI*2);
+			ctx.fillStyle="pink";
+			ctx.fill();
+		}
+		var everyPercent=Math.PI/30;
+		function act(){
+			ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+			ctx.rotate(everyPercent);
+			draw();
+			window.requestAnimationFrame(act);
+		}
+		act();
+		
+	</script>
+</html>

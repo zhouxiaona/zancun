@@ -1,0 +1,122 @@
+<template>
+  <view class="wrap">
+    <view class="numAniWrap">
+      <repeat for="{{len}}" index="index" item="item">
+        <view class="numBox">
+          <view class="numInner" animation="{{ animation[index] }}" >
+            <view class="numPoint">0</view>
+            <view class="numPoint">1</view>
+            <view class="numPoint">2</view>
+            <view class="numPoint">3</view>
+            <view class="numPoint">4</view>
+            <view class="numPoint">5</view>
+            <view class="numPoint">6</view>
+            <view class="numPoint">7</view>
+            <view class="numPoint">8</view>
+            <view class="numPoint">9</view>
+          </view>
+          <view class="spaceChar" wx:if="{{((len - (index + 1)) % 3 === 0) && index < len-1}}">,</view>
+        </view>
+      </repeat>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Ani extends wepy.page {
+    config = {
+      enablePullDownRefresh: false,
+      backgroundTextStyle: 'light',
+      onReachBottomDistance: 50,
+      navigationBarBackgroundColor: '#69BEFF',
+      navigationBarTitleText: 'animate',
+      navigationBarTextStyle: 'white'
+    }
+
+    data = {
+      len: 0,
+      animation:[],
+    }
+
+    showScrollNum(n) {
+      let _this = this
+      _this.animation = []
+      let len = String(n).length
+      this.len = len
+      this.$apply()
+      let charArr = String(n).split("")
+      let h = 0
+      wx.createSelectorQuery().select('.numPoint').boundingClientRect(function(rect){
+        h = rect.height
+        let animate = []
+        for(let i = 0; i < _this.len; i++) {
+          animate[i] = wx.createAnimation()
+          animate[i].top( - parseInt(h) * charArr[i] ).step( {duration: 1500} )
+          let todo = animate[i].export()
+          _this.animation.push(todo)
+          _this.$apply()
+        }
+      }).exec()
+    }
+
+    onLoad() {
+      this.showScrollNum(52360)
+      setTimeout(()=>{
+        console.log(1111)
+        this.showScrollNum(50483)
+      },3000)
+    }
+  }
+</script>
+<style lang="less">
+.wrap{
+  width: 100vw;
+  padding-top: 100rpx;
+  .numAniWrap{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .numBox{
+      height: 180rpx;
+      line-height: 180rpx;
+      overflow: hidden;
+      .numInner{
+        // width: 200rpx;
+        display: inline-block;
+        position: relative;
+        top:0rpx;
+        .numPoint{
+          // width: 100%;
+          height: 180rpx;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size:150rpx;
+          font-family:BebasNeue;
+          color:rgba(255,255,255,1);
+          background:linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 10%, rgba(212,182,121,1) 100%);
+          -webkit-background-clip:text;
+          -webkit-text-fill-color:transparent;
+        }
+      }
+      // 千分号分隔符
+      .spaceChar{
+        // width: 100rpx;
+        height: 100%;
+        display: inline-block;
+        text-align: center;
+        line-height: 180rpx;
+        vertical-align: top;
+        font-size:150rpx;
+        font-family:BebasNeue;
+        color:rgba(255,255,255,1);
+        background:linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 10%, rgba(212,182,121,1) 100%);
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+      }
+    }
+  }
+}
+</style>

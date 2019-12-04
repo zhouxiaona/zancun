@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .ball{
+            width:50px;
+            height:50px;
+            border-radius: 50%;
+            /*position: absolute;*/
+        }
+        .ball1{
+            /*top:8px;*/
+            /*left:0;*/
+            background-color: pink;
+        }
+        .ball2{
+            /*top:58px;*/
+            /*left:0;*/
+            background-color: red;
+        }
+        .ball3{
+            /*top:109px;*/
+            /*left:0;*/
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="ball1 ball"></div>
+    <div class="ball2 ball"></div>
+    <div class="ball3 ball"></div>
+</body>
+<script>
+    //需求：首先让第一个球向右运动到300px,然后第二也运动到300px,最后第三个也运动到300px,
+    //在之后第三个球运动到150px,运动结束
+    var objs=document.getElementsByClassName("ball");
+
+    // function act(obj,dis,fn){
+    //     var x=obj.style.marginLeft;
+    //     if(x==""){
+    //         x=0;
+    //     }
+    //     x=parseInt(x);
+    //     if(x<dis){
+    //         setTimeout(function(){
+    //             x++;
+    //             obj.style.marginLeft=x+"px";
+    //             act(obj,dis,fn);
+    //         },10);
+    //     }else if(x>dis){
+    //         setTimeout(function(){
+    //             x--;
+    //             obj.style.marginLeft=x+"px";
+    //             act(obj,dis,fn);
+    //         },10);
+    //     }else{
+    //         fn && fn();
+    //     }
+    // }
+    //===========================================================================
+    // function async2(obj,dis){
+    //     return new Promise((resolve,reject)=>{
+    //         function asyncTest(obj,dis){
+    //             var x=obj.style.marginLeft;
+    //             if(x==""){
+    //                 x=0;
+    //             }
+    //             x=parseInt(x);
+    //             if(x<dis){
+    //                 setTimeout(function(){
+    //                     x++;
+    //                     obj.style.marginLeft = x + "px";
+    //                     asyncTest(obj,dis);
+    //                 },10);
+    //             }else if(x>dis){
+    //                 setTimeout(function(){
+    //                     x--;
+    //                     obj.style.marginLeft = x + "px";
+    //                     asyncTest(obj,dis);
+    //                 },10);
+    //             }else{
+    //                 // fn && fn();
+    //                 resolve(obj+'运行完了');
+    //             }
+    //         }
+    //         asyncTest(obj,dis);
+    //     })
+    // }
+
+    // async2(objs[0],300).then((res)=>{
+    //     console.log(res);
+    //     return async2(objs[1],300);
+    // }).then((res)=>{
+    //     console.log(res);
+    //     return async2(objs[2],300);
+    // }).then((res)=>{
+    //     console.log(res)
+    //     return async2(objs[2],150);
+    // }).catch((err)=>{
+    //     console.log(err)
+    // })
+    // =============================================================
+
+    // act(objs[0],300,function(){
+    //     act(objs[1],300,function(){
+    //         act(objs[2],300,function(){
+    //             act(objs[2],150,function(){
+    //                 console.log("回调成功");
+    //             });
+    //         });
+    //     });
+    // });
+
+
+    //promise ES6里的类==>异步
+    //ES5解决异步问题
+    // function test(fn){
+    //     setTimeout(function(){
+    //         console.log("我是test函数的逻辑");
+    //         fn && fn();
+    //     },1000);
+    // }
+    // test(function(){
+    //     console.log("我是test逻辑之后的逻辑");
+    // });
+
+    //集合
+    // var obj=new Set([1,1,2,3,4]);
+    // console.log(obj); // 数组去重
+
+    //通过promise来解决
+    // function test1(){
+    //     return new Promise((resolve,reject) => {
+    //         var num = parseInt(Math.random()*10);
+    //         setTimeout(function(){
+    //             if(num > 5){
+    //                 resolve('我是resolve方法');
+    //             }else{
+    //                 reject("你的回调出了问题");
+    //             }
+    //         },1000);
+    //     });
+    // }
+
+    // test1().then((res) => {
+    //     console.log(res);
+    // }).catch((err) => {
+    //     console.log(err);
+    // });
+
+    // function async1(){
+    //     return new Promise((resolve,reject) => {
+    //         var num = parseInt(Math.random()*10);
+    //         setTimeout(()=>{
+    //             if(num > 5){
+    //                 // console.log("1函数执行了");
+    //                 resolve("async1回调成功");
+    //             }else{
+    //                 reject("async1回调失败");
+    //             }
+    //         },3000)
+    //     });
+    // }
+
+    // function async2(){
+    //     return new Promise((resolve,reject) => {
+    //         var num=parseInt(Math.random()*10);
+    //         setTimeout(()=>{
+    //             if(num > 5){
+    //                 // console.log("2函数执行了");
+    //                 resolve("async2回调成功");
+    //             }else{
+    //                 reject("async2回调失败");
+    //             }
+    //         },2000)
+    //     });
+    // }
+    
+    // function async3(){
+    //     return new Promise((resolve,reject) => {
+    //         var num=parseInt(Math.random()*10);
+    //         setTimeout(()=>{
+    //             if(num > 5){
+    //                 // console.log("3函数执行了");
+    //                 resolve("async3回调成功");
+    //             }else{
+    //                 reject("async3回调失败");
+    //             }
+    //         },1000)
+    //     });
+    // }
+
+    //all:异步函数同时执行
+    // Promise.all([async1(),async2(),async3()]).then((res)=>{
+    //     console.log(res) // 三个全部成功返回一个数组
+    // }).catch((err)=>{
+    //     console.log(err); // 先返回错误的那个结果
+    // });
+
+
+    //race:异步函数，谁执行快就先执行谁
+    // Promise.race([async1(),async2(),async3()]).then((res)=>{
+    //     console.log(res)
+    // }).catch((err)=>{
+    //     console.log(err);
+    // });
+
+    //ajax请求 ES6
+    // fetch(url,{option}).then((res)=>{
+    //     return res.json();
+    // }).then((res)=>{
+    //     console.log(res);
+    // }).catch((err)=>{
+    //     console.log(err);
+    // });
+
+
+    //then:异步函数分开执行
+    // async1().then(function(value){
+    //     console.log(value);
+    //     return async2();
+    // }).then(function(value){
+    //     console.log(value);
+    //     return async3();
+    // }).then(function(value){
+    //     console.log(value);
+    // }).catch(function(reason){
+    //     console.log(reason);
+    // });
+
+
+
+
+    //小球的promise
+    // function async11(obj,dis){
+    //     return new Promise(function(resolve,reject){
+    //         function act(obj,dis){
+    //             var x=obj.style.marginLeft;
+    //             if(x==""){
+    //                 x=0;
+    //             }
+    //             x=parseInt(x);
+    //             if(x<dis){
+    //                 setTimeout(function(){
+    //                     x++;
+    //                     obj.style.marginLeft=x+"px";
+    //                     act(obj,dis);
+    //                 },10);
+    //             }else if(x>dis){
+    //                 setTimeout(function(){
+    //                     x--;
+    //                     obj.style.marginLeft=x+"px";
+    //                     act(obj,dis);
+    //                 },10);
+    //             }else{
+    //                 resolve();
+    //             }
+    //         }
+    //         act(obj,dis);
+    //     });
+    // }
+
+    // async11(objs[0],300).then(function(value){
+    //     console.log(value);
+    //     return async11(objs[1],300);
+    // }).then(function(value){
+    //     console.log(value);
+    //     return async11(objs[2],300);
+    // }).then(function(value){
+    //     console.log(value);
+    //     return async11(objs[2],150);
+    // }).catch(function(reason){
+    //     console.log(reason);
+    // });
+
+    // function move(obj,i){
+    //     var left=obj.offsetLeft;
+    //     var timer=setInterval(function(){
+    //         left+=5;
+    //         if(left>=300){
+    //             i+=1;
+    //             clearInterval(timer);
+    //             if(i==3){
+    //                 var left2=objs[i-1].offsetLeft;
+    //                 var timers=setInterval(function(){
+    //                    left2-=5;
+    //                     if(left2<=150){
+    //                         clearInterval(timers);
+    //                     }
+    //                     objs[i-1].style.left=left2+'px';
+    //                 },50);
+    //                 return false;
+    //             }
+    //             move(objs[i],i);
+    //         }
+    //         obj.style.left=left+"px";
+    //     },50);
+    // }
+    // var i=0;
+    // move(objs[0],i);
+
+</script>
+</html>

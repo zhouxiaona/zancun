@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Title</title>
+</head>
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #2d2d2d;
+  }
+  .title{
+    font-size: 22px;
+    color:#fff;
+    position: absolute;
+    left:0;
+    top:40px;
+    width:100%;
+    text-align: center;
+  }
+  .container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+<style>
+  .typing-animate-container {
+    width: 300px;
+    height: 34px;
+    display: inline-block;
+    position: relative;
+    color: #fff;
+    background: #2d2d2d;
+    box-sizing: border-box;
+  }
+  .typing-animate-container input{
+    width: 100%;
+    height:100%;
+    background: transparent;
+    z-index: 3;
+    line-height: 30px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    border-radius: 4px;
+    position: relative;
+    cursor: text;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    color:transparent;
+    box-sizing: border-box;
+    caret-color:transparent;
+  }
+  .typing-animate-container input:focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    border-color: #66afe9;
+    outline: 0;
+  }
+  .typing-animate-container input:focus ~ .typing-text::after  {
+    display: block;
+  }
+  .typing-text {
+    line-height: 36px;
+    position: absolute;
+    left:0;
+    top:0;
+    height:100%;
+    z-index: 1;
+    display: block;
+    padding:0 10px;
+    display: block;
+  }
+  .typing-text::after {
+    display: none;
+    content:'|';
+    padding: 0 10px;
+    color: #fff;
+    text-align: left;
+    overflow: hidden;
+    animation: blingbling 0.8s infinite;
+    position: absolute;
+    right:-5px;
+    top: 0;
+    bottom:0;
+    margin:auto;
+    line-height: 1;
+    font-size: 16px;
+    height: 16px;
+  }
+  .typing-animate-text {
+    position: absolute;
+    left: 0;
+    font-size: 40px;
+    color: #fff;
+    font-style: normal;
+    bottom:0;
+    opacity: 1;
+    z-index: 2;
+  }
+  .typing-animate-text.add {
+    animation: addText .3s ease-out forwards;
+  }
+  .typing-animate-text.del {
+    transition:left .4s ease-in,bottom .4s ease-out,opacity .4s linear;
+  }
+  .typing-animate-text.acitve {
+    opacity: 1;
+    bottom: 0;
+  }
+  @keyframes addText {
+    0% {
+      opacity: .1;
+      bottom: 140px;
+    }
+    99% {
+      opacity: 1;
+      bottom: 0;
+      display: none;
+    }
+    100% {
+      opacity: 0
+    }
+  }
+  @keyframes blingbling {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>
+
+<body>
+<div class="title">Try to type and delete</div>
+<div class="container"></div>
+</body>
+<script>
+  class typing {
+    constructor(container = null, params = {
+      placeholder: '',
+      initialText: '',
+      fontsize: 16,
+      animateFontsize: 40
+    }) {
+      let htmlStr = `<div class="typing-animate-container">
+                        <input type="text">
+                        <span class="typing-text ${params.initialText ? '' : 'placeholder'}" style="font-size: ${params.fontsize}px">${params.initialText ? params.initialText : params.placeholder}</span>
+                      </div>`
+      container.innerHTML = htmlStr
+      this.container = container.querySelector('.typing-animate-container')
+      this.input = container.querySelector('input')
+      this.text = container.querySelector('.typing-text')
+      this.animateFontsize = params.animateFontsize
+      this.delType = 'left'
+      this.t = null
+      this.setCursorPosition()
+      this.setEvent()
+    }
+    setEvent() {
+      const limitText = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+      let that = this
+      this.input.addEventListener('keydown', function (e) {
+        let key = e.key
+        if (limitText.indexOf(key) === -1) {
+          if (e.keyCode === 8) {
+            that.deleteText()
+          }
+        } else {
+          that.addText(key)
+        }
+        clearTimeout(that.t)
+        that.t = setTimeout(() => {
+          that.clearAnimateText()
+        },.3*1000)
+        that.setCursorPosition()
+      })
+    }
+    setCursorPosition() {
+      // let textWidth = this.text.getBoundingClientRect()['width']
+      // this.cursor.style.left = `${textWidth + 2}px`
+    }
+    addText(text) {
+      this.text.innerText += text
+      this.addAnimateText(text, 'add')
+    }
+    deleteText() {
+      let delText = this.text.innerText[this.text.innerText.length - 1]
+      if(!delText) return
+      this.text.innerText = this.text.innerText.slice(0, this.text.innerText.length - 1)
+      this.addAnimateText(delText, 'del')
+      let newT = this.container.querySelectorAll('.typing-animate-text.del')[0]
+      let that = this
+      setTimeout(() => {
+        newT.style.left = that.delType==='left'?'0':'100%'
+        newT.style.bottom = '140px'
+        newT.style.opacity = '0'
+        that.delType = that.delType==='left'?'right':'left'
+      })
+    }
+    addAnimateText(text, className) {
+      let textWidth = this.text.getBoundingClientRect()['width']
+      let len = this.text.innerText.length
+      let animateTextPosition = textWidth - textWidth / len / 2 - this.animateFontsize/2
+      this.container.insertAdjacentElement('afterbegin', this.parseHTML(`<i class="typing-animate-text ${className}" style="left:${animateTextPosition}px">${text}</i>`))
+    }
+    clearAnimateText() {
+      let dom = this.container.querySelectorAll(`.typing-animate-text`)
+      dom.forEach((d) => {
+        this.container.removeChild(d)
+      })
+    }
+    parseHTML(str) {
+      let tmp = document.implementation.createHTMLDocument()
+      tmp.body.innerHTML = str
+      return tmp.body.children[0]
+    }
+  }
+  let t = new typing(document.querySelector('.container'))
+</script>
+</html>

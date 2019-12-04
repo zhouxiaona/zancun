@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>获取计算后样式</title>
+		<style type="text/css">
+			body{
+				height: 2000px;
+				margin: 0;
+			}
+			#redDiv{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				color: white;
+				overflow: scroll;
+			}
+			#redDiv:before{
+				content: "这是before";
+				color: blue;
+			}
+			p{
+				width: 20px;
+				height: 600px;
+				background-color: gray;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="redDiv">获取计算后样式
+			<p></p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var redDiv=document.getElementById('redDiv');
+		function getStyle(element,key){
+			if(element.currentStyle){
+				return element.currentStyle[key];
+			}else{
+				return getComputedStyle(element,null)[key];
+			}
+		}
+		console.log(window.navigator.userAgent);
+		var ff=window.navigator.userAgent.indexOf("Chrome");
+		console.log(ff);
+/*************************************************************
+		//获取css里的样式
+		
+		//非IE下获取计算后样式
+		//参数一：要获取样式的元素
+		//参数二：伪类名称
+		console.log(window.getComputedStyle(redDiv,null).color);
+	
+
+		console.log(window.getComputedStyle(redDiv,":before").color);
+
+		//IE下获取样式
+		// redDiv.currentStyle.color;
+		
+
+		console.log(getStyle(redDiv,"color"));
+		//兼容写法
+		function getStyle(element,key){
+			if(element.currentStyle){
+				return element.currentStyle[key];
+			}else{
+				return getComputedStyle(element,null)[key];
+			}
+		}
+		
+
+		setTimeout(function(){
+			document.documentElement.scrollTop=100;
+		},1000);
+
+
+		function scrollTop(num){
+			if(document.documentEleemnt.scrollTop){
+				document.documentEleemnt.scrollTop=num;
+			}else{
+				document.body.scrollTop=num;
+			}
+		}
+		//scrollTop
+		// console.log(window.navigator.userAgent);
+		// setInterval(function(){
+		// 	// redDiv.scrollTop+=5;
+		// 	// scrollTop兼容写法
+			var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+		// 	console.log(scrollTop);
+		
+		// },20);
+****************************************************/
+	</script>
+</html>

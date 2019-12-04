@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>事件捕获和冒泡</title>
+		<style type="text/css">
+			.red{
+				width: 600px;
+				height: 600px;
+				background-color: red;
+			}
+			.blue{
+				width: 400px;
+				height: 400px;
+				background-color: blue;
+			}
+			.green{
+				width: 200px;
+				height: 200px;
+				background-color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="red">
+			<div class="blue">
+				<div class="green"></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="public.js"></script>
+	<script type="text/javascript">
+		var red=document.getElementsByClassName('red')[0];
+		var blue=document.getElementsByClassName('blue')[0];
+		var green=document.getElementsByClassName('green')[0];
+
+		//捕获在冒泡之前
+		
+		//事件捕获--事件传递的顺序(从父级到子级)
+		
+		
+
+
+		//事件冒泡--事件默认处理的顺序（从子级到父级）
+		addEvent(red,"click",function(ev){
+			console.log('点击了red');
+			//取消冒泡一
+			var evObj=window.event || ev;
+			// evObj.cancelBubble=true;
+			//取消冒泡二
+			evObj.stopPropagation();
+
+
+
+
+			//阻止默认事件 一
+			evObj.preventDefault();
+			//阻止默认事件 二
+			evObj.returnValue=false;
+			//阻止默认事件 三
+			return false;
+
+		});
+		addEvent(blue,"click",function(ev){
+			console.log('点击了blue');
+
+			
+		});
+		addEvent(green,"click",function(ev){
+			console.log('点击了green');
+
+			
+		});
+
+
+		//默认冒泡
+		// red.onclick=function(){
+		// 	console.log('red');
+		// }
+		// blue.onclick=function(){
+		// 	console.log('blue');
+		// }
+
+		// green.onclick=function(){
+		// 	console.log('green');
+		// }
+	</script>
+</html>

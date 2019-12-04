@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>fade-in-out</title>
+		<style>
+			.window{
+				width: 700px;
+				/* height: 450px; */
+				margin: 100px auto;
+				border: 1px solid transparent;
+				position: relative;
+				box-shadow: 3px 5px 10px 5px lightgray;
+				
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+				list-style-type:none;
+				width: 90px;
+				height: 20px;
+				border-radius: 20px;
+				text-align: center;
+				margin: 347px auto 20px;
+				background: lightgray;
+				
+			}
+			ul>li{
+				float: left;
+				padding: 5px 0;
+			}
+			ul>li.active>a{
+				background: gray;
+			}
+			ul>li.active>a>img{
+				opacity: 1;
+			}
+			ul>li>a{
+				display: block;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: white;
+				margin: 0 10px;
+				transition: all 1s cubic-bezier(0, 0.32, 0.46, 1.29) 0s;
+
+
+			}
+			ul>li>a>img{
+				width: 700px;
+				/* height: 450px; */
+				opacity: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: -1;
+				transition: all 1s cubic-bezier(0, 0.32, 0.46, 1.29) 0s;
+			}
+			ul>li>a:hover{
+				background: gray;
+			}
+			ul>li>a:hover>img{
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="window">
+			<ul>
+				<li class="active">
+					<a href="###"><img src="img/4-1.jpg" alt=""></a>
+				</li>
+				<li>
+					<a href="###"><img src="img/4-3.jpg" alt=""></a>
+				</li>
+				<li>
+					<a href="###"><img src="img/5-3.jpg" alt=""></a>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

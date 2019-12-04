@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>js初识</title>
+		<style type="text/css">
+			
+		</style>
+		
+	</head>
+	<body>
+		<!-- onclick 元素的点击事件
+		点击之后想要做什么事情，就需要在onclick之后添加对应的函数 -->
+
+		<!-- alert,系统提供的函数，可以出现一个弹框，弹框内的内容就是alert的参数，参数就是小括号里的内容 -->
+		<div id="box">点我</div>
+		
+	</body>
+	<script type="text/javascript">
+		// js严格区分大小写
+		// html不区分大小写
+		// js标签，要注意书写的位置，位置太靠前可能会获取不到元素（代码读取的顺序都是从上到下）
+		/*
+			块级注释
+		 */
+		var box=document.getElementById('box');
+		box.onclick=function(){
+			// 弹框
+			// alert('this is script tag');
+			
+			// 改变背景颜色为红色
+			// document代表的是文档。整个html文档
+			// getElementById() 通过id名来获取到一个元素，然后对其操作
+			// js里面修改样式：元素.style.样式名,样式名用驼峰命名法，不要带-
+			box.style.backgroundColor='red';
+			box.style.marginTop='100px';
+			box.style.fontSize="50px";
+			box.style.textAlign="center";
+			box.style.transform="translateY(200px)";
+			box.id="newId";
+			// 上面修改了id名
+			newId.title="让我显示啊";
+		}
+	</script>
+</html>

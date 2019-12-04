@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>背景图滚动飞机</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+			#mycanvas1{
+				position: absolute;
+				left: 8px;
+				top: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="400" height="400">
+			及时更新浏览器！
+		</canvas>
+		<canvas id="mycanvas1" width="400" height="400">
+			及时更新浏览器！
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		
+		var mycanvas1=document.getElementById("mycanvas1");
+		var ctx1=mycanvas1.getContext("2d");
+		
+		//两张图的预加载
+		var arr=["img/3.png","img/sky.png"];
+		var num=0;
+		var imgArr={};
+		for(let i=0;i<arr.length;i++){
+			var img=new Image();
+			img.src=arr[i];
+			img.onload=function(){
+				num++;
+				imgArr[i]=this;
+				if(num >= arr.length){
+					console.log("加载完成");
+					main(imgArr);
+				}
+			}
+		}
+		//加载完成后的主函数
+		function main(imgArr){
+			console.log(imgArr);
+			//让画布移动
+			bgMove(imgArr['1']);
+			//画飞机
+			feiji(imgArr['0'],imgArr['1']);
+		}
+		//封装飞机的函数
+		function feiji(obj,bg){
+			mycanvas1.width=bg.width;
+			mycanvas1.height=bg.height;
+			//飞机的碰撞检测
+			var y=10;
+			var x=10;
+			var speedY=2;
+			function act(){
+				ctx1.clearRect(0,0,mycanvas1.width,mycanvas1.height);
+				y+=speedY;
+				if(y<=10 || y >= mycanvas1.height-180){
+					speedY *= -1;
+				}	
+				drawFeiji(x,y,obj);
+				window.requestAnimationFrame(act);
+			}
+			act();	
+		}
+		//绘制飞机的函数
+		function drawFeiji(x,y,obj){
+			ctx1.drawImage(obj,0,0,obj['width'],obj['height'],x,y,83,60);
+		}
+		
+		//封装让画布移动的函数
+		function bgMove(bg){
+			mycanvas.width=bg['width'];
+			mycanvas.height=bg['height'];
+			var x=0;
+			function act(){
+				ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+				ctx.beginPath();
+				ctx.drawImage(img,x,0);
+				ctx.drawImage(img,mycanvas.width+x-1,0);
+				x-=4;
+				if(Math.abs(x) > mycanvas.width){
+					x=0;
+				}
+				window.requestAnimationFrame(act);
+			}
+			act();
+		}
+		
+//======================只有背景图的时候背景图移动======================		
+//		var img=new Image();
+//		img.src="img/sky.png";
+//		img.onload=function(){
+//			mycanvas.width=img.width;
+//			mycanvas.height=img.height;
+//			var x=0;
+//			function act(){
+//				ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+//				ctx.drawImage(img,x,0);
+//				ctx.drawImage(img,mycanvas.width+x-1,0);
+//				x-=4;
+//				if(Math.abs(x) > mycanvas.width){
+//					x=0;
+//				}
+//				window.requestAnimationFrame(act);
+//			}
+//			act();
+//		}
+	</script>
+</html>

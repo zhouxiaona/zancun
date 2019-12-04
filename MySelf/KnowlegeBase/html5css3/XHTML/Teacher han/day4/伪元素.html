@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>伪元素</title>
+	<style>
+		div{
+			width:200px;
+			height:200px;
+			background:red;
+		}
+		/*::before 前置伪元素*/
+		div::before{
+			/*必须*/
+			content:"123";
+			/*必须*/
+			display: block;
+			width:50px;
+			height:50px;
+			background:blue;
+
+		}
+		/*::after*/
+		div::after{
+			content:"123";
+			display: block;
+			width:50px;
+			height:50px;
+			background:pink;
+
+		}
+	</style>
+</head>
+<body>
+	<div class="div1">		
+		我是div
+	</div>
+</body>
+</html>

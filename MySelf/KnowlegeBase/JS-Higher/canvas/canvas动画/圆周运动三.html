@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>圆周运动三</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="400" height="400">
+			及时更新浏览器！
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		
+		ctx.translate(200,200);
+		
+		function draw(everyPercent){
+			var x=100*Math.cos(everyPercent);
+			var y=100*Math.sin(everyPercent);
+			ctx.beginPath();
+			ctx.arc(x,y,20,0,Math.PI*2);
+			ctx.fillStyle="red";
+			ctx.fill();
+			
+		}
+		var startPercent=0;
+		var everyPercent=Math.PI/90;
+		function act(){
+			ctx.clearRect(-200,-200,mycanvas.width,mycanvas.height);
+			draw(startPercent);
+			startPercent += everyPercent;
+			window.requestAnimationFrame(act);
+		}
+		act();
+		
+	</script>
+</html>

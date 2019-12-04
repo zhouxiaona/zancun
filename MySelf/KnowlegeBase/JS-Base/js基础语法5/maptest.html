@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>map2</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		var arr=[1,2,3,4,5];
+		Array.prototype.myMap=function(fn){
+			var newArr=[];
+			for(var i=0;i<this.length;i++){
+				newArr.push(fn(this[i],i,this));
+			}
+			return newArr;
+		}
+		arr.myMap(function(a,b,c){
+			console.log(a,b,c);
+			return a*2;
+		});
+		console.log(arr);
+	</script>
+</html>

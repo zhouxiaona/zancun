@@ -1,0 +1,95 @@
+body,h1,h2,h3,h4,p,dl,ol,ul{
+	margin:0;
+}
+a{
+	text-decoration: none;
+}
+ol,ul{
+	padding:0;
+	list-style-type:none; 
+}
+
+table{
+	border-spacing: 0px;
+	/*边界合并处理*/
+	border-collapse: collapse;
+}
+
+
+
+
+/*清除浮动*/
+.clearfix{
+	zoom:1;
+}
+.clearfix::after{
+	content:"";
+	display: block;
+	height:0;
+	overflow: hidden;
+	clear:both;
+}
+/*左浮动*/
+.fl{
+	float:left;
+}
+/*右浮动*/
+.fr{
+	float:right;
+}
+/*居中对齐*/
+.auto{
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:0;
+	margin-bottom:0;
+}
+.mb10{
+	margin-bottom: 10px;
+}
+.ml10{
+	margin-left:10px;
+}
+.mr10{
+	margin-right:10px;
+}
+.mt10{
+	margin-top:10px;
+}
+
+
+.block{
+	display: block;
+}
+.inline{
+	display: inline;
+}
+.inline_block{
+	display: inline-block;
+}
+header{
+	height:120px;
+	background:#000;
+}
+header div{
+	width:980px;
+}
+header div h1{
+	text-align: center;
+	color:#fff;
+}
+footer{
+	height:300px;
+	background:#000;
+}
+footer div{
+	width:980px;
+	text-align: center;
+	color:#fff;
+}
+
+
+
+
+
+

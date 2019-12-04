@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style>
+			ul{
+				list-style: none;
+				margin: 0;
+				padding:0;
+			}
+			.top{
+				width: 780px;
+				margin: 20px auto;
+				height: 116px;
+				padding-top: 10px;
+				background: lightgray;
+			}
+			.outer{
+				height: 114px;
+				border: 1px solid #F5F5F5;
+				border-radius: 7px;
+			}
+			.btns{
+				height: 27px;
+				padding-left: 227px;
+				margin-top:-10px;
+			}
+			.btns li{
+				float: left;
+				height: 27px;
+				overflow: hidden;
+				margin-right: 1px;
+			}
+			.btns li a{
+				display: block;
+				width: 78px;
+				padding-top: 1px;
+			}
+			.btns li a span{
+				display: block;
+				height: 24px;
+				border-top: 1px solid orange;
+				border-left: 1px solid orange;
+				border-right: 1px solid orange;
+				line-height: 26px;
+				text-align: center;
+				background-color:#f9f9f9;
+			}
+			.btns li a:hover{
+				padding-top:0;
+			}
+			.btns li a:hover span{
+				height: 26px;
+				margin-top: 0;
+				color: white;
+				background: red;
+				border-color: red;
+			}
+			.outer-text{
+				height: 100px;
+				border: 1px solid black;
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="top">
+			<div class="outer">
+				<ul class="btns clearfix">
+					<li><a href=""><span>搜店</span></a></li>
+					<li><a href=""><span>地址</span></a></li>
+					<li><a href=""><span>优惠劵</span></a></li>
+					<li><a href=""><span>全文</span></a></li>
+					<li><a href=""><span>视频</span></a></li>
+				</ul>
+				<div class="outer-text"></div>
+			</div>
+		</div>
+	</body>
+</html>

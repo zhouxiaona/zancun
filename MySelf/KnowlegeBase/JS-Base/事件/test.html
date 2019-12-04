@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>test</title>
+		<style type="text/css">
+			body{
+				margin: 0;
+			}
+			.wrap{
+				width: 240px;
+				height: 240px;
+				margin: 10px auto;
+				background-color: black;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-around;
+				align-items: center;
+			}
+			.box{
+				transform-style: preserve-3d;
+				width: 100px;
+				height: 100px;
+			}
+			.item{
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				perspective: 2000px;
+			}
+			.info{
+				width: 100px;
+				height: 100px;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="item">
+				<div class="box"></div>
+			</div>
+			<div class="item">
+				<div class="box"></div>
+			</div>
+			<div class="item">
+				<div class="box"></div>
+			</div>
+			<div class="item">
+				<div class="box"></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var boxs=document.getElementsByClassName('box');
+		var num=0;
+		for(var i=0;i<boxs.length;i++){
+			boxs[i].index=i;
+			
+			//判断从哪个方向出去
+			boxs[i].onmouseenter=function(ev){
+				this.innerHTML="";
+				num=this.index;
+				//新创建一个元素
+				var info=document.createElement('div');
+				info.className='info';
+				info.style.transition='.2s linear';
+				var evObj=window.event || ev;
+				//获取鼠标移入元素时此时鼠标距离该元素四个边的距离
+				var lefts=evObj.offsetX;
+				var rights=boxs[0].offsetWidth-evObj.offsetX;
+				var tops=evObj.offsetY;
+				var bottoms=boxs[0].offsetHeight-evObj.offsetY;
+				
+				//从左边进入元素
+				if(lefts<rights && lefts<tops && lefts<bottoms){
+					info.style.transformOrigin="0 50% 0";
+					info.style.transform="rotateY(90deg)";
+					// info.style.transition='.2s linear';
+					setTimeout(function(){
+						info.style.transform="rotateY(0deg)";
+					},10);
+				}
+				//从右边进入
+				else if(rights<lefts && rights<tops && rights<bottoms){
+					info.style.transformOrigin="100px 50% 0";
+					info.style.transform="rotateY(-90deg)";
+					// info.style.transition='.2s linear';
+					setTimeout(function(){
+						info.style.transform="rotateY(0deg)";
+					},10);
+				}
+				//从上面进入
+				else if(tops<lefts && tops<rights && tops<bottoms){
+					info.style.transformOrigin="50% 0 0";
+					info.style.transform="rotateX(-90deg)";
+					// info.style.transition='.2s linear';
+					setTimeout(function(){
+						info.style.transform="rotateX(0deg)";
+					},10);
+				}
+				//从下面进入
+				else{
+					info.style.transformOrigin="50% 100px 0";
+					info.style.transform="rotateX(90deg)";
+					info.style.transition='.2s linear';
+					setTimeout(function(){
+						info.style.transform="rotateX(0deg)";
+					},10);
+				}
+				this.appendChild(info);
+			}
+			//鼠标移出
+			boxs[i].onmouseleave=function(){
+				
+			}
+		}
+	</script>
+</html>

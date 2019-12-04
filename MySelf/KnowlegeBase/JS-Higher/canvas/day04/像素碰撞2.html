@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>像素碰撞2</title>
+		<style>
+			canvas{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			及时更新浏览器！
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var ctx=mycanvas.getContext("2d");
+		
+		function Rect(x,y,w,h){
+			this.x=x;
+			this.y=y;
+			this.w=w;
+			this.h=h;
+		}
+		
+		var img=new Image();
+		img.src="img/Chat.png";
+		var play=new Image();
+		play.src="img/Play.png";
+		img.onload=function(){
+			ctx.beginPath();
+			//聊天图标
+			ctx.drawImage(img,100,100);
+			//获取到聊天图片所有像素点的rgba值
+			var chatArr=[];
+			for(var i=100;i<100+img.width;i+=10){
+				for(var j=100;j<100+img.height;j+=10){
+					var pixel=ctx.getImageData(i,j,10,10);
+					if(pixel.data[3]>0){
+						chatArr.push({x:i,y:j,w:10,h:10});
+					}
+				}
+			}
+//			console.log(chatArr);
+			
+			mycanvas.onmousedown=function(){
+				mycanvas.onmousemove=function(e){
+					var ev=e || window.event;
+					var x=ev.clientX-mycanvas.offsetLeft;
+					var y=ev.clientY-mycanvas.offsetTop;
+					ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+					ctx.drawImage(play,x,y);
+					var playArr=[];
+					for(var i=x;i<x+play.width;i+=10){
+						for(var j=y;j<y+play.height;j+=10){
+							var pixel=ctx.getImageData(i,j,10,10);
+							if(pixel.data[3]>0){
+								playArr.push({x:i,y:j,w:10,h:10});
+							}
+						}
+					}
+					for(var i=0;i<chatArr.length;i++){
+						for(var j=0;j<playArr.length;j++){
+							if(isfix(chatArr[i],playArr[j])){
+								//碰撞上了
+								console.log("碰撞上了");
+								break;
+							}
+						}
+					}
+//					console.log(playArr);
+					ctx.drawImage(img,100,100);
+				}
+			}
+			document.onmouseup=function(){
+				mycanvas.onmousemove=null;
+			}
+	}
+		//判断是否普通碰撞
+		function isfix(rect1,rect2){
+			return (rect1.x+rect1.w>rect2.x) && (rect1.x<rect2.w+rect2.x) && (rect1.y<rect2.h+rect2.y) && (rect1.y<rect2.h+rect2.y);
+		}
+		
+	/*	
+		function isCrash(rect1,rect2){
+			var min1x = rect1.x;
+			var max1x = rect1.x+rect1.w;
+			var min2x = rect2.x;
+			var max2x = rect2.x+rect2.w;
+			
+			var min1y = rect1.y;
+			var max1y = rect1.y+rect1.h;
+			var min2y = rect2.y;
+			var max2y = rect2.y+rect2.h;
+			//假设碰撞出新的方块；
+			var nminx=Math.max(min1x,min2x);
+			var nmaxx=Math.min(max1x,max2x);
+			var nminy=Math.max(min1y,min2y);
+			var nmaxy=Math.min(max1y,max2y);
+			
+			var obj=new Rect(nminx,nminy,(nmaxx-nminx),(nmaxy-nminy));
+			if(nmaxx>nminx && nmaxy>nminy){
+				return{
+					judge: true,
+					rect: obj
+				}
+			}else{
+				return{
+					judge:false
+				}
+			}
+		}
+		*/
+	</script>
+</html>

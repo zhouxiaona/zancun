@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="myfn($event,1)">点击我触发函数</button>
+        <div id="mydiv" ref="myel">我的div</div>
+
+        <hr>
+        姓名：
+        <input type="text" v-model="users.username"><br>
+        性别：
+        <input type="radio" name="sex" v-model="users.sex" value="女">女
+        <input type="radio" name="sex" v-model="users.sex" value="男">男 <br>
+        爱好：
+        <input type="checkbox" v-model="users.hobby" value="篮球">篮球
+        <input type="checkbox" v-model="users.hobby" value="足球">足球
+        <input type="checkbox" v-model="users.hobby" value="羽毛球">羽毛球 <br>
+        城市：
+        <select v-model="users.city">
+            <option value="北京">北京</option>
+            <option value="上海">上海</option>
+            <option value="深圳">深圳</option>
+        </select><br>
+        <button @click="sub">提交</button>
+
+
+
+
+
+
+
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            message:"我是message数据",
+            users:{
+                username:"",
+                sex:"",
+                hobby:[],
+                city:"上海"
+            }
+        },
+        methods:{
+            myfn:function(event,str){
+                // console.log(event,str);
+                // alert(111);
+
+                // var el=document.getElementById("mydiv");
+                // console.log(el);
+
+                //vue获取节点
+                var el=this.$refs.myel;
+                console.log(el);
+
+            },
+            sub:function(){
+                console.log(this.users);
+            }
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数组排序</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		
+		// var strArr=[11,102,25,48,356];
+		//JS提供的方法默认是按照字母顺序排列
+		//>0　升序　　<0  降序
+// 		strArr.sort(function(a,b){
+// 			console.log(a,b);
+// 			return a-b;
+// //			return b-a;
+// 		});
+		// console.log(strArr);
+		// function mySort(fn){
+		// 	for(var i=0;i<arr.length-1;i++){
+		// 	 	for(var j=0;j<arr.length-1-i;j++){
+		// 	 		if(fn(arr[j],arr[j+1])>0){
+		// 	 			var temp=arr[j];
+		// 	 			arr[j]=arr[j+1];
+		// 	 			arr[j+1]=temp;
+		// 	 		}
+		// 	 	}
+		// 	 }
+		// }
+		
+		
+		
+		
+		// var arr=[4,3,5,9,8,34,12,13,3];
+		// //最经典：冒泡排序法(标准版)
+		// for(var i=0;i<arr.length-1;i++){
+		// 	for(var j=0;j<arr.length-1-i;j++){
+		// 		if(arr[j]>arr[j+1]){
+		// 			var temp=arr[j];
+		// 			arr[j]=arr[j+1];
+		// 			arr[j+1]=temp;
+		// 		}
+		// 	}
+		// }
+		// console.log(arr);
+// *****************************************************
+		// var arr=[4,6,7,8,4,4,3,2,1,0,4,3];
+		// var arr1=[];
+		// for(var i=0;i<arr.length;i++){
+		// 	arr1[i]=0;
+		// }
+		// console.log(arr1);
+		// for(var i=0;i<arr.length;i++){
+		// 	arr1[arr[i]]++;
+		// }
+		// console.log(arr1);
+
+		// var arr2=[];
+		// var count=0;
+		// for(var i=0;i<arr.length;i++){
+		// 	for(var j=0;j<arr1[i];j++){
+		// 		count++;
+		// 		arr2.push(i);
+		// 	}
+		// }
+		// console.log(arr,arr2);
+// ******************************************************
+/******************************************************
+		var arr=[2,4,5,7,7,8,1,2,3];
+		var arr1=[];
+	
+		for(var i=0;i<arr.length;i++){
+			arr1[i]=0;
+		}
+
+		for(var i=0;i<arr.length;i++){
+			arr1[arr[i]]++;
+		}
+		console.log(arr1);
+
+
+		var arr2=[];
+		count=0;
+		for(var i=0;i<arr.length;i++){
+			for(var j=0;j<arr1[i];j++){
+				count++;
+				arr2.push(i);
+			}
+		}
+		console.log(arr2);
+**********************************************************/
+	var arr=[1,2,5,4,6];
+	var obj={name:"周娜",age:20};
+	console.log(Object.prototype.toString.call(arr));
+	console.log(Object.prototype.toString.call(obj));
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</html>

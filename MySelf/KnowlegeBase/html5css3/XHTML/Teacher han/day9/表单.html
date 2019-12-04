@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单-form</title>
+	<style>
+		input{
+			/**/
+			outline: none;
+			width:300px;
+			height:30px;
+			border:none;
+			/*background:url("https://i.jingyingba.com/images/41_icon.png") 0 0 no-repeat gray;*/
+			font-size:16px;
+			padding:0 20px;
+
+		}
+		/* focus 鼠标点击输入框触发的状态(聚焦)*/
+		/*input:focus{
+			background-position:0 -50px;
+		}*/
+		.username{
+			width:400px;
+			height:30px;
+			padding-left:20px;
+			border:1px #000 solid;
+		}
+		label,input[type="text"]{
+			display: block;
+			float:left;
+		}
+	</style>
+</head>
+<body>
+	<!-- 表单 创建一个表单区域 双标签 块级 -->
+	<!-- action 提交后台的地址  -->
+	<!-- method 提交信息/数据的方式 get post -->
+
+	<!-- restfull API 规范 -->
+	<form action="" method="" target="_blank">
+		<!-- 表单元数据 input 单标签 行块级-->
+		<!-- type="text" 定义文本输入框-->
+		<!-- type="password" 定义密码输入框 -->
+		<!-- type="submit" 定义数据 信息提交按钮-->
+		<!-- type="reset" 定义重置信息 数据按钮-->
+		<!-- name="" 定义数据名称（字段名称） -->
+		<!-- value="" 定义默认值|信息 -->
+		<!-- placeholder="" 定义提示信息-->
+		<div class="username">
+
+			<!-- lable 关联标签 双标签 -->
+			<!-- for属性 通过id名称进行关联 -->
+			<label for="username">用户名:</label>
+			<input id="username" type="text" name="username" placeholder="请输入您的用户名"/>
+			<span>x</span>
+		</div>
+		<div class="password">
+			<label for="password">密　码:</label>
+			<input id="password" type="password" name="password" placeholder="请输入您的密码"/>
+		</div>
+		<!-- <input type="password" name="password" value="123"/>
+		<input type="submit" value="登录"/>
+		<input type="reset" value="清空"/> -->
+	</form>
+</body>
+</html>

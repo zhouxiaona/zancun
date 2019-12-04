@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>星级评分</title>
+		<style type="text/css">
+			.box{
+				line-height: 30px;
+				position: relative;
+			}
+			.box *{
+				float: left;
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+				list-style: none
+			}
+			li{
+				border: 1px solid blue;
+				width: 30px;
+				height: 30px;
+				margin: 0 0px;
+			}
+			.info{
+				display: none;
+			}
+			.box div{
+				border: 2px solid gold;
+				width: 200px;
+				height: 50px;
+				float: none;
+				position: absolute;
+				top: 40px;
+				display: none;
+			}
+			.scores{
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<span>点击星星就能打分</span>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<span class="info">
+				<span class="scores">3分</span>
+				<span class="shuoming">(质量一般，没有卖家描述那么好)</span>
+			</span>
+			<div></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var arr=["1分",'2分','3分','4分','5分'];
+		var arr2=['很不好','不好','一般','好','非常好'];
+		var lis=document.getElementsByTagName('li');
+		var div=document.querySelector('.box div');
+		var scores=document.querySelector('.info .scores');
+		var shuoming=document.querySelector('.info .shuoming');
+		var info=document.querySelector('.info');
+		var score=0;
+		for(var i=0;i<lis.length;i++){
+			lis[i].index=i;
+			//鼠标移入：鼠标之前的li黄，之后白
+			lis[i].onmouseover=function(){
+				div.innerHTML=arr[this.index];
+				div.style.left=(50+this.index*32)+'px';
+				div.style.display='block';
+				
+				for(var i=0;i<lis.length;i++){
+					if(i<=this.index){
+						lis[i].style.backgroundColor='yellow';
+					}else{
+						lis[i].style.backgroundColor='white';
+					}
+				}
+			}
+			//点击：记录和更改分数
+			lis[i].onclick=function(){
+				score=this.index+1;
+				div.style.display='none';
+				info.style.display='block';
+				scores.innerHTML=arr[this.index];
+				shuoming.innerHTML=arr2[this.index];
+
+			}
+			//鼠标移出：分数之前的li黄，之后白
+			lis[i].onmouseout=function(){
+				div.style.display='none';
+				for(var i=0;i<lis.length;i++){
+					if(i<score){
+						lis[i].style.backgroundColor='yellow';
+					}else{
+						lis[i].style.backgroundColor='white';
+					}
+				}
+			}
+		}
+		
+		
+		
+	</script>
+</html>

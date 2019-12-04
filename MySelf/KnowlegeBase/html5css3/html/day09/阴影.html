@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>box-shadow</title>
+		<style type="text/css">
+			div{
+				width: 600px;
+				height: 100px;
+				background-color: black;
+				margin: 100px auto;
+				color: white;
+				text-align: center;
+				line-height: 100px;
+				font-size: 40px;
+				/* border-radius: 50%; */
+				/* 盒子阴影box-shadow: 
+						第一个值：阴影水平位置
+						第二个值：阴影垂直位置
+						第三个值：阴影模糊距离
+						第四个值：阴影尺寸(增加的尺寸)
+						第五个值：阴影颜色
+						第六个值：内置阴影*/
+				/* box-shadow: 0px 0px 10px 20px orange,0px 0px 10px 20px black; */
+
+				/* text-shadow: ; */
+				text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 50px #fff, 0 0 40px #ff00de, 0 0 40px #ff00de;
+				animation: donghua 2s ease infinite;
+			}
+			@keyframes donghua{
+				0%{
+					text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 50px #fff, 0 0 40px #ff00de, 0 0 40px #ff00de;
+				}
+				50%{
+					text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 100px #fff, 0 0 70px #ff00de, 0 0 100px #ff00de;
+				}
+				100%{
+					text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 200px #fff, 0 0 70px #ff00de, 0 0 200px #ff00de;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div>白茶清欢无别事，我在等风也等你</div>
+	</body>
+</html>

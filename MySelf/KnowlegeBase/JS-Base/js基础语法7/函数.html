@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>函数</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		// 函数
+		//合计和商品件数
+		
+
+		//定义一个函数
+		// function change(){
+		// 	console.log("合计的innerHTML=小计之和");
+		// 	console.log("for循环  循环所有的复选框");
+		// 	console.log("判断，如果复选框勾选就count+1");
+		// 	console.log("件数的innerhtml = count");
+		// }
+		//调用函数
+		// change();
+
+
+
+
+		// 函数的定义
+		// [函数]就是能够执行某个特殊功能的代码段。一般一个函数代表一个功能.
+		// [参数]是函数执行的过程中我们需要提供的信息.
+		// [返回值]是函数执行完毕后给我们的返回信息.
+		
+		// 函数是否需要返回值和参数，取决于这个函数的功能
+		
+		// function 函数名(参数1,参数2,参数3,...,参数n){
+			
+		// 	return;//返回值
+		// }
+
+
+
+
+
+
+
+		// function Fn(num1,num2){
+		// 	var ji=num1*num2;
+		// 	//return 只能返回一个值
+		// 	// 可以把需要返回的值放到一个数组里.
+		// 	//return后面的代码不会被执行
+		// 	// return ji;
+		// }
+		// var res1=Fn(2,5);
+		// var res2=Fn(56,78);
+		// console.log(res1,res2);
+
+
+		//参数名的命名规则和变量命名规则相同，不能以数字开头
+		//封装:面向对象的一个特点，
+		//面向对象三大特征：封装　继承　多态
+		// function sumS(n){
+		// 	var sum=0;
+		// 	for(var i=1;i<=n;i++){
+		// 		sum+=i;
+		// 	}
+		// 	return sum;
+		// }
+		// console.log(sumS(9));
+
+
+
+		//函数的作用域
+		//函数外面定义的变量叫[全局变量]，可以在函数内部使用.
+		//函数内部定义的变量叫[局部变量]，只能在函数内部使用.
+		//函数内部声明的变量如果不加var，也是全局变量
+		//函数外部使用这个变量之前一定要先执行这个函数，不推荐这个写法
+		//如果全局变量和局部变量有冲突，使用局部变量
+		//是作用域比较近的（小的）
+		
+
+
+
+
+
+		//变量声明提前
+		// console.log(aaa);
+		// var aaa=10;
+
+
+
+		var numB=19;
+		function fn(){
+			numA=10;
+			console.log(numB);
+		}
+		// fn();
+		console.log(numA);
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
