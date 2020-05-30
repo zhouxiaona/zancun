@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+// 深拷贝,json.Parse(json.stringify()) 
+// 缺点：不能拷贝undefined,function,正则表达式
+// function deepCopy(obj){
+//     let res=Array.isArray(obj)?[]:{}
+//     for(let i in obj){
+//         if(obj.hasOwnProperty(i)){
+//             if(typeof obj[i]==='object'&&obj[i]!== null){
+//                 res[i]=deepCopy(obj[i])
+//             }else{
+//                 res[i]=obj[i]
+//             }
+//         }
+//     }
+// }
+
+// var obj1 = [{
+//     name: '臧三',
+//     childs: ['小明', '小芳'],
+//     fn: function() {},
+//     age: undefined
+// }]
+// let obj2 = deepCopy(obj1)
+// obj2[0].childs = []
+// console.log(obj1)
+// console.log(obj2)
+
+    // var a={key1: "11111"}
+    // function Copy(p){
+    //     var c ={};
+    //     for (var i in p){
+    //         c[i]=p[i]
+    //     }    
+    //     return c;
+    // }
+    // a.key2 = ["小辉","小辉"]
+    // var b = Copy(a);
+    // // b.key2=['lala','haha']
+    // b.key2.push('lala')
+    // b.key3 = "33333"
+    // console.log(a.key1)
+    // console.log(a.key2)
+    // console.log(a.key3)//undefined
+
+    // console.log(b.key1)//11111
+    // console.log(b.key2)
+    // console.log(b.key3)//33333
+    // let obj={name:'haha',gender:[1,2,3]}
+    // // let obj2 = Object.assign({},obj)
+    // let obj2 = deepCopy(obj)
+    // obj2.age=18
+    // obj2.gender.push(4)
+    // console.log(obj)
+    // console.log(obj2)
+
+    // let arr = [1,2,3,4]
+    // let arr1=arr;
+    // arr1[4]=5
+    // console.log(arr)
+    // console.log(arr1)
+    
+    // 对象去重:使用reduce函数
+    // var person = [
+    //     { id: 0, name: "小明" },
+    //     { id: 1, name: "小张" },
+    //     { id: 2, name: "小李" },
+    //     { id: 3, name: "小孙" },
+    //     { id: 1, name: "小周" },
+    //     { id: 2, name: "小陈" },
+    // ];
+    // let obj={}
+    // person = person.reduce((prev,next)=>{
+    //     obj[next.id]?'':obj[next.id]=true&&prev.push(next)
+    //     return prev;
+    // },[])
+
+    // let obj={}
+    // person=person.reduce((prev,next)=>{
+    //     obj[next.id]?'':obj[next.id]=true&&prev.push(next)
+    //     return prev
+    // },[])
+
+    // var obj = {};
+    // person = person.reduce((cur, next) => {
+    //     obj[next.id] ? "" : obj[next.id] = true && cur.push(next);
+    //     return cur;
+    // }, []) //设置cur默认类型为数组，并且初始值为空的数组
+    // console.log(person,'person')
+    // let arr = [1,2,3,3,4,4,5]
+    // console.log(new Set(arr))
+
+    // let obj={}
+    // person = person.reduce((prev,next)=>{
+    //     obj[next.id]?'':obj[next.id]=true&&prev.push(next)
+    //     return prev
+    // },[])
+    // console.log(person)
+
+// 数组对象去重
+// let testObj={}
+// let persons=[{name:'haha',age:16},{name:'lala',age:17},{name:'haha',age:18}]
+// persons=persons.reduce((prev,next)=>{
+//     testObj[next.name]?'':testObj[next.name]=true&&prev.push(next)
+//     return prev
+// },[])
+// console.log(persons)
+
+</script>
+</html>

@@ -153,7 +153,7 @@
   // 先排序后去重
   // let array = [1, 1,'1', 5, 4, 5, 2]
   // array.sort(function(a,b){
-  //   return a - b
+  //   return b - a
   // })
   // console.log(array)
   // function Unique(array) {
@@ -171,6 +171,14 @@
   //   }
   //   return res
   // }
+  
+  console.log(a) // undefined
+  console.log(b) // Uncaught ReferenceError: Cannot access 'b' before initialization
+
+  var a = 10;
+  let b = 20;
+ 
+
 
   // function Unique (arr) {
   //   const seen = new Map()
@@ -212,11 +220,12 @@
 // console.log(!!null)// false
 // console.log(!!undefined) //false
 
-let ob1={a1:1,a2:2}
-let ob2={a1:2,a3:3}
+// let ob1={a1:1,a2:2}
+// let ob2={a1:2,a3:3}
 
-obj={...ob1,...ob2}
-obj=Object.assign(ob1,ob2)
+// obj={...ob1,...ob2}
+// console.log(obj,'obj==')
+// obj=Object.assign(ob1,ob2)
 
 </script>
 </html>

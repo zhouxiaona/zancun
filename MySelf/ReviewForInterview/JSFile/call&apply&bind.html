@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // call  apply  bind
+    // 1,传参形式不同 call(this,a,b,c) apply(this,[a,b,c]) bind(this,a,b,c)
+    // 2，
+
+    function fn(a, b, c) {
+        console.log(a, b, c);
+    }
+    var fn1 = fn.bind(null, 'Dot');
+
+    fn('A', 'B', 'C');            // A B C
+    fn1('A', 'B', 'C');           // Dot A B
+    fn1('B', 'C');                // Dot B C
+    fn.call(null, 'A','B','C');      // Dot undefined undefined
+</script>
+</html>

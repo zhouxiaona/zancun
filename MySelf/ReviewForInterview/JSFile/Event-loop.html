@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // console.log('one');
+    // setTimeout(function() {
+    //     console.log('two');
+    // }, 0);
+    // Promise.resolve().then(function() {
+    //     console.log('three');
+    // })
+    // console.log('four');
+    // one four three two
+
+    // console.log(1);
+    // setTimeout(() => {
+    //     console.log(2);
+    //     Promise.resolve().then(() => {
+    //         console.log(3)
+    //     });
+    // });
+    // new Promise((resolve, reject) => {
+    //     console.log(4)
+    //     resolve(5)
+    // }).then((data) => {
+    //     console.log(data);
+    // })
+    // setTimeout(() => {
+    //     console.log(6);
+    // })
+    // console.log(7);
+
+    // const promise = new Promise((resolve,reject)=>{
+    //     console.log(1)
+    //     resolve('success')
+    //     console.log(2)
+    // })
+    // promise.then(()=>{
+    //     console.log(3)
+    // })
+    // console.log(4)
+
+    // const test = new Promise((resolve,reject)=>{
+    //     resolve(22)
+    //     console.log(11)
+    // })
+    // console.log(test,'--test--')
+
+console.log('script start')
+async function async1() {
+    await async2()
+    console.log('async1 end')
+}
+async function async2() {
+    console.log('async2 end')
+}
+async1()
+
+setTimeout(function() {
+    console.log('setTimeout')
+}, 0)
+
+new Promise(resolve => {
+    console.log('Promise')
+    resolve()
+})
+.then(function() {
+    console.log('promise1')
+})
+.then(function() {
+    console.log('promise2')
+})
+
+console.log('script end')
+
+// script start
+// async2 end
+// Promise
+// script end
+// async1 end
+// promise1
+// promise2
+// setTimeout
+
+</script>
+</html>

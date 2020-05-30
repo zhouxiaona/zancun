@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .test{
+        /* width: 20vw;
+        height: 20vw; */
+        width: 20%;
+        height: 0;
+        padding-bottom: 20%;
+        background: pink;
+    }
+</style>
+<body>
+    <div class="test">hahahah</div>
+</body>
+<script src='../common/jquery-3.2.1.min.js'></script>
+<script>
+    window.onload = function(){
+        var html = "";
+        html += 
+        `
+        <div onclick="test()">点击触发</div>
+        `
+        $("body").append(html);     
+    }
+    function test(){
+        console.log(1)
+    }
+
+    function myTag(str,name,age){
+        console.log(str,'str--')
+        let str0=str[0]
+        let str1=str[1]
+        let ageStr;
+        if(age>18){
+            ageStr='haha'
+        }else{
+            ageStr='lala'
+        }
+        return str0+name+str1+ageStr
+    }
+    let name='kaka'
+    let age=20
+    let res = myTag`my name is ${name},age is ${age}`
+    console.log(res,'res--')
+    let strs = 'ajdhsjcfndsd';
+    console.log(strs.endsWith('ds'));
+    console.log `hah${1}jnsj`
+</script>
+</html>

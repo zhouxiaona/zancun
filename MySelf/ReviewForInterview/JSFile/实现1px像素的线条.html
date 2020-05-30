@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .line{
+        position: relative;
+        border: none;
+        margin: 50px;
+    }
+    .line::after{
+        width: 100%;
+        height: 1px;
+        display: block;
+        content: '';
+        background: #ccc;
+        -webkit-transform: scaleY(0.5);	
+        transform: scaleY(0.5);	
+        -webkit-transform-origin: 0 0;	
+        transform-origin: 0 0;
+    }
+    .scale{
+        width: 100%;
+        height: 1px;
+        background: #ccc;
+    }
+    .shadow{
+        margin: 30px;
+        box-shadow: inset 0px -1px 1px -1px #ccc;
+    }
+</style>
+<body>
+    <div class="line"></div>
+    <div class="scale"></div>
+    <div class="shadow"></div>
+    <!-- 1,使用scale+伪元素 
+        2，使用viewport+meta标签实现==》flexible.js实现
+        3，使用box-shadow模拟边框实现-->
+</body>
+
+</html>

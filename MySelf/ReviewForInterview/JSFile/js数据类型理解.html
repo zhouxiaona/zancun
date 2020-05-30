@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    js基础数据类型：Number,String,Boolean,null,undefined,symbol
+    js引用数据类型：Object Array function 
+    基础数据类型，栈存储，引用数据类型，堆存储
+
+    */
+    // var a = [1,2,3,4,5];
+    // var b = a; //传址 ,对象中传给变量的数据是引用类型的，会存储在堆中；
+    // var c = a[0]; //传值，把对象中的属性/数组中的数组项赋值给变量，这时变量C是基本数据类型，存储在栈内存中；改变栈中的数据不会影响堆中的数据
+    // alert(b); //1,2,3,4,5
+    // alert(c); //1
+    // //改变数值 
+    // b[4] = 6;
+    // c = 7;
+    // alert(a[4]);//6
+    // alert(a[0]);//1
+
+    // var a = {key1: "11111"}
+    // function Copy(p){
+    //     var c ={};
+    //     for (var i in p){
+    //         c[i]=p[i]
+    //     }    
+    //     return c;
+    // }
+    // a.key2 = ["小辉","中辉"]
+    // var b = Copy(a);
+    // console.log(a,b)
+    // b.key3 = {name:'lala'}
+    // console.log(b.key3)//33333
+    // console.log(a.key3);//undefined
+    // b.key2.push('haha')
+    // console.log(a,bs)
+
+    /* const关键字 */
+    // const a = 1;
+    // a = 2;
+    // const b = {
+    //     name:'jack'
+    // };
+    // b.name = 'tom';
+
+    function Person(name,age){
+        this.name=name;
+        this.age=age;
+    }
+    function son(person){
+        person.name="张三"
+        console.log(person,'333')
+        person=new Person('李四',23)
+        console.log(person,'person3')
+    }
+    var person = new Person('lala',18)
+    console.log(person.name,'1')
+    son(person)
+    console.log(person.name,'2',person)
+    
+</script>
+</html>
