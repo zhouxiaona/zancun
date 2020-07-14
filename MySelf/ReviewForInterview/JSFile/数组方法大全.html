@@ -17,20 +17,20 @@
     // some(function(item,index,array){}),  true or false
     // every(function(item,index,array){}), true or false
     // forEach(function(item,index,array){}) 无返回值
-    // let arrObject = [
-    //     {
-    //         count: 1,
-    //         name: 'haha',
-    //     },
-    //     {
-    //         count: 2,
-    //         name: 'nana',
-    //     },
-    //     {
-    //         count: 3,
-    //         name: 'lala',
-    //     },
-    // ]
+    let arrObject = [
+        {
+            count: 1,
+            name: 'haha',
+        },
+        {
+            count: 2,
+            name: 'nana',
+        },
+        {
+            count: 3,
+            name: 'lala',
+        },
+    ]
     
     // let testArr = arrObject.reduce(function(prev, cur, index, array){
     //     console.log(prev, cur, index, array)
@@ -39,12 +39,12 @@
     // },{count:100,name:'haha'})
     // console.log(testArr,'testArr===')
 
-    // let obj = arrObject.reduce((inittial,item)=>{
-    //     inittial.countSum += item.count;
-    //     inittial.nameArr.push(item.name);
-    //     return inittial;
-    // },{countSum:0, nameArr:[]})
-    // console.log(obj,'obj==')
+    let obj = arrObject.reduce((inittial,item)=>{
+        inittial.countSum += item.count;
+        inittial.nameArr.push(item.name);
+        return inittial;
+    },{countSum:0, nameArr:[]})
+    console.log(obj,'obj==')
 
     // let res = arrArray.reduce(function(res, cur, index, array) {
     //     console.log(res,cur,index,array)
@@ -130,19 +130,19 @@
     // console.log(arr,'====',tempArr)
     
     // 返回一个数字中有几个百分位等于个位，且不等于十位的三位数的个数
-    let num = 123213314145251251254787112434 
-    console.log(num.length,'numArr=======')
-    let numArr = num.toString().split("")
-    let resArr = []
-    console.log(numArr.length,'numArr=======')
-    for(let i = 0; i < numArr.length; i++){
-        if(i+2 > numArr.length){break;}
-        if(numArr[i] === numArr[i+2] && numArr[i] !== numArr[i+1] && numArr[i+1] !== numArr[i+2]){
-            let nums = numArr[i] + numArr[i+1] + numArr[i+2]
-            resArr.push(nums)
-        }
-    }
-    console.log(resArr,'===>',resArr.length)
+    // let num = 123213314145251251254787112434 
+    // console.log(num.length,'numArr=======')
+    // let numArr = num.toString().split("")
+    // let resArr = []
+    // console.log(numArr.length,'numArr=======')
+    // for(let i = 0; i < numArr.length; i++){
+    //     if(i+2 > numArr.length){break;}
+    //     if(numArr[i] === numArr[i+2] && numArr[i] !== numArr[i+1] && numArr[i+1] !== numArr[i+2]){
+    //         let nums = numArr[i] + numArr[i+1] + numArr[i+2]
+    //         resArr.push(nums)
+    //     }
+    // }
+    // console.log(resArr,'===>',resArr.length)
 
 
     // 返回字符串中没有重复字符的最长子串
@@ -176,14 +176,14 @@
     // console.log(Func(str))
 
     // 快速创建/指定长度/指定初始化内容/的数组
-    let arrForm = ['Andy','Sor','Andy','Red','Green']
-    let arr = [...Array(10).keys()]
-    let array = Array(10).fill(0)
-    // console.log(arr,'arr===') // 0,1,...,10
-    // console.log(0.1+0.2)
-    // console.log(array,'array===')
-    console.log(Array.from(new Set(arrForm)))
-    console.log([...new Set(arrForm)])
+    // let arrForm = ['Andy','Sor','Andy','Red','Green']
+    // let arr = [...Array(10).keys()]
+    // let array = Array(10).fill(0)
+    // // console.log(arr,'arr===') // 0,1,...,10
+    // // console.log(0.1+0.2)
+    // // console.log(array,'array===')
+    // console.log(Array.from(new Set(arrForm)))
+    // console.log([...new Set(arrForm)])
 
     
     // 小数计算函数0.1 + 0.2 !== 0.3
@@ -248,7 +248,7 @@
     // console.log(Flatten(arr))
 
     // 冒泡排序
-    // let arr = [1,3,4,5,5,3,2,6,8,7,4,3,2,0]
+    // let arr = [1,3,4,5,5,3,2,6,8,7,4,3,2]
     // for(let i = 0; i < arr.length-1; i++){
     //   for(let j = 0; j < arr.length-1-i; j++){
     //     if(arr[j] > arr[j+1]){
@@ -259,6 +259,43 @@
     //   }
     // }
     // console.log(arr,'arr===')
-    
+
+    // 数组原型方法复习
+    // 1,join-把数组转成字符串，参数连接符，还可以实现重复字符串函数-原数组不变
+    // let arr = [1,2,3,4,5]
+    // let str = 'abc'
+    // function repeatStr(str,n){
+    //     return new Array(n+1).join(str)
+    // }
+    // console.log(repeatStr('abc',9))
+
+    // 2.push-pop-shift-unshift-返回被添加或删除的元素，返回数组的长度-改变原数组
+    // 3.sort-升序排列数组元素-每个元素调用toString()方法，-改变原数组
+    // sort自定义升序降序函数
+    // 升序-降序：
+    // function compare(val1,val2){
+    //     if(val1<vla2){
+    //         return -1;
+    //     }else if(val1>val2){
+    //         return 1;
+    //     }else{
+    //         return 0;
+    //     }
+    // }
+
+    // 4.reverse-翻转数组-改变原数组
+    // 5.concat-数组拼接-不改变原数组
+    // let arr = [1,2,3]
+    // console.log(arr.concat(8,9,[1,2,3,[8,9,9,0]]))
+    // console.log(arr)
+    // 6.
+
+   
+
+
+
+
+
+
 </script>
 </html>

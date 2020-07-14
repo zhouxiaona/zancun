@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    字符串方法：
+    1,字符串截取： substr(),slice(),substring()
+    */
+//    let str = 'asqkds'
+//    console.log(str.substring(2,0))
+//    console.log([...new Array.keys(10)])
+   /*
+   数组方法：
+   */
+  
+// 字符串算法：
+// 1.全部字母都是大写，比如"USA"。
+// 单词中所有字母都不是大写，比如"leetcode"。
+// 如果单词不只含有一个字母，只有首字母大写， 比如 “Google”。
+// 否则，我们定义这个单词没有正确使用大写字母。
+// charCodeAt()返回字符串指定位置字符的unicide码
+// A-Z：65-90
+// a-z: 97-122
+function func(str){
+    let unizero = str.charCodeAt(0)
+    if(unizero>=65&&unizero<=90){ // 首字母大写
+        for(let i=1;i<str.length;i++){
+            if(str.charCodeAt(i)>=97&&str.charCodeAt(i)<=122){
+                return false;
+            }
+        }
+    }
+    if(unizero>=97&&unizero<=122){ //首字母小写
+        for(let j=1;j<str.length;j++){
+            if(str.charCodeAt(j)>=65&&str.charCodeAt(j)<=90){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+console.log(func('leetcode'))
+
+</script>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* *{
+        margin: 0;
+        padding: 0;
+    }
+    .sidebar{
+        width: 200px;
+        height: 300px;
+        float: left;
+        background: blue;
+    }
+    .maincont{
+        height: 300px;
+        margin-left: 200px;
+        background: pink;
+    } */
+</style>
+<body>
+    <div id="div1">
+        <div id="div2">
+            <div id="div3">click me</div>
+        </div>
+    </div>
+</body>
+<script>
+    /*
+    target 和 currentTarget的区别“
+    target是触发事件对象
+    currentTarget是绑定事件处理程序的对象*/
+
+    let div1 = document.getElementById('div1'),
+    div2 = document.getElementById('div2'),
+    div3 = document.getElementById('div3');
+
+div1.addEventListener('click', (ev) => {
+  console.log(`target: ${ev.target.id}     currentTarget: ${ev.currentTarget.id}`);
+});
+
+div2.addEventListener('click', (ev) => {
+  console.log(`target: ${ev.target.id}     currentTarget: ${ev.currentTarget.id}`);
+});
+
+div3.addEventListener('click', (ev) => {
+  console.log(`target: ${ev.target.id}     currentTarget: ${ev.currentTarget.id}`);
+});
+let a = {name:'lla',age:18}
+let b=a;
+b.name="hha"
+console.log(a,b)
+</script>
+</html>

@@ -20,36 +20,70 @@
             line-height: 50px;
             color: black;
             font-size: 30px; 
+            border: 1px solid black;
             background-color: white;
         }
     </style>
     <body>
         <input type="text" class='inp'/>
     </body>
-    <script src='./common/jquery-3.2.1.min.js'></script>
+    <!-- <script src='./common/jquery-3.2.1.min.js'></script> -->
     <script>
         //事件实例 
-        var inp = document.getElementsByClassName('inp')[0]
-
+        // var inp = document.getElementsByClassName('inp')[0]
         // 防抖
-        // function debounce(action, delay, immediate) {
+        // function debounce(action, delay){
+        //     var timer = null
+        //     return function (){
+        //         if(timer){
+        //             clearTimeout(timer)
+        //         }
+        //         timer = setTimeout(()=>{
+        //             action.apply(this,arguments)
+        //         },delay)
+        //     }
+        // }
+        
+
+        // 防抖频繁操作只会执行delay时间之后的一次,  isNow 判断第一次操作会执行函数，其余不会变
+    //     function debounce(fn,delay,isNow){
+    //         let timer = null;
+    //         return function(){
+    //             if(timer) clearTimeout(timer)
+    //             if(isNow){
+    //                 let doNow = !timer
+    //                 timer=setTimeout(()=>{
+    //                     timer=null;
+    //                 },delay)
+    //                 doNow&&fn.call(this,arguments);
+    //             }else{
+    //                 timer = setTimeout(()=>{
+    //                     fn.call(this,arguments)
+    //                 },delay)
+    //             }
+    //         } 
+    //    }
+
+
+        // 加强版防抖,在await时间内频繁操作会重新生成计时器，但是 awaitTemp 时间到了之后会执行fn
+        // function debounce(action, awaitTemp){
+        //     let prevTemp = new Date()
         //     let timer = null
-        //     return function () {
-        //         if (timer) clearTimeout(timer)
-        //         if(immediate){
-        //             let doNow = !timer
-        //             timer = setTimeout(()=>{
-        //                 timer = null
-        //             },delay)
-        //             doNow && action.apply(this,arguments)
+        //     return function() {
+        //         let _this = this
+        //         let nowTemp = new Date()
+        //         if(nowTemp - prevTemp < awaitTemp){
+        //             if(timer){ clearTimeout(timer) }
+        //             timer = setTimeout(function(){
+        //                 action.apply(_this, arguments)
+        //             }, awaitTemp)
         //         }else{
-        //             timer = setTimeout(() => {
-        //                 action.apply(this, arguments);
-        //             }, delay)
+        //             action.apply(this, arguments)
+        //             prevTemp = nowTemp
         //         }
         //     }
         // }
-
+// =========================================
         // 节流
         // function throttle(action, delay){
         //     let start = new Date()
@@ -93,62 +127,7 @@
         //     }
         // }
 
-        // 防抖
-        // function debounce(action, delay){
-        //     var timer = null
-        //     return function (){
-        //         if(timer){
-        //             clearTimeout(timer)
-        //         }
-        //         timer = setTimeout(()=>{
-        //             action.apply(this,arguments)
-        //         },delay)
-        //     }
-        // }
-
-        // 防抖频繁操作只会执行delay时间之后的一次,  isNow 判断第一次操作会执行函数，其余不会变
-        // function debounce(action, delay, isNow){
-        //     let timer = null
-        //     return function(){
-        //         let _this = this
-        //         if(timer){
-        //             // 返回整型数值id,是setTimeout的唯一标识符,可用于取消setTimeout设置的函数
-        //             clearTimeout(timer)
-        //             // timer = null //该句删除
-        //         }
-        //         if(isNow && !timer){
-        //             // let doNow = !timer
-        //             action.apply(_this, arguments)
-        //             // timer = setTimeout(function(){
-        //             //     timer = null
-        //             // },delay)
-        //         }
-        //         // else{
-        //             timer = setTimeout(function(){
-        //                 action.apply(_this, arguments)
-        //             },delay)
-        //         // }
-        //     }
-        // }
-
-        // 加强版防抖,在await时间内频繁操作会重新生成计时器，但是 awaitTemp 时间到了之后会执行fn
-        function debounce(action, awaitTemp){
-            let prevTemp = new Date()
-            let timer = null
-            return function() {
-                let _this = this
-                let nowTemp = new Date()
-                if(nowTemp - prevTemp < awaitTemp){
-                    if(timer){ clearTimeout(timer) }
-                    timer = setTimeout(function(){
-                        action.apply(_this, arguments)
-                    }, awaitTemp)
-                }else{
-                    action.apply(this, arguments)
-                    prevTemp = nowTemp
-                }
-            }
-        }
+        
         
         // 节流1
         // function throttle(action, delay){
@@ -180,24 +159,73 @@
         //     }
         // }
        
-        function actionFunc(){
-            console.log(inp.value)
-        }
        
-        inp.oninput = debounce(actionFunc, 1000) // 防抖
+       
+        // let func = debounce(function(e){
+        //     console.log(inp.value,'--value--')
+        // },300,false)
+
+        // inp.addEventListener('input', func)
+        // inp.oninput = debounce(actionFunc, 1000) // 防抖
         // inp.oninput = throttle(actionFunc, 1000) // 节流
         
         // =====================<====================>
         // const throFun = () => console.log('hello')
-        // const thro = throttle(throFun, 300)
-        // const thro = debounce(throFun, 300)
+        // const thro = throttle(throFun, 1000)
+        // // const thro = debounce(throFun, 300)
         // document.body.onscroll = () => {
         //    // 节流==》调用至少间隔 300 毫秒才会触发一次
         //    // 防抖==》若一直调用则不会执行，空闲时间大于 300 毫秒才会执行
         //    thro()  
         // }
 
-        
+        // function func1(action,delay){
+        //     let timer=null;
+        //     return function(){
+        //         if(timer) clearTimeout(timer)
+        //         timre=setTimeout(()=>{
+        //             action.call(this,arguments)
+        //         },delay)
+        //     }
+        // }
+
+        // function func2(action,delay){
+        //     let start=new Date()
+        //     return function(){
+        //         let now=new Date()
+        //         if(now-start>delay){
+        //             action.call(this.arguments)
+        //             start=now
+        //         }
+        //     }
+        // }
+
+
+// 给定一个整形数组，找到一个具有最大和的子数组，返回其最大和。
+// 子数组必须满足：1、至少包含一个元素，2、子数组是原数组的连续片段
+// 样例：给定数组[−2,2,−3,4,−1,2,1,−5,3]，符合要求的子数组为
+// [4,−1,2,1]，其最大和为6
+let arr = [-2,2,-3,4,-1,2,1,-5,3];
+let arr2=[0,-1,2,-1,-2,-2]
+function func(arr){
+    let len = arr.length;
+    if(len == 0) return 0;
+    let maxSum = arr[0];
+    let t = 0;
+    for(let i=0; i<len; i++){
+        t += arr[i]
+        console.log()
+        if(t>maxSum){
+            maxSum=t
+        }
+        if(t<0){
+            t=0
+        }
+    }
+    return {maxSum};
+}
+console.log(func(arr2))
+
 
     </script>
 </html>

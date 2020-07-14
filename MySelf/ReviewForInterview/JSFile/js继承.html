@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // js继承
+    // 1.原型链继承:子级的原型指向父级的实例（）所有属性和方法被共享，不能传参。
+
+    // function Father(name,age){
+    //     this.name='lala';
+    //     this.age=18
+    //     this.func=function(){
+    //         console.log('func'+this.name)
+    //     }
+    // }
+    // Father.prototype.func2=function(){
+    //     console.log('func2'+this.name)
+    // }
+    // function Son(name){
+    //     this.func3=function(){
+    //         console.log('func3'+this.name)
+    //     }
+    // }
+    // Son.prototype=new Father()
+    // // Son.prototype.name='haha'
+    // let obj=new Son('WaWa')
+    // console.log(obj)
+    // obj.func()
+    // console.log(obj.age,obj.name)
+    // obj.func3()
+
+    // 2.构造函数继承:可以传参，但是所有属性和方法都在构造函数内，每创建一个对象
+    // 都会重复创建方法，造成内存浪费。
+    // function Person(name,age){
+    //     this.name=name;
+    //     this.age=age
+    //     this.sayName=function(){
+    //         console.log(this.name)
+    //     }
+    // }
+    // function Son(name,age){
+    //     Person.call(this,name,age)
+    //     this.sayName=function(){
+    //         console.log('lal'+this.name)
+    //     }
+    // }
+    // let obj=new Son('haha',18)
+    // obj.sayName()
+
+    // 3.组合式继承：原型链继承+构造函数继承
+    // function Father(name,age){
+    //     this.name=name;
+    //     this.age=age;
+    //     this.sayNames=function(){
+    //         console.log('Father'+this.name)
+    //     }
+    // }
+    // function Son(name,age){
+    //     Father.call(this,name,age)
+    //     this.sayName=function(){
+    //         console.log('Son'+this.name)
+    //     }
+    // }
+    // Son.prototype=Father.prototype
+    // Son.prototype=new Father()
+    // Son.prototype.constructor=Son
+    // let obj=new Son('lala',18)
+    // obj.sayNames()
+    // console.log()
+
+    // 4.寄生组合式继承
+    // function Person(name){
+    //     this.name=name;
+    // }
+    // Person.prototype.eat=function(){
+    //     console.log(this.name,'hahah',this.age)
+    // }
+    // function Son(name,age){
+    //     Person.call(this,name,age)
+    //     this.age=age
+    // }
+    // function Temp(){}
+    // Temp.prototype=Person.prototype
+    // let p = new Temp()
+    // Son.prototype=p
+    // Temp.constructor=Son
+    // let sonon=new Son('lala',18)
+    // console.log(sonon.name,'---',sonon.age)
+    // sonon.eat()
+
+    // 5.寄生式继承(在原型式继承上进一步封装)
+    // function func22(obj){
+    //     let o = createFunc(obj)
+    //     o.name=''
+    //     o.age=18
+    //     return o;
+    // }
+    
+    // 6.原型式继承
+    // function Per(){}
+    // function createF(obj){
+    //     function Temp(){}
+    //     Temp.prototype=obj
+    //     let o =new Temp()
+    //     return o;
+    // }
+    // let son=cresteF(Per.prototype)
+
+
+
+
+</script>
+</html>
