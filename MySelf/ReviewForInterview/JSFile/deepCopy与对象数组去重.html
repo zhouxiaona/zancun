@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
 <script>
-// 深拷贝,json.Parse(json.stringify()) 
-// 缺点：不能拷贝undefined,function,正则表达式
-// function deepCopy(obj){
-//     let res=Array.isArray(obj)?[]:{}
-//     for(let i in obj){
-//         if(obj.hasOwnProperty(i)){
-//             if(typeof obj[i]==='object'&&obj[i]!== null){
-//                 res[i]=deepCopy(obj[i])
-//             }else{
-//                 res[i]=obj[i]
-//             }
-//         }
-//     }
-// }
+    // 深拷贝,json.Parse(json.stringify()) 
+    // 缺点：不能拷贝undefined,function,正则表达式
+
+    function deepCopy(obj) {
+        let res = Array.isArray(obj) ? [] : {}
+        for (let i in obj) {
+            if (obj.hasOwnProperty(i)) {
+                if (typeof obj[i] === 'object' && obj[i] !== null) {
+                    res[i] = deepCopy(obj[i])
+                } else {
+                    res[i] = obj[i]
+                }
+            }
+        }
+    }
 
 // var obj1 = [{
 //     name: '臧三',
@@ -69,7 +72,7 @@
     // arr1[4]=5
     // console.log(arr)
     // console.log(arr1)
-    
+
     // 对象去重:使用reduce函数
     // var person = [
     //     { id: 0, name: "小明" },
@@ -117,4 +120,5 @@
 // console.log(persons)
 
 </script>
+
 </html>
