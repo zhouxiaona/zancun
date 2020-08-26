@@ -41,24 +41,24 @@
   // console.log(isEmptyObject(obj),isEmptyObject({}))
   // js判断一个对象是否是空对象
   // 1. 
-  function isEmpty(obj) {
-    for (let i in obj) {
-      return false
-    }
-    return true
-  }
+  // function isEmpty(obj) {
+  //   for (let i in obj) {
+  //     return false
+  //   }
+  //   return true
+  // }
   // 2.
-  function isEmpty2(obj) {
-    if (JSON.stringify(obj) === '{}') return true
-    return false
-  }
+  // function isEmpty2(obj) {
+  //   if (JSON.stringify(obj) === '{}') return true
+  //   return false
+  // }
   // 3.
-  function isEmpty3(obj) {
-    if (Object.keys(obj).length == 0) return true
-    return false
-  }
-  console.log(isEmpty3({}), 'empty')
-  console.log(isEmpty3({ a: 1, b: 2 }))
+  // function isEmpty3(obj) {
+  //   if (Object.keys(obj).length == 0) return true
+  //   return false
+  // }
+  // console.log(isEmpty3({}), 'empty')
+  // console.log(isEmpty3({ a: 1, b: 2 }))
 
   // 3.循环实现数组map方法,（高阶函数）必须return,返回一个新处理后的数组，不改变原数组
   //    let mapArr=[1,2,3,4,4,3,2,5,6]
@@ -157,372 +157,372 @@
     '3': ['jane', 'john', 'Mary'],
     length: 4
   }
+  let a = new Set([1, 2, 3, 4])
+  console.log(Array.from(a).length, '---------------------')
   let arr = Array.from(arrayLike)
   console.log(arr)  // [ undefined, undefined, undefined, undefined ]
   console.log(Array.from({ length: 20 }, (v, k) => k += 1))
-// console.log(Array.from(new Set(arr.flat(Infinity))).sort((a,b)=>{return a-b}))
-// 4-2.arr.concat(arr2),此函数连接两个数组，返回一个新数组，不改变原来的两个数组
-// let arr1=[1,2,5,4,2,2,1]
-// let arr2=[2,3,2,1]
-// console.log(arr1.concat(arr2),'--',arr1,'--',arr2)
-// console.log(new Set(arr1))
-//    var module = {
-//         x: 42,
-//         getX: function() {
-//             console.log('this', this)
-//             return this.x;
-//         }
-//     }
-//     var test = module.getX
-//     console.log(test()) // window undefined
-//     console.log(module.getX()) // module 42
+  // console.log(Array.from(new Set(arr.flat(Infinity))).sort((a,b)=>{return a-b}))
+  // 4-2.arr.concat(arr2),此函数连接两个数组，返回一个新数组，不改变原来的两个数组
+  // let arr1=[1,2,5,4,2,2,1]
+  // let arr2=[2,3,2,1]
+  // console.log(arr1.concat(arr2),'--',arr1,'--',arr2)
+  // console.log(new Set(arr1))
+  //    var module = {
+  //         x: 42,
+  //         getX: function() {
+  //             console.log('this', this)
+  //             return this.x;
+  //         }
+  //     }
+  //     var test = module.getX
+  //     console.log(test()) // window undefined
+  //     console.log(module.getX()) // module 42
 
-//    使用for循环实现filter()
-// Array.prototype.myFilter=function(fn,context){
-//     let arr = Array.prototype.slice.call(this)
-//     let newArr = []
-//     for(let i = 0;i<arr.length;i++){
-//         if(!arr.hasOwnProperty(i)) continue;
-//         fn.call(context,arr[i],i,this) && newArr.push(arr[i])
-//     }
-//     return newArr;
-// }
-// console.log(names.myFilter((item,index)=>{
-//     return item === 'Alice'
-// }))
+  //    使用for循环实现filter()
+  // Array.prototype.myFilter=function(fn,context){
+  //     let arr = Array.prototype.slice.call(this)
+  //     let newArr = []
+  //     for(let i = 0;i<arr.length;i++){
+  //         if(!arr.hasOwnProperty(i)) continue;
+  //         fn.call(context,arr[i],i,this) && newArr.push(arr[i])
+  //     }
+  //     return newArr;
+  // }
+  // console.log(names.myFilter((item,index)=>{
+  //     return item === 'Alice'
+  // }))
 
-// Array.prototype.selfFilter = function(fn,context){
-//     let arr = Array.prototype.slice.call(this)
-//     return arr.reduce((pre,cur,index)=>{
-//         return fn.call(context,cur,index,this)?[...pre,cur]:[...pre]
-//     },[])
-// }
+  // Array.prototype.selfFilter = function(fn,context){
+  //     let arr = Array.prototype.slice.call(this)
+  //     return arr.reduce((pre,cur,index)=>{
+  //         return fn.call(context,cur,index,this)?[...pre,cur]:[...pre]
+  //     },[])
+  // }
 
-// Array.prototype.mySome = function(fn,context){
-//     let arr = Array.prototype.slice.call(this)
-//     if(!arr.length) return false;
-//     for(let i=0;i<arr.length;i++){
-//         if(!arr.hasOwnProperty(i)) continue;
-//         if(fn.call(context,arr[i],index,this)) return true;
-//     }
-//     return false;
-// }
-// Array.prototype.myEvery = function(fn,context){
-//     let arr = Array.prototype.slice.call(this)
-//     if(!arr.length) return true;
-//     for(let i=0;i<arr.length;i++){
-//         if(!arr.hasOwnProperty(i)) continue;
-//         if(!fn.call(context,arr[i],i,this)) return false;
-//     }
-//     return true
-// }
+  // Array.prototype.mySome = function(fn,context){
+  //     let arr = Array.prototype.slice.call(this)
+  //     if(!arr.length) return false;
+  //     for(let i=0;i<arr.length;i++){
+  //         if(!arr.hasOwnProperty(i)) continue;
+  //         if(fn.call(context,arr[i],index,this)) return true;
+  //     }
+  //     return false;
+  // }
+  // Array.prototype.myEvery = function(fn,context){
+  //     let arr = Array.prototype.slice.call(this)
+  //     if(!arr.length) return true;
+  //     for(let i=0;i<arr.length;i++){
+  //         if(!arr.hasOwnProperty(i)) continue;
+  //         if(!fn.call(context,arr[i],i,this)) return false;
+  //     }
+  //     return true
+  // }
 
-// console.log([1,2,3,4,5,3,4,2].myEvery((item,index)=>{
-//     return item > 4
-// }))
+  // console.log([1,2,3,4,5,3,4,2].myEvery((item,index)=>{
+  //     return item > 4
+  // }))
 
-// let arrss = [1,2,3]
-// console.log(arrss.reduce((pre,cur,index,arrs)=>{
-//     console.log(pre,cur,index,arrs)
-//     return pre+=cur
-// }))
+  // let arrss = [1,2,3]
+  // console.log(arrss.reduce((pre,cur,index,arrs)=>{
+  //     console.log(pre,cur,index,arrs)
+  //     return pre+=cur
+  // }))
 
-// 循环实现reduce方法
-// Array.prototype.selfReduce = function(fn,initValue){
-//     let arr = Array.prototype.slice.call(this)
-//     let startIndex,
-//     res;
-//     if(initValue === undefined){
-//         for(let i=0;i<arr.length;i++){
-//             if(!arr.hasOwnProperty(i)) continue;
-//             startIndex = i;
-//             res = arr[i];
-//             break;
-//         }
-//     }else{
-//         res = initValue
-//     }
+  // 循环实现reduce方法
+  // Array.prototype.selfReduce = function(fn,initValue){
+  //     let arr = Array.prototype.slice.call(this)
+  //     let startIndex,
+  //     res;
+  //     if(initValue === undefined){
+  //         for(let i=0;i<arr.length;i++){
+  //             if(!arr.hasOwnProperty(i)) continue;
+  //             startIndex = i;
+  //             res = arr[i];
+  //             break;
+  //         }
+  //     }else{
+  //         res = initValue
+  //     }
 
-//     for(let j = ++startIndex||0; j < arr.length; j++){
-//         if(!arr.hasOwnProperty(i)) continue;
-//         res = fn.call(null,res,arr[j],j,this)
-//     }
-//     return res;
-// }
+  //     for(let j = ++startIndex||0; j < arr.length; j++){
+  //         if(!arr.hasOwnProperty(i)) continue;
+  //         res = fn.call(null,res,arr[j],j,this)
+  //     }
+  //     return res;
+  // }
 
-// Array.prototype.myReduce = function(fn,initValue){
-//     let arr = Array.prototype.slice.call(this)
-//     let startIndex,
-//     res;
-//     if(initValue === undefined){
-//         for(let i=0;i<arr.length;i++){
-//             if(!arr.hasOwnProperty(i)) continue;
-//             startIndex=i;
-//             res = arr[i]
-//             break;
-//         }
-//     }else{
-//         res = initValue
-//     }
-//     for(let i=++startIndex||0;i<arr.length;i++){
-//         if(!arr.hasOwnProperty(i)) continue;
-//         res = fn.call(null,res,arr[i],i,this)
-//     }
-//     return res;
-// }
-
-
-// console.log([1,2,3].myReduce((pre,cur,index)=>{
-//     return pre += cur
-// }))
-
-// Array.prototype.selfFlat = function(depth=1){
-//     let arr = Array.prototype.slice.call(this)
-//     if(depth === 0) return arr;
-//     return arr.reduce((pre,cur)=>{
-//         return Array.isArray(cur)?[...pre, ...selfFlat.call(cur,depth-1)]:[...pre, cur];
-//     },[])
-// }
-
-// Array.prototype.flats = function(depth=1){
-//     let arr = Array.prototype.slice.call(this)
-//     if(depth===0) return arr;
-//     return arr.reduce((pre,cur)=>{
-//         if(Array.isArray(cur)){
-//             return [...pre,...flats(cur,depth-1)]
-//         }else{
-//             return[...pre,cur]
-//         }
-//     },[])
-// }
-
-// let arrsss = [1,2,3,[2,3,4,[9,9,9]],[2,2,2]]
-// let newArr = arrsss.flats()
-// console.log(newArr)
-
-// 手动实现class语法
-// function inherit(subType,superType){
-//     subType.prototype=Object.create(superType.prototype,{
-//         constructor:{
-//             enumerable:false,
-//             configurable:true,
-//             writable:true,
-//             value:subType
-//         }
-//     })
-//     Object.setPrototypeOf(subType,superType)
-// }
-
-// function inherit(subType,superType){
-//     subType.prototype = Object.create(superType.prototype,{
-//         constructor:{
-//             enumerable:false,
-//             configurable:true,
-//             writable:true,
-//             value:subType
-//         }
-//     })
-//     Object.setPrototypeOf(subType,superType)
-// }
-
-// 函数柯里化
-// function curry(fn){
-//     // console.log(fn,'--fn--',fn.length) //第一个有默认值参数之前的形参个数
-//     if(fn.length<=1) return fn;
-//     const generator=(...args)=>{
-//         // console.log(args,'--args--')
-//         if(fn.length===args.length){
-//             return fn(...args)
-//         }else{
-//             return (...args2)=>{
-//                 console.log(args,'--args2--',args2)
-//                 return generator(...args,...args2)
-//             }
-//         }
-//     }
-//     return generator;
-// }
-// let add = (a,b,c,d) => a+b+c+d
-// let curriedAdd = curry(add)
-// // console.log(curriedAdd,'--curriedAdd--')
-// curriedAdd(1)(2)(3)(4)
-
-// function curry(fn){
-//     if(fn.length<=1)return fn;
-//     const generator = (...args)=>{
-//         if(args.length===fn.length){
-//             return fn(...args)
-//         }else{
-//             return(...args2)=>{
-//                 return generator(...args,...args2)
-//             }
-//         }
-//     }
-// }
-
-// 更优雅的处理try catch
-// async function errorCaptrue(asyncFunc){
-//     try{
-//         let res = await asyncFunc();
-//         return [null,res]
-//     }catch(err){
-//         return [err,null]
-//     }
-// }
-
-// let [err,res] = await errorCaptrue(asyncFunc)
+  // Array.prototype.myReduce = function(fn,initValue){
+  //     let arr = Array.prototype.slice.call(this)
+  //     let startIndex,
+  //     res;
+  //     if(initValue === undefined){
+  //         for(let i=0;i<arr.length;i++){
+  //             if(!arr.hasOwnProperty(i)) continue;
+  //             startIndex=i;
+  //             res = arr[i]
+  //             break;
+  //         }
+  //     }else{
+  //         res = initValue
+  //     }
+  //     for(let i=++startIndex||0;i<arr.length;i++){
+  //         if(!arr.hasOwnProperty(i)) continue;
+  //         res = fn.call(null,res,arr[i],i,this)
+  //     }
+  //     return res;
+  // }
 
 
+  // console.log([1,2,3].myReduce((pre,cur,index)=>{
+  //     return pre += cur
+  // }))
 
-// call,apply,bind的区别
-// const arrss = [1,2,3,4,5,6]
-// const max = Math.max.apply(null, arrss)
-// console.log(max) 
+  // Array.prototype.selfFlat = function(depth=1){
+  //     let arr = Array.prototype.slice.call(this)
+  //     if(depth === 0) return arr;
+  //     return arr.reduce((pre,cur)=>{
+  //         return Array.isArray(cur)?[...pre, ...selfFlat.call(cur,depth-1)]:[...pre, cur];
+  //     },[])
+  // }
 
+  // Array.prototype.flats = function(depth=1){
+  //     let arr = Array.prototype.slice.call(this)
+  //     if(depth===0) return arr;
+  //     return arr.reduce((pre,cur)=>{
+  //         if(Array.isArray(cur)){
+  //             return [...pre,...flats(cur,depth-1)]
+  //         }else{
+  //             return[...pre,cur]
+  //         }
+  //     },[])
+  // }
 
-// 有只猫叫小黑，小黑会吃鱼
-// const cat = {
-//     name: '小黑',
-//     eatFish(...args) {
-//         console.log('this指向=>', this);
-//         console.log('...args', args);
-//         console.log(this.name + '吃鱼');
-//     },
-// }
-// // 有只狗叫大毛，大毛会吃骨头
-// const dog = {
-//     name: '大毛',
-//     eatBone(...args) {
-//         console.log('this指向=>', this);
-//         console.log('...args', args);
-//         console.log(this.name + '吃骨头');
-//     },
-// }
+  // let arrsss = [1,2,3,[2,3,4,[9,9,9]],[2,2,2]]
+  // let newArr = arrsss.flats()
+  // console.log(newArr)
 
-// console.log('=================== call =========================');
-// 有一天大毛想吃鱼了，可是它不知道怎么吃。怎么办？小黑说我吃的时候喂你吃
-// cat.eatFish.call(dog, '汪汪汪', 'call')
-// 大毛为了表示感谢，决定下次吃骨头的时候也喂小黑吃
-// dog.eatBone.call(cat, '喵喵喵', 'call')
+  // 手动实现class语法
+  // function inherit(subType,superType){
+  //     subType.prototype=Object.create(superType.prototype,{
+  //         constructor:{
+  //             enumerable:false,
+  //             configurable:true,
+  //             writable:true,
+  //             value:subType
+  //         }
+  //     })
+  //     Object.setPrototypeOf(subType,superType)
+  // }
 
-// console.log('=================== apply =========================');
-// cat.eatFish.apply(dog, ['汪汪汪', 'apply'])
-// dog.eatBone.apply(cat, ['喵喵喵', 'apply'])
+  // function inherit(subType,superType){
+  //     subType.prototype = Object.create(superType.prototype,{
+  //         constructor:{
+  //             enumerable:false,
+  //             configurable:true,
+  //             writable:true,
+  //             value:subType
+  //         }
+  //     })
+  //     Object.setPrototypeOf(subType,superType)
+  // }
 
-// console.log('=================== bind =========================');
-// 有一天他们觉得每次吃的时候再喂太麻烦了。干脆直接教对方怎么吃
-// const test1 = cat.eatFish.bind(dog, '汪汪汪', 'bind')
-// const test2 = dog.eatBone.bind(cat, '喵喵喵', 'bind')
-// test1()
-// test2()
+  // 函数柯里化
+  // function curry(fn){
+  //     // console.log(fn,'--fn--',fn.length) //第一个有默认值参数之前的形参个数
+  //     if(fn.length<=1) return fn;
+  //     const generator=(...args)=>{
+  //         // console.log(args,'--args--')
+  //         if(fn.length===args.length){
+  //             return fn(...args)
+  //         }else{
+  //             return (...args2)=>{
+  //                 console.log(args,'--args2--',args2)
+  //                 return generator(...args,...args2)
+  //             }
+  //         }
+  //     }
+  //     return generator;
+  // }
+  // let add = (a,b,c,d) => a+b+c+d
+  // let curriedAdd = curry(add)
+  // // console.log(curriedAdd,'--curriedAdd--')
+  // curriedAdd(1)(2)(3)(4)
 
-// js中继承的几种方法：
-// 原型链继承-借用构造函数继承-组合继承-原型式继承-寄生式继承-寄生组合式继承-ES6 extends继承
-// function Person(name){ //给构造函数添加参数
-//     this.name=name
-//     this.sum=function(){
-//         alert(this.name)
-//     }
-// }
-// Person.prototype.age=10 // 给构造函数添加了原型属性
-// // 原型链继承：
-// function Per (){
-//     this.name='lala'
-//     // this.age=20
-// }
-// Per.prototype=new Person() // 让新实例的原型等于父类的实例
-// function Per2(){
-//     this.name="xixi"
-// }
-// Per2.prototype=new Person()
-// // instanceof 判断一个元素是否在另一个元素的原型链上
-// let per1 = new Per()
-// let per2 = new Per2()
-// console.log(per1.age)
-// per1.prototype.age = 222
-// console.log(per2.age)
+  // function curry(fn){
+  //     if(fn.length<=1)return fn;
+  //     const generator = (...args)=>{
+  //         if(args.length===fn.length){
+  //             return fn(...args)
+  //         }else{
+  //             return(...args2)=>{
+  //                 return generator(...args,...args2)
+  //             }
+  //         }
+  //     }
+  // }
 
-// console.log(per1.name)
-// console.log(per1 instanceof Person)
-// per1.sum()
-//特点： 实例可继承：  实例的构造函数属性，父类的构造函数属性，父类原型的属性(新实例不会继承父类实例的属性)
-// 缺点：新实例无法向父类构造函数传参。
-// 继承单一
-// 所有的实例会共享父类原型上的属性（有一个实例改了，其他的都会改）
+  // 更优雅的处理try catch
+  // async function errorCaptrue(asyncFunc){
+  //     try{
+  //         let res = await asyncFunc();
+  //         return [null,res]
+  //     }catch(err){
+  //         return [err,null]
+  //     }
+  // }
 
-
- //  借助构造函数继承
-// function Con(){
-//     Person.call(this,'jer')
-//     this.age=21
-// }
-// let con1 = new Con()
-// console.log(con1.age,con1.name)
-// 优缺点：
-// 只继承了父类的构造函数属性，没有继承父类的原型属性
- // 可以继承多个构造函数属性
- // 在子实例中可以向父实例传参数
-
- // 组合式继承
-//  function Has(name){
-//      Person.call(this,name)
-//  }
-//  Has.prototype = new Person()
-//  let has = new Has('lla')
- // 优缺点：
- // 可以继承父类原型上的属性，可以传参，可以复用。
- // 每个新实例引入的构造函数属性都是私有的。
- // 调用两次父类的构造函数，消耗内存。
-
- // 原型式继承
-//  function Have(obj){
-//      function F(){}
-//      F.prototype = obj;
-//      return new F()
-//  }
-//  let have = new Person()
-//  let have1 = Have(have)
-//  have1.age // 10
- // 用一个函数包装一个对象，返回这个函数的调用，这个函数就变成了可以任意增添属性的实例或对象
- // 所有实例都会继承原型上的属性，无法实现复用。
-
- // 寄生式继承
-//  function Hee(obj){
-//      function H(){}
-//      H.prototype = obj
-//      return new H()
-//  }
-//  let hep = new Person()
-// //  let hep1 = Hee(hep)
-// function subFunc(obj){
-//     let newObj = Hee(obj)
-//     newObj.name="nana"
-//     return newObj;
-// }
-// let newnew = subFunc(hep)
-// 创建了个新对象
-// 没用到原型，无法复用。
-
-// 寄生组合式继承
-// function H(obj){
-//     function G(){}
-//     G.prototype=obj;
-//     return new G()
-// }
-// let Con = H(Person.prototype)
-// function Sub(){
-//     Person.call(this)
-// }
-// Sub.prototype = Con
-// Con.constructor=Sub;
-// let subb = new Sub()
-// console.log(subb.age)
-
-// 修复了组合式继承的问题：组合式继承是原型链继承和借助构造函数继承
-// js中继承的方法：
-// 原型链继承-借助构造函数继承-组合式继承-原型式继承-寄生式继承-寄生组合式继承-ES6extends继承
+  // let [err,res] = await errorCaptrue(asyncFunc)
 
 
+
+  // call,apply,bind的区别
+  // const arrss = [1,2,3,4,5,6]
+  // const max = Math.max.apply(null, arrss)
+  // console.log(max) 
+
+
+  // 有只猫叫小黑，小黑会吃鱼
+  // const cat = {
+  //     name: '小黑',
+  //     eatFish(...args) {
+  //         console.log('this指向=>', this);
+  //         console.log('...args', args);
+  //         console.log(this.name + '吃鱼');
+  //     },
+  // }
+  // // 有只狗叫大毛，大毛会吃骨头
+  // const dog = {
+  //     name: '大毛',
+  //     eatBone(...args) {
+  //         console.log('this指向=>', this);
+  //         console.log('...args', args);
+  //         console.log(this.name + '吃骨头');
+  //     },
+  // }
+
+  // console.log('=================== call =========================');
+  // 有一天大毛想吃鱼了，可是它不知道怎么吃。怎么办？小黑说我吃的时候喂你吃
+  // cat.eatFish.call(dog, '汪汪汪', 'call')
+  // 大毛为了表示感谢，决定下次吃骨头的时候也喂小黑吃
+  // dog.eatBone.call(cat, '喵喵喵', 'call')
+
+  // console.log('=================== apply =========================');
+  // cat.eatFish.apply(dog, ['汪汪汪', 'apply'])
+  // dog.eatBone.apply(cat, ['喵喵喵', 'apply'])
+
+  // console.log('=================== bind =========================');
+  // 有一天他们觉得每次吃的时候再喂太麻烦了。干脆直接教对方怎么吃
+  // const test1 = cat.eatFish.bind(dog, '汪汪汪', 'bind')
+  // const test2 = dog.eatBone.bind(cat, '喵喵喵', 'bind')
+  // test1()
+  // test2()
+
+  // js中继承的几种方法：
+  // 原型链继承-借用构造函数继承-组合继承-原型式继承-寄生式继承-寄生组合式继承-ES6 extends继承
+  // function Person(name){ //给构造函数添加参数
+  //     this.name=name
+  //     this.sum=function(){
+  //         alert(this.name)
+  //     }
+  // }
+  // Person.prototype.age=10 // 给构造函数添加了原型属性
+  // // 原型链继承：
+  // function Per (){
+  //     this.name='lala'
+  //     // this.age=20
+  // }
+  // Per.prototype=new Person() // 让新实例的原型等于父类的实例
+  // function Per2(){
+  //     this.name="xixi"
+  // }
+  // Per2.prototype=new Person()
+  // // instanceof 判断一个元素是否在另一个元素的原型链上
+  // let per1 = new Per()
+  // let per2 = new Per2()
+  // console.log(per1.age)
+  // per1.prototype.age = 222
+  // console.log(per2.age)
+
+  // console.log(per1.name)
+  // console.log(per1 instanceof Person)
+  // per1.sum()
+  //特点： 实例可继承：  实例的构造函数属性，父类的构造函数属性，父类原型的属性(新实例不会继承父类实例的属性)
+  // 缺点：新实例无法向父类构造函数传参。
+  // 继承单一
+  // 所有的实例会共享父类原型上的属性（有一个实例改了，其他的都会改）
+
+
+  //  借助构造函数继承
+  // function Con(){
+  //     Person.call(this,'jer')
+  //     this.age=21
+  // }
+  // let con1 = new Con()
+  // console.log(con1.age,con1.name)
+  // 优缺点：
+  // 只继承了父类的构造函数属性，没有继承父类的原型属性
+  // 可以继承多个构造函数属性
+  // 在子实例中可以向父实例传参数
+
+  // 组合式继承
+  //  function Has(name){
+  //      Person.call(this,name)
+  //  }
+  //  Has.prototype = new Person()
+  //  let has = new Has('lla')
+  // 优缺点：
+  // 可以继承父类原型上的属性，可以传参，可以复用。
+  // 每个新实例引入的构造函数属性都是私有的。
+  // 调用两次父类的构造函数，消耗内存。
+
+  // 原型式继承
+  //  function Have(obj){
+  //      function F(){}
+  //      F.prototype = obj;
+  //      return new F()
+  //  }
+  //  let have = new Person()
+  //  let have1 = Have(have)
+  //  have1.age // 10
+  // 用一个函数包装一个对象，返回这个函数的调用，这个函数就变成了可以任意增添属性的实例或对象
+  // 所有实例都会继承原型上的属性，无法实现复用。
+
+  // 寄生式继承
+  //  function Hee(obj){
+  //      function H(){}
+  //      H.prototype = obj
+  //      return new H()
+  //  }
+  //  let hep = new Person()
+  // //  let hep1 = Hee(hep)
+  // function subFunc(obj){
+  //     let newObj = Hee(obj)
+  //     newObj.name="nana"
+  //     return newObj;
+  // }
+  // let newnew = subFunc(hep)
+  // 创建了个新对象
+  // 没用到原型，无法复用。
+
+  // 寄生组合式继承
+  // function H(obj){
+  //     function G(){}
+  //     G.prototype=obj;
+  //     return new G()
+  // }
+  // let Con = H(Person.prototype)
+  // function Sub(){
+  //     Person.call(this)
+  // }
+  // Sub.prototype = Con
+  // Con.constructor=Sub;
+  // let subb = new Sub()
+  // console.log(subb.age)
+
+  // 修复了组合式继承的问题：组合式继承是原型链继承和借助构造函数继承
+  // js中继承的方法：
+  // 原型链继承-借助构造函数继承-组合式继承-原型式继承-寄生式继承-寄生组合式继承-ES6extends继承
 
 
 
@@ -538,13 +538,15 @@
 
 
 
-    // let obj={a:1,b:2,c:3}
-    //console.log(Object.entries(obj))
-    // let obj2=[1,2,3]
-    // let obj3=[4,5,6]
-    // let obj4=Array.from(new Set([...obj2,...obj3]))
-    // let obj5=Array.from([...obj2,...obj3])
-    // console.log(obj5)
+
+
+  let obj = { a: 1, b: 2, c: 3 }
+  console.log(Object.entries(obj))
+  let obj2 = [1, 2, 3]
+  let obj3 = [4, 5, 6]
+  let obj4 = Array.from(new Set([...obj2, ...obj3]))
+  let obj5 = Array.from([...obj2, ...obj3])
+  console.log(obj5)
   //  var length = 10
   //       var fn1 = ()=> console.log(this.length)
   //       var fn2 = function(){
