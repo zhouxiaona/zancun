@@ -208,62 +208,100 @@
     // mro: 5 
     // mio: 2 7
 
-    // async function t1() {
-    //     console.log(1)
-    //     new Promise((resolve) => {
-    //         console.log(2)
-    //         resolve();
-    //     }).then(function () {
-    //         console.log(3)
-    //     })
-    //     await new Promise((resolve) => {
-    //         console.log(4)
-    //         resolve();
-    //     }).then(() => {
-    //         console.log(5)
-    //     })
-    //     console.log(6)
-    //     new Promise((resolve) => {
-    //         console.log(7)
-    //         resolve();
-    //     }).then(() => {
-    //         console.log(8)
-    //     })
-    // }
-    // setTimeout(() => {
-    //     console.log(9)
-    // }, 0)
-    // async function t2() {
-    //     console.log(10)
-    //     await Promise.resolve().then(() => console.log(11))
-    //     console.log(12)
-    // }
-    // t1()
-    // new Promise((resolve) => {
-    //     console.log(13)
-    //     resolve();
-    // }).then(() => {
-    //     console.log(14)
-    // })
-    // t2()
-    // console.log(15);
+    async function t1() {
+        console.log(1)
+        new Promise((resolve) => {
+            console.log(2)
+            resolve();
+        }).then(function () {
+            console.log(3)
+        })
+        await new Promise((resolve) => {
+            console.log(4)
+            resolve();
+        }).then(() => {
+            console.log(5)
+        })
+        console.log(6)
+        new Promise((resolve) => {
+            console.log(7)
+            resolve();
+        }).then(() => {
+            console.log(8)
+        })
+    }
+    setTimeout(() => {
+        console.log(9)
+    }, 0)
+    async function t2() {
+        console.log(10)
+        await Promise.resolve().then(() => console.log(11))
+        console.log(12)
+    }
+    t1()
+    new Promise((resolve) => {
+        console.log(13)
+        resolve();
+    }).then(() => {
+        console.log(14)
+    })
+    t2()
+    console.log(15);
     // 1 2 4 13 10 15 3 5 14 11 6 7 12 8 9
     // mro: 9 
     // mio: 3 5 14 11 8 
 
-    setTimeout(function () {
-        console.log('定时器开始啦')
-    });
-    new Promise(function (resolve) {
-        console.log('马上执行for循环啦');
-        for (var i = 0; i < 10000; i++) {
-            i == 99 && resolve();
-        }
-    }).then(function () {
-        console.log('执行then函数啦')
-    });
-    console.log('代码执行结束');
+    // setTimeout(function () {
+    //     console.log('定时器开始啦')
+    // });
+    // new Promise(function (resolve) {
+    //     console.log('马上执行for循环啦');
+    //     for (var i = 0; i < 10000; i++) {
+    //         i == 99 && resolve();
+    //     }
+    // }).then(function () {
+    //     console.log('执行then函数啦')
+    // });
+    // console.log('代码执行结束');
 
+
+    // console.log('1');
+    // setTimeout(function () {
+    //     console.log('2');
+    //     process.nextTick(function () {
+    //         console.log('3');
+    //     })
+    //     new Promise(function (resolve) {
+    //         console.log('4');
+    //         resolve();
+    //     }).then(function () {
+    //         console.log('5')
+    //     })
+    // })
+    // process.nextTick(function () {
+    //     console.log('6');
+    // })
+    // new Promise(function (resolve) {
+    //     console.log('7');
+    //     resolve();
+    // }).then(function () {
+    //     console.log('8')
+    // })
+    // setTimeout(function () {
+    //     console.log('9');
+    //     process.nextTick(function () {
+    //         console.log('10');
+    //     })
+    //     new Promise(function (resolve) {
+    //         console.log('11');
+    //         resolve();
+    //     }).then(function () {
+    //         console.log('12')
+    //     })
+    // })
+    // 1 7 6 8 2 4 3 5 9 11 10 12
+    // mro: 2 9
+    // mio: 10 12
 
 
 
