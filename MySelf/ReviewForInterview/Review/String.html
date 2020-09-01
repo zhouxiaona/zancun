@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 1. substr(beginIndex, length) 
+    // 2. slice（beginIndex, endIndex） 
+    // 3. substring(beginIndex, endIndex)
+    // let str = 'abcdefg'
+    // console.log(str.slice(2, 3), '--slice--') // c 
+    // console.log(str.substring(2, 3), '--substring--') // c
+    // console.log(str.substr(2, 3), '--substr--') // cde
+
+    let str2 = '12345678'
+    // 参数为负数：
+    // 1. slice(-2)与字符串长度相加
+    // console.log(str2.slice(-2)) // ==str2.slice(6) -> 78
+    // console.log(str2.slice(3, -2))// ==str2.slice(3,6) -> 456
+
+    // 2. substring(-2)把负数转为0
+    // console.log(str2.substring(-1)) // ==str2.substring(0) -> 12345678
+    // console.log(str2.substring(-1, 3)) // ==str2.substring(0,3) -> 123
+
+    // 3. substr(-1) 第一个参数是负数与slice相同，第二个参数为负数返回空字符串
+    // console.log(str2.substr(-2)) // ==str2.substr(6) ->78
+    // console.log(str2.substr(0, -3)) // ''
+
+    // 当第一个参数大于第二个参数
+    // slice会返回空字符串
+    // substring会调换参数位置
+</script>
+
+</html>
