@@ -11,14 +11,112 @@
 
 </body>
 <script>
-    // Object方法:
+    // 1. Object方法:
     // Object.getOwnPropertyNames(obj) // [key1, key2, ...]
-
-    // 
     // obj.hasOwnProperty(key) // Boolean
-
     // 在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回这个对象:
     // Object.defineProperty(obj,'keyName',descriptor)
+
+    // 2. 类数组:
+    // var obj = {
+    //     '2': 3,
+    //     '3': 4,
+    //     'length': 2,
+    //     'splice': Array.prototype.splice,
+    //     'push': Array.prototype.push
+    // }
+    // obj.push(1)
+    // obj.push(2)
+    // console.log(obj)
+
+    // 3.
+    // const arr = new Array(2)
+    // // 输出  2 [empty * 2]
+    // console.log(arr.length, arr)
+    // arr.push(1)
+    // // 输出  3 [empty * 2, 1]
+    // console.log(arr.length, arr)
+
+    // 4. arguments
+    // let obj = {
+    //     age: 18,
+    //     foo: function (func) {
+    //         func()
+    //         // console.log(arguments[0], '--arguments[0]--')
+    //         console.log(this, '--this2--')
+    //         arguments[0]()
+    //     }
+    // }
+    // var age = 10
+    // function fn() {
+    //     console.log(this, '--this1--')
+    //     console.log(this.age)
+    // }
+    // obj.foo(fn)
+    // const arr = [function () { console.log(this[1]) }, '我是子君']
+    // // 输出 我是子君
+    // console.log(arr[0]())
+
+    // 5. this指向问题
+    // var num = 1;
+    // let obj = {
+    //     num: 2,
+    //     add: function () {
+    //         console.log(this, '--add-this--') // obj
+    //         this.num = 3;
+    //         (function () {
+    //             console.log(this, '--自执行函数-this--') // window
+    //             console.log(this.num); // 1
+    //             this.num = 4;
+    //         })();
+    //         console.log(this.num); // 3
+    //     },
+    //     sub: function () {
+    //         console.log(this, '--sub-this--') // window
+    //         console.log(this.num) // 4
+    //     },
+    //     test: () => {
+    //         console.log(this, '--test-this--')
+    //     }
+    // }
+    // obj.add();
+    // console.log(obj.num); // 3
+    // console.log(num); // 4
+    // const sub = obj.sub;
+    // sub(); //
+    // obj.sub()// obj 3
+
+    // 5-1
+    // var num = 10
+    // const obj = { num: 20 }
+    // obj.fn = (function (num) {
+    //     console.log(this, '--this-obj.fn--', num) // window 20
+    //     this.num = num * 3 // 60
+    //     num++ // =20
+    //     console.log(num, '--num--', this.num) // 21  60
+    //     return function (n) {
+    //         console.log(this, '--retrun-fn--', n, '----this.num----', this.num, '---num---', num) // window  5
+    //         this.num += n
+    //         num++
+    //         console.log(this.num, '-----', num) // 65 22
+    //     }
+    // })(obj.num)
+    // // var fn = obj.fn
+    // // fn(5)
+    // obj.fn(10) // 30 
+    // console.log(num, obj.num)
+
+    // 6. 数据类型转换
+    // console.log(([1, 2] + []), '--1--')
+    // console.log({} + [1, 2], ({} + [1, 2]).length, '--2--')
+    // console.log(Boolean([]), '--3--')
+    // console.log(true + false, '--4--')
+    // console.log({} + {}, ({} + {}).length, '--5--')
+
+
+
+
+
 </script>
 
 </html>
