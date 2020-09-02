@@ -12,9 +12,24 @@
 </body>
 <script>
     // 数组扁平化
-    let arr = [1, [2, [3, [4, 5]]], 6];// -> [1, 2, 3, 4, 5, 6]
-    let str = JSON.stringify(arr);
-    console.log(typeof str, str)
+    // let arr = [1, [2, [3, [4, 5]]], 6];// -> [1, 2, 3, 4, 5, 6]
+    // let str = JSON.stringify(arr);
+    // console.log(typeof str, str)
+
+    // 快速生成指定长度的数组
+    // console.log([...new Array(100).keys()])
+
+    // 算法-数组乱序-随机排序
+    function upsetArr(arr) {
+        arr.sort(function (a, b) {
+            return Math.random() > 0.5 ? -1 : 1
+        })
+        return arr
+    }
+    console.log(upsetArr([1, 2, 3, 4, 5, 6, 7, 8, 9]))
+
+
+
 </script>
 
 </html>

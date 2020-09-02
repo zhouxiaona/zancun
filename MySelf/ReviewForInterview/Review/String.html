@@ -19,7 +19,7 @@
     // console.log(str.substring(2, 3), '--substring--') // c
     // console.log(str.substr(2, 3), '--substr--') // cde
 
-    let str2 = '12345678'
+    // let str2 = '12345678'
     // 参数为负数：
     // 1. slice(-2)与字符串长度相加
     // console.log(str2.slice(-2)) // ==str2.slice(6) -> 78
@@ -36,6 +36,20 @@
     // 当第一个参数大于第二个参数
     // slice会返回空字符串
     // substring会调换参数位置
+
+    console.log(1 + '1') // 11
+    console.log(true + 0) // 1
+    console.log({} + []) // [object Object]
+    console.log(4 + {}) // 4[object Object]
+    console.log(4 + [1]) // 41
+    console.log('a' + + 'b')
+    console.log([] == 0)
+    console.log(![] == 0)
+    console.log([] == ![])
+    console.log([] == [])
+    console.log({} == !{})
+    console.log({} == {})
+
 </script>
 
 </html>
