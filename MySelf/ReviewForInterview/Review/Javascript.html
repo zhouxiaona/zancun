@@ -28,6 +28,77 @@
     }
     console.log(upsetArr([1, 2, 3, 4, 5, 6, 7, 8, 9]))
 
+    // 给定一个单词，你需要判断单词的大写使用是否正确。
+    // 我们定义，在以下情况时，单词的大写用法是正确的：
+
+    // 全部字母都是大写，比如"USA"。
+    // 单词中所有字母都不是大写，比如"leetcode"。
+    // 如果单词不只含有一个字母，只有首字母大写， 比如 “Google”。
+    // 否则，我们定义这个单词没有正确使用大写字母。
+
+    // 示例 1:
+    // 输入: “USA”
+    // 输出: True
+
+    // 示例 2:
+    // 输入: “FlaG”
+    // 输出: False
+    // 注意: 输入是由大写和小写拉丁字母组成的非空单词。
+
+    // 解法一：
+    // 通过比较每个字符的Unicode编码进行判断，有以下几种情况
+    // 当第0位字符是小写，后面的字符也需要是小写， 如 w, word ,wORD
+    // 当第1位字符是小写，后面的字符也需要是小写， 如 h, character ,chAaracter
+    // 当第1位字符是大写，后面的字符也需要是大写。 如 P, UPPER ,UPper
+
+    // A-Z 对应的 Unicode 编码是 65 - 90
+    // a-z 对应的 Unicode 编码是 97 - 122
+    var detectCapitalUse = function (word) {
+        var uni, unizero, unione
+        for (var i = 1; i < word.length; i++) {
+            uni = word.charCodeAt(i)
+            unizero = word.charCodeAt(0)
+            unione = word.charCodeAt(1)
+            if (unizero >= 97 && unizero <= 122) { //第0位小写,后面也需要小写
+                if (uni < 97 || uni > 122) {
+                    return false;
+                }
+            } else if (unione >= 97 && unione <= 122) { //第1位小写，后面也需要小写
+                if (uni < 97 || uni > 122) {
+                    return false;
+                }
+            } else {
+                if (uni < 65 || uni > 90) { //否则都是大写
+                    return false;
+                }
+            }
+        }
+        return true;
+    };
+
+    //     解法二：
+    // 字符与字符之间对比大小
+
+
+    var detectCapitalUse = function (word) {
+        for (var i = 1; i < word.length; i++) {
+            if (word[0] >= 'a' && word[0] <= 'z') {
+                if (word[i] < 'a' || word[i] > 'z') {
+                    return false;
+                }
+            } else if (word[1] >= 'a' && word[1] <= 'z') {
+                if (word[i] < 'a' || word[i] > 'z') {
+                    return false;
+                }
+            } else {
+                if (word[i] < 'A' || word[i] > 'Z') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    };
+
 
 
 </script>
