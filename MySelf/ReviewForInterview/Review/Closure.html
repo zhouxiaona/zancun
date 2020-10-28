@@ -11,12 +11,150 @@
 
 </body>
 <script>
-    for (let i = 0; i < 5; i++) {
-        setTimeout(() => {
-            console.log(i);
-        }, 1000);
-    }
+    // for (let i = 0; i < 5; i++) {
+    //     setTimeout(() => {
+    //         console.log(i);
+    //     }, 1000);
+    // }
     // console.log(i)
+
+    // Promise-同步
+    // 1.Promise存在三个状态：pending（等待态）、fulfilled（成功态）、rejected（失败态）
+    const STATUS_PENDING = 'pending'
+    const STATUS_FULFILLED = 'fulfilled'
+    const STATUS_REJECTED = 'rejected'
+    class myPromise {
+        constructor(executor) {
+            // pending为初始态，并可以转化为fulfilled和rejected
+            this.status = STATUS_PENDING
+            this.value = '' // 3
+            this.reason = '' // 4
+
+            let resolve = value => {
+                // 5.
+                if (this.status === STATUS_PENDING) {
+                    this.status = STATUS_FULFILLED
+                    this.value = value
+                }
+            }
+            let reject = reason => {
+                //6.
+                if (this.status === STATUS_PENDING) {
+                    this.status = STATUS_REJECTED
+                    this.reason = reason
+                }
+            }
+            // 7.
+            try {
+                executor(resolve, reject);
+            } catch (err) {
+                reject(err);
+            }
+        }
+        // 8.
+        then(onFulfilled = () => { }, onRejected = () => { }) {
+            // 8.1
+            if (this.status === STATUS_FULFILLED) {
+                onFulfilled(this.value)
+            }
+            // 8.2
+            if (this.status === STATUS_REJECTED) {
+                onRejected(this.reason)
+            }
+        }
+    }
+    // new myPromise(resolve => {
+    //     console.log('before resolve')
+    //     resolve(1)
+    // }).then(res => {
+    //     console.log(res)
+    // })
+
+    // new myPromise((resolve, reject) => {
+    //     console.log('before reject')
+    //     reject('reject error')
+    // }).then(res => {
+    //     console.log(res)
+    // }, error => {
+    //     console.log(error)
+    // })
+
+
+    // class Promise {
+    //     constructor(executor) {
+    //         // 初始化state为等待态
+    //         this.state = 'pending';
+    //         // 成功的值
+    //         this.value = undefined;
+    //         // 失败的原因
+    //         this.reason = undefined;
+    //         let resolve = value => {
+    //             // state改变,resolve调用就会失败
+    //             if (this.state === 'pending') {
+    //                 // resolve调用后，state转化为成功态
+    //                 this.state = 'fulfilled';
+    //                 // 储存成功的值
+    //                 this.value = value;
+    //             }
+    //         };
+    //         let reject = reason => {
+    //             // state改变,reject调用就会失败
+    //             if (this.state === 'pending') {
+    //                 // reject调用后，state转化为失败态
+    //                 this.state = 'rejected';
+    //                 // 储存失败的原因
+    //                 this.reason = reason;
+    //             }
+    //         };
+    //         // 如果executor执行报错，直接执行reject
+    //         try {
+    //             executor(resolve, reject);
+    //         } catch (err) {
+    //             reject(err);
+    //         }
+    //     }
+
+    //     // then 方法 有两个参数onFulfilled onRejected
+    //     then(onFulfilled, onRejected) {
+    //         // 状态为fulfilled，执行onFulfilled，传入成功的值
+    //         if (this.state === 'fulfilled') {
+    //             onFulfilled(this.value);
+    //         };
+    //         // 状态为rejected，执行onRejected，传入失败的原因
+    //         if (this.state === 'rejected') {
+    //             onRejected(this.reason);
+    //         };
+    //     }
+    // }
+
+    class Promise {
+        constructor(executor) {
+            this.state = 'pending';
+            this.value = undefined
+            this.reason = undefined
+            let resolve = value => {
+                if (this.state == 'pending') {
+                    this.state = 'fulfilled'
+                    this.value = value
+                }
+            }
+            let reject = reason => {
+                if (this.state == 'pending') {
+                    this.state = 'rejected'
+                    this.reason = reason
+                }
+            }
+            try {
+                executor(resolve, reject)
+            } catch (err) {
+                reject(err)
+            }
+        }
+
+
+
+    }
+
 </script>
 
 </html>
