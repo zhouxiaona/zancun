@@ -11,20 +11,48 @@
 
 </body>
 <script>
-    function overload(name, func) {
+    // function overload(name, func) {
 
+    // }
+
+    // overload('add', function (a, b) {
+    //     return a + b;
+    // })
+
+    // overload('add', function (a, b, c) {
+    //     return a + b + c;
+    // })
+
+    // add(1, 2) // 3
+    // add(1, 2, 3) // 6
+
+    // Set和Map：集合和映射
+    // 一些集合的方法：
+    // has(key): 判断某个值是否存在
+    // delete(key): 移除集合某一个元素
+    // clear(): 清除集合的所有元素
+
+    // let set = new Set();
+    // set.add(5);
+    // set.add('5');
+    // set.add(5)
+    // console.log(set, '--set--')
+
+    // WeakSet和WeakMap(弱引用)
+
+    let obj = {
+        val: 2,
+        getValFunc: function () {
+            console.log(this, '--this1--')
+            console.log(this.val, '--this.val1--')
+        },
+        getValFunc2: () => {
+            console.log(this, '--this2--')
+            console.log(this.val, '--this.val2--')
+        }
     }
-
-    overload('add', function (a, b) {
-        return a + b;
-    })
-
-    overload('add', function (a, b, c) {
-        return a + b + c;
-    })
-
-    add(1, 2) // 3
-    add(1, 2, 3) // 6
+    obj.getValFunc()
+    obj.getValFunc2()
 
 </script>
 
