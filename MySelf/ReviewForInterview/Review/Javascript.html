@@ -6,9 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .wrap {
+        width: 100vw;
+        display: flex;
+        /* overflow: hidden;
+        border: 2px solid black; */
+        /* min-height: 100vh; */
+    }
+
+    .left {
+        width: 100px;
+        height: 100vh;
+        /* float: left; */
+        background: lightblue;
+    }
+
+    .right {
+        width: 100px;
+        height: 100vh;
+        /* float: right; */
+        background: lightgray;
+    }
+
+    .center {
+        flex: 1;
+        background: lightpink;
+    }
+</style>
 
 <body>
-
+    <div class="wrap">
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
+    </div>
 </body>
 <script>
     // 数组扁平化
@@ -20,13 +57,13 @@
     // console.log([...new Array(100).keys()])
 
     // 算法-数组乱序-随机排序
-    function upsetArr(arr) {
-        arr.sort(function (a, b) {
-            return Math.random() > 0.5 ? -1 : 1
-        })
-        return arr
-    }
-    console.log(upsetArr([1, 2, 3, 4, 5, 6, 7, 8, 9]))
+    // function upsetArr(arr) {
+    //     arr.sort(function (a, b) {
+    //         return Math.random() > 0.5 ? -1 : 1
+    //     })
+    //     return arr
+    // }
+    // console.log(upsetArr([1, 2, 3, 4, 5, 6, 7, 8, 9]))
 
     // 给定一个单词，你需要判断单词的大写使用是否正确。
     // 我们定义，在以下情况时，单词的大写用法是正确的：
@@ -53,51 +90,75 @@
 
     // A-Z 对应的 Unicode 编码是 65 - 90
     // a-z 对应的 Unicode 编码是 97 - 122
-    var detectCapitalUse = function (word) {
-        var uni, unizero, unione
-        for (var i = 1; i < word.length; i++) {
-            uni = word.charCodeAt(i)
-            unizero = word.charCodeAt(0)
-            unione = word.charCodeAt(1)
-            if (unizero >= 97 && unizero <= 122) { //第0位小写,后面也需要小写
-                if (uni < 97 || uni > 122) {
-                    return false;
-                }
-            } else if (unione >= 97 && unione <= 122) { //第1位小写，后面也需要小写
-                if (uni < 97 || uni > 122) {
-                    return false;
-                }
-            } else {
-                if (uni < 65 || uni > 90) { //否则都是大写
-                    return false;
-                }
-            }
-        }
-        return true;
-    };
+    // var detectCapitalUse = function (word) {
+    //     var uni, unizero, unione
+    //     for (var i = 1; i < word.length; i++) {
+    //         uni = word.charCodeAt(i)
+    //         unizero = word.charCodeAt(0)
+    //         unione = word.charCodeAt(1)
+    //         if (unizero >= 97 && unizero <= 122) { //第0位小写,后面也需要小写
+    //             if (uni < 97 || uni > 122) {
+    //                 return false;
+    //             }
+    //         } else if (unione >= 97 && unione <= 122) { //第1位小写，后面也需要小写
+    //             if (uni < 97 || uni > 122) {
+    //                 return false;
+    //             }
+    //         } else {
+    //             if (uni < 65 || uni > 90) { //否则都是大写
+    //                 return false;
+    //             }
+    //         }
+    //     }
+    //     return true;
+    // };
 
     //     解法二：
     // 字符与字符之间对比大小
 
+    // var detectCapitalUse = function (word) {
+    //     for (var i = 1; i < word.length; i++) {
+    //         if (word[0] >= 'a' && word[0] <= 'z') {
+    //             if (word[i] < 'a' || word[i] > 'z') {
+    //                 return false;
+    //             }
+    //         } else if (word[1] >= 'a' && word[1] <= 'z') {
+    //             if (word[i] < 'a' || word[i] > 'z') {
+    //                 return false;
+    //             }
+    //         } else {
+    //             if (word[i] < 'A' || word[i] > 'Z') {
+    //                 return false;
+    //             }
+    //         }
+    //     }
+    //     return true;
+    // };
 
-    var detectCapitalUse = function (word) {
-        for (var i = 1; i < word.length; i++) {
-            if (word[0] >= 'a' && word[0] <= 'z') {
-                if (word[i] < 'a' || word[i] > 'z') {
-                    return false;
-                }
-            } else if (word[1] >= 'a' && word[1] <= 'z') {
-                if (word[i] < 'a' || word[i] > 'z') {
-                    return false;
+    // 对于给定数组，包含的数字个数为N，其中出现次数超过N/2的数字，成为绝对众数， 
+
+    // let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+    let arr1 = [2, 2, 1, 1, 3, 2, 1, 2, 1, 1, 1]
+    let arr2 = [1, 1, 2, 2, 3]
+    // console.log(arr1.length, '---arr1.length---', Math.floor(arr1.length / 2))
+    function func(arr) {
+        let obj = {}
+        for (let i = 0; i < arr.length; i++) {
+            let num = arr[i]
+            if (obj[num]) {
+                obj[num]++;
+                if (obj[num] > Math.floor(arr.length / 2)) {
+                    return num
                 }
             } else {
-                if (word[i] < 'A' || word[i] > 'Z') {
-                    return false;
-                }
+                obj[num] = 1
             }
         }
-        return true;
-    };
+        // return arr[Math.floor(arr.length)]
+    }
+    console.log(func(arr2))
+    // console.log(arr1.sort()[Math.floor(arr1.length / 2)])
+
 
 
 

@@ -1,140 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <style>
-    *{
+    * {
         margin: 0;
         padding: 0;
     }
-    .grid{
+
+    .grid {
         width: 100%;
         height: 90px;
         display: flex;
     }
-    .grid-cell{
-        margin:10px;
-        border: 1px solid red;
-        flex:1;
-    }
-    .grid-cell2{
+
+    .grid-cell {
         margin: 10px;
         border: 1px solid red;
-        flex:2;
+        flex: 1;
     }
-    .grid-cell3{
+
+    .grid-cell2 {
         margin: 10px;
         border: 1px solid red;
-        flex:8;
+        flex: 2;
     }
-    .grid-cell4{
+
+    .grid-cell3 {
+        margin: 10px;
+        border: 1px solid red;
+        flex: 8;
+    }
+
+    .grid-cell4 {
         width: 200px;
         margin: 10px;
         border: 1px solid red;
     }
-    .grid-cell5{
+
+    .grid-cell5 {
         margin: 10px;
         border: 1px solid red;
-        flex:1;
+        flex: 1;
     }
 
-    .wrap{
+    .wrap {
         width: 100%;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
     }
-    .header{
+
+    .header {
         height: 50px;
         background: blue;
     }
-    .cont{
+
+    .cont {
         flex: 1;
         background: pink;
     }
-    .footer{
+
+    .footer {
         height: 60px;
         background: cyan;
     }
 
-    .contanier{
+    .contanier {
         width: 100%;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
     }
-    .head,.foot{
+
+    .head,
+    .foot {
         width: 100%;
         height: 50px;
         background: pink;
     }
-    .mainCont{
+
+    .mainCont {
         flex: 1;
         display: flex;
     }
-    .left,.right{
+
+    .left,
+    .right {
         width: 40px;
         background: blue;
     }
-    .mid{
+
+    .mid {
         flex: 1;
         background: lightblue;
     }
 
-    .threeWrap{
+    .threeWrap {
         width: 100%;
         height: 80vh;
+        border: 1px solid black;
         /* display: table; */
-        display: flex;
+        /* display: flex; */
     }
-    .lineL{
+
+    .lineL {
         width: 50px;
         height: 100%;
-        /* float: left; */
+        float: left;
         /* display: table-cell; */
-        flex: none;
+        /* flex: none; */
         background: red;
     }
-    .lineR{
+
+    .lineR {
         width: 50px;
         height: 100%;
-        /* float: right; */
+        float: right;
         /* display: table-cell; */
-        flex: none;
+        /* flex: none; */
         background: blue;
     }
-    .lineM{
+
+    .lineM {
         height: 100%;
-        flex: 1;
+        /* flex: 1; */
         /* display: table-cell; */
         background: lightblue;
     }
 
-    .inp-wrap{
+    .inp-wrap {
         width: 100%;
         margin: 30px;
         display: flex;
     }
-    .item{
-        flex:1;
+
+    .item {
+        flex: 1;
         display: flex;
     }
-    img{
+
+    img {
         width: 40px;
         height: 40px;
         border: 1px solid #ccc;
         border-right: none;
         border-radius: 5px 0 0 5px;
     }
-    button{
+
+    button {
         width: 50px;
         border-left: none;
         border-radius: 0 5px 5px 0;
     }
 </style>
+
 <body>
     <!-- 1，网格布局 -->
     <!-- <div class="grid">
@@ -176,24 +200,25 @@
     <!-- 3-1.三列布局和两列布局自适应 
     三列布局：float,flex,table
     -->
-    <!-- <div class="threeWrap">
+    <div class="threeWrap">
         <div class="lineL"></div>
-        <div class="lineM"></div>
         <div class="lineR"></div>
-    </div> -->
-    <!-- 4.输入框布局 -->
-    <div class="inp-wrap">
-        <div class="item">
-            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1562259257032&di=f9751a349fdf0a957544d500443a096b&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F00%2F86%2F89%2F8956ec576d4d7f5.jpg"/>
-            <input type="text">
-            <button>submit</button>
-        </div>
-        <div class="item">
-            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1562259257032&di=f9751a349fdf0a957544d500443a096b&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F00%2F86%2F89%2F8956ec576d4d7f5.jpg"/>
-            <input type="text">
-            <button>submit</button>
-        </div>
+        <!-- <div class="lineM"></div> -->
     </div>
-    
+    <!-- 4.输入框布局 -->
+    <!-- <div class="inp-wrap">
+        <div class="item">
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1562259257032&di=f9751a349fdf0a957544d500443a096b&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F00%2F86%2F89%2F8956ec576d4d7f5.jpg"/>
+            <input type="text">
+            <button>submit</button>
+        </div>
+        <div class="item">
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1562259257032&di=f9751a349fdf0a957544d500443a096b&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F00%2F86%2F89%2F8956ec576d4d7f5.jpg"/>
+            <input type="text">
+            <button>submit</button>
+        </div>
+    </div> -->
+
 </body>
+
 </html>
