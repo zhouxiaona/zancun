@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 一,  this->函数执行时的环境
+    // call, apply, bind
+    // 1, 箭头函数的this始终指向其定义的环境主体，绑定运行时的环境()=>{}
+    // 2, func.call(this, arg1, arg2, ...) 无限参数
+    // 3, func.apply(this, [arg1, arg2])  两个参数
+
+    // function func(a) {
+    //     var a; // let a; =>Uncaught SyntaxError: Identifier 'a' has already been declared
+    //     console.log(a)
+    // }
+    // func(3) // 3
+
+    // var obj = { a: 3 }
+    // function func1(obj) {
+    //     // obj = new Object()
+    //     obj.b = 1
+    //     console.log(obj, '--1--') // {b:1}
+    // }
+    // func1(obj)
+    // console.log(obj, '--2--') // {a:3}
+
+    // var obj = {
+    //     value: 1
+    // }
+    // function foo(o) {
+    //     o = 2;
+    //     console.log(o); // 2
+    // }
+    // foo(obj);
+    // console.log(obj) // {value:1}
+
+    // var a = 0, b = 0;
+    // function A(a) {
+    //     A = function (b) {
+    //         console.log(a + b++)
+    //     }
+    //     console.log(a++)
+    // }
+    // A(1) // 1
+    // A(2) // 4
+
+    // let arr = [2, 3, 4]
+    // console.log(arr.shift(), '----', arr) // 头部删除
+    // console.log(arr.unshift(1), '----2---', arr) // 头部添加
+
+    // function Dog(name, color) {
+    //     this.color = color;
+    //     this.name = name;
+    //     this.say = function () {
+    //         console.log(this, '---this---')
+    //         console.log(`I am a ${this.color} dog ,my name is ${this.name}`)
+    //     }
+    // }
+
+    // let ahuang = new Dog("阿黄", "黄色")
+    // ahuang.say() // I am a 黄色 dog ,my name is 阿黄
+
+    // 二, javascript内置的一些函数，具有显式绑定的功能，如数组的5个迭代方法：map()、forEach()、filter()、some()、every()，以及创建对象的 Object.create() 函数（后面原型链中会细说），都可以手动绑定this。
+    // [1, 2, 3].forEach(function () {
+    //     console.log(this) // window
+    // }, [1, 2, 3])
+
+    // var a = "window";
+    // function fun() {
+    //     var a = "fun";
+    //     return (function () {
+    //         console.log(this, '--this--')
+    //         return this.a;
+    //     })()
+    // }
+    // fun()
+
+    // 三, new 关键字
+    // function New(proto) {  //proto 为传进来的构造函数
+    //     var obj = {};
+    //     obj.__proto__ = proto.prototype;
+    //     proto.apply(obj, Array.prototype.slice.call(argument, 1));
+    //     //你这要看懂这步就行。这里把构造函数里的 this 绑定到了 新的obj对象上，最后返回了该新对象，作为实例对象。
+    //     return obj;
+    // }
+
+    // 四, 手写Bind函数
+    // Function.prototype.myCall = function () {
+    //     let args = [...arguments]
+    //     // console.log(args, '--args--')
+    //     let ctx = args.length > 0 ? args.shift() : window
+    //     // console.log(ctx, '--ctx--')
+    //     let s = Symbol() // 生成一个唯一值
+    //     // 在被劫持者对象属性中加入这个属性
+    //     ctx[s] = this
+    //     // console.log(this, '--this--')
+    //     let result = ctx[s](...args)
+    //     delete ctx[s]
+    //     return result
+    // }
+
+    // Function.prototype.myBind = function () {
+    //     let args = [...arguments]
+    //     let _this = args.length > 0 ? args.shift() : window
+    //     let func = Symbol()
+    //     _this[func] = this
+    //     return function () {
+    //         let res = _this[func](...args)
+    //         delete _this[func]
+    //         return res
+    //     }
+    // }
+
+    // function _bind(aThis) {
+    //     if (typeof this != 'function') {
+    //         return new Error('err')
+    //     }
+    //     let fn = this
+    //     let arg1 = Array.prototype.slice.call(arguments, 1)
+    //     let resfunc = function () {
+    //         let arg2 = Array.prototype.slice.call(arguments)
+    //         return fn.apply(this instanceof resfunc ? this : aThis, arg1.concat(arg2))
+    //     }
+    //     let tempFunc = new Function()
+    //     tempFunc.prototype = fn.prototype
+    //     resfunc.prototype = new tempFunc()
+    //     return resfunc;
+    // }
+
+    // Function.prototype.myBind = function (aThis) {
+    //     if (typeof this != 'function') return new Error('is not a function')
+    //     let fn = this
+    //     let args1 = Array.prototype.slice(arguments, 1)
+    //     let resFunc = function () {
+    //         let args2 = Array.prototype.slice(arguments)
+    //         return fn.apply(this instanceof resFunc ? this : aThis, args2.concat(args1))
+    //     }
+    //     let tempFunc = new Function()
+    //     tempFunc.prototype = fn.prototype
+    //     resFunc.prototype = new tempFunc()
+    //     return resFunc;
+    // }
+
+    // var obj = {
+    //     a: 3,
+    //     foo: function () {
+    //         console.log(this, '---this---')
+    //         console.log(this.a)
+    //     }
+    // }
+    // var a = 2
+    // obj.foo()
+    // setTimeout(obj.foo, 0) // 2
+
+    // function Dog(name, color) {
+    //     this.color = color;
+    //     this.name = name;
+    //     this.say = function () {
+    //         // console.log(this, '---this---')
+    //         console.log(`I am a ${this.color} dog ,my name is ${this.name}`)
+    //     }
+    // }
+    // let ahuang = new Dog("阿黄", "黄色")
+    // let alv = new Dog('阿绿', '绿色')
+    // let er = ahuang.say.myBind(alv)
+    // console.log(er(), '--er--')
+
+
+</script>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var name = 'name1'
+    var getName = function () {
+        console.log(this, '--this--')
+        console.log(this.name)
+    }
+    function Person(name) {
+        this.name = name
+        this.getName = function () {
+            console.log('name3')
+            console.log(this.name)
+        }
+        // console.log(this, '---this---')
+        getName()
+    }
+    Person.prototype.getName = getName
+    var person = new Person('name2')
+    // person.getName()
+
+
+</script>
+
+</html>

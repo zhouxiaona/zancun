@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .father {
+        width: 200px;
+        height: 200px;
+        /* background: blue; */
+        margin: 0 auto;
+        position: fixed;
+        left: 100px;
+    }
+
+    .child {
+        width: 100px;
+        height: 100px;
+        /* background: pink; */
+        /* position: relative; */
+        /* position: fixed; */
+        /* top: 0; */
+        /* left: 0; */
+    }
+
+    .grandChild {
+        width: 50px;
+        height: 50px;
+        /* background: green; */
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>
+
+<body>
+    <!-- <div class="father">
+        <div class="child">
+            <div class="grandChild"></div>
+        </div>
+    </div> -->
+</body>
+<script>
+    // 1, event-loop:事件循环机制
+    // console.log('script start');
+    // setTimeout(function () {
+    //     console.log('setTimeout');
+    // }, 0);
+    // Promise.resolve().then(function () {
+    //     console.log('promise1');
+    // }).then(function () {
+    //     console.log('promise2');
+    // });
+    // console.log('script end');
+    // script start script end promise1 promise2 setTimeout
+
+    // setTimeout(() => console.log(4))
+    // new Promise(resolve => {
+    //     resolve()
+    //     console.log(1)
+    // }).then(() => {
+    //     console.log(3)
+    //     Promise.resolve().then(() => {
+    //         console.log('before timeout')
+    //     }).then(() => {
+    //         Promise.resolve().then(() => {
+    //             console.log('also before timeout')
+    //         })
+    //     })
+    // })
+    // console.log(2)
+    // 1 2 3 before timeout also before timeout 4
+
+    // console.log('1');
+    // setTimeout(function () {
+    //     console.log('2');
+    //     process.nextTick(function () {
+    //         console.log('3');
+    //     })
+    //     new Promise(function (resolve) {
+    //         console.log('4');
+    //         resolve();
+    //     }).then(function () {
+    //         console.log('5')
+    //     })
+    // })
+    // new Promise(function (resolve) {
+    //     console.log('7');
+    //     resolve();
+    // }).then(function () {
+    //     console.log('8')
+    // })
+    // process.nextTick(function () {
+    //     console.log('6');
+    // })
+    // setTimeout(function () {
+    //     console.log('9');
+    //     process.nextTick(function () {
+    //         console.log('10');
+    //     })
+    //     new Promise(function (resolve) {
+    //         console.log('11');
+    //         resolve();
+    //     }).then(function () {
+    //         console.log('12')
+    //     })
+    // })
+    // 1 7 6 8 2 4 3 5 9 11 10 12
+
+    // console.log('1');
+    // new Promise(resolve => {
+    //     console.log('2');
+    //     resolve();
+    // }).then(() => {
+    //     console.log('3');
+    //     setTimeout(() => {
+    //         console.log('4');
+    //     }, 0);
+    // })
+    // console.log('5');
+    // setTimeout(() => {
+    //     console.log('6');
+    //     new Promise(resolve => {
+    //         console.log('7');
+    //         resolve();
+    //     }).then(() => {
+    //         console.log('8');
+    //     })
+    //     console.log('9');
+    //     setTimeout(() => {
+    //         console.log('10');
+    //     }, 0);
+    // }, 0);
+    // new Promise(resolve => {
+    //     console.log('11');
+    //     resolve();
+    // }).then(() => {
+    //     console.log('12');
+    // })
+    // console.log('13');
+    // 1 2 5 11 13 3 12 6 7 9 8 4 10
+
+    // async function async1() {
+    //     console.log(1)
+    //     await async2()
+    //     console.log(2)
+    // }
+    // async function async2() {
+    //     console.log(3)
+    // }
+    // console.log(4)
+    // setTimeout(() => {
+    //     console.log(5)
+    // }, 0)
+    // async1();
+    // new Promise((resolve) => {
+    //     console.log(6)
+    //     resolve();
+    // }).then(() => {
+    //     console.log(7)
+    // })
+    // console.log(8)
+    // 4 1 3 6 8 2 7 5
+
+    // async function t1() {
+    //     console.log(1)
+    //     new Promise((resolve) => {
+    //         console.log(2)
+    //         resolve();
+    //     }).then(function () {
+    //         console.log(3)
+    //     })
+    //     await new Promise((resolve) => {
+    //         console.log(4)
+    //         resolve();
+    //     }).then(() => {
+    //         console.log(5)
+    //     })
+    //     console.log(6)
+    //     new Promise((resolve) => {
+    //         console.log(7)
+    //         resolve();
+    //     }).then(() => {
+    //         console.log(8)
+    //     })
+    // }
+    // setTimeout(() => {
+    //     console.log(9)
+    // }, 0)
+    // async function t2() {
+    //     console.log(10)
+    //     await Promise.resolve().then(() => console.log(11))
+    //     console.log(12)
+    // }
+    // t1()
+    // new Promise((resolve) => {
+    //     console.log(13)
+    //     resolve();
+    // }).then(() => {
+    //     console.log(14)
+    // })
+    // t2()
+    // console.log(15);
+    // 1 2 4 13 10 15 3 5 14 11 6 7 12 8 9
+
+    // async function b() {
+    //     console.log('1');
+    // }
+    // async function c() {
+    //     console.log('7');
+    // }
+    // async function a() {
+    //     console.log('2');
+    //     await b();
+    //     //console.log(3);
+    //     await c();
+    //     console.log(8);
+    // }
+    // a();
+    // console.log(5);
+    // Promise.resolve()
+    //     .then(() => {
+    //         console.log(4);
+    //     })
+    //     .then(() => {
+    //         console.log(6);
+    //     });
+    // new Promise(resolve => {
+    //     setTimeout(() => resolve(), 1000);
+    // }).then(() => console.log(55555555));
+    // setTimeout(() => {
+    //     console.log(123);
+    // });
+    // 2 1 5 7 4 8 6 123 55555555
+
+
+
+
+
+
+
+
+</script>
+
+</html>

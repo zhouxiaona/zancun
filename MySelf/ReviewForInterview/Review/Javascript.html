@@ -48,6 +48,34 @@
     </div>
 </body>
 <script>
+    // for in 和for of区别
+    let arr = [2, 3, 54, 1, 6, { name: 'zz', age: 18 }]
+    // 1.for in 遍历的是数组的下标索引key值
+    // 2，for of 遍历的是数组的value值
+    // 3，for in 会遍历自定义属性，for of不会
+    for (let i in arr) {
+        console.log(i, '--for---in--', arr[i])
+    }
+    for (let i of arr) {
+        console.log(i, '---for---of--')
+    }
+    // sort函数
+    // var array = [{ name: 'Koro1', age: 66 }, { name: 'Koro1', age: 20 }, { name: 'OB', age: 3 }, { name: 'Koro1', age: 21 }, { name: 'OB', age: 4 }, { name: 'OB', age: 5 }];
+    // array.sort(function (a, b) {
+    //     if (a.name === 'Koro1') {// 如果name是'Koro1' 返回-1 ，-1<0 a排在b的前面
+    //         return -1
+    //     } else { // 如果不是的话，a排在b的后面
+    //         return 1
+    //     }
+    // })
+    // console.log(array)
+
+    // let setArr = new WeakSet([{ name: 'hee' }, { name: 'hee' }, { name: 'hee', age: 18 }])
+    // console.log(setArr)
+
+    // let arr2 = [1, 4, 3, 2, 5, 4, 3, 2]
+    // arr2.sort((a, b) => a - b)
+    // console.log(arr2, '--arr2--')
     // 数组扁平化
     // let arr = [1, [2, [3, [4, 5]]], 6];// -> [1, 2, 3, 4, 5, 6]
     // let str = JSON.stringify(arr);

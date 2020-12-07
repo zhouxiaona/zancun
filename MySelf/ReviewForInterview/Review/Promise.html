@@ -11,14 +11,153 @@
 
 </body>
 <script>
-    // let test = new Promise((resolve, reject) => {
-    //     if (true) {
-    //         resolve(1)
-    //     } else {
-    //         reject(2)
-    //     }
+    // for (let i = 0; i < 5; i++) {
+    //     setTimeout(() => {
+    //         console.log(i);
+    //     }, 1000);
+    // }
+    // console.log(i)
+
+    // Promise-同步-异步-链式调用未解决-https://juejin.cn/post/6844904112346103816#heading-1
+    // 1.Promise存在三个状态：pending（等待态）、fulfilled（成功态）、rejected（失败态）
+    const STATUS_PENDING = 'pending'
+    const STATUS_FULFILLED = 'fulfilled'
+    const STATUS_REJECTED = 'rejected'
+    class myPromise {
+        constructor(executor) {
+            this.status = STATUS_PENDING
+            this.value = ''
+            this.reason = ''
+            this.onFulfilledCallbacks = []
+            this.onRejectedCallbacks = []
+            let resolve = value => {
+                if (this.status == STATUS_PENDING) {
+                    this.status = STATUS_FULFILLED
+                    this.value = value
+                    this.onFulfilledCallbacks.forEach(fn => fn())
+                }
+            }
+            let reject = reason => {
+                if (this.status == STATUS_PENDING) {
+                    this.status = STATUS_REJECTED
+                    this.reason = reason
+                    this.onRejectedCallbacks.forEach(fn => fn())
+                }
+            }
+            try {
+                executor(resolve, reject)
+            } catch (err) {
+                reject(err)
+            }
+        }
+        then(onFulfilled = () => { }, onReJected = () => { }) {
+            if (this.status == STATUS_FULFILLED) {
+                onFulfilled(this.value)
+            }
+            if (this.status == STATUS_REJECTED) {
+                onReJected(this.reason)
+            }
+            if (this.status == STATUS_PENDING) {
+                this.onFulfilledCallbacks.push(() => onFulfilled(this.value))
+                this.onRejectedCallbacks.push(() => onReJected(this.reason))
+            }
+        }
+    }
+
+    new myPromise((resolve, reject) => {
+        console.log('before resolve')
+        setTimeout(() => {
+            console.log('---async---')
+            reject('errrrrrr---')
+        }, 1000)
+        // resolve(1)
+    }).then(res => {
+        console.log(res, '---res---')
+    }, err => {
+        console.log(err, '---err---')
+    })
+
+    // new myPromise((resolve, reject) => {
+    //     console.log('before reject')
+    //     reject('reject error')
+    // }).then(res => {
+    //     console.log(res)
+    // }, error => {
+    //     console.log(error)
     // })
-    // console.log(test, '--test--')
+
+
+    // class Promise {
+    //     constructor(executor) {
+    //         // 初始化state为等待态
+    //         this.state = 'pending';
+    //         // 成功的值
+    //         this.value = undefined;
+    //         // 失败的原因
+    //         this.reason = undefined;
+    //         let resolve = value => {
+    //             // state改变,resolve调用就会失败
+    //             if (this.state === 'pending') {
+    //                 // resolve调用后，state转化为成功态
+    //                 this.state = 'fulfilled';
+    //                 // 储存成功的值
+    //                 this.value = value;
+    //             }
+    //         };
+    //         let reject = reason => {
+    //             // state改变,reject调用就会失败
+    //             if (this.state === 'pending') {
+    //                 // reject调用后，state转化为失败态
+    //                 this.state = 'rejected';
+    //                 // 储存失败的原因
+    //                 this.reason = reason;
+    //             }
+    //         };
+    //         // 如果executor执行报错，直接执行reject
+    //         try {
+    //             executor(resolve, reject);
+    //         } catch (err) {
+    //             reject(err);
+    //         }
+    //     }
+
+    //     // then 方法 有两个参数onFulfilled onRejected
+    //     then(onFulfilled, onRejected) {
+    //         // 状态为fulfilled，执行onFulfilled，传入成功的值
+    //         if (this.state === 'fulfilled') {
+    //             onFulfilled(this.value);
+    //         };
+    //         // 状态为rejected，执行onRejected，传入失败的原因
+    //         if (this.state === 'rejected') {
+    //             onRejected(this.reason);
+    //         };
+    //     }
+    // }
+
+    // class Promise {
+    //     constructor(executor) {
+    //         this.state = 'pending';
+    //         this.value = undefined
+    //         this.reason = undefined
+    //         let resolve = value => {
+    //             if (this.state == 'pending') {
+    //                 this.state = 'fulfilled'
+    //                 this.value = value
+    //             }
+    //         }
+    //         let reject = reason => {
+    //             if (this.state == 'pending') {
+    //                 this.state = 'rejected'
+    //                 this.reason = reason
+    //             }
+    //         }
+    //         try {
+    //             executor(resolve, reject)
+    //         } catch (err) {
+    //             reject(err)
+    //         }
+    //     }
+    // }
 
     // function Promise(executor) {
     //     this.status = 'pending';
@@ -94,39 +233,39 @@
     //     }
     // }
 
-    class Promise {
-        constructor(executor) {
-            this.status = 'pending';
-            this.value = null;
-            this.reason = null;
-            let resolve = (value) => {
-                if (this.status == 'pending') {
-                    this.status = 'fulfilled'
-                    this.value = value;
-                }
-            }
-            let reject = (reason) => {
-                if (this.status == 'pending') {
-                    this.status = 'rejected'
-                    this.reason = reason
-                }
-            }
-            try {
-                executor(resolve, reject)
-            } catch (err) {
-                reject(err)
-            }
-        }
+    // class Promise {
+    //     constructor(executor) {
+    //         this.status = 'pending';
+    //         this.value = null;
+    //         this.reason = null;
+    //         let resolve = (value) => {
+    //             if (this.status == 'pending') {
+    //                 this.status = 'fulfilled'
+    //                 this.value = value;
+    //             }
+    //         }
+    //         let reject = (reason) => {
+    //             if (this.status == 'pending') {
+    //                 this.status = 'rejected'
+    //                 this.reason = reason
+    //             }
+    //         }
+    //         try {
+    //             executor(resolve, reject)
+    //         } catch (err) {
+    //             reject(err)
+    //         }
+    //     }
 
-        then(onFulfilled, onRejected) {
-            if (this.status == 'fulfilled') {
-                onFulfilled(this.value)
-            }
-            if (this.status == 'rejected') {
-                onRejected(this.reason)
-            }
-        }
-    }
+    //     then(onFulfilled, onRejected) {
+    //         if (this.status == 'fulfilled') {
+    //             onFulfilled(this.value)
+    //         }
+    //         if (this.status == 'rejected') {
+    //             onRejected(this.reason)
+    //         }
+    //     }
+    // }
 
 
 
