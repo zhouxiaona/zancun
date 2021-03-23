@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="parEle">我是父元素 <span id="sonEle">我是子元素</span></p>
+</body>
+<!-- <script src='./index.js'></script> -->
+<script>
+
+    window.onload = function () {
+        console.log('onload')
+    }
+    // instanceof
+    console.log([] instanceof Array); //true
+    console.log([] instanceof Object); //true
+    console.log(new Date() instanceof Date);//true
+    console.log(new Date() instanceof Object);//true
+    function Person() { }
+    console.log(new Person() instanceof Person);//true
+    console.log(new Person() instanceof Object);//true
+    let arr = [1, 2, 3]
+    // console.log(arr, '--arr--')
+    // console.log(Array.prototype, '--Array--')
+    console.log('---------------')
+    console.log('hello' instanceof String) // false
+    console.log(null instanceof Object) // false
+    console.log(undefined instanceof Object) // false
+
+    var sonEle = document.getElementById('sonEle');
+    var parEle = document.getElementById('parEle');
+
+    // parEle.addEventListener('click', function () {
+    //     alert('父级 冒泡');
+    // }, false);
+    // parEle.addEventListener('click', function () {
+    //     alert('父级 捕获');
+    // }, false);
+
+    // sonEle.addEventListener('click', function () {
+    //     alert('子级冒泡');
+    // }, false);
+    // sonEle.addEventListener('click', function () {
+    //     alert('子级捕获');
+    // }, true);
+
+    // function getName() {
+    //     return
+    //     {
+    //         name: 'LinDaiDai'
+    //     }
+    // }
+    // console.log(getName())
+
+</script>
+<script src='./index.js'></script>
+
+</html>
