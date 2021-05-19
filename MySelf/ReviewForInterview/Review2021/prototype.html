@@ -7,9 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .borderOut {
+        width: 100px;
+        height: 100px;
+        background: lightblue;
+        margin-top: 20px;
+    }
+
+    .borderInner {
+        width: 50%;
+        height: 50px;
+        background: pink;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+</style>
 
 <body>
-
+    <div class="borderOut">
+        <div class="borderInner"></div>
+    </div>
 </body>
 <script>
     /**
@@ -37,32 +60,65 @@
      *
      * **/
 
-    function Parent(name) {
-        this.name = name;
-        this.colors = ['red', 'blue', 'green'];
+    // function Parent(name) {
+    //     this.name = name;
+    //     this.colors = ['red', 'blue', 'green'];
+    // }
+    // Parent.prototype.getName = function () {
+    //     console.log(this.name)
+    // }
+
+    // function Child(name, age) {
+    //     Parent.call(this, name);
+    //     this.age = age;
+    // }
+    // Child.prototype = new Parent();
+    // Child.prototype.constructor = Child;
+
+    // var child1 = new Child('kevin', '18');
+    // child1.colors.push('black');
+
+    // console.log(child1.name); // kevin
+    // console.log(child1.age); // 18
+    // console.log(child1.colors); // ["red", "blue", "green", "black"]
+
+    // var child2 = new Child('daisy', '20');
+    // console.log(child2.name); // daisy
+    // console.log(child2.age); // 20
+    // console.log(child2.colors); // ["red", "blue", "green"]
+
+    // var a = { n: 1 };
+    // a.x = a = { n: 2 };
+    // console.log(a.x, '---a.x---');
+
+    function deepClone(obj) {
+        if (obj === null) return obj;
+        if (obj instanceof Date) return new Date(obj)
+        if (obj instanceof RegExp) return new RegExp(obj)
+        if (typeof obj !== 'object') return object;
+        let cloneObj = new obj.constructor();
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                cloneObj[key] = deepClone(obj[key])
+            }
+        }
+        return cloneObj;
     }
-    Parent.prototype.getName = function () {
-        console.log(this.name)
-    }
 
-    function Child(name, age) {
-        Parent.call(this, name);
-        this.age = age;
-    }
-    Child.prototype = new Parent();
-    Child.prototype.constructor = Child;
+    // 浅拷贝: 引用类型对象指向同一块内存地址，所以值相等;
+    /*
+        slice(start(包括),end(不包括))
+        substr(start(包括),length)
+        substring(start(包括),stop(不包括))
+    */
+    // let obj1 = { person: { name: "kobe", age: 41, detail: { g: 1 } }, sports: 'basketball' };
+    // let obj2 = Object.assign({}, obj1);
+    // obj2.person.name = "wade";
+    // obj2.sports = 'football'
+    // console.log(obj1); // { person: { name: 'wade', age: 41 }, sports: 'basketball' }
+    // console.log(obj1.person == obj2.person)
 
-    var child1 = new Child('kevin', '18');
-    child1.colors.push('black');
 
-    console.log(child1.name); // kevin
-    console.log(child1.age); // 18
-    console.log(child1.colors); // ["red", "blue", "green", "black"]
-
-    var child2 = new Child('daisy', '20');
-    console.log(child2.name); // daisy
-    console.log(child2.age); // 20
-    console.log(child2.colors); // ["red", "blue", "green"]
 
 
 </script>
