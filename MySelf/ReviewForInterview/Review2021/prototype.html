@@ -91,19 +91,19 @@
     // a.x = a = { n: 2 };
     // console.log(a.x, '---a.x---');
 
-    function deepClone(obj) {
-        if (obj === null) return obj;
-        if (obj instanceof Date) return new Date(obj)
-        if (obj instanceof RegExp) return new RegExp(obj)
-        if (typeof obj !== 'object') return object;
-        let cloneObj = new obj.constructor();
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                cloneObj[key] = deepClone(obj[key])
-            }
-        }
-        return cloneObj;
-    }
+    // function deepClone(obj) {
+    //     if (obj === null) return obj;
+    //     if (obj instanceof Date) return new Date(obj)
+    //     if (obj instanceof RegExp) return new RegExp(obj)
+    //     if (typeof obj !== 'object') return object;
+    //     let cloneObj = new obj.constructor();
+    //     for (let key in obj) {
+    //         if (obj.hasOwnProperty(key)) {
+    //             cloneObj[key] = deepClone(obj[key])
+    //         }
+    //     }
+    //     return cloneObj;
+    // }
 
     // 浅拷贝: 引用类型对象指向同一块内存地址，所以值相等;
     /*
@@ -118,6 +118,18 @@
     // console.log(obj1); // { person: { name: 'wade', age: 41 }, sports: 'basketball' }
     // console.log(obj1.person == obj2.person)
 
+    let arr = [1, 2, 3, 4, 5]
+    // try {
+    //     arr.forEach((item, index) => {
+    //         if (item >= 3) throw new Error('end');
+    //         console.log(item)
+    //     })
+    // } catch (err) {
+    //     console.log(err, '--err--')
+    // }
+    if (arr[2] <= 3) return;
+    console.log(arr[a], '--arr[a]--')
+    console.log(arr, '--arr--')
 
 
 
