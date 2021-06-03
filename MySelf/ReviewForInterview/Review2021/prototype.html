@@ -118,7 +118,7 @@
     // console.log(obj1); // { person: { name: 'wade', age: 41 }, sports: 'basketball' }
     // console.log(obj1.person == obj2.person)
 
-    let arr = [1, 2, 3, 4, 5]
+    // let arr = [1, 2, 3, 4, 5]
     // try {
     //     arr.forEach((item, index) => {
     //         if (item >= 3) throw new Error('end');
@@ -127,9 +127,43 @@
     // } catch (err) {
     //     console.log(err, '--err--')
     // }
-    if (arr[2] <= 3) return;
-    console.log(arr[a], '--arr[a]--')
-    console.log(arr, '--arr--')
+
+    // if (arr[2] <= 3) return;
+    // console.log(arr[a], '--arr[a]--')
+    // console.log(arr, '--arr--')
+
+    // function foo() {
+    //     console.log(a, 'a1');
+    //     var a = 1;
+    //     console.log(a, 'a2');
+    //     function a() { }
+    //     console.log(a, 'a3');
+    // }
+    // foo();
+
+    function deepClone(obj, map = new Map()) {
+        if (obj instanceof Object) {
+            if (obj instanceof Function) return obj;
+            if (obj instanceof Date) return new Date(obj);
+            if (obj instanceof RegExp) return new RegExp(obj);
+            // 解决循环引用
+            if (map.has(obj)) return map.get(obj);
+            // 拷贝原型链
+            let allDesc = Object.getOwnPropertyDescriptors(target);
+            let cloneObj = Object.create(Object.getPrototypeOf(target), allDesc);
+            map.set(obj, cloneObj);
+            // Reflect.ownKeys可以拿到不可枚举属性和symbol类型的键名
+            for (let key of Reflect.ownKeys(obj)) {
+                cloneObj[key] = deepClone(obj[key], map);
+            }
+            return cloneObj
+        } else {
+            return obj;
+        }
+    }
+
+
+
 
 
 
