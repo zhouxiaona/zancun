@@ -141,26 +141,37 @@
     // }
     // foo();
 
-    function deepClone(obj, map = new Map()) {
-        if (obj instanceof Object) {
-            if (obj instanceof Function) return obj;
-            if (obj instanceof Date) return new Date(obj);
-            if (obj instanceof RegExp) return new RegExp(obj);
-            // 解决循环引用
-            if (map.has(obj)) return map.get(obj);
-            // 拷贝原型链
-            let allDesc = Object.getOwnPropertyDescriptors(target);
-            let cloneObj = Object.create(Object.getPrototypeOf(target), allDesc);
-            map.set(obj, cloneObj);
-            // Reflect.ownKeys可以拿到不可枚举属性和symbol类型的键名
-            for (let key of Reflect.ownKeys(obj)) {
-                cloneObj[key] = deepClone(obj[key], map);
-            }
-            return cloneObj
-        } else {
-            return obj;
-        }
+    // function deepClone(obj, map = new Map()) {
+    //     if (obj instanceof Object) {
+    //         if (obj instanceof Function) return obj;
+    //         if (obj instanceof Date) return new Date(obj);
+    //         if (obj instanceof RegExp) return new RegExp(obj);
+    //         // 解决循环引用
+    //         if (map.has(obj)) return map.get(obj);
+    //         // 拷贝原型链
+    //         let allDesc = Object.getOwnPropertyDescriptors(target);
+    //         let cloneObj = Object.create(Object.getPrototypeOf(target), allDesc);
+    //         map.set(obj, cloneObj);
+    //         // Reflect.ownKeys可以拿到不可枚举属性和symbol类型的键名
+    //         for (let key of Reflect.ownKeys(obj)) {
+    //             cloneObj[key] = deepClone(obj[key], map);
+    //         }
+    //         return cloneObj
+    //     } else {
+    //         return obj;
+    //     }
+    // }
+
+    var value = 1;
+
+    function foo() {
+        console.log(value);
     }
+    function bar() {
+        var value = 2;
+        foo();
+    }
+    bar();
 
 
 
