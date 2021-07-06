@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // class Rectangle {
+    //     constructor() { }
+    //     static logNbSides() {
+    //         return 'I have 4 sides';
+    //     }
+    // }
+    // class Square extends Rectangle {
+    //     constructor() {
+    //         super()
+    //     }
+    //     static logDescription() {
+    //         console.log(this, '--props--')
+    //         return this.logNbSides() + ' which are all equal';
+    //     }
+    // }
+    // console.log(Square.logDescription()); // 'I have 4 sides which are all equal'
+    // class Base { }
+    // class Good extends Base { }
+    // class AlsoGood extends Base {
+    //     constructor() {
+    //         return { a: 5 };
+    //     }
+    // }
+    // class Bad extends Base {
+    //     constructor() { }
+    // }
+
+    // new Good();
+    // new AlsoGood();
+    // new Bad(); // ReferenceError
+
+    this.x = 9;
+    var module = {
+        x: 81,
+        getX: () => {
+            console.log(this.x, '----this.x---') // 
+            return this.x;
+        }
+    }
+    console.log(module.getX(), '---module.getX()---'); // 
+    var retrieveX = module.getX;
+    retrieveX();
+    var boundGetX = retrieveX.bind(module);
+    console.log(boundGetX(), '---boundGetX()---'); // 
+
+
+</script>
+
+</html>
