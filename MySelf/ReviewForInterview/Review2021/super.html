@@ -43,19 +43,83 @@
     // new AlsoGood();
     // new Bad(); // ReferenceError
 
-    this.x = 9;
-    var module = {
-        x: 81,
-        getX: () => {
-            console.log(this.x, '----this.x---') // 
-            return this.x;
+    // this.x = 9;
+    // var module = {
+    //     x: 81,
+    //     getX: () => {
+    //         console.log(this.x, '----this.x---') // 
+    //         return this.x;
+    //     }
+    // }
+    // console.log(module.getX(), '---module.getX()---'); // 
+    // var retrieveX = module.getX;
+    // retrieveX();
+    // var boundGetX = retrieveX.bind(module);
+    // console.log(boundGetX(), '---boundGetX()---'); // 
+
+    // function Person() {
+    //     // Person() 构造函数定义 `this`作为它自己的实例.
+    //     this.age = 0;
+    //     function growUp() {
+    //         console.log(this, '---this---');
+    //         console.log(this.age, '---this.age111---');
+    //         this.age++;
+    //         console.log(this.age, '---this.age222---');
+    //     }
+    //     growUp()
+    //     // setInterval(growUp, 1000);
+    // }
+    // var p = new Person();
+    // console.log(p, '--p--');
+    // console.log(p.age, '--p.age--');
+
+    // var adder = {
+    //     base: 1,
+    //     add: function (a) {
+    //         console.log(this, '--this-add-')
+    //         var f = v => v + this.base; 
+    //         return f(a);
+    //     },
+    //     addThruCall: function (a) {
+    //         console.log(this, '--this-addThruCall-')
+    //         var f = v => v + this.base;
+    //         var b = {
+    //             base: 2
+    //         };
+    //         return f.call(b, a);
+    //     }
+    // };
+    // console.log(adder.add(1));         // 输出 2
+    // console.log(adder.addThruCall(1)); // 仍然输出 2
+
+    // var arguments = [1, 2, 3];
+    // var arr = () => arguments[0];
+    // arr(); // 1
+    // function foo(n) {
+    //     console.log(n, '--n--');
+    //     console.log(arguments[0], '--arguments[0] --');
+    //     var f = () => arguments[0] + n; // 隐式绑定 foo 函数的 arguments 对象. arguments[0] 是 n,即传给foo函数的第一个参数
+    //     return f();
+    // }
+    // foo(3, 2);//6
+
+    const obj = {
+        i: 1,
+        valueOf: function () {
+            if (this.i === 1) {
+                this.i++
+                return 1
+            } else {
+                return 2
+            }
         }
     }
-    console.log(module.getX(), '---module.getX()---'); // 
-    var retrieveX = module.getX;
-    retrieveX();
-    var boundGetX = retrieveX.bind(module);
-    console.log(boundGetX(), '---boundGetX()---'); // 
+    if (obj == 1 && obj == 2) {
+        // console.log(obj)
+    }
+    console.log({})
+    console.log(Object.create(null))
+
 
 
 </script>
