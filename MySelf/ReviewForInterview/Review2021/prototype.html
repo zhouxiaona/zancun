@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <style>
-    * {
+    /* * {
         margin: 0;
         padding: 0;
     }
@@ -26,13 +26,13 @@
         background: pink;
         margin-top: 10px;
         margin-left: 10px;
-    }
+    } */
 </style>
 
 <body>
-    <div class="borderOut">
+    <!-- <div class="borderOut">
         <div class="borderInner"></div>
-    </div>
+    </div> -->
 </body>
 <script>
     /**
@@ -162,16 +162,39 @@
     //     }
     // }
 
-    var value = 1;
+    // var value = 1;
+    // function foo() {
+    //     console.log(value, '--value-foo--');
+    // }
+    // function bar() {
+    //     var value = 2;
+    //     foo();
+    //     console.log(value, '--value-bar--')
+    // }
+    // bar();
 
-    function foo() {
-        console.log(value);
-    }
-    function bar() {
-        var value = 2;
-        foo();
-    }
-    bar();
+    // Object.prototype.a = "jing1";
+    // Function.prototype.a = "jing2";
+    // function Preson() { };
+    // var p = new Preson();
+    // console.log(p.a); // jing1
+    // console.log(p.constructor); // function Preson() { };
+    // console.log(p.__proto__.__proto__.constructor); // 
+
+    //原型对象
+    // var Jing = {
+    //     name: function () {
+    //         console.log('jingda');
+    //     }
+    // };
+    // //实例对象
+    // var Hao = Object.create(Jing);
+    // console.log(Object.getPrototypeOf(Hao), '---console1---');
+    // console.log(Object.getPrototypeOf(Hao) === Jing, '--Object.getPrototypeOf(Hao) === Jing--');
+    // Hao.name();
+    // console.log(Jing.name === Hao.name);
+
+
 
 
 
