@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    // async function someFunction(items) {
+    //     items.forEach(async (i) => {
+    //         const res = await someAPICall(i);
+    //         console.log('--->', res);
+    //     });
+    // }
+    // function someAPICall(param) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             resolve("Resolved" + param)
+    //         }, param);
+    //     })
+    // }
+    // someFunction(['3000', '8000', '1000', '4000']);
+
+    // async function someFunction(items) {
+    //     for (const i of items) {
+    //         const res = await someAPICall(i)
+    //         console.log('--->', res);
+    //     }
+    // }
+    // function someAPICall(param) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             resolve("Resolved" + param)
+    //         }, param);
+    //     })
+    // }
+    // someFunction(['3000', '8000', '1000', '4000']);
+
+    // function testPromise(time) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             console.log(`Processing ${time}`);
+    //             resolve(time);
+    //         }, time);
+    //     });
+    // }
+    // let result = [3000, 2000, 1000, 4000].reduce((accumulatorPromise, nextID) => {
+    //     return accumulatorPromise.then((res) => {
+    //         console.log(res, '--res--')
+    //         return testPromise(nextID);
+    //     });
+    // }, Promise.resolve());
+    // result.then(e => {
+    //     console.log("All Promises Resolved !!✨")
+    // });
+
+    // async function* generateSequence(items) {
+    //     for (const i of items) {
+    //         await new Promise(resolve => setTimeout(resolve, i));
+    //         yield i;
+    //     }
+    // }
+    // (async () => {
+    //     let generator = generateSequence(['3000', '8000', '1000', '4000']);
+    //     for await (let value of generator) {
+    //         console.log(value);
+    //     }
+    // })();
+
+    // async function promiseAll(arr) {
+    //     await Promise.all(arr.map(async (i) => {
+    //         await sleep(i)
+    //         console.log('--->', i);
+    //     }))
+    // }
+    // function sleep(i) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             resolve()
+    //         }, i)
+    //     })
+    // }
+    // promiseAll(['3000', '8000', '1000', '4000'])
+
+    // var customerId = 42;
+    // var customer;
+    // lookupCustomer(customerId, function onCustomer(customerRecord) { // 通过查询用户来查询订单
+    //     var orders = customer ? customer.orders : null;
+    //     customer = customerRecord;
+    //     if (orders) {
+    //         customer.orders = orders;
+    //     }
+    // });
+    // lookupOrders(customerId, function onOrders(customerOrders) { // 直接查询订单
+    //     if (!customer) {
+    //         customer = {};
+    //     }
+    //     customer.orders = customerOrders;
+    // });
+
+    let compose = function (...args) {
+        const init = args.pop()
+        return function (...arg) {
+            return args.reverse().reduce(function (sequence, func) {
+                return sequence.then(function (result) {
+                    return func.call(null, result)
+                })
+            }, Promise.resolve(init.apply(null, arg)))
+        }
+    }
+    let a = async () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('xhr1')
+                resolve('xhr1')
+            }, 1000)
+        })
+    }
+    let b = async () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('xhr2')
+                resolve('xhr2')
+            }, 2000)
+        })
+    }
+    let c = async () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('xhr3')
+                resolve('xhr3')
+            }, 3000)
+        })
+    }
+    let steps = [b, c, a]; // 从右向左执行
+    let composeFn = compose(...steps);
+    composeFn().then(res => { console.log(666) });
+
+    // xhr2
+    // xhr1
+    // 666
+    var arr = [1, 2, 3]
+    arr.pop(3)
+    console.log(arr, '--arr--')
+
+
+
+
+
+
+</script>
+
+</html>
