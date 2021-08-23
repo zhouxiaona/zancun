@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 可不传数组
+    // const set1 = new Set()
+    // set1.add(1)
+    // set1.add(2)
+    // set1.add(2)
+    // set1.add(2)
+    // set1.add(2)
+    // console.log(set1, '--set1--') // Set(2) { 1, 2 }
+
+    // const arr = [1, 2, NaN, { a: 1 }]
+    // console.log(arr.indexOf(NaN)) // -1  indexOf找不到NaN
+    // console.log(arr.includes(NaN)) // true includes能找到NaN
+    // console.log(arr.includes({ a: 1 }))
+
+    // let arr = [1, 2, 3, [4, 5, 6]]
+    // console.log(arr.flat()) // [ 1, 2, 3, 4, 5, 6 ]
+    // console.log(arr)
+    // const arr = [1, 2, 3, [4, 5, 6, [7, 8, 9]]]
+    // console.log(arr.flat(2))
+
+    // 当有成功的时候，返回最快那个成功
+    function fn(time, isResolve) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                isResolve ? resolve(`${time}毫秒后我成功啦！！！`) : reject(`${time}毫秒后我失败啦！！！`)
+            }, time)
+        })
+    }
+
+    Promise.any([fn(2000, true), fn(3000), fn(1000, true)]).then(res => {
+        console.log(res) // 1秒后 输出  1000毫秒后我成功啦
+    }, err => {
+        console.log(err)
+    })
+
+    // 当全都失败时
+    function fn(time, isResolve) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                isResolve ? resolve(`${time}毫秒后我成功啦！！！`) : reject(`${time}毫秒后我失败啦！！！`)
+            }, time)
+        })
+    }
+
+    Promise.any([fn(2000), fn(3000), fn(1000)]).then(res => {
+        console.log(res)
+    }, err => {
+        console.log(err) // 3秒后 报错 all Error
+    })
+
+    const num1 = 1000000000
+    // 使用数字分隔符
+    const num2 = 1_000_000_000
+    console.log(num1, 'num1')
+    console.log(num2, 'num2')
+
+
+
+
+
+</script>
+
+</html>
